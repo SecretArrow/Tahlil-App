@@ -74,27 +74,42 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {tahlilSections.slice(0, 6).map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className={`relative rounded-full px-3 py-1.5 text-sm transition-colors ${
-                activeId === s.id
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {s.title.split(" ")[0]}
-              {activeId === s.id && (
-                <motion.span
-                  layoutId="nav-active"
-                  className="absolute inset-0 -z-10 rounded-full bg-primary/10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </a>
-          ))}
+        <nav className="hidden lg:flex items-center gap-1.5">
+          {tahlilSections.slice(0, 6).map((s) => {
+            // Disambiguate short labels so the two Tahlil sections don't
+            // both render as "Tahlil". Section 3 keeps "Tahlil" (the main
+            // recitation); section 4 ("Tahlil & Surat-Surat") becomes
+            // "Surat-Surat". Section 6 shows its full short title.
+            const label =
+              s.id === "tahlil-1"
+                ? "Surat-Surat"
+                : s.id === "ayat-kursi"
+                  ? "Ayat Kursi"
+                  : s.title.split(" ")[0];
+            const isActive = activeId === s.id;
+            return (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className={`group flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[13px] font-medium transition-all duration-200 ${
+                  isActive
+                    ? "border-primary/30 bg-primary/10 text-primary shadow-sm"
+                    : "border-border/60 bg-background/40 text-muted-foreground hover:border-primary/30 hover:bg-accent hover:text-foreground"
+                }`}
+              >
+                <span
+                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold leading-none transition-colors ${
+                    isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground group-hover:bg-primary/15 group-hover:text-primary"
+                  }`}
+                >
+                  {s.number}
+                </span>
+                <span>{label}</span>
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
