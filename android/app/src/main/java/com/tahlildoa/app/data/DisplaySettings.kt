@@ -12,6 +12,12 @@ import kotlinx.serialization.Serializable
  *                     connectors — mirroring the punctuation already present
  *                     in the Indonesian translation. Quran verses (with ۝ or
  *                     ۩ marks) are never modified.
+ * - splitArabicLines: When true (default), Arabic text WITHOUT ayah marks
+ *                     is broken into lines at Arabic commas (،) and Latin
+ *                     periods (.) so each clause gets its own line. When
+ *                     false, the text flows as a single paragraph and wraps
+ *                     naturally. Ayah-marked verses always keep their
+ *                     per-verse lines either way.
  * - colorizeArabic:   When true, each Arabic word is rendered in one of two
  *                     alternating shades so consecutive words are visually
  *                     distinguishable.
@@ -20,7 +26,8 @@ import kotlinx.serialization.Serializable
  *                     OFF so users don't drain their battery accidentally.
  *
  * All toggles default to true except [punctuateArabic], [colorizeArabic], and
- * [keepScreenOn], matching the web app's defaults.
+ * [keepScreenOn], matching the web app's defaults. [splitArabicLines] defaults
+ * to true because per-clause lines are the traditional tahlil book layout.
  */
 @Serializable
 data class DisplayToggles(
@@ -28,6 +35,7 @@ data class DisplayToggles(
     val transliteration: Boolean = true,
     val translation: Boolean = true,
     val punctuateArabic: Boolean = false,
+    val splitArabicLines: Boolean = true,
     val colorizeArabic: Boolean = false,
     val keepScreenOn: Boolean = false,
 ) {

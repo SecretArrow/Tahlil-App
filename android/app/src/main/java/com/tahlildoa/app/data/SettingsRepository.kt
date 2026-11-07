@@ -48,6 +48,7 @@ class SettingsRepository(private val context: Context) {
     private val KEY_TRANSLIT = booleanPreferencesKey("display_transliteration")
     private val KEY_TRANSLATION = booleanPreferencesKey("display_translation")
     private val KEY_PUNCTUATE = booleanPreferencesKey("display_punctuate_arabic")
+    private val KEY_SPLIT_LINES = booleanPreferencesKey("display_split_arabic_lines")
     private val KEY_COLORIZE = booleanPreferencesKey("display_colorize_arabic")
     private val KEY_KEEP_SCREEN_ON = booleanPreferencesKey("display_keep_screen_on")
 
@@ -71,6 +72,7 @@ class SettingsRepository(private val context: Context) {
             transliteration = p[KEY_TRANSLIT] ?: true,
             translation = p[KEY_TRANSLATION] ?: true,
             punctuateArabic = p[KEY_PUNCTUATE] ?: false,
+            splitArabicLines = p[KEY_SPLIT_LINES] ?: true,
             colorizeArabic = p[KEY_COLORIZE] ?: false,
             keepScreenOn = p[KEY_KEEP_SCREEN_ON] ?: false,
         )
@@ -106,6 +108,7 @@ class SettingsRepository(private val context: Context) {
             p[KEY_TRANSLIT] = toggles.transliteration
             p[KEY_TRANSLATION] = toggles.translation
             p[KEY_PUNCTUATE] = toggles.punctuateArabic
+            p[KEY_SPLIT_LINES] = toggles.splitArabicLines
             p[KEY_COLORIZE] = toggles.colorizeArabic
             p[KEY_KEEP_SCREEN_ON] = toggles.keepScreenOn
         }

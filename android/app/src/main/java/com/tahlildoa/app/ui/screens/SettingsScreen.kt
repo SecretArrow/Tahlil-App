@@ -146,6 +146,12 @@ private fun LazyListScope.togglesSection(
                 onCheckedChange = { v -> onChange(toggles.copy(punctuateArabic = v)) },
             )
             ToggleRow(
+                title = "Koma = Baris Baru",
+                subtitle = "Mulai baris baru pada setiap koma (،) dan titik (.) di teks Arab. Matikan agar teks mengalir sebagai satu paragraf.",
+                checked = toggles.splitArabicLines,
+                onCheckedChange = { v -> onChange(toggles.copy(splitArabicLines = v)) },
+            )
+            ToggleRow(
                 title = "Warnai Kata Arab",
                 subtitle = "Selang-seling warna untuk tiap kata Arab",
                 checked = toggles.colorizeArabic,

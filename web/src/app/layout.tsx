@@ -135,6 +135,8 @@ function parseDisplayToggles(raw: string | null): DisplayToggles {
         typeof p.translation === "boolean" ? p.translation : true,
       punctuateArabic:
         typeof p.punctuateArabic === "boolean" ? p.punctuateArabic : false,
+      splitArabicLines:
+        typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
       colorizeArabic:
         typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
     };

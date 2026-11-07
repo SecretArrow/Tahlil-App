@@ -11,6 +11,14 @@ export type DisplayToggles = {
    */
   punctuateArabic: boolean;
   /**
+   * When true (default), Arabic text WITHOUT ayah marks is broken into
+   * lines at Arabic commas (،) and Latin periods (.) so each clause gets
+   * its own line — the traditional tahlil book layout. When false, the
+   * text flows as a single paragraph and wraps naturally. Ayah-marked
+   * verses always keep their per-verse lines either way.
+   */
+  splitArabicLines: boolean;
+  /**
    * When true, each Arabic word is wrapped in a colored span, alternating
    * between two shades so consecutive words are visually distinguishable.
    * The two shades are picked based on the active theme:
@@ -26,5 +34,6 @@ export const defaultDisplayToggles: DisplayToggles = {
   transliteration: true,
   translation: true,
   punctuateArabic: false,
+  splitArabicLines: true,
   colorizeArabic: false,
 };

@@ -11,6 +11,7 @@ import {
   RotateCcw,
   ListPlus,
   Palette,
+  WrapText,
 } from "lucide-react";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import { ArabicText } from "@/components/arabic-text";
@@ -26,6 +27,11 @@ const PREVIEW_ARABIC_LIST =
 const PREVIEW_LATIN = "Bismillaahirrahmaanir-rahiim.";
 const PREVIEW_ID =
   "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang.";
+// Contains Arabic commas (،) + a final period so the live preview shows the
+// "Koma = Baris Baru" toggle in action: ON → one clause per line, OFF → a
+// single flowing paragraph.
+const PREVIEW_ARABIC_COMMAS =
+  "اَلْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُوْلِ اللَّهِ، وَعَلَىٰ آلِهِ وَأَصْحَابِهِ أَجْمَعِيْنَ.";
 
 function ToggleRow({
   label,
@@ -33,12 +39,18 @@ function ToggleRow({
   icon: Icon,
   active,
   onToggle,
+  activeLabel = "Tampil",
+  inactiveLabel = "Sembunyi",
 }: {
   label: string;
   description: string;
   icon: React.ElementType;
   active: boolean;
   onToggle: () => void;
+  /** Badge text when active — override for non-visibility toggles. */
+  activeLabel?: string;
+  /** Badge text when inactive — override for non-visibility toggles. */
+  inactiveLabel?: string;
 }) {
   return (
     <button
@@ -72,7 +84,7 @@ function ToggleRow({
                 : "bg-muted text-muted-foreground"
             }`}
           >
-            {active ? "Tampil" : "Sembunyi"}
+            {active ? activeLabel : inactiveLabel}
           </span>
         </div>
         <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
@@ -175,6 +187,17 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                 }
               />
               <ToggleRow
+                label="Koma = Baris Baru"
+                description="Mulai baris baru pada setiap koma (،) dan titik (.) di teks Arab. Matikan agar teks mengalir sebagai satu paragraf."
+                icon={WrapText}
+                active={toggles.splitArabicLines}
+                activeLabel="Baris Baru"
+                inactiveLabel="Paragraf"
+                onToggle={() =>
+                  setToggle("splitArabicLines", !toggles.splitArabicLines)
+                }
+              />
+              <ToggleRow
                 label="Warnai Kata Arab"
                 description="Setiap kata Arab diberi warna bergantian agar mudah dibedakan. Tema terang: #000000 & #011b45. Tema gelap: #ffffff & #d9dadb."
                 icon={Palette}
@@ -202,6 +225,10 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                           className="text-foreground/90"
                         />
                       )}
+                      <ArabicText
+                        text={PREVIEW_ARABIC_COMMAS}
+                        className="text-foreground/90"
+                      />
                     </>
                   )}
                   {toggles.transliteration && (

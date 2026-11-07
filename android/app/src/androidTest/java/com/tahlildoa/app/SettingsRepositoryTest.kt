@@ -56,6 +56,7 @@ class SettingsRepositoryTest {
         assertEquals(true, toggles.transliteration)
         assertEquals(true, toggles.translation)
         assertEquals(false, toggles.punctuateArabic)
+        assertEquals(true, toggles.splitArabicLines)
         assertEquals(false, toggles.colorizeArabic)
         assertEquals(false, toggles.keepScreenOn)
     }

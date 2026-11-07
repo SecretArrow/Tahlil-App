@@ -28,6 +28,11 @@ import { arabicStyleModes } from "@/data/arabic-style";
  *  - `punctuateArabic`: inserts Arabic commas (،) before "وَ" connectors
  *    to mirror the punctuation already present in the Indonesian
  *    translation. Quran verses (with ۝ or ۩) are never modified.
+ *  - `splitArabicLines`: when true (default) Arabic text without ayah
+ *    marks is broken into lines at Arabic commas (،) and Latin periods
+ *    (.) so each clause gets its own line. When false, the text flows as
+ *    a single paragraph and wraps naturally. Ayah-marked verses always
+ *    keep their per-verse lines either way.
  *  - `colorizeArabic`: wraps each Arabic word in a colored span with two
  *    alternating shades picked by theme:
  *      - Light theme (dark text)   → #000000 / #011b45
@@ -244,11 +249,23 @@ function renderArabicWithAyahMarks(
   text: string,
   keyPrefix: string,
   colors: readonly [string, string] | null = null,
-  counterRef: { current: number } = { current: 0 }
+  counterRef: { current: number } = { current: 0 },
+  splitSentences: boolean = true
 ): React.ReactNode[] {
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
   if (matches.length === 0) {
     // No ayah marks — this is likely a long dua text.
+    if (!splitSentences) {
+      // Comma/period line-breaking disabled — render as ONE flowing
+      // paragraph (wraps naturally by width).
+      const trimmed = text.trim();
+      if (!trimmed) return [];
+      return [
+        <span key={`${keyPrefix}-0`} className="ayah-line" style={LINE_STYLE}>
+          {maybeColorize(trimmed, colors, counterRef, keyPrefix)}
+        </span>,
+      ];
+    }
     // Split by Arabic comma (،) or Latin period (.) to break into lines.
     return splitBySentence(text, keyPrefix, colors, counterRef);
   }
@@ -282,8 +299,20 @@ function renderArabicWithAyahMarks(
   // without a closing mark, or whitespace) — render it as a trailing line.
   if (cursor < text.length) {
     const trailing = text.substring(cursor);
-    // Also split trailing by sentence for dua-style text
-    nodes.push(...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef));
+    if (!splitSentences) {
+      // Comma splitting off — trailing text as one flowing line.
+      const trimmed = trailing.trim();
+      if (trimmed) {
+        nodes.push(
+          <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={LINE_STYLE}>
+            {maybeColorize(trimmed, colors, counterRef, `${keyPrefix}-trail`)}
+          </span>
+        );
+      }
+    } else {
+      // Also split trailing by sentence for dua-style text
+      nodes.push(...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef));
+    }
   }
 
   return nodes;
@@ -420,7 +449,13 @@ export function ArabicText({
       style={style}
       {...rest}
     >
-      {renderArabicWithAyahMarks(renderedText, "t", colors, counterRef)}
+      {renderArabicWithAyahMarks(
+        renderedText,
+        "t",
+        colors,
+        counterRef,
+        toggles.splitArabicLines
+      )}
       {suffix}
     </p>
   );

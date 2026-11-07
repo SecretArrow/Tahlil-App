@@ -32,6 +32,10 @@ function parseStored(raw: string | null): DisplayToggles {
         typeof parsed.punctuateArabic === "boolean"
           ? parsed.punctuateArabic
           : false,
+      splitArabicLines:
+        typeof parsed.splitArabicLines === "boolean"
+          ? parsed.splitArabicLines
+          : true,
       colorizeArabic:
         typeof parsed.colorizeArabic === "boolean"
           ? parsed.colorizeArabic
