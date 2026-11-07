@@ -88,6 +88,11 @@ jobs:
             web/next-env.d.ts
           retention-days: 14
           if-no-files-found: error
+          # CRITICAL: upload-artifact@v4 silently EXCLUDES hidden files and
+          # directories by default. web/.next is a dot-directory, so without
+          # this flag the release web-build.zip shipped WITHOUT the compiled
+          # Next.js output (only package.json + public) and was undeployable.
+          include-hidden-files: true
 
   # ============================================================
   # 2. Android — gradle lint, unit tests, assembleRelease

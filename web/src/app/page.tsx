@@ -9,6 +9,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { ArabicStylePanel } from "@/components/arabic-style-panel";
 import { DisplaySettingsPanel } from "@/components/display-settings-panel";
 import { tahlilSections } from "@/data/tahlil-content";
+import { APP_VERSION } from "@/data/app-version";
 
 export default function Home() {
   const [navOpen, setNavOpen] = React.useState(false);
@@ -65,6 +66,12 @@ export default function Home() {
             <div className="text-center sm:text-left">
               <p className="text-sm font-semibold">
                 Tahlil Singkat — Majelis Doa
+                <span
+                  className="ms-2 inline-flex items-center rounded-full bg-muted px-2 py-0.5 align-middle text-[10px] font-medium text-muted-foreground"
+                  title="Versi aplikasi — jika bukan versi terbaru, halaman ini cache lama atau deploy lama"
+                >
+                  v{APP_VERSION}
+                </span>
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 Disusun dari Al-Qur&apos;an, hadits, dan amaliah ulama.
