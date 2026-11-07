@@ -129,7 +129,7 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
             transition={{ duration: 0.2, ease: "easeOut" }}
             role="dialog"
             aria-label="Pengaturan tampilan bacaan"
-            className="fixed left-1/2 top-20 z-[81] w-[92%] max-w-md -translate-x-1/2 overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
+            className="fixed left-1/2 top-20 z-[81] flex max-h-[calc(100dvh-7rem)] w-[92%] max-w-md -translate-x-1/2 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-border p-4">
               <div className="flex items-center gap-2.5">
@@ -153,7 +153,7 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
               </button>
             </div>
 
-            <div className="space-y-3 p-4">
+            <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain p-4">
               <ToggleRow
                 label="Teks Arab"
                 description="Tulisan Arab dengan harakat (font dapat diatur di Pengaturan Teks Arab)"
