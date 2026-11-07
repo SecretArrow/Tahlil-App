@@ -136,7 +136,7 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
             type="button"
             onClick={onOpenNav}
             aria-label="Buka daftar isi"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-md transition-colors hover:bg-accent"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-md transition-colors hover:bg-accent"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -158,7 +158,7 @@ export function MobileNav({
       initial={false}
       animate={{ x: open ? 0 : "100%" }}
       transition={{ type: "spring", stiffness: 320, damping: 34 }}
-      className="fixed inset-y-0 right-0 z-[70] w-[82%] max-w-sm glass border-l border-border shadow-2xl lg:hidden"
+      className="fixed inset-y-0 right-0 z-[70] w-[82%] max-w-sm glass border-l border-border shadow-2xl"
       aria-hidden={!open}
     >
       <div className="flex h-full flex-col">

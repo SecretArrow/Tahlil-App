@@ -86,7 +86,7 @@ export default function Home() {
       {/* Backdrop for mobile nav */}
       {navOpen && (
         <div
-          className="fixed inset-0 z-[65] bg-black/40 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-[65] bg-black/40 backdrop-blur-sm"
           onClick={() => setNavOpen(false)}
           aria-hidden="true"
         />
