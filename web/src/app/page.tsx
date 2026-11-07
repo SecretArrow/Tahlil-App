@@ -9,7 +9,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { ArabicStylePanel } from "@/components/arabic-style-panel";
 import { DisplaySettingsPanel } from "@/components/display-settings-panel";
 import { tahlilSections } from "@/data/tahlil-content";
-import { APP_VERSION } from "@/data/app-version";
+import { BUILD_INFO } from "@/data/build-info";
 
 export default function Home() {
   const [navOpen, setNavOpen] = React.useState(false);
@@ -70,7 +70,7 @@ export default function Home() {
                   className="ms-2 inline-flex items-center rounded-full bg-muted px-2 py-0.5 align-middle text-[10px] font-medium text-muted-foreground"
                   title="Versi aplikasi — jika bukan versi terbaru, halaman ini cache lama atau deploy lama"
                 >
-                  v{APP_VERSION}
+                  v{BUILD_INFO.version}
                 </span>
               </p>
               <p className="mt-1 text-xs text-muted-foreground">

@@ -1,0 +1,59 @@
+============================================================
+CARA DEPLOY — Tahlil-Doa Web (Next.js standalone build)
+============================================================
+
+Isi zip ini adalah server Next.js yang SUDAH LENGKAP:
+server.js + node_modules sudah di-bundle di dalamnya.
+TIDAK PERLU "npm install" di server.
+
+------------------------------------------------------------
+A. Hosting Node.js (VPS, cPanel Node.js App, Railway, dll.)
+------------------------------------------------------------
+1. Upload web-build.zip ke server, lalu ekstrak.
+2. Masuk ke folder hasil ekstrak (yang berisi server.js).
+3. Jalankan:
+
+     node server.js
+
+   Opsi yang sering dipakai:
+
+     HOSTNAME=0.0.0.0 PORT=3000 node server.js
+
+   - PORT   : port web berjalan (default 3000)
+   - HOSTNAME: 0.0.0.0 supaya bisa diakses dari luar server
+
+4. Pastikan proses TIDAK mati saat sesi terminal ditutup
+   (pakai pm2 / systemd / fitur "Start on boot" hosting):
+
+     pm2 start server.js --name tahlil-web
+     pm2 save
+
+   PENTING: setelah upload versi baru, RESTART prosesnya.
+   Kalau restart gagal diam-diam (mis. port bentrok atau file
+   kurang), server lama akan terus berjalan — itulah kenapa
+   versi di web tidak berubah padahal sudah upload.
+
+------------------------------------------------------------
+B. Vercel / Netlify / hosting Git otomatis
+------------------------------------------------------------
+Zip ini tidak perlu — cukup hubungkan folder `web/` dari repo
+GitHub; platform akan build sendiri dari source.
+
+------------------------------------------------------------
+C. Hosting statis saja (cPanel biasa, GitHub Pages, dll.)
+------------------------------------------------------------
+TIDAK BISA. Aplikasi ini server-side Next.js, butuh Node.js.
+
+------------------------------------------------------------
+CARA CEK VERSI YANG SEDANG LIVE
+------------------------------------------------------------
+1. Buka:  http://HOST:PORT/api/version
+   → harus JSON berisi "version": "x.y.z" terbaru.
+2. Atau lihat chip versi di footer situs (contoh: v1.2.2).
+3. Jika versi sudah benar di /api/version tapi tampilan web
+   masih lama → CACHE BROWSER. Tekan Ctrl+Shift+R
+   (Windows/Linux) atau Cmd+Shift+R (Mac), atau buka mode
+   incognito untuk memastikan.
+
+Build ini dibuat otomatis oleh CI dari commit yang tercantum
+di /api/version (field "commit").
