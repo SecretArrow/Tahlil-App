@@ -4,7 +4,24 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ---
 
-## [Versi Terbaru] — 2026-11-05
+## [Versi Terbaru] — 2026-11-07
+
+### Hapus Link Favicon CDN Eksternal (v1.2.3)
+
+- **Link luar dihapus**: `<link rel="icon">` tidak lagi menunjuk ke
+  `https://z-cdn.chatglm.cn/z-ai/static/logo.svg` (CDN eksternal yang
+  diblokir). Tidak ada lagi request keluar ke CDN tersebut saat situs dibuka.
+- **Favicon lokal baru** (brand buku hijau, sama dengan logo header aplikasi):
+  - `public/icon.svg` — ikon utama (gradient emerald→teal, buku putih)
+  - `public/icon-192.png` — fallback PNG 192x192
+  - `public/apple-icon.png` — Apple touch icon 180x180
+- Dikonfigurasi di `src/app/layout.tsx` → `metadata.icons` (SVG + PNG + apple).
+- Cara verifikasi: buka situs → view source → `<link rel="icon" href="/icon.svg">`
+  (bukan lagi z-cdn.chatglm.cn); chip versi di footer berubah ke **v1.2.3**.
+
+---
+
+## [Sebelumnya] — 2026-11-05
 
 ### Audit & Fix Harakat Mode Naskhi Tebal
 

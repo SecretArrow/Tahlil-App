@@ -62,7 +62,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Salik Channel" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    // Favicon lokal — tidak ada lagi request ke CDN luar (z-cdn.chatglm.cn).
+    // SVG untuk browser modern, PNG sebagai fallback + Apple touch icon.
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png" }],
   },
   openGraph: {
     title: "Tahlil Singkat — Majelis Tahlil & Doa",
