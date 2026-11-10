@@ -272,7 +272,7 @@ export const tahlilSections: Section[] = [
         note: "Dibaca 11 kali (atau lebih banyak lebih baik)",
       },
       {
-        arabic: "سَيِّدُنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+        arabic: "سَيِّدِنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
         transliteration:
           "Sayyidinaa Muhammadur-rasuulullaah. Shallallaahu 'alaihi wasallam.",
         translation:

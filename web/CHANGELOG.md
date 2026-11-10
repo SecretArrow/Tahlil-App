@@ -6,6 +6,21 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ## [Versi Terbaru] — 2026-11-07
 
+### Seragamkan "Sayyidinaa" di Teks Arab (v1.2.4)
+
+- **1 kata Arab diseragamkan** sesuai konvensi bacaan Indonesia (keputusan user):
+  - Bacaan tahlil: `سَيِّدُنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ` → `سَيِّدِنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ`
+  - (dhamma ُ → kasra ِ pada huruf Dal; dibaca **sayyidinaa**, bukan sayyidunaa)
+- Sekarang **7/7 kemunculan Arab** سيدنا berharakat kasra (سَيِّدِنَا), sinkron 100%
+  dengan teks latin yang semuanya sudah "Sayyidinaa" (sejak v1.1.6).
+- Teks latin: tidak ada perubahan (sudah benar semua).
+- Cara verifikasi: bagian **Tahlil** — blok "Sayyidinaa Muhammadur-rasuulullaah",
+  teks Arab di atasnya harus punya kasra di huruf Dal; chip footer **v1.2.4**.
+
+---
+
+## [v1.2.3] — 2026-11-07
+
 ### Hapus Link Favicon CDN Eksternal (v1.2.3)
 
 - **Link luar dihapus**: `<link rel="icon">` tidak lagi menunjuk ke
