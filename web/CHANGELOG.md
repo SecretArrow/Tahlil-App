@@ -6,6 +6,32 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ## [Versi Terbaru] — 2026-11-11
 
+### Android Menyusul Web: Paritas Konten Penuh + Fitur Tajwid (v1.3.0)
+
+- **Konten native Android kini identik dengan web.** Seluruh tabel konten
+  `TahlilContent.kt` diregenerasi langsung dari `tahlil-content.ts` (sumber
+  kebenaran web) lewat skrip baru `scripts/sync-android-content.ts` —
+  membawa semua improvisasi teks yang sebelumnya hanya ada di web:
+  - **Sayyidinaa kasra** (سَيِّدِنَا) — 7/7 tempat, varian damma hilang (v1.2.4)
+  - **Simbol sajdah ۩ diganti titik** — 0 sisa di konten (v1.2.5)
+  - **Titik akhir pada setiap blok Arab** + penyesuaian blok bertanda ayat
+    (v1.2.6–v1.2.7)
+- **Fitur Tajwid (v1.2.8) di-port ke Android**: engine deteksi hukum bacaan
+  `TajwidUtil.kt` (port setia dari `src/lib/tajwid.ts`) — 7 aturan (Izhar,
+  Ikhfa, Idgham Bighunnah/Bilaghunnah, Iqlab, Ghunnah, Qalqalah), deteksi
+  lintas kata, terputus oleh tanda baca, indeks aman harakat. Toggle
+  **"Tajwid"** di layar Pengaturan (default MATI, tersimpan di DataStore),
+  **legenda 7 warna** tampil di bawah toggle saat aktif, dan warna rule
+  identik dengan web (versi terang & gelap). Saat aktif, pewarnaan kata
+  dinonaktifkan sementara — perilaku sama dengan web.
+- **Tes regresi baru** di instrumented test: konten bebas U+06E9 dan bebas
+  varian damma sayyidinaa — selisih konten web/Android tidak akan lolos CI
+  lagi.
+- Catatan: logo baru (v1.2.9) sudah dibawa APK sebelumnya; rilis ini
+  melengkapi seluruh sisa perbedaan web vs Android.
+
+## [1.2.9] — 2026-11-11
+
 ### Logo Baru: "Mushaf & Kubah" (v1.2.9)
 
 - **Logo aplikasi diganti total** — desain baru yang lebih menarik dan bermakna:

@@ -67,4 +67,47 @@ class TahlilContentTest {
         val section = TahlilContent.byId("nonexistent")
         assertEquals(null, section)
     }
+
+    // ------------------------------------------------------------------
+    // Content-parity regression guards (web source of truth:
+    // web/src/data/tahlil-content.ts — synced by scripts/sync-android-content.ts).
+    // ------------------------------------------------------------------
+
+    /**
+     * v1.2.5 replaced the sajdah ornament ۩ (U+06E9) with plain periods in
+     * the web content. The Android table must never reintroduce it.
+     */
+    @Test
+    fun noSajdahSymbolRemainsInArabicText() {
+        TahlilContent.sections.forEach { section ->
+            section.blocks.forEach { block ->
+                block.arabic?.let { arabic ->
+                    assertTrue(
+                        "Block in ${section.id} still contains U+06E9 (۩)",
+                        !arabic.contains("\u06E9"),
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     * v1.2.4 unified سيدنا to the kasra form (سَيِّدِنَا) everywhere,
+     * matching Indonesian convention and the Latin transliteration
+     * "Sayyidinaa". The damma variant (سَيِّدُنَا) must not return.
+     */
+    @Test
+    fun sayyidinaaIsAlwaysSpelledWithKasra() {
+        val dammaVariant = "سَيِّدُنَا"
+        TahlilContent.sections.forEach { section ->
+            section.blocks.forEach { block ->
+                block.arabic?.let { arabic ->
+                    assertTrue(
+                        "Block in ${section.id} uses the damma sayyidinaa variant",
+                        !arabic.contains(dammaVariant),
+                    )
+                }
+            }
+        }
+    }
 }

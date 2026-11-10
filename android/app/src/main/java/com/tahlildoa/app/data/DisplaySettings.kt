@@ -20,14 +20,20 @@ import kotlinx.serialization.Serializable
  *                     per-verse lines either way.
  * - colorizeArabic:   When true, each Arabic word is rendered in one of two
  *                     alternating shades so consecutive words are visually
- *                     distinguishable.
+ *                     distinguishable. Ignored while [tajwid] is on (rule
+ *                     colors take precedence) — same as the web.
+ * - tajwid:           When true, tajwid recitation rules detected by
+ *                     [com.tahlildoa.app.util.TajwidUtil.analyzeTajwid]
+ *                     (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah) are
+ *                     highlighted with per-rule colors. Default OFF.
  * - keepScreenOn:     When true, the device screen stays awake while the app
  *                     is in the foreground (FLAG_KEEP_SCREEN_ON). Default
  *                     OFF so users don't drain their battery accidentally.
  *
- * All toggles default to true except [punctuateArabic], [colorizeArabic], and
- * [keepScreenOn], matching the web app's defaults. [splitArabicLines] defaults
- * to true because per-clause lines are the traditional tahlil book layout.
+ * All toggles default to true except [punctuateArabic], [colorizeArabic],
+ * [tajwid], and [keepScreenOn], matching the web app's defaults.
+ * [splitArabicLines] defaults to true because per-clause lines are the
+ * traditional tahlil book layout.
  */
 @Serializable
 data class DisplayToggles(
@@ -37,6 +43,7 @@ data class DisplayToggles(
     val punctuateArabic: Boolean = false,
     val splitArabicLines: Boolean = true,
     val colorizeArabic: Boolean = false,
+    val tajwid: Boolean = false,
     val keepScreenOn: Boolean = false,
 ) {
     companion object {

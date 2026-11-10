@@ -1,6 +1,7 @@
 package com.tahlildoa.app.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -35,6 +39,7 @@ import com.tahlildoa.app.data.ThemeMode
 import com.tahlildoa.app.ui.components.SliderRow
 import com.tahlildoa.app.ui.components.ToggleRow
 import com.tahlildoa.app.ui.components.contentMaxWidth
+import com.tahlildoa.app.util.TajwidUtil
 
 /**
  * SettingsScreen — all display & typography settings on one scrollable
@@ -158,6 +163,21 @@ private fun LazyListScope.togglesSection(
                 onCheckedChange = { v -> onChange(toggles.copy(colorizeArabic = v)) },
             )
             ToggleRow(
+                title = "Tajwid",
+                subtitle = "Warnai hukum bacaan pada teks Arab: Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, dan Qalqalah. Teks tidak diubah, hanya diberi warna. Saat aktif, pewarnaan kata dinonaktifkan sementara.",
+                checked = toggles.tajwid,
+                onCheckedChange = { v -> onChange(toggles.copy(tajwid = v)) },
+            )
+            if (toggles.tajwid) {
+                TajwidLegend(
+                    isDark = when (themeMode) {
+                        ThemeMode.System -> isSystemInDarkTheme()
+                        ThemeMode.Light -> false
+                        ThemeMode.Dark -> true
+                    },
+                )
+            }
+            ToggleRow(
                 title = "Layar Tetap Hidup",
                 subtitle = "Cegah layar dari mode tidur selama aplikasi terbuka",
                 checked = toggles.keepScreenOn,
@@ -196,6 +216,47 @@ private fun ThemeChip(label: String, selected: Boolean, onClick: () -> Unit) {
             selectedLabelColor = MaterialTheme.colorScheme.primary,
         ),
     )
+}
+
+/**
+ * TajwidLegend — color swatch + label list for the 7 tajwid rules,
+ * shown right under the "Tajwid" toggle while it is active (port of the
+ * web's `TajwidLegend` component). Colors come from [TajwidUtil.COLORS],
+ * so the legend always matches the actual highlighting.
+ */
+@Composable
+private fun TajwidLegend(isDark: Boolean) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+    ) {
+        Text(
+            text = "KODE WARNA TAJWID",
+            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 6.dp),
+        )
+        TajwidUtil.RULES_META.forEach { meta ->
+            androidx.compose.foundation.layout.Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(vertical = 2.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .clip(androidx.compose.foundation.shape.CircleShape)
+                        .background(TajwidUtil.colorFor(meta.rule, isDark)),
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    text = meta.name + " — " + meta.desc,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
 }
 
 private fun LazyListScope.fontModeSection(

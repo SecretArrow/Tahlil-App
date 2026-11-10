@@ -50,6 +50,7 @@ class SettingsRepository(private val context: Context) {
     private val KEY_PUNCTUATE = booleanPreferencesKey("display_punctuate_arabic")
     private val KEY_SPLIT_LINES = booleanPreferencesKey("display_split_arabic_lines")
     private val KEY_COLORIZE = booleanPreferencesKey("display_colorize_arabic")
+    private val KEY_TAJWID = booleanPreferencesKey("display_tajwid")
     private val KEY_KEEP_SCREEN_ON = booleanPreferencesKey("display_keep_screen_on")
 
     // --- Arabic style ----------------------------------------------------
@@ -74,6 +75,7 @@ class SettingsRepository(private val context: Context) {
             punctuateArabic = p[KEY_PUNCTUATE] ?: false,
             splitArabicLines = p[KEY_SPLIT_LINES] ?: true,
             colorizeArabic = p[KEY_COLORIZE] ?: false,
+            tajwid = p[KEY_TAJWID] ?: false,
             keepScreenOn = p[KEY_KEEP_SCREEN_ON] ?: false,
         )
     }
@@ -110,6 +112,7 @@ class SettingsRepository(private val context: Context) {
             p[KEY_PUNCTUATE] = toggles.punctuateArabic
             p[KEY_SPLIT_LINES] = toggles.splitArabicLines
             p[KEY_COLORIZE] = toggles.colorizeArabic
+            p[KEY_TAJWID] = toggles.tajwid
             p[KEY_KEEP_SCREEN_ON] = toggles.keepScreenOn
         }
     }

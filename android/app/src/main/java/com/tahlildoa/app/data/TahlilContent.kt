@@ -86,7 +86,7 @@ object TahlilContent {
             type = SectionType.Pembukaan,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ",
+                    arabic = "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ.",
                     transliteration = "A'uudzubillaahi minasy-syaithaanir-rajiim. Bismillaahirrahmaanir-rahiim.",
                     translation = "Aku berlindung kepada Allah dari godaan syetan yang terkutuk. Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang.",
                 ),
@@ -102,7 +102,7 @@ object TahlilContent {
             type = SectionType.Sholawat,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "إِلَىٰ حَضْرَةِ النَّبِيِّ الْمُصْطَفَىٰ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمْ وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ أَجْمَعِيْنَ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ",
+                    arabic = "إِلَىٰ حَضْرَةِ النَّبِيِّ الْمُصْطَفَىٰ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمْ وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ أَجْمَعِيْنَ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ.",
                     transliteration = "Ilaa hadhrotin-nabiyyil mushtofaa Muhammadin shallallaahu 'alaihi wasallam, wa 'alaa aalihi wa ash-haabihi wa azwaajihi wa dzurriyyatihi wa ahli baitihi ajma'iin. Syai-un lillaahi lahumul-faatihah.",
                     translation = "Yaa Allah semoga sampai (rahmat Allah) ke hadapan Nabi Besar Muhammad SAW. serta keselamatan kepada keluarga, sahabat, istri, anak cucu dan Ahli Baitnya (semuanya). Segala perkara kepunyaan Allah dan tetaplah kepada-Nya. Al-Fatihah.",
                 ),
@@ -124,7 +124,7 @@ object TahlilContent {
             type = SectionType.Tahlil,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي، الْفَاتِحَةُ",
+                    arabic = "ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي، الْفَاتِحَةُ.",
                     transliteration = "Tsumma ilaa hadhrati ikhwaanihi minal-anbiya'i wal-mursaliin wal-auliya'i wasy-syuhadaa'i wash-shaalihiin wash-shahaabati wat-taabi'iin wal-'ulamaa'il-'aamiliin wal-mushannifiinal-mukhlishiin wa jamii'il-malaaikatil-muqarrabiin, khushushon ilaa sayyidinasy-syaikh 'abdil-qaadir al-jilaani, al-faatihah.",
                     translation = "Kemudian kepada hadirat saudara-saudaranya dari kalangan para nabi, para rasul, para wali, para syuhada, orang-orang saleh, para sahabat, para tabi'in, ulama yang mengamalkan ilmunya, para penulis yang ikhlas, dan seluruh malaikat muqarrabin. Khususnya kepada syaikh kita, Syekh Abdul Qadir al-Jilani. Al-Fatihah.",
                 ),
@@ -135,12 +135,12 @@ object TahlilContent {
                     note = "Al-Fatihah",
                 ),
                 ContentBlock(
-                    arabic = "ثُمَّ إِلَىٰ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا فِيْ بَرِّهَا وَبَحْرِهَا وَمِنْ يَمِيْنِهَا إِلَىٰ شِمَالِهَا خُصُوْصًا إِلَىٰ آبَآئِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا،",
+                    arabic = "ثُمَّ إِلَىٰ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا فِيْ بَرِّهَا وَبَحْرِهَا وَمِنْ يَمِيْنِهَا إِلَىٰ شِمَالِهَا خُصُوْصًا إِلَىٰ آبَآئِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا.",
                     transliteration = "Tsumma ilaa jamii'i ahlil-qubuur minal-muslimiina wal-muslimaati wal-mu'miniina wal-mu'minaati min masyaariqil-ardhi wa maghaaribihaa fii barrihaa wa bahrihaa wa min yamiinihaa ilaa syimaalihaa khushushon ilaa aabaainaa wa ummahaatinaa wa ajdaadinaa wa jaddaatinaa.",
                     translation = "Kepada segenap ahli kubur kaum muslimin laki-laki dan perempuan, kaum mukminin laki-laki dan perempuan dari timur dan barat, baik yang ada di darat maupun di laut, di kanan dan kirinya, kemudian terutama kepada para bapak dan ibu kami, kakek dan nenek kami,",
                 ),
                 ContentBlock(
-                    arabic = "وَمَشَايِخِنَا وَمَشَايِخِ مَشَايِخِنَا وَأَسَاتِذَتِنَا وَأَسَاتِذَةِ أَسَاتِذَتِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ",
+                    arabic = "وَمَشَايِخِنَا وَمَشَايِخِ مَشَايِخِنَا وَأَسَاتِذَتِنَا وَأَسَاتِذَةِ أَسَاتِذَتِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ.",
                     transliteration = "Wa masyaaikhinaa wa masyaaikhi masyaaikhinaa wa asaatidzatinaa wa asaatidzati asaatidzatinaa wa limanijtama'naa hahunaa bisababihi. Syai-un lillaahi lahum, al-faatihah.",
                     translation = "kepada syaikh kami, dan syaikhnya syaikh kami, kepada guru-guru kami, dan gurunya guru-guru kami, dan bagi ahli kubur/arwah yang menjadi sebab kami berkumpul di sini. Segala perkara kepunyaan Allah dan tetaplah kepada-Nya. Al-Fatihah.",
                 ),
@@ -151,7 +151,7 @@ object TahlilContent {
                     note = "Al-Fatihah",
                 ),
                 ContentBlock(
-                    arabic = "ثُمَّ إِلَى جَمِيْعِ أهْلِ الْقُبُوْرِ مِمَّنْ ذُكِرَتْ أَسْمَاؤُهُ فِيْ هٰذِهِ الرِّسَالَةِ حَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … رَحِمَهُمُ اللَّهُ وَغَفَرَهُمْ، الْفَاتِحَةُ",
+                    arabic = "ثُمَّ إِلَى جَمِيْعِ أهْلِ الْقُبُوْرِ مِمَّنْ ذُكِرَتْ أَسْمَاؤُهُ فِيْ هٰذِهِ الرِّسَالَةِ حَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … رَحِمَهُمُ اللَّهُ وَغَفَرَهُمْ، الْفَاتِحَةُ.",
                     transliteration = "Tsumma ilaa jamii'i ahlil-qubuur mimman dzukirot asmaa'uhu fii haadzihir-risaalati, hadhrati ruuhi…, wa hadhrati ruuhi…, wa hadhrati ruuhi…, rahimahumullaahu wa ghafarahum, al-faatihah.",
                     translation = "Kemudian kepada semua ahli kubur, yang namanya disebutkan dalam risalah ini. Kepada…, dan kepada…, dan kepada…. Semoga Allah merahmati dan mengampuni mereka. Bacaan Al-Fatihah ini kami tujukan kepada Allah dan pahalanya untuk mereka semua. Al-Fatihah.",
                     note = "Sebutkan nama almarhum/almarhumah pada bagian …",
@@ -174,7 +174,7 @@ object TahlilContent {
             type = SectionType.Tahlil,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
                     transliteration = "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
                     translation = "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
                 ),
@@ -186,7 +186,7 @@ object TahlilContent {
                     repeat = 3,
                 ),
                 ContentBlock(
-                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
                     transliteration = "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
                     translation = "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
                 ),
@@ -197,7 +197,7 @@ object TahlilContent {
                     note = "Surat Al-Falaq",
                 ),
                 ContentBlock(
-                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
                     transliteration = "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
                     translation = "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
                 ),
@@ -208,7 +208,7 @@ object TahlilContent {
                     note = "Surat An-Nas",
                 ),
                 ContentBlock(
-                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
                     transliteration = "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
                     translation = "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
                 ),
@@ -253,7 +253,7 @@ object TahlilContent {
                     note = "Surat Al-Baqarah ayat 4-5",
                 ),
                 ContentBlock(
-                    arabic = "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ، لَآ إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ ۩. اللَّهُ لَآ إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهٗ سِنَةٌ وَلَا نَوْمٌ، لَهٗ مَا فِي السَّمٰوَاتِ وَمَا فِي الْأَرْضِ ۩",
+                    arabic = "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ، لَآ إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ. اللَّهُ لَآ إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهٗ سِنَةٌ وَلَا نَوْمٌ، لَهٗ مَا فِي السَّمٰوَاتِ وَمَا فِي الْأَرْضِ.",
                     transliteration = "Wa ilaahukum ilaahun waahid, laa ilaaha illaa huwar-rahmaanur-rahiim. Allaahu laa ilaaha illaa huwal-hayyul-qayyuum, laa ta'khudzuhuu sinatun walaa naum, lahuu maa fis-samaawaati wa maa fil-ardh.",
                     translation = "Dan Tuhan-Mu Tuhan yang satu. Tiada Tuhan selain Dia, yang Maha Pengasih lagi Maha Penyayang. Allah tidak ada tuhan melainkan Dia yang hidup kekal lagi terus menerus mengurus (makhluk-Nya); tidak mengantuk dan tidak tidur. Kepunyaan-Nya apa yang di langit dan apa yang di bumi.",
                     note = "Awal Ayat Kursi",
@@ -276,19 +276,19 @@ object TahlilContent {
             type = SectionType.Dzikir,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "أَفْضَلُ الذِّكْرِ فَاعْلَمْ أَنَّهٗ",
+                    arabic = "أَفْضَلُ الذِّكْرِ فَاعْلَمْ أَنَّهٗ.",
                     transliteration = "Afdlaludz-dzikri fa'lam annahuu.",
                     translation = "Ketahuilah bahwa dzikir yang paling utama ialah:",
                 ),
                 ContentBlock(
-                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ",
+                    arabic = "لَآ إِلٰهَ إِلَّا اللَّهُ.",
                     transliteration = "Laa ilaaha illallaah.",
                     translation = "Tiada Tuhan selain Allah.",
-                    repeat = 11,
                     note = "Dibaca 11 kali (atau lebih banyak lebih baik)",
+                    repeat = 11,
                 ),
                 ContentBlock(
-                    arabic = "سَيِّدُنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+                    arabic = "سَيِّدِنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
                     transliteration = "Sayyidinaa Muhammadur-rasuulullaah. Shallallaahu 'alaihi wasallam.",
                     translation = "Junjungan Kita Nabi Muhammad adalah utusan Allah. Semoga Allah limpahkan rahmat dan salam kepada beliau.",
                 ),
@@ -304,17 +304,17 @@ object TahlilContent {
             type = SectionType.Doa,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ",
+                    arabic = "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ.",
                     transliteration = "A'uudzubillaahi minasy-syaithaanir-rajiim. Bismillaahirrahmaanir-rahiim.",
                     translation = "Aku berlindung kepada Allah dari godaan syetan yang terkutuk. Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang.",
                 ),
                 ContentBlock(
-                    arabic = "الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ، حَمْدَ الشَّاكِرِيْنَ، حَمْدَ النَّاعِمِيْنَ، حَمْدًا يُوَافِيْ نِعْمَتَهٗ وَيُكَافِئُ مَزِيْدَهٗ",
+                    arabic = "الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ، حَمْدَ الشَّاكِرِيْنَ، حَمْدَ النَّاعِمِيْنَ، حَمْدًا يُوَافِيْ نِعْمَتَهٗ وَيُكَافِئُ مَزِيْدَهٗ.",
                     transliteration = "Alhamdu lillaahi rabbil-'aalamiin, hamdan syaakiriin, hamdan naa'imiin, hamdan yuwaafii ni'amatahuu wa yukaafi-u maziidahuu.",
                     translation = "Segala puji bagi Allah penguasa alam semesta, sebagaimana orang-orang yang bersyukur dan orang-orang yang mendapat banyak kenikmatan memuji-Nya. Dengan pujian yang sepadan dan nikmat-Nya dan memungkinkan pertambahannya.",
                 ),
                 ContentBlock(
-                    arabic = "يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ. اَللّٰهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِ سَيِّدِنَا مُحَمَّدٍ",
+                    arabic = "يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ. اَللّٰهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِ سَيِّدِنَا مُحَمَّدٍ.",
                     transliteration = "Yaa rabbanaa lakal-hamdu kamaa yanbaghii lijalaali wajhika wa 'azhiimi sulthaanik. Allahumma shalli wa sallim 'alaa sayyidinaa Muhammadin wa 'alaa aali sayyidinaa Muhammadin.",
                     translation = "Wahai Tuhan kami, pujian hanyalah untuk-Mu, sebagaimana yang layak akan kemuliaan Dzat-Mu dan keagungan kekuasaan-Mu. Ya Allah, limpahkanlah kesejahteraan dan keselamatan kepada Nabi Muhammad junjungan kami dan kepada keluarga beliau.",
                 ),
@@ -330,27 +330,27 @@ object TahlilContent {
             type = SectionType.Doa,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "اَللّٰهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَأْنَاهُ مِنَ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلَّلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَىٰ سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+                    arabic = "اَللّٰهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَأْنَاهُ مِنَ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلَّلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَىٰ سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
                     transliteration = "Allahumma taqabbal wa aushil tsawaaba maa qara'naahu minal-qur'aanil-'azhiimi wa maa hallalnaa wa maa sabbahnaa wa mastaghfarnaa wa maa shallainaa 'alaa sayyidinaa Muhammadin shallallaahu 'alaihi wasallam.",
                     translation = "Ya Allah, terimalah dan sampaikanlah pahala Al-Qur'an yang kami baca, tahlil kami, tasbih kami, istighfar kami dan shalawat kami kepada Nabi Muhammad SAW.",
                 ),
                 ContentBlock(
-                    arabic = "هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَىٰ حَضْرَةِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+                    arabic = "هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَىٰ حَضْرَةِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
                     transliteration = "Hadiyyatan waashilatan wa rahmatan naazilah wa barokatan syaamilah ilaa hadhrati habiibinaa wa syafii'inaa wa qurrati a'yuninaa sayyidinaa wa maulanaa Muhammadin shallallaahu 'alaihi wasallam.",
                     translation = "Sebagai hadiah yang menjadi penyambung, sebagai rahmat yang turun dan sebagai berkah yang menyebar kepada kekasih kami, penolong kami dan buah hati kami, pemuka dan pemimpin kami, yaitu Nabi Muhammad SAW.",
                 ),
                 ContentBlock(
-                    arabic = "وَإِلَى جَمِيْعِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي",
+                    arabic = "وَإِلَى جَمِيْعِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي.",
                     transliteration = "Wa ilaa jamii'i ikhwaanihi minal-anbiya'i wal-mursaliin wal-auliya'i wasy-syuhadaa'i wash-shaalihiin wash-shahaabati wat-taabi'iin wal-'ulamaa'il-'aamiliin wal-mushannifiinal-mukhlishiin wa jamii'il-malaaikatil-muqarrabiin, khushushon ilaa sayyidinasy-syaikh 'abdil-qaadir al-jilaani.",
                     translation = "Dan kepada seluruh saudara-saudaranya dari kalangan para nabi, para rasul, para wali, para syuhada, orang-orang saleh, para sahabat, para tabi'in, ulama yang mengamalkan ilmunya, para penulis yang ikhlas, dan seluruh malaikat muqarrabin, khususnya kepada syaikh kita, Syekh Abdul Qadir al-Jilani.",
                 ),
                 ContentBlock(
-                    arabic = "ثُمَّ إِلَى أَرْوَاحِ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى آبَاءِ أُسْرَةِ الْمُضِيْفِ وَأُمَّهَاتِهِمْ وَأَجْدَادِهِمْ وَجَدَّاتِهِمْ",
+                    arabic = "ثُمَّ إِلَى أَرْوَاحِ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى آبَاءِ أُسْرَةِ الْمُضِيْفِ وَأُمَّهَاتِهِمْ وَأَجْدَادِهِمْ وَجَدَّاتِهِمْ.",
                     transliteration = "Tsumma ilaa arwaahi jamii'i ahlil-qubuur minal-muslimiina wal-muslimaati wal-mu'miniina wal-mu'minaati min masyaariqil-ardhi wa maghaaribihaa barrihaa wa bahrihaa, khushushon ilaa aabaa'i usratil-mudifi wa ummahaatihim wa ajdaadihim wa jaddaatihim.",
                     translation = "Kemudian kepada seluruh arwah ahli kubur dari kalangan muslimin laki-laki dan perempuan, mukminin laki-laki dan perempuan, dari timur dan barat, di darat dan di laut, khususnya kepada bapak-bapak keluarga tuan rumah beserta ibu-ibu mereka, kakek dan nenek mereka.",
                 ),
                 ContentBlock(
-                    arabic = "ثُمَّ خُصُوْصًا إِلَى حَضْرَةِ رُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَبَعْدَ ذَلِكَ إِلَى آبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا، وَجَمِيْعِ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ الْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ، وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
+                    arabic = "ثُمَّ خُصُوْصًا إِلَى حَضْرَةِ رُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَبَعْدَ ذَلِكَ إِلَى آبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا، وَجَمِيْعِ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ الْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ، وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ.",
                     transliteration = "Tsumma khushushon ilaa hadhrati ruuhi……, wa ruuhi……, wa ruuhi……, wa ruuhi……, wa ruuhi……, wa ba'da dzaalika ilaa aabaainaa wa ummahaatinaa wa ajdaadinaa wa jaddaatinaa, wa jamii'il-muslimiina wal-muslimaati wal-mu'miniina wal-mu'minaati al-ahyaa'i minhum wal-amwaat, wa limanijtama'naa hahunaa bisababihi wa liajlihi.",
                     translation = "Kemudian terkhusus kepada ahli kubur/arwah yang menjadi sebab kami berkumpul di sini dan untuk keperluannya, yaitu kepada hadirat ruh……, dan ruh……, dan ruh……, dan ruh……, dan ruh……, serta setelah itu kepada bapak-bapak dan ibu-ibu kami, kakek dan nenek kami, hingga kemudian kepada seluruh arwah ahli kubur dari kalangan muslimin laki-laki dan perempuan, mukminin laki-laki dan perempuan, baik yang masih hidup maupun yang telah meninggal dunia.",
                     note = "Sebutkan nama almarhum/almarhumah pada bagian ……",
@@ -367,22 +367,22 @@ object TahlilContent {
             type = SectionType.Doa,
             blocks = listOf(
                 ContentBlock(
-                    arabic = "اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ. اَللّٰهُمَّ أَنْزِلِ الرَّحْمَةَ وَالْمَغْفِرَةَ عَلَىٰ أَهْلِ الْقُبُوْرِ مِنْ أَهْلِ لَآ إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَسُوْلُ اللَّهِ",
+                    arabic = "اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ. اَللّٰهُمَّ أَنْزِلِ الرَّحْمَةَ وَالْمَغْفِرَةَ عَلَىٰ أَهْلِ الْقُبُوْرِ مِنْ أَهْلِ لَآ إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَسُوْلُ اللَّهِ.",
                     transliteration = "Allahummaghfir lahum warhamhum wa 'aafihim wa'fu 'anhum. Allahumma anzilir-rahmata wal-maghfirota 'alaa ahlil-qubuuri min ahli laa ilaaha illallaah Muhammadur-rasuulullaah.",
                     translation = "Ya Allah, ampunilah mereka, kasihanilah mereka, berilah mereka kesejahteraan dan maafkanlah mereka. Ya Allah, turunkanlah rahmat dan ampunan kepada ahli kubur yang selalu mengucapkan 'Laailaaha illallaah muhammadur rasuulullaah' (Tidak ada Tuhan selain Allah, Muhammad adalah utusan Allah).",
                 ),
                 ContentBlock(
-                    arabic = "اَللّٰهُمَّ إِنَّا نَسْأَلُكَ سَلَامَةً فِي الدِّيْنِ وَعَافِيَةً فِي الْجَسَدِ وَزِيَادَةً فِي الْعِلْمِ وَبَرَكَةً فِي الرِّزْقِ وَتَوْبَةً قَبْلَ الْمَوْتِ وَرَحْمَةً عِنْدَ الْمَوْتِ",
+                    arabic = "اَللّٰهُمَّ إِنَّا نَسْأَلُكَ سَلَامَةً فِي الدِّيْنِ وَعَافِيَةً فِي الْجَسَدِ وَزِيَادَةً فِي الْعِلْمِ وَبَرَكَةً فِي الرِّزْقِ وَتَوْبَةً قَبْلَ الْمَوْتِ وَرَحْمَةً عِنْدَ الْمَوْتِ.",
                     transliteration = "Allahumma innaa nas-aluka salaamatan fid-diin wa 'aafiyatan fil-jasad wa ziyaadatan fil-'ilmi wa barokatan fir-rizqi wa taubatan qablal-maut wa rahmatan 'indal-maut.",
                     translation = "Ya Allah ya Tuhan kami, kami mohon keselamatan agama, kesehatan jasmani, bertambahnya ilmu dan berkah rizki, dapat bertaubat sebelum mati, mendapat rahmat ketika mati,",
                 ),
                 ContentBlock(
-                    arabic = "وَمَغْفِرَةً بَعْدَ الْمَوْتِ. اَللّٰهُمَّ هَوِّنْ عَلَيْنَا فِيْ سَكَرَاتِ الْمَوْتِ وَالْنَّجَاةَ مِنَ النَّارِ وَالْعَفْوَ عِنْدَ الْحِسَابِ",
+                    arabic = "وَمَغْفِرَةً بَعْدَ الْمَوْتِ. اَللّٰهُمَّ هَوِّنْ عَلَيْنَا فِيْ سَكَرَاتِ الْمَوْتِ وَالْنَّجَاةَ مِنَ النَّارِ وَالْعَفْوَ عِنْدَ الْحِسَابِ.",
                     transliteration = "Wa maghfiratan ba'dal-maut. Allahumma hawwin 'alainaa fii sakaraatil-maut wan-najaata minan-naari wal-'afwa 'indal-hisaab.",
                     translation = "dan memperoleh ampunan setelah mati. Ya Allah, mudhkanlah kami pada gelombang sakaratul maut. Bebaskanlah kami dari adzab neraka-Mu dan memperoleh ampunan ketika kami dihisab.",
                 ),
                 ContentBlock(
-                    arabic = "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْأَخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. وَالْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ. الْفَاتِحَةْ",
+                    arabic = "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْأَخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. وَالْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ. الْفَاتِحَةْ.",
                     transliteration = "Rabbanaa aatinaa fid-dunyaa hasanah, wa fil-aakhirati hasanah, wa qinaa 'adzaaban-naar. Wal-hamdu lillaahi rabbil-'aalamiin. Al-faatihah.",
                     translation = "Wahai Tuhan kami, berikanlah kami kebaikan di dunia dan kebaikan di akhirat, serta jauhkanlah kami dari siksa api neraka. Dan segala puji bagi Allah penguasa alam semesta. Al-Fatihah.",
                     note = "Doa penutup",
@@ -406,5 +406,6 @@ object TahlilContent {
                 ),
             ),
         ),
+
     )
 }
