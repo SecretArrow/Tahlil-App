@@ -69,6 +69,14 @@ fun SettingsScreen(
     val density = LocalDensity.current
     val navBarBottomDp = with(density) { WindowInsets.navigationBars.getBottom(this).toDp() }
 
+    // Resolve the effective dark flag for theme-aware widgets (Tajwid
+    // legend swatches) — same resolution logic as MainActivity.
+    val isDark = when (themeMode) {
+        ThemeMode.System -> isSystemInDarkTheme()
+        ThemeMode.Light -> false
+        ThemeMode.Dark -> true
+    }
+
     // Centered + width-capped for tablet / desktop screen widths.
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         LazyColumn(
@@ -82,7 +90,7 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             item { SectionTitle("Tampilan") }
-            togglesSection(toggles, onTogglesChange)
+            togglesSection(toggles, onTogglesChange, isDark)
 
             item { SectionTitle("Tema") }
             themeSection(themeMode, onThemeModeChange)
@@ -123,6 +131,7 @@ private fun SettingsCard(content: @Composable () -> Unit) {
 private fun LazyListScope.togglesSection(
     toggles: DisplayToggles,
     onChange: (DisplayToggles) -> Unit,
+    isDark: Boolean,
 ) {
     item {
         SettingsCard {
@@ -169,13 +178,7 @@ private fun LazyListScope.togglesSection(
                 onCheckedChange = { v -> onChange(toggles.copy(tajwid = v)) },
             )
             if (toggles.tajwid) {
-                TajwidLegend(
-                    isDark = when (themeMode) {
-                        ThemeMode.System -> isSystemInDarkTheme()
-                        ThemeMode.Light -> false
-                        ThemeMode.Dark -> true
-                    },
-                )
+                TajwidLegend(isDark = isDark)
             }
             ToggleRow(
                 title = "Layar Tetap Hidup",
