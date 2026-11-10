@@ -6,6 +6,25 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ## [Versi Terbaru] — 2026-11-07
 
+### Revisi: Blok Berayat ۝ Tidak Diberi Titik (v1.2.7)
+
+- **Arah lanjutan user**: blok yang berakhir dengan tanda ayat ۝(angka)
+  TIDAK perlu titik — ornament tanda ayat sudah menjadi penutup kalimat.
+- **12 blok dikembalikan** ke akhiran tanda ayat polos (tanpa titik):
+  11 blok berayat satu digit (`…۝٧`) + 1 blok Ayat Kursi penuh (`…۝٢٥٥`).
+- Blok doa/dzikir/surah tanpa tanda ayat **tetap bertitik** (26 blok).
+- Patch renderer v1.2.6 (gabung titik ke baris ornament) **dilepas** —
+  tidak lagi diperlukan; `arabic-text.tsx` kembali persis kondisi v1.2.5.
+- Audit akhir: 26 blok berakhir "." + 12 blok berakhir ۝(angka) = 38 ✓
+  (catatan: regex audit awal hanya mengenali markah 1 digit — blok
+  `۝٢٥٥` sempat salah diklasifikasi, data sebenarnya sudah benar).
+- Verifikasi: blok Al-Fatihah berakhir `…وَلَا الضَّآلِّيْنَ ۝٧` (tanpa
+  titik); blok doa berakhir `…الْفَاتِحَةْ.` (dengan titik); footer **v1.2.7**.
+
+---
+
+## [v1.2.6] — 2026-11-07
+
 ### Titik (.) di Akhir Semua Kalimat Arab (v1.2.6)
 
 - **37 blok Arab ditambah tanda titik (.) di akhir** agar rapi dan konsisten
