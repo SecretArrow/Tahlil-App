@@ -33,17 +33,15 @@
             </gradient>
         </aapt:attr>
     </path>
-    <!-- Subtle decorative dot pattern at the four corners -->
-    <path
-        android:fillColor="#33FFFFFF"
-        android:pathData="M16,16 L20,16 L20,20 L16,20 z" />
-    <path
-        android:fillColor="#33FFFFFF"
-        android:pathData="M88,16 L92,16 L92,20 L88,20 z" />
-    <path
-        android:fillColor="#33FFFFFF"
-        android:pathData="M16,88 L20,88 L20,92 L16,92 z" />
-    <path
-        android:fillColor="#33FFFFFF"
-        android:pathData="M88,88 L92,88 L92,92 L88,92 z" />
+    <!-- Soft radial glow behind the motif (matches web/public/icon.svg) -->
+    <path android:pathData="M0,0 L108,0 L108,108 L0,108 z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="54" android:centerY="45"
+                android:gradientRadius="62"
+                android:startColor="#29FFFFFF"
+                android:endColor="#00FFFFFF" />
+        </aapt:attr>
+    </path>
 </vector>

@@ -6,6 +6,27 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ## [Versi Terbaru] — 2026-11-11
 
+### Logo Baru: "Mushaf & Kubah" (v1.2.9)
+
+- **Logo aplikasi diganti total** — desain baru yang lebih menarik dan bermakna:
+  kubah masjid putih berdiri di belakang **mushaf terbuka** (sampul emas,
+  halaman krem dengan garis-bintik emas), di atasnya **bulan sabit krem**
+  merangkul **bintang emas**, ditab beberapa titik bintang kecil (langit malam)
+  di atas gradien emerald→teal dengan glow lembut.
+- Konsisten di semua media:
+  - **Web**: `icon.svg` (favicon), `icon-192.png`, `apple-icon.png`,
+    `logo.svg` (logo lama branding Z.ai diganti dengan logo brand baru).
+  - **Android**: adaptive icon (`ic_launcher_foreground.xml` digambar ulang
+    sebagai vector — kubah + sabit + bintang + mushaf; background gradien
+    tetap emerald→teal, titik-titik sudut lama diganti radial glow) + 10
+    mipmap PNG legacy (5 densitas × square/round) yang dirender dari SVG yang
+    sama. Semua konten berada dalam safe-zone 66dp adaptive icon.
+- Versi ikon lama (buku outline sederhana di web; Rub el Hizb di Android)
+  diganti karena tampilan baru lebih khas aplikasi Islam dan tetap terbaca
+  jelas pada ukuran kecil (48 px).
+
+## [1.2.8] — 2026-11-11
+
 ### Fitur Baru: Opsi Tajwid (Warnai Hukum Bacaan) — Default Mati (v1.2.8)
 
 - **Toggle "Tajwid" baru** di dua panel pengaturan ("Tampilan Bacaan" dan
