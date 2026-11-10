@@ -267,6 +267,55 @@
   margin-bottom: 0.25em;
 }
 
+/* ── Tajwid highlighting (opt-in via Pengaturan Tampilan) ──────────────
+   When the `tajwid` display toggle is ON, <ArabicText/> wraps rule
+   segments in .tajwid-<rule> spans. Colors follow a 7-rule scheme:
+   izhar amber, ikhfa green, idgham-bighunnah violet, idgham-bilaghunnah
+   slate, iqlab blue, ghunnah rose, qalqalah orange. Dark theme switches
+   to lighter shades for contrast. See src/lib/tajwid.ts. */
+.tajwid-izhar {
+  color: #b45309;
+}
+.tajwid-ikhfa {
+  color: #047857;
+}
+.tajwid-idgham-ghunnah {
+  color: #7c3aed;
+}
+.tajwid-idgham-laghunnah {
+  color: #64748b;
+}
+.tajwid-iqlab {
+  color: #2563eb;
+}
+.tajwid-ghunnah {
+  color: #be123c;
+}
+.tajwid-qalqalah {
+  color: #ea580c;
+}
+.dark .tajwid-izhar {
+  color: #fbbf24;
+}
+.dark .tajwid-ikhfa {
+  color: #34d399;
+}
+.dark .tajwid-idgham-ghunnah {
+  color: #a78bfa;
+}
+.dark .tajwid-idgham-laghunnah {
+  color: #94a3b8;
+}
+.dark .tajwid-iqlab {
+  color: #60a5fa;
+}
+.dark .tajwid-ghunnah {
+  color: #fb7185;
+}
+.dark .tajwid-qalqalah {
+  color: #fb923c;
+}
+
 /* Decorative Islamic pattern background utility */
 .islamic-pattern {
   background-color: var(--background);

@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { useArabicStyle } from "@/components/arabic-style-provider";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import { arabicStyleModes } from "@/data/arabic-style";
+import { analyzeTajwid } from "@/lib/tajwid";
 
 /**
  * ArabicText — renders an Arabic string with the user's chosen style settings
@@ -38,6 +39,12 @@ import { arabicStyleModes } from "@/data/arabic-style";
  *      - Light theme (dark text)   → #000000 / #011b45
  *      - Dark theme  (light text)  → #ffffff / #d9dadb
  *    Ayah marks (۝X) keep their own styling and are not colorized.
+ *    Ignored while `tajwid` is on (rule colors take precedence).
+ *  - `tajwid`: when true, tajwid recitation rules detected by
+ *    src/lib/tajwid.ts (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah)
+ *    are wrapped in `.tajwid-<rule>` spans colored via globals.css.
+ *    Detection is deterministic (pure function of the text), so unlike
+ *    colorize it needs no "mounted" gate — SSR and client agree.
  */
 
 // Matches ۝ (U+06DD ARABIC END OF AYAH) followed by one or more Arabic-Indic
@@ -231,6 +238,45 @@ function maybeColorize(
 }
 
 /**
+ * Wrap tajwid rule segments (detected by analyzeTajwid) in colored spans.
+ * Ranges are already sorted & overlap-resolved by the engine, so this is
+ * a simple linear walk. Inline spans inside Arabic words are safe: modern
+ * shapers (HarfBuzz/Blink/Gecko/WebKit) keep cursive joining across
+ * inline element boundaries, and the Naskhi mode intentionally disables
+ * joining anyway.
+ */
+function renderTajwidText(text: string, keyPrefix: string): React.ReactNode {
+  const ranges = analyzeTajwid(text);
+  if (ranges.length === 0) return text;
+  const nodes: React.ReactNode[] = [];
+  let cursor = 0;
+  ranges.forEach((r, i) => {
+    if (r.start > cursor) nodes.push(text.slice(cursor, r.start));
+    nodes.push(
+      <span key={`${keyPrefix}-tw-${i}`} className={`tajwid-${r.rule}`}>
+        {text.slice(r.start, r.end)}
+      </span>
+    );
+    cursor = r.end;
+  });
+  if (cursor < text.length) nodes.push(text.slice(cursor));
+  return nodes;
+}
+
+/** Single text-decoration entry point used by every render path: tajwid
+ *  highlighting takes precedence over the alternating word colorize. */
+function decorateText(
+  text: string,
+  colors: readonly [string, string] | null,
+  counterRef: { current: number },
+  keyPrefix: string,
+  tajwid: boolean
+): React.ReactNode {
+  if (tajwid) return renderTajwidText(text, keyPrefix);
+  return maybeColorize(text, colors, counterRef, keyPrefix);
+}
+
+/**
  * Parse an Arabic string and return an array of React nodes where:
  *  - each ayah (text + ۝X mark) is wrapped together in an `.ayah-line` span,
  *    with the ayah number mark placed at the END of the verse text —
@@ -250,7 +296,8 @@ function renderArabicWithAyahMarks(
   keyPrefix: string,
   colors: readonly [string, string] | null = null,
   counterRef: { current: number } = { current: 0 },
-  splitSentences: boolean = true
+  splitSentences: boolean = true,
+  tajwid: boolean = false
 ): React.ReactNode[] {
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
   if (matches.length === 0) {
@@ -262,12 +309,12 @@ function renderArabicWithAyahMarks(
       if (!trimmed) return [];
       return [
         <span key={`${keyPrefix}-0`} className="ayah-line" style={LINE_STYLE}>
-          {maybeColorize(trimmed, colors, counterRef, keyPrefix)}
+          {decorateText(trimmed, colors, counterRef, keyPrefix, tajwid)}
         </span>,
       ];
     }
     // Split by Arabic comma (،) or Latin period (.) to break into lines.
-    return splitBySentence(text, keyPrefix, colors, counterRef);
+    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid);
   }
 
   const nodes: React.ReactNode[] = [];
@@ -287,7 +334,7 @@ function renderArabicWithAyahMarks(
     // AyahMark ornament keeps its own CSS-driven styling.
     nodes.push(
       <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={LINE_STYLE}>
-        {maybeColorize(textBefore, colors, counterRef, `${keyPrefix}-${i}`)}
+        {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid)}
         <AyahMark digit={digit} />
       </span>
     );
@@ -305,13 +352,13 @@ function renderArabicWithAyahMarks(
       if (trimmed) {
         nodes.push(
           <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={LINE_STYLE}>
-            {maybeColorize(trimmed, colors, counterRef, `${keyPrefix}-trail`)}
+            {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid)}
           </span>
         );
       }
     } else {
       // Also split trailing by sentence for dua-style text
-      nodes.push(...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef));
+      nodes.push(...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef, tajwid));
     }
   }
 
@@ -331,7 +378,8 @@ function splitBySentence(
   text: string,
   keyPrefix: string,
   colors: readonly [string, string] | null = null,
-  counterRef: { current: number } = { current: 0 }
+  counterRef: { current: number } = { current: 0 },
+  tajwid: boolean = false
 ): React.ReactNode[] {
   // Trim leading/trailing whitespace
   const trimmed = text.trim();
@@ -351,7 +399,7 @@ function splitBySentence(
     if (part === "،" || part === ".") {
       lines.push(
         <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={LINE_STYLE}>
-          {maybeColorize(current, colors, counterRef, `${keyPrefix}-${keyIdx}`)}
+          {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
         </span>
       );
       current = "";
@@ -361,7 +409,7 @@ function splitBySentence(
   if (current.trim()) {
     lines.push(
       <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={LINE_STYLE}>
-        {maybeColorize(current, colors, counterRef, `${keyPrefix}-${keyIdx}`)}
+        {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
       </span>
     );
   }
@@ -413,10 +461,16 @@ export function ArabicText({
     ? addArabicCommas(text)
     : text;
 
+  // Tajwid highlighting — deterministic pure function of the text, so it
+  // renders identically on server and client (no mounted gate needed,
+  // unlike the theme-dependent colorize). Skipped in the compare view.
+  const tajwidOn = toggles.tajwid && !forceMode;
+
   // Pick color pair based on resolved theme. Only applied after mount to
   // avoid SSR mismatch (resolvedTheme is undefined on first render).
+  // Tajwid wins over colorize — combining both would be unreadable.
   const wantColors =
-    mounted && toggles.colorizeArabic && !forceMode; // skip in compare view
+    mounted && toggles.colorizeArabic && !forceMode && !tajwidOn; // skip in compare view
   const colors: readonly [string, string] | null = wantColors
     ? resolvedTheme === "dark"
       ? COLORIZE_COLORS.dark
@@ -454,7 +508,8 @@ export function ArabicText({
         "t",
         colors,
         counterRef,
-        toggles.splitArabicLines
+        toggles.splitArabicLines,
+        tajwidOn
       )}
       {suffix}
     </p>

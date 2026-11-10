@@ -145,6 +145,7 @@ function parseDisplayToggles(raw: string | null): DisplayToggles {
         typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
       colorizeArabic:
         typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
+      tajwid: typeof p.tajwid === "boolean" ? p.tajwid : false,
     };
   } catch {
     return defaultDisplayToggles;

@@ -13,11 +13,14 @@ import {
   Check,
   ListPlus,
   Palette,
+  Highlighter,
 } from "lucide-react";
 import { useArabicStyle } from "@/components/arabic-style-provider";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import { arabicStyleModes } from "@/data/arabic-style";
 import { ArabicText } from "@/components/arabic-text";
+import { TajwidLegend } from "@/components/tajwid-legend";
+import { PREVIEW_TAJWID_TEXT } from "@/lib/tajwid";
 import {
   Dialog,
   DialogContent,
@@ -371,6 +374,68 @@ export function ArabicStylePanel({
                 />
               </span>
             </button>
+
+            {/* Toggle: Tajwid */}
+            <button
+              type="button"
+              onClick={() => setToggle("tajwid", !toggles.tajwid)}
+              aria-pressed={toggles.tajwid}
+              className={`flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all ${
+                toggles.tajwid
+                  ? "border-primary/40 bg-primary/5"
+                  : "border-border bg-card/60 hover:bg-accent"
+              }`}
+            >
+              <span
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors ${
+                  toggles.tajwid
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                <Highlighter className="h-5 w-5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-foreground">
+                    Tajwid
+                  </span>
+                  <span
+                    className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
+                      toggles.tajwid
+                        ? "bg-primary/15 text-primary"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {toggles.tajwid ? "Aktif" : "Mati"}
+                  </span>
+                </div>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  Warnai hukum bacaan (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah) pada teks Arab. Teks tidak diubah.
+                </p>
+              </div>
+              <span
+                className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+                  toggles.tajwid ? "bg-primary" : "bg-muted-foreground/30"
+                }`}
+              >
+                <motion.span
+                  layout
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  className={`inline-block h-5 w-5 transform rounded-full bg-white shadow ${
+                    toggles.tajwid ? "translate-x-5" : "translate-x-0.5"
+                  }`}
+                />
+              </span>
+            </button>
+            {toggles.tajwid && (
+              <div className="rounded-2xl border border-border bg-muted/30 p-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  Kode warna tajwid
+                </p>
+                <TajwidLegend />
+              </div>
+            )}
           </section>
 
           {/* Typography controls */}
@@ -474,6 +539,17 @@ export function ArabicStylePanel({
                   />
                 </div>
               )}
+              {toggles.tajwid && (
+                <div className="mt-3 border-t border-border/40 pt-3">
+                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Contoh tajwid (semua 7 hukum berwarna):
+                  </p>
+                  <ArabicText
+                    text={PREVIEW_TAJWID_TEXT}
+                    className="text-foreground"
+                  />
+                </div>
+              )}
               <p className="mt-3 border-t border-border/40 pt-3 text-[11px] text-muted-foreground">
                 Mode aktif: <span className="font-semibold text-foreground">{arabicStyleModes[settings.mode].label}</span>
                 {" · "}
@@ -483,6 +559,8 @@ export function ArabicStylePanel({
                 Koma: {toggles.punctuateArabic ? "ON" : "OFF"}
                 {" · "}
                 Warna: {toggles.colorizeArabic ? "ON" : "OFF"}
+                {" · "}
+                Tajwid: {toggles.tajwid ? "ON" : "OFF"}
               </p>
             </div>
           </section>

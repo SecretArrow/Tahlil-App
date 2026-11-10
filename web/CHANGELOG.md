@@ -4,7 +4,43 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ---
 
-## [Versi Terbaru] — 2026-11-07
+## [Versi Terbaru] — 2026-11-11
+
+### Fitur Baru: Opsi Tajwid (Warnai Hukum Bacaan) — Default Mati (v1.2.8)
+
+- **Toggle "Tajwid" baru** di dua panel pengaturan ("Tampilan Bacaan" dan
+  "Pengaturan Teks Arab" → bagian "Tampilan Teks"). **Default MATI**, sesuai
+  permintaan user; tersimpan otomatis di cookie browser (1 tahun).
+- Saat aktif, hukum bacaan pada teks Arab diberi warna (7 hukum, engine baru
+  `src/lib/tajwid.ts` — deteksi berbasis karakter, teks tidak diubah):
+  - **Izhar** (incl. syafawi) — kuning/amber: nun sukun/tanwin + ء ه ع ح غ خ,
+    mim sukun + huruf lain
+  - **Ikhfa** (incl. syafawi) — hijau: nun sukun/tanwin + 15 huruf ikhfa,
+    mim sukun + ب
+  - **Idgham Bighunnah** (incl. syafawi) — ungu: nun sukun/tanwin + ي ن م و,
+    mim sukun + م
+  - **Idgham Bilaghunnah** — abu-abu: nun sukun/tanwin + ل ر
+  - **Iqlab** — biru: nun sukun/tanwin + ب
+  - **Ghunnah** — merah muda: نّ / مّ
+  - **Qalqalah** — oranye: ق ط ب ج د bersukun
+- Aturan terdeteksi **melintasi batas kata** (tanwin/nun sukun di akhir kata
+  berlaku ke huruf pertama kata berikut) dan **terputus oleh tanda baca**
+  (koma/titik/ornament ayat = wakaf). Mad, lam syamsiyyah/qamariyyah
+  sengaja tidak diwarnai agar akurat.
+- **Legenda warna** tampil otomatis di bawah toggle saat aktif (7 swatch +
+  penjelasan singkat), plus **baris pratinjau khusus** berisi contoh teks
+  yang memuat ke-7 hukum sekaligus.
+- Saat Tajwid aktif, fitur "Warnai Kata Arab" dinonaktifkan sementara
+  (menghindari teks pelangi tak terbaca); mode perbandingan 3 kolom tidak
+  terpengaruh.
+- Engine diuji bun terhadap 16 kasus (per-hukum, jeda tanda baca, lintas
+  kata, overlap): semua terdeteksi benar — termasuk bukan-qalqalah ك.
+- Cara verifikasi: buka Pengaturan Tampilan → nyalakan "Tajwid" → teks Arab
+  berwarna + legenda tampil; chip footer **v1.2.8**; `/api/version` → 1.2.8.
+
+---
+
+## [v1.2.7] — 2026-11-07
 
 ### Revisi: Blok Berayat ۝ Tidak Diberi Titik (v1.2.7)
 

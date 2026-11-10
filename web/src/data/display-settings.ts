@@ -24,9 +24,18 @@ export type DisplayToggles = {
    * The two shades are picked based on the active theme:
    *   - Light theme (dark text)   → #000000 and #011b45
    *   - Dark theme  (light text)  → #ffffff and #d9dadb
-   * Off by default.
+   * Off by default. Ignored while `tajwid` is on (the rule colors take
+   * precedence — combining both would produce unreadable rainbow text).
    */
   colorizeArabic: boolean;
+  /**
+   * When true, tajwid recitation rules in the Arabic text are highlighted
+   * with colors (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah — see
+   * src/lib/tajwid.ts). Off by default; detection is purely visual — the
+   * text content itself is never modified. While active, the word
+   * colorize toggle is temporarily ignored.
+   */
+  tajwid: boolean;
 };
 
 export const defaultDisplayToggles: DisplayToggles = {
@@ -36,4 +45,5 @@ export const defaultDisplayToggles: DisplayToggles = {
   punctuateArabic: false,
   splitArabicLines: true,
   colorizeArabic: false,
+  tajwid: false,
 };

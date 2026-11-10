@@ -40,6 +40,7 @@ function parseStored(raw: string | null): DisplayToggles {
         typeof parsed.colorizeArabic === "boolean"
           ? parsed.colorizeArabic
           : false,
+      tajwid: typeof parsed.tajwid === "boolean" ? parsed.tajwid : false,
     };
   } catch {
     return defaultDisplayToggles;

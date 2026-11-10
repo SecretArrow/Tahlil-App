@@ -12,9 +12,12 @@ import {
   ListPlus,
   Palette,
   WrapText,
+  Highlighter,
 } from "lucide-react";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import { ArabicText } from "@/components/arabic-text";
+import { TajwidLegend } from "@/components/tajwid-legend";
+import { PREVIEW_TAJWID_TEXT } from "@/lib/tajwid";
 
 type Props = {
   open: boolean;
@@ -206,6 +209,23 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                   setToggle("colorizeArabic", !toggles.colorizeArabic)
                 }
               />
+              <ToggleRow
+                label="Tajwid"
+                description="Warnai hukum bacaan pada teks Arab: Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, dan Qalqalah. Teks tidak diubah, hanya diberi warna. Saat aktif, pewarnaan kata dinonaktifkan sementara."
+                icon={Highlighter}
+                active={toggles.tajwid}
+                activeLabel="Aktif"
+                inactiveLabel="Mati"
+                onToggle={() => setToggle("tajwid", !toggles.tajwid)}
+              />
+              {toggles.tajwid && (
+                <div className="rounded-2xl border border-border bg-muted/30 p-3">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Kode warna tajwid
+                  </p>
+                  <TajwidLegend />
+                </div>
+              )}
 
               {/* Live preview */}
               <div className="rounded-2xl border border-border bg-gradient-to-br from-emerald-50/80 to-amber-50/60 p-4 dark:from-emerald-950/40 dark:to-amber-950/20">
@@ -229,6 +249,12 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                         text={PREVIEW_ARABIC_COMMAS}
                         className="text-foreground/90"
                       />
+                      {toggles.tajwid && (
+                        <ArabicText
+                          text={PREVIEW_TAJWID_TEXT}
+                          className="text-foreground/90"
+                        />
+                      )}
                     </>
                   )}
                   {toggles.transliteration && (
