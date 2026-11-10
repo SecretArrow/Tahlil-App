@@ -24,7 +24,7 @@ export const tahlilSections: Section[] = [
     type: "pembukaan",
     blocks: [
       {
-        arabic: "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ",
+        arabic: "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ.",
         transliteration:
           "A'uudzubillaahi minasy-syaithaanir-rajiim. Bismillaahirrahmaanir-rahiim.",
         translation:
@@ -41,7 +41,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "إِلَىٰ حَضْرَةِ النَّبِيِّ الْمُصْطَفَىٰ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمْ وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ أَجْمَعِيْنَ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ",
+          "إِلَىٰ حَضْرَةِ النَّبِيِّ الْمُصْطَفَىٰ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمْ وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ أَجْمَعِيْنَ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ.",
         transliteration:
           "Ilaa hadhrotin-nabiyyil mushtofaa Muhammadin shallallaahu 'alaihi wasallam, wa 'alaa aalihi wa ash-haabihi wa azwaajihi wa dzurriyyatihi wa ahli baitihi ajma'iin. Syai-un lillaahi lahumul-faatihah.",
         translation:
@@ -49,7 +49,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Alhamdu lillaahi rabbil-'aalamiin. Ar-rahmaanir-rahiim. Maaliki yaumid-diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiraathal-mustaqiim. Shiraathalladziina an'amta 'alaihim ghairil-maghdluubi 'alaihim waladh-dhaalliin.",
         translation:
@@ -67,7 +67,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي، الْفَاتِحَةُ",
+          "ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي، الْفَاتِحَةُ.",
         transliteration:
           "Tsumma ilaa hadhrati ikhwaanihi minal-anbiya'i wal-mursaliin wal-auliya'i wasy-syuhadaa'i wash-shaalihiin wash-shahaabati wat-taabi'iin wal-'ulamaa'il-'aamiliin wal-mushannifiinal-mukhlishiin wa jamii'il-malaaikatil-muqarrabiin, khushushon ilaa sayyidinasy-syaikh 'abdil-qaadir al-jilaani, al-faatihah.",
         translation:
@@ -75,7 +75,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Alhamdu lillaahi rabbil-'aalamiin. Ar-rahmaanir-rahiim. Maaliki yaumid-diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiraathal-mustaqiim. Shiraathalladziina an'amta 'alaihim ghairil-maghdluubi 'alaihim waladh-dhaalliin.",
         translation:
@@ -84,7 +84,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "ثُمَّ إِلَىٰ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا فِيْ بَرِّهَا وَبَحْرِهَا وَمِنْ يَمِيْنِهَا إِلَىٰ شِمَالِهَا خُصُوْصًا إِلَىٰ آبَآئِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا،",
+          "ثُمَّ إِلَىٰ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا فِيْ بَرِّهَا وَبَحْرِهَا وَمِنْ يَمِيْنِهَا إِلَىٰ شِمَالِهَا خُصُوْصًا إِلَىٰ آبَآئِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا.",
         transliteration:
           "Tsumma ilaa jamii'i ahlil-qubuur minal-muslimiina wal-muslimaati wal-mu'miniina wal-mu'minaati min masyaariqil-ardhi wa maghaaribihaa fii barrihaa wa bahrihaa wa min yamiinihaa ilaa syimaalihaa khushushon ilaa aabaainaa wa ummahaatinaa wa ajdaadinaa wa jaddaatinaa.",
         translation:
@@ -92,7 +92,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "وَمَشَايِخِنَا وَمَشَايِخِ مَشَايِخِنَا وَأَسَاتِذَتِنَا وَأَسَاتِذَةِ أَسَاتِذَتِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ",
+          "وَمَشَايِخِنَا وَمَشَايِخِ مَشَايِخِنَا وَأَسَاتِذَتِنَا وَأَسَاتِذَةِ أَسَاتِذَتِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ، شَيْءٌ لِلَّهِ لَهُمُ الْفَاتِحَةُ.",
         transliteration:
           "Wa masyaaikhinaa wa masyaaikhi masyaaikhinaa wa asaatidzatinaa wa asaatidzati asaatidzatinaa wa limanijtama'naa hahunaa bisababihi. Syai-un lillaahi lahum, al-faatihah.",
         translation:
@@ -101,7 +101,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Alhamdu lillaahi rabbil-'aalamiin. Ar-rahmaanir-rahiim. Maaliki yaumid-diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiraathal-mustaqiim. Shiraathalladziina an'amta 'alaihim ghairil-maghdluubi 'alaihim waladh-dhaalliin.",
         translation:
@@ -110,7 +110,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "ثُمَّ إِلَى جَمِيْعِ أهْلِ الْقُبُوْرِ مِمَّنْ ذُكِرَتْ أَسْمَاؤُهُ فِيْ هٰذِهِ الرِّسَالَةِ حَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … رَحِمَهُمُ اللَّهُ وَغَفَرَهُمْ، الْفَاتِحَةُ",
+          "ثُمَّ إِلَى جَمِيْعِ أهْلِ الْقُبُوْرِ مِمَّنْ ذُكِرَتْ أَسْمَاؤُهُ فِيْ هٰذِهِ الرِّسَالَةِ حَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … وَحَضْرَةِ رُوْحِ … رَحِمَهُمُ اللَّهُ وَغَفَرَهُمْ، الْفَاتِحَةُ.",
         transliteration:
           "Tsumma ilaa jamii'i ahlil-qubuur mimman dzukirot asmaa'uhu fii haadzihir-risaalati, hadhrati ruuhi…, wa hadhrati ruuhi…, wa hadhrati ruuhi…, rahimahumullaahu wa ghafarahum, al-faatihah.",
         translation:
@@ -119,7 +119,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Alhamdu lillaahi rabbil-'aalamiin. Ar-rahmaanir-rahiim. Maaliki yaumid-diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiraathal-mustaqiim. Shiraathalladziina an'amta 'alaihim ghairil-maghdluubi 'alaihim waladh-dhaalliin.",
         translation:
@@ -136,14 +136,14 @@ export const tahlilSections: Section[] = [
     type: "tahlil",
     blocks: [
       {
-        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
         transliteration: "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
         translation:
           "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ قُلْ هُوَ اللَّهُ أَحَدٌ ۝٢ اللَّهُ الصَّمَدُ ۝٣ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٤ وَلَمْ يَكُنْ لَهٗ كُفُوًا أَحَدٌ ۝٥",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ قُلْ هُوَ اللَّهُ أَحَدٌ ۝٢ اللَّهُ الصَّمَدُ ۝٣ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٤ وَلَمْ يَكُنْ لَهٗ كُفُوًا أَحَدٌ ۝٥.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Qul huwallaahu ahad. Allaahush-shamad. Lam yalid walam yuulad. Wa lam yakun lahuu kufuwan ahad.",
         translation:
@@ -152,14 +152,14 @@ export const tahlilSections: Section[] = [
         repeat: 3,
       },
       {
-        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
         transliteration: "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
         translation:
           "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝٢ مِنْ شَرِّ مَا خَلَقَ ۝٣ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٤ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝٥ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٦",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝٢ مِنْ شَرِّ مَا خَلَقَ ۝٣ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٤ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝٥ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٦.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Qul a'uudzu birabbil-falaq. Min syarri maa khalaq. Wa min syarri ghaasiqin idzaa waqab. Wa min syarrin-naffaatsaati fil-'uqad. Wa min syarri haasidin idzaa hasad.",
         translation:
@@ -167,14 +167,14 @@ export const tahlilSections: Section[] = [
         note: "Surat Al-Falaq",
       },
       {
-        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
         transliteration: "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
         translation:
           "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
       },
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝٢ مَلِكِ النَّاسِ ۝٣ إِلٰهِ النَّاسِ ۝٤ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٥ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٦ مِنَ الْجِنَّةِ وَالْنَّاسِ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝٢ مَلِكِ النَّاسِ ۝٣ إِلٰهِ النَّاسِ ۝٤ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٥ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٦ مِنَ الْجِنَّةِ وَالْنَّاسِ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Qul a'uudzu birabbin-naas. Malikin-naas. Ilaahin-naas. Min syarril-waswaasil-khannaas. Alladzii yuwaswisu fii shuduurin-naas. Minal-jinnati wan-naas.",
         translation:
@@ -182,7 +182,7 @@ export const tahlilSections: Section[] = [
         note: "Surat An-Nas",
       },
       {
-        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ",
+        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ وَلِلَّهِ الْحَمْدُ.",
         transliteration: "Laa ilaaha illallaah, wallaahu akbar, wa lillaahil-hamd.",
         translation:
           "Tiada Tuhan selain Allah, Dia-lah Yang Maha Besar dan hanya bagi-Nya lah segala puji.",
@@ -198,7 +198,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Alhamdu lillaahi rabbil-'aalamiin. Ar-rahmaanir-rahiim. Maaliki yaumid-diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiraathal-mustaqiim. Shiraathalladziina an'amta 'alaihim ghairil-maghdluubi 'alaihim waladh-dhaalliin.",
         translation:
@@ -216,7 +216,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "الٓمٓ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣",
+          "الٓمٓ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣.",
         transliteration:
           "Aliif laam miiim. Dzaalikal-kitaabu laa raiba fiih, hudan lil-muttaqiin. Alladziina yu'minuuna bil-ghaibi wa yuqiimuunash-shalaata wa mimmaa razaqnaahum yunfiquun.",
         translation:
@@ -225,7 +225,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَآ أُنْزِلَ إِلَيْكَ وَمَآ أُنْزِلَ مِنْ قَبْلِكَ وَبِالْأٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلَىٰ هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
+          "وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَآ أُنْزِلَ إِلَيْكَ وَمَآ أُنْزِلَ مِنْ قَبْلِكَ وَبِالْأٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلَىٰ هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥.",
         transliteration:
           "Walladziina yu'minuuna bimaa unzila ilaika wa maa unzila min qablika wa bil-aakhirati hum yuuqinuun. Ulaaika 'alaa hudan min rabbihim wa ulaaika humul-muflihuun.",
         translation:
@@ -243,7 +243,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗ إِلَّا بِإِذْنِهٖ، يَعْلَمُ مَا بَيْنَ أَيْدِيْهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِنْ عِلْمِهٖ إِلَّا بِمَا شَآءَ، وَسِعَ كُرْسِيُّهُ السَّمٰوَاتِ وَالْأَرْضَ، وَلَا يَؤُوْدُهٗ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيْمُ ۝٢٥٥",
+          "مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗ إِلَّا بِإِذْنِهٖ، يَعْلَمُ مَا بَيْنَ أَيْدِيْهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِنْ عِلْمِهٖ إِلَّا بِمَا شَآءَ، وَسِعَ كُرْسِيُّهُ السَّمٰوَاتِ وَالْأَرْضَ، وَلَا يَؤُوْدُهٗ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيْمُ ۝٢٥٥.",
         transliteration:
           "Man dzaalladzii yasyfa'u 'indahuuu illaa bi-idznihi, ya'lamu maa bainu aidiihim wa maa khalfahum, wa laa yuhiithuuna bisyai-in min 'ilmihii illaa bimaa syaa-a, wasi'a kursiyyuhus-samaawaati wal-ardh, wa laa yauuduhuu hifzhuhumaa wa huwal-'aliyyul-'azhiim.",
         translation:
@@ -260,19 +260,19 @@ export const tahlilSections: Section[] = [
     type: "dzikir",
     blocks: [
       {
-        arabic: "أَفْضَلُ الذِّكْرِ فَاعْلَمْ أَنَّهٗ",
+        arabic: "أَفْضَلُ الذِّكْرِ فَاعْلَمْ أَنَّهٗ.",
         transliteration: "Afdlaludz-dzikri fa'lam annahuu.",
         translation: "Ketahuilah bahwa dzikir yang paling utama ialah:",
       },
       {
-        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ",
+        arabic: "لَآ إِلٰهَ إِلَّا اللَّهُ.",
         transliteration: "Laa ilaaha illallaah.",
         translation: "Tiada Tuhan selain Allah.",
         repeat: 11,
         note: "Dibaca 11 kali (atau lebih banyak lebih baik)",
       },
       {
-        arabic: "سَيِّدِنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+        arabic: "سَيِّدِنَا مُحَمَّدٌ رَسُوْلُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
         transliteration:
           "Sayyidinaa Muhammadur-rasuulullaah. Shallallaahu 'alaihi wasallam.",
         translation:
@@ -289,7 +289,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ",
+          "أَعُوْذُ بِاللَّهِ مِنَ الشَّيْطٰنِ الرَّجِيْمِ. بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ.",
         transliteration:
           "A'uudzubillaahi minasy-syaithaanir-rajiim. Bismillaahirrahmaanir-rahiim.",
         translation:
@@ -297,7 +297,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ، حَمْدَ الشَّاكِرِيْنَ، حَمْدَ النَّاعِمِيْنَ، حَمْدًا يُوَافِيْ نِعْمَتَهٗ وَيُكَافِئُ مَزِيْدَهٗ",
+          "الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ، حَمْدَ الشَّاكِرِيْنَ، حَمْدَ النَّاعِمِيْنَ، حَمْدًا يُوَافِيْ نِعْمَتَهٗ وَيُكَافِئُ مَزِيْدَهٗ.",
         transliteration:
           "Alhamdu lillaahi rabbil-'aalamiin, hamdan syaakiriin, hamdan naa'imiin, hamdan yuwaafii ni'amatahuu wa yukaafi-u maziidahuu.",
         translation:
@@ -305,7 +305,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ. اَللّٰهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِ سَيِّدِنَا مُحَمَّدٍ",
+          "يَا رَبَّنَا لَكَ الْحَمْدُ كَمَا يَنْبَغِيْ لِجَلَالِ وَجْهِكَ وَعَظِيْمِ سُلْطَانِكَ. اَللّٰهُمَّ صَلِّ وَسَلِّمْ عَلَىٰ سَيِّدِنَا مُحَمَّدٍ وَعَلَىٰ آلِ سَيِّدِنَا مُحَمَّدٍ.",
         transliteration:
           "Yaa rabbanaa lakal-hamdu kamaa yanbaghii lijalaali wajhika wa 'azhiimi sulthaanik. Allahumma shalli wa sallim 'alaa sayyidinaa Muhammadin wa 'alaa aali sayyidinaa Muhammadin.",
         translation:
@@ -322,7 +322,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "اَللّٰهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَأْنَاهُ مِنَ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلَّلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَىٰ سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+          "اَللّٰهُمَّ تَقَبَّلْ وَأَوْصِلْ ثَوَابَ مَا قَرَأْنَاهُ مِنَ الْقُرْآنِ الْعَظِيْمِ وَمَا هَلَّلْنَا وَمَا سَبَّحْنَا وَمَا اسْتَغْفَرْنَا وَمَا صَلَّيْنَا عَلَىٰ سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
         transliteration:
           "Allahumma taqabbal wa aushil tsawaaba maa qara'naahu minal-qur'aanil-'azhiimi wa maa hallalnaa wa maa sabbahnaa wa mastaghfarnaa wa maa shallainaa 'alaa sayyidinaa Muhammadin shallallaahu 'alaihi wasallam.",
         translation:
@@ -330,7 +330,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَىٰ حَضْرَةِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
+          "هَدِيَّةً وَاصِلَةً وَرَحْمَةً نَازِلَةً وَبَرَكَةً شَامِلَةً إِلَىٰ حَضْرَةِ حَبِيْبِنَا وَشَفِيْعِنَا وَقُرَّةِ أَعْيُنِنَا سَيِّدِنَا وَمَوْلَنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
         transliteration:
           "Hadiyyatan waashilatan wa rahmatan naazilah wa barokatan syaamilah ilaa hadhrati habiibinaa wa syafii'inaa wa qurrati a'yuninaa sayyidinaa wa maulanaa Muhammadin shallallaahu 'alaihi wasallam.",
         translation:
@@ -338,7 +338,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "وَإِلَى جَمِيْعِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي",
+          "وَإِلَى جَمِيْعِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالْشُّهَدَاءِ وَالْصَّالِحِيْنَ وَالْصَّحَابَةِ وَالْتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِي.",
         transliteration:
           "Wa ilaa jamii'i ikhwaanihi minal-anbiya'i wal-mursaliin wal-auliya'i wasy-syuhadaa'i wash-shaalihiin wash-shahaabati wat-taabi'iin wal-'ulamaa'il-'aamiliin wal-mushannifiinal-mukhlishiin wa jamii'il-malaaikatil-muqarrabiin, khushushon ilaa sayyidinasy-syaikh 'abdil-qaadir al-jilaani.",
         translation:
@@ -346,7 +346,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "ثُمَّ إِلَى أَرْوَاحِ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى آبَاءِ أُسْرَةِ الْمُضِيْفِ وَأُمَّهَاتِهِمْ وَأَجْدَادِهِمْ وَجَدَّاتِهِمْ",
+          "ثُمَّ إِلَى أَرْوَاحِ جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ وَمَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى آبَاءِ أُسْرَةِ الْمُضِيْفِ وَأُمَّهَاتِهِمْ وَأَجْدَادِهِمْ وَجَدَّاتِهِمْ.",
         transliteration:
           "Tsumma ilaa arwaahi jamii'i ahlil-qubuur minal-muslimiina wal-muslimaati wal-mu'miniina wal-mu'minaati min masyaariqil-ardhi wa maghaaribihaa barrihaa wa bahrihaa, khushushon ilaa aabaa'i usratil-mudifi wa ummahaatihim wa ajdaadihim wa jaddaatihim.",
         translation:
@@ -354,7 +354,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "ثُمَّ خُصُوْصًا إِلَى حَضْرَةِ رُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَبَعْدَ ذَلِكَ إِلَى آبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا، وَجَمِيْعِ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ الْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ، وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
+          "ثُمَّ خُصُوْصًا إِلَى حَضْرَةِ رُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَرُوْحِ ……، وَبَعْدَ ذَلِكَ إِلَى آبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا، وَجَمِيْعِ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ الْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ، وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ.",
         transliteration:
           "Tsumma khushushon ilaa hadhrati ruuhi……, wa ruuhi……, wa ruuhi……, wa ruuhi……, wa ruuhi……, wa ba'da dzaalika ilaa aabaainaa wa ummahaatinaa wa ajdaadinaa wa jaddaatinaa, wa jamii'il-muslimiina wal-muslimaati wal-mu'miniina wal-mu'minaati al-ahyaa'i minhum wal-amwaat, wa limanijtama'naa hahunaa bisababihi wa liajlihi.",
         translation:
@@ -372,7 +372,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ. اَللّٰهُمَّ أَنْزِلِ الرَّحْمَةَ وَالْمَغْفِرَةَ عَلَىٰ أَهْلِ الْقُبُوْرِ مِنْ أَهْلِ لَآ إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَسُوْلُ اللَّهِ",
+          "اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ. اَللّٰهُمَّ أَنْزِلِ الرَّحْمَةَ وَالْمَغْفِرَةَ عَلَىٰ أَهْلِ الْقُبُوْرِ مِنْ أَهْلِ لَآ إِلٰهَ إِلَّا اللَّهُ مُحَمَّدٌ رَسُوْلُ اللَّهِ.",
         transliteration:
           "Allahummaghfir lahum warhamhum wa 'aafihim wa'fu 'anhum. Allahumma anzilir-rahmata wal-maghfirota 'alaa ahlil-qubuuri min ahli laa ilaaha illallaah Muhammadur-rasuulullaah.",
         translation:
@@ -380,7 +380,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "اَللّٰهُمَّ إِنَّا نَسْأَلُكَ سَلَامَةً فِي الدِّيْنِ وَعَافِيَةً فِي الْجَسَدِ وَزِيَادَةً فِي الْعِلْمِ وَبَرَكَةً فِي الرِّزْقِ وَتَوْبَةً قَبْلَ الْمَوْتِ وَرَحْمَةً عِنْدَ الْمَوْتِ",
+          "اَللّٰهُمَّ إِنَّا نَسْأَلُكَ سَلَامَةً فِي الدِّيْنِ وَعَافِيَةً فِي الْجَسَدِ وَزِيَادَةً فِي الْعِلْمِ وَبَرَكَةً فِي الرِّزْقِ وَتَوْبَةً قَبْلَ الْمَوْتِ وَرَحْمَةً عِنْدَ الْمَوْتِ.",
         transliteration:
           "Allahumma innaa nas-aluka salaamatan fid-diin wa 'aafiyatan fil-jasad wa ziyaadatan fil-'ilmi wa barokatan fir-rizqi wa taubatan qablal-maut wa rahmatan 'indal-maut.",
         translation:
@@ -388,7 +388,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "وَمَغْفِرَةً بَعْدَ الْمَوْتِ. اَللّٰهُمَّ هَوِّنْ عَلَيْنَا فِيْ سَكَرَاتِ الْمَوْتِ وَالْنَّجَاةَ مِنَ النَّارِ وَالْعَفْوَ عِنْدَ الْحِسَابِ",
+          "وَمَغْفِرَةً بَعْدَ الْمَوْتِ. اَللّٰهُمَّ هَوِّنْ عَلَيْنَا فِيْ سَكَرَاتِ الْمَوْتِ وَالْنَّجَاةَ مِنَ النَّارِ وَالْعَفْوَ عِنْدَ الْحِسَابِ.",
         transliteration:
           "Wa maghfiratan ba'dal-maut. Allahumma hawwin 'alainaa fii sakaraatil-maut wan-najaata minan-naari wal-'afwa 'indal-hisaab.",
         translation:
@@ -396,7 +396,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْأَخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. وَالْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ. الْفَاتِحَةْ",
+          "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْأَخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ. وَالْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ. الْفَاتِحَةْ.",
         transliteration:
           "Rabbanaa aatinaa fid-dunyaa hasanah, wa fil-aakhirati hasanah, wa qinaa 'adzaaban-naar. Wal-hamdu lillaahi rabbil-'aalamiin. Al-faatihah.",
         translation:
@@ -414,7 +414,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧",
+          "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ ۝٧.",
         transliteration:
           "Bismillaahirrahmaanir-rahiim. Alhamdu lillaahi rabbil-'aalamiin. Ar-rahmaanir-rahiim. Maaliki yaumid-diin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiraathal-mustaqiim. Shiraathalladziina an'amta 'alaihim ghairil-maghdluubi 'alaihim waladh-dhaalliin.",
         translation:

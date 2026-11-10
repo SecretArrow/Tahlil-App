@@ -281,6 +281,19 @@ function renderArabicWithAyahMarks(
 
     // Text BEFORE this mark (the verse that this mark ends)
     const textBefore = text.substring(cursor, markStart);
+    cursor = markStart + full.length;
+
+    // If this is the FINAL ayah mark, a trailing run of pure punctuation
+    // (the "." that now ends every Arabic block) must stay on THIS line —
+    // rendering it separately would produce a lone "." line.
+    let tailPunct = "";
+    if (i === matches.length - 1) {
+      const rest = text.substring(cursor).trim();
+      if (rest && /^[.،]+$/.test(rest)) {
+        tailPunct = rest;
+        cursor = text.length; // fully consumed — skip the trailing block
+      }
+    }
 
     // Wrap verse text + mark together — mark at the END of the verse.
     // The verse text is colorized word-by-word if colors is set; the
@@ -289,10 +302,9 @@ function renderArabicWithAyahMarks(
       <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={LINE_STYLE}>
         {maybeColorize(textBefore, colors, counterRef, `${keyPrefix}-${i}`)}
         <AyahMark digit={digit} />
+        {tailPunct}
       </span>
     );
-
-    cursor = markStart + full.length;
   });
 
   // After the last mark, there may be trailing text (e.g., final verse text

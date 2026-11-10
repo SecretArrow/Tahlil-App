@@ -6,6 +6,26 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ## [Versi Terbaru] — 2026-11-07
 
+### Titik (.) di Akhir Semua Kalimat Arab (v1.2.6)
+
+- **37 blok Arab ditambah tanda titik (.) di akhir** agar rapi dan konsisten
+  (audit: sebelumnya hanya 1 dari 38 blok yang bertitik):
+  - 26 blok doa/dzikir/surah berakhir tanpa tanda → ditambah "."
+  - 11 blok berakhir dengan tanda ayat ۝(angka) → titik diletakkan SETELAH
+    tanda ayat, contoh: `وَلَا الضَّآلِّيْنَ ۝٧.`
+  - 1 blok berakhir dengan koma Arab "،" → koma diganti "." (blok doa
+    orang tua: `…وَجَدَّاتِنَا،` → `…وَجَدَّاتِنَا.`)
+- **Patch renderer** (`arabic-text.tsx`): titik setelah tanda ayat terakhir
+  kini digabung ke baris ornament yang sama — sebelumnya akan muncul baris
+  kosong berisi titik sendirian. Berlaku juga saat toggle pecah kalimat off.
+- Audit akhir: **38/38 blok Arab berakhir dengan "."**.
+- Cara verifikasi: semua bagian — tiap blok Arab berakhir titik; blok
+  berayat menampilkan titik tepat setelah ornament ۝X; chip footer **v1.2.6**.
+
+---
+
+## [v1.2.5] — 2026-11-07
+
 ### Ganti Simbol ۩ dengan Titik (v1.2.5)
 
 - **Simbol ۩ (Arabic Place of Sajdah, U+06E9) dihapus** dari teks Arab,
