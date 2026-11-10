@@ -6,6 +6,26 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 
 ## [Versi Terbaru] — 2026-11-07
 
+### Ganti Simbol ۩ dengan Titik (v1.2.5)
+
+- **Simbol ۩ (Arabic Place of Sajdah, U+06E9) dihapus** dari teks Arab,
+  diganti tanda titik (.) sesuai permintaan user — 2 kemunculan:
+  - Blok "Awal Ayat Kursi" (bagian Doa Pembuka):
+    - `الرَّحِيْمُ ۩.` → `الرَّحِيْمُ.` (hindari titik ganda)
+    - `الْأَرْضِ ۩` → `الْأَرْضِ.` (titik di akhir blok)
+- Sudah diaudit: seluruh file kini 0 kemunculan ۩. Simbol ayat ۝(angka)
+  tidak diubah (memang penanda nomor ayat).
+- Render sudah diverifikasi aman: blok ini memang dipecah per kalimat pada
+  tanda `.`/`،`, jadi struktur baris tidak berubah; fitur "koma per baris"
+  (punctuateArabic) juga tidak akan menyisipkan koma di blok ini (tiap
+  segmen hanya punya satu konektor وَ — aturan fixed-phrase).
+- Cara verifikasi: bagian Doa Pembuka → blok "Awal Ayat Kursi" — simbol
+  masjid ۩ tidak ada lagi, diganti titik; chip footer **v1.2.5**.
+
+---
+
+## [v1.2.4] — 2026-11-07
+
 ### Seragamkan "Sayyidinaa" di Teks Arab (v1.2.4)
 
 - **1 kata Arab diseragamkan** sesuai konvensi bacaan Indonesia (keputusan user):

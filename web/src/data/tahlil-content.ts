@@ -234,7 +234,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ، لَآ إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ ۩. اللَّهُ لَآ إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهٗ سِنَةٌ وَلَا نَوْمٌ، لَهٗ مَا فِي السَّمٰوَاتِ وَمَا فِي الْأَرْضِ ۩",
+          "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ، لَآ إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ. اللَّهُ لَآ إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهٗ سِنَةٌ وَلَا نَوْمٌ، لَهٗ مَا فِي السَّمٰوَاتِ وَمَا فِي الْأَرْضِ.",
         transliteration:
           "Wa ilaahukum ilaahun waahid, laa ilaaha illaa huwar-rahmaanur-rahiim. Allaahu laa ilaaha illaa huwal-hayyul-qayyuum, laa ta'khudzuhuu sinatun walaa naum, lahuu maa fis-samaawaati wa maa fil-ardh.",
         translation:
