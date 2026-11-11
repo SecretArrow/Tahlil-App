@@ -66,12 +66,18 @@ class AyahMarkUtilTest {
 
     @Test
     fun splitByAyahMarks_splitsOnEachMark() {
+        // Text: "آيَةٌ أُولَى ۝١ آيَةٌ ثَانِيَة ۝٢"
+        // Expected split (mark stays attached to the verse it closes):
+        //   line[0].text  = "آيَةٌ أُولَى "      (verse text BEFORE mark 1, incl. trailing space)
+        //   line[0].mark   = ۝١  (digits="١")
+        //   line[1].text  = " آيَةٌ ثَانِيَة "  (text BETWEEN mark 1 end and mark 2 start, incl. spaces)
+        //   line[1].mark   = ۝٢  (digits="٢")
         val text = "آيَةٌ أُولَى ۝١ آيَةٌ ثَانِيَة ۝٢"
         val lines = AyahMarkUtil.splitByAyahMarks(text)
         assertEquals(2, lines.size)
         assertEquals("آيَةٌ أُولَى ", lines[0].text)
         assertEquals("١", lines[0].mark?.digits)
-        assertEquals(" آيَةٌ ثَانِيَة", lines[1].text)
+        assertEquals(" آيَةٌ ثَانِيَة ", lines[1].text)
         assertEquals("٢", lines[1].mark?.digits)
     }
 
