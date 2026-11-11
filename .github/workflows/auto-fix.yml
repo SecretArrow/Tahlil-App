@@ -1,0 +1,94 @@
+name: Auto-fix
+
+# ============================================================
+# Tahlil App — Auto-fix formatter
+# ============================================================
+#
+# Runs Prettier on the web/ folder and commits the changes back
+# to the same branch. This keeps the codebase formatted without
+# requiring every contributor to run Prettier locally.
+#
+# Triggers:
+#   - push to main          → run prettier --write, commit if changes
+#
+# The commit uses the `github-actions[bot]` user, with `[skip ci]`
+# in the message so it does NOT re-trigger this workflow (otherwise
+# we would loop forever).
+#
+# If there are no changes, the workflow exits successfully without
+# committing anything.
+# ============================================================
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# IMPORTANT: this workflow must NOT be triggered by its own commits
+# (otherwise we loop). We use `[skip ci]` in the commit message to
+# prevent re-triggering.
+concurrency:
+  group: auto-fix-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  prettier:
+    name: Prettier — format & commit
+    runs-on: ubuntu-latest
+    # Skip pushes made by the bot itself (extra safety on top of [skip ci])
+    if: github.actor != 'github-actions[bot]'
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Use the default GITHUB_TOKEN so we can push back to the repo.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Fetch only the latest commit (shallow) — we don't need history
+          # for a format-and-commit job.
+          fetch-depth: 1
+
+      - name: Setup Node 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Prettier --write
+        run: npm run format
+
+      - name: Check for changes
+        id: changes
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No formatting changes — exiting."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Formatting changes detected:"
+            git diff --stat
+          fi
+
+      - name: Commit formatting changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          # CRITICAL: [skip ci] prevents this commit from re-triggering
+          # the auto-fix workflow (otherwise we'd loop forever).
+          git commit -m "chore: auto-format with Prettier [skip ci]"
+          git push
+          echo "Pushed formatting fixes to $GITHUB_REF."

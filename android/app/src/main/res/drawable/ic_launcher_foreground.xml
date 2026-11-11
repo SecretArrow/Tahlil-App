@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Launcher icon foreground — "Mushaf & Kubah" motif, matching the new app
-    logo (web/public/icon.svg):
+    NEW Launcher icon foreground — "Rub el Hizb with Crescent & Star"
 
-      * white mosque dome rising behind an open book (gold cover, cream pages)
-      * cream crescent opening upward with a small gold star cradled in it
-      * deep-emerald arched door cut into the dome
+    An 8-pointed Islamic star (Rub el Hizb, formed by two overlapping
+    squares) outlined in gold, containing:
+      * A cream crescent moon opening upward
+      * A small gold 5-point star cradled in the crescent
 
     Drawn on the 108x108 adaptive-icon canvas; all content stays inside the
     66dp safe-zone circle centered at (54, 54):
-      - top-most point   (crescent)  y = 22.1  -> dist 31.9 from center
-      - bottom-most      (book)      y = 86.5  -> dist 32.5 from center
-      - left/right       (book)      x = 33/75 -> dist 21/21 from center
+      - top-most point   (8-point star top)  y = 22  -> dist 32 from center
+      - bottom-most      (8-point star bot)   y = 78  -> dist 24 from center
+      - left/right       (8-point star edge) x = 34/74 -> dist 20 from center
 
     Color palette (matches web/public/icon.svg):
-      - Dome + pages: white / #FFFBEB
-      - Crescent:     cream #FEF3C7
-      - Star + cover: gold  #F59E0B
-      - Page lines:   #D97706
-      - Door:         #065F46
+      - Star outline:    gold #FCD34D (outer) + #B45309 (inner shadow)
+      - Crescent:        cream #FEF3C7
+      - Inner star:      gold #F59E0B
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
@@ -26,62 +24,36 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- ── Crescent (cream), opens upward ─────────────────────────────
-         Outer circle c=(54,32) r=8.5; cut circle c=(54,29.5) r=7.4.
-         evenOdd keeps only the crescent rim. -->
+    <!-- ── 8-pointed Islamic star (Rub el Hizb) — gold outline ────────
+         Two overlapping squares (one axis-aligned, one rotated 45°) centered
+         at (54, 50). Together they form the 8-point star outline.
+         Fill is transparent so the background shows through. -->
+    <path
+        android:strokeColor="#FFFCD34D"
+        android:strokeWidth="2.4"
+        android:strokeLineJoin="round"
+        android:fillType="evenOdd"
+        android:pathData="M34,30 L74,30 L74,70 L34,70 Z M54,22 L74,50 L54,78 L34,50 Z" />
+
+    <!-- Inner gold stroke for depth (slightly darker, thinner) -->
+    <path
+        android:strokeColor="#FFB45309"
+        android:strokeWidth="0.8"
+        android:strokeLineJoin="round"
+        android:fillType="evenOdd"
+        android:pathData="M35.5,31.5 L72.5,31.5 L72.5,68.5 L35.5,68.5 Z M54,24 L72.5,50 L54,76 L35.5,50 Z" />
+
+    <!-- ── Crescent moon (cream), opens upward ────────────────────────
+         Outer circle c=(54,48) r=11; cut circle c=(54,45) r=9.5. -->
     <path
         android:fillColor="#FFFEF3C7"
         android:fillType="evenOdd"
-        android:pathData="M54,23.5 a8.5,8.5 0 1,0 0,17 a8.5,8.5 0 1,0 0,-17 Z M54,22.1 a7.4,7.4 0 1,0 0,14.8 a7.4,7.4 0 1,0 0,-14.8 Z" />
+        android:pathData="M54,37 a11,11 0 1,0 0,22 a11,11 0 1,0 0,-22 Z M54,35.5 a9.5,9.5 0 1,0 0,19 a9.5,9.5 0 1,0 0,-19 Z" />
 
-    <!-- ── Gold star cradled in the crescent ──────────────────────────
-         Center (54,31), outer R=3.4, inner r=1.45. -->
+    <!-- ── Gold 5-point star cradled in the crescent ──────────────────
+         Center (54,46), outer R=3.6, inner r=1.5. -->
     <path
         android:fillColor="#FFF59E0B"
-        android:pathData="M54,27.6 L54.85,29.83 L57.23,29.95 L55.38,31.45 L56.0,33.75 L54,32.45 L52.0,33.75 L52.62,31.45 L50.77,29.95 L53.15,29.83 Z" />
-
-    <!-- ── Mosque dome (white) — rises behind the book ────────────────
-         Base y=72 spanning x=40..68, onion tip at (54,40.5) touching
-         the crescent. -->
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M40,72 C40,58 43.5,52.5 47,47.5 C49.5,44 52,41.5 54,40.5 C56,41.5 58.5,44 61,47.5 C64.5,52.5 68,58 68,72 Z" />
-
-    <!-- ── Arched door (deep emerald) ───────────────────────────────── -->
-    <path
-        android:fillColor="#FF065F46"
-        android:pathData="M50.5,68 L50.5,61.5 C50.5,58.5 52,57 54,57 C56,57 57.5,58.5 57.5,61.5 L57.5,68 Z" />
-
-    <!-- ── Open book: gold cover ────────────────────────────────────── -->
-    <path
-        android:fillColor="#FFF59E0B"
-        android:pathData="M54,69 C47,64.8 39.5,63.8 33,65.5 L33,83.5 C39.5,81.8 47,82.8 54,86.5 C61,82.8 68.5,81.8 75,83.5 L75,65.5 C68.5,63.8 61,64.8 54,69 Z" />
-
-    <!-- ── Open book: cream pages ───────────────────────────────────── -->
-    <path
-        android:fillColor="#FFFFFBEB"
-        android:pathData="M54,71.5 C47.5,67.8 40.5,66.8 35,68 L35,80.5 C40.5,79.3 47.5,80.3 54,83.5 Z" />
-    <path
-        android:fillColor="#FFFFFBEB"
-        android:pathData="M54,71.5 C60.5,67.8 67.5,66.8 73,68 L73,80.5 C67.5,79.3 60.5,80.3 54,83.5 Z" />
-
-    <!-- ── Spine ────────────────────────────────────────────────────── -->
-    <path
-        android:strokeColor="#FFD97706"
-        android:strokeWidth="1"
-        android:strokeLineCap="round"
-        android:pathData="M54,71.5 L54,83.5" />
-
-    <!-- ── Page lines (subtle) ──────────────────────────────────────── -->
-    <path
-        android:strokeColor="#B3D97706"
-        android:strokeWidth="0.9"
-        android:strokeLineCap="round"
-        android:pathData="M39,72 C44,71.2 49,71.6 52,73" />
-    <path
-        android:strokeColor="#B3D97706"
-        android:strokeWidth="0.9"
-        android:strokeLineCap="round"
-        android:pathData="M69,72 C64,71.2 59,71.6 56,73" />
+        android:pathData="M54,42.4 L54.88,44.86 L57.49,44.99 L55.46,46.65 L56.14,49.18 L54,47.7 L51.86,49.18 L52.54,46.65 L50.51,44.99 L53.12,44.86 Z" />
 
 </vector>

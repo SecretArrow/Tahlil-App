@@ -1,10 +1,10 @@
-# Tahlil & Doa — Web
+# Tahlil App — Web
 
-Aplikasi web Tahlil Singkat (dari kitab Salik Channel) — rangkaian zikir, tahlil, Al-Fatihah, Ayat Kursi, dan doa untuk mendoakan para arwah kaum muslimin.
+Aplikasi web Tahlil Lengkap (Malam Jumat) — 32 bagian rangkaian zikir, tahlil, Al-Fatihah, Ayat Kursi, Al-Ikhlas, Al-Falaq, An-Nas, sholawat, dan doa untuk mendoakan para arwah kaum muslimin.
 
 ## Fitur
 
-- 11 section lengkap (Pembukaan → Al-Fatihah Penutup)
+- 32 section lengkap (Pembuka → Salam Penutup) — Tahlil Lengkap Malam Jumat
 - 3 mode font Arab: Standar, Gaya Mushaf Utsmani, Naskhi Tebal
 - Toggle show/hide Arab/Latin/Terjemah
 - Toggle "Koma pada Teks Arab" (auto tambah koma Arab mengikuti terjemahan)
@@ -13,6 +13,7 @@ Aplikasi web Tahlil Singkat (dari kitab Salik Channel) — rangkaian zikir, tahl
 - Mode gelap/terang dengan auto-save via cookie
 - Tanda waqf mushaf ۝X dengan CSS-drawn circle
 - Teks Arab dipecah per kalimat dengan tanda di akhir baris
+- Logo baru: Rub el Hizb (8-pointed Islamic star) + crescent + star
 
 ## Stack
 
@@ -21,6 +22,7 @@ Aplikasi web Tahlil Singkat (dari kitab Salik Channel) — rangkaian zikir, tahl
 - shadcn/ui
 - Framer Motion
 - next-themes (cookie-based)
+- Prettier (auto-format via GitHub Actions)
 
 ## Pengembangan
 
@@ -35,6 +37,16 @@ npm run dev
 npm run build
 ```
 
+## Format kode
+
+```bash
+npm run format       # auto-format dengan Prettier
+npm run format:check # cek tanpa ubah
+```
+
+CI juga menjalankan `format:check` dan ada workflow `auto-fix.yml` yang akan
+auto-commit formatting changes ke main.
+
 ## Sumber
 
-Kitab Tahlil: Salik Channel
+Kitab Tahlil Lengkap (Malam Jumat) — 32 bagian dari Pembuka hingga Salam Penutup.

@@ -34,11 +34,11 @@ Both share the same content data (sections, Arabic text, translations) but use p
 - **DI**: Manual (single Application-level repository)
 
 ### Key Files
-- `app/src/main/java/com/tahlildoa/app/data/TahlilContent.kt` — Same 11 sections
-- `app/src/main/java/com/tahlildoa/app/ui/components/ArabicText.kt` — Composable replicating web ArabicText
-- `app/src/main/java/com/tahlildoa/app/util/ArabicCommaUtil.kt` — Port of addArabicCommas
-- `app/src/main/java/com/tahlildoa/app/util/ColorizeUtil.kt` — Word coloring
-- `app/src/main/java/com/tahlildoa/app/util/AyahMarkUtil.kt` — ۝X parsing & rendering
+- `app/src/main/java/my/tahlil/app/data/TahlilContent.kt` — Same 11 sections
+- `app/src/main/java/my/tahlil/app/ui/components/ArabicText.kt` — Composable replicating web ArabicText
+- `app/src/main/java/my/tahlil/app/util/ArabicCommaUtil.kt` — Port of addArabicCommas
+- `app/src/main/java/my/tahlil/app/util/ColorizeUtil.kt` — Word coloring
+- `app/src/main/java/my/tahlil/app/util/AyahMarkUtil.kt` — ۝X parsing & rendering
 
 ## CI/CD Pipeline
 

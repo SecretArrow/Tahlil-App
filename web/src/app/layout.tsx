@@ -46,21 +46,25 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tahlil Singkat — Majelis Tahlil & Doa",
+  title: "Tahlil App — Tahlil Lengkap Malam Jumat",
   description:
-    "Web Tahlil Singkat: rangkaian zikir, tahlil, Al-Fatihah, Ayat Kursi, dan doa untuk mendoakan para arwah kaum muslimin. Mendukung mode gelap/terang, responsif PC & Android.",
+    "Web Tahlil Lengkap: 32 bagian rangkaian zikir, tahlil, Al-Fatihah, Ayat Kursi, Al-Ikhlas, Al-Falaq, An-Nas, sholawat, dan doa untuk mendoakan para arwah kaum muslimin. Mendukung mode gelap/terang, responsif PC & Android.",
   keywords: [
     "Tahlil",
-    "Tahlil Singkat",
+    "Tahlil Lengkap",
+    "Tahlil Malam Jumat",
     "Doa Arwah",
     "Majelis Tahlil",
     "Al-Fatihah",
     "Ayat Kursi",
+    "Al-Ikhlas",
+    "Al-Falaq",
+    "An-Nas",
+    "Sholawat",
     "Dzikir",
     "Islam",
-    "Salik Channel",
   ],
-  authors: [{ name: "Salik Channel" }],
+  authors: [{ name: "Tahlil App" }],
   icons: {
     // Favicon lokal — tidak ada lagi request ke CDN luar (z-cdn.chatglm.cn).
     // SVG untuk browser modern, PNG sebagai fallback + Apple touch icon.
@@ -71,9 +75,9 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png" }],
   },
   openGraph: {
-    title: "Tahlil Singkat — Majelis Tahlil & Doa",
+    title: "Tahlil App — Tahlil Lengkap Malam Jumat",
     description:
-      "Rangkaian zikir, tahlil, dan doa untuk mendoakan para arwah kaum muslimin.",
+      "32 bagian rangkaian zikir, tahlil, dan doa untuk mendoakan para arwah kaum muslimin.",
     type: "website",
   },
 };

@@ -8,15 +8,15 @@ plugins {
 }
 
 android {
-    namespace = "com.tahlildoa.app"
+    namespace = "my.tahlil.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.tahlildoa.app"
+        applicationId = "my.tahlil.app"
         minSdk = 24
         targetSdk = 34
-        versionCode = 22
-        versionName = "1.3.0"
+        versionCode = 23
+        versionName = "2.0.0"
 
         // Ship only the locales the app actually uses (Indonesian + English
         // fallback + Arabic). AndroidX/Material bundles ~80 locales that would

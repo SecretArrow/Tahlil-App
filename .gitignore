@@ -44,3 +44,9 @@ secrets/
 .env
 *.pem
 *.p12
+
+# Keystore signing artifacts (NEVER commit these)
+key-sign-apk.zip
+key-sign-apk-extracted/
+keystore.b64
+keystore.b64.*

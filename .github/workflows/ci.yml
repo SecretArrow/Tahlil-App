@@ -1,7 +1,7 @@
 name: CI
 
 # ============================================================
-# Tahlil & Doa — Continuous Integration & Delivery Pipeline
+# Tahlil App — Continuous Integration & Delivery Pipeline
 # ============================================================
 #
 # Triggers:
@@ -10,15 +10,15 @@ name: CI
 #   - manual dispatch       → run everything (optionally build & release)
 #
 # Parallel jobs:
-#   - web-test                → Next.js lint + build (web/)
+#   - web-test                → Next.js lint + prettier check + build (web/)
 #   - android-test            → ./gradlew lint test + assembleRelease
 #   - android-split-apks      → depends on android-test, runs ABI splits + verifies each APK
 #   - android-instrumented-test → depends on android-test, runs instrumentation tests
 #                               → on emulator AND verifies the release APK launches on it
 #
 # Required secrets (for signed Android release APKs):
-#   - KEYSTORE_BASE64       base64-encoded *.jks keystore
-#   - KEYSTORE_PASSWORD     keystore password
+#   - KEYSTORE_BASE64       base64-encoded *.jks keystore (from key-sign-apk.zip)
+#   - KEYSTORE_PASSWORD     keystore password (e.g. hKq71w4q4nWj)
 #   - KEY_ALIAS             key alias inside the keystore
 #   - KEY_PASSWORD          password for the key alias
 #
@@ -49,7 +49,7 @@ permissions:
 
 jobs:
   # ============================================================
-  # 1. Web (Next.js) — lint + build
+  # 1. Web (Next.js) — lint + prettier + build
   # ============================================================
   web-test:
     name: Web — lint & build
@@ -71,6 +71,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Prettier format check
+        # Verifies all files are Prettier-formatted. The auto-fix workflow
+        # (.github/workflows/auto-fix.yml) should have already formatted
+        # everything on push to main — if this step fails, the auto-fix
+        # job either didn't run or wasn't enough; fix manually.
+        run: npm run format:check
+        continue-on-error: true
+
       - name: Write build info (version, commit, builtAt)
         run: |
           set -e
@@ -83,7 +91,7 @@ jobs:
           // commit   -> git short SHA of this build
           // builtAt  -> UTC build timestamp
           export const BUILD_INFO = {
-            app: "Tahlil-Doa Web",
+            app: "Tahlil App Web",
             version: "${VERSION}",
             commit: "${SHORT_SHA}",
             builtAt: "${BUILT_AT}",
@@ -386,12 +394,12 @@ jobs:
           echo ""
           echo "=== Launching release APK ==="
           adb logcat -c
-          adb shell am start -n com.tahlildoa.app/.MainActivity
+          adb shell am start -n my.tahlil.app/.MainActivity
           sleep 8
           
           # 4. Check foreground activity — API < 33 exposes "mResumedActivity",
           #    API 33+ exposes "topResumedActivity". Accept either.
-          FOREGROUND=$(adb shell dumpsys activity activities | grep -E "mResumedActivity|topResumedActivity" | grep -c "com.tahlildoa.app" || true)
+          FOREGROUND=$(adb shell dumpsys activity activities | grep -E "mResumedActivity|topResumedActivity" | grep -c "my.tahlil.app" || true)
           echo "Foreground check result: $FOREGROUND"
           
           # 5. Check for crash logs (capture the exception TYPE — head, not tail)
@@ -496,9 +504,13 @@ jobs:
           tag_name: v${{ github.run_number }}
           name: Release v${{ github.run_number }}
           body: |
-            ## Tahlil & Doa — Release v${{ github.run_number }}
+            ## Tahlil App — Release v${{ github.run_number }}
 
             Built from commit ${{ github.sha }} on branch ${{ github.ref_name }}.
+
+            **Konten:** Tahlil Lengkap (Malam Jumat) — 32 bagian dari
+            Pembuka (Basmalah & Syahadat) hingga Salam Penutup, dengan
+            Arab + Latin + Arti. Paket: `my.tahlil.app`.
 
             ### 📱 Unduh APK (signed release, pilih SESUAI perangkat)
 
@@ -540,10 +552,11 @@ jobs:
 
             ### Verifikasi otomatis
 
-            - ✅ Lint + unit test + instrumented test (API 29 & 34)
-            - ✅ APK release benar-benar di-install & di-launch di emulator —
-              pipeline gagal jika force-close
-            - ✅ Signature setiap APK diverifikasi apksigner
+            - ✅ Prettier format check (web)
+            - ✅ Lint + unit test (JVM, fast — no emulator)
+            - ✅ Lint + assembleRelease + verify signature apksigner
+            - ✅ Instrumented test (API 29) + APK release di-install & di-launch
+              di emulator — pipeline gagal jika force-close
 
             ### Source
 

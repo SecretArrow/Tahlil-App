@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Adaptive-icon background — emerald → teal linear gradient.
+    Adaptive-icon background — emerald → teal linear gradient with radial glow.
 
     The gradient runs diagonally from the top-left corner (deep emerald
-    #065F46) to the bottom-right corner (teal #0D9488), matching the web
-    app's brand palette. A subtle mid-point emerald-500 (#10B981) keeps
-    the transition smooth.
+    #064E3B) through emerald (#065F46) at mid-point to teal (#0D9488)
+    at the bottom-right corner — matching the new app's brand palette.
+
+    A soft radial glow centered on the foreground motif (slightly above
+    center, at y=45/108) gives the icon depth and focus.
 
     Used together with ic_launcher_foreground.xml to form the adaptive icon.
 -->
@@ -23,10 +25,10 @@
                 android:endX="108" android:endY="108">
                 <item
                     android:offset="0.0"
-                    android:color="#FF065F46" />
+                    android:color="#FF064E3B" />
                 <item
                     android:offset="0.5"
-                    android:color="#FF10B981" />
+                    android:color="#FF065F46" />
                 <item
                     android:offset="1.0"
                     android:color="#FF0D9488" />

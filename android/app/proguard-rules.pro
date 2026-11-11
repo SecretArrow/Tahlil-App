@@ -21,14 +21,14 @@
 
 # === kotlinx.serialization (official recommended rules) ===
 -dontnote kotlinx.serialization.AnnotationsKt
--keep,includedescriptorclasses class com.tahlildoa.app.**$$serializer { *; }
--keepclassmembers class com.tahlildoa.app.** {
+-keep,includedescriptorclasses class my.tahlil.app.**$$serializer { *; }
+-keepclassmembers class my.tahlil.app.** {
     *** Companion;
 }
--keepclasseswithmembers class com.tahlildoa.app.** {
+-keepclasseswithmembers class my.tahlil.app.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
--keep @kotlinx.serialization.Serializable class com.tahlildoa.app.** { *; }
+-keep @kotlinx.serialization.Serializable class my.tahlil.app.** { *; }
 
 # === WorkManager ===
 # Workers are instantiated via reflection by WorkManager's factory.
