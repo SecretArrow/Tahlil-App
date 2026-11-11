@@ -174,7 +174,7 @@ class TahlilContentUnitTest {
         assertNotNull(arabic)
         assertTrue(
             "Tahlil section must contain 'la ilaha illallah' in Arabic",
-            arabic!!.contains("لَا إِلٰهَ إِلَّا اللهُ"),
+            arabic!!.contains("لَا إِلٰهَ إِلَّا اللّٰهُ"),
         )
         // The Tahlil is typically repeated ~100 times.
         assertEquals(

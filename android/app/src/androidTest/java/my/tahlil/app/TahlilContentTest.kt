@@ -105,7 +105,7 @@ class TahlilContentTest {
         assertNotNull(arabic)
         assertTrue(
             "Tahlil section should contain 'la ilaha illallah' in Arabic",
-            arabic!!.contains("لَا إِلٰهَ إِلَّا اللهُ"),
+            arabic!!.contains("لَا إِلٰهَ إِلَّا اللّٰهُ"),
         )
     }
 
