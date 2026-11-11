@@ -37,7 +37,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tahlil App — Tahlil Lengkap Malam Jumat",
+  title: "Tahlil — Tahlil Lengkap Malam Jumat",
   description:
     "Web Tahlil Lengkap: 32 bagian rangkaian zikir, tahlil, Al-Fatihah, Ayat Kursi, Al-Ikhlas, Al-Falaq, An-Nas, sholawat, dan doa untuk mendoakan para arwah kaum muslimin. Mendukung mode gelap/terang, responsif PC & Android.",
   keywords: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     "Dzikir",
     "Islam",
   ],
-  authors: [{ name: "Tahlil App" }],
+  authors: [{ name: "Tahlil" }],
   icons: {
     // Favicon lokal — tidak ada lagi request ke CDN luar (z-cdn.chatglm.cn).
     // SVG untuk browser modern, PNG sebagai fallback + Apple touch icon.
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png" }],
   },
   openGraph: {
-    title: "Tahlil App — Tahlil Lengkap Malam Jumat",
+    title: "Tahlil — Tahlil Lengkap Malam Jumat",
     description:
       "32 bagian rangkaian zikir, tahlil, dan doa untuk mendoakan para arwah kaum muslimin.",
     type: "website",

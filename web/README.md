@@ -1,4 +1,4 @@
-# Tahlil App — Web
+# Tahlil — Web
 
 Aplikasi web Tahlil Lengkap (Malam Jumat) — 32 bagian rangkaian zikir, tahlil, Al-Fatihah, Ayat Kursi, Al-Ikhlas, Al-Falaq, An-Nas, sholawat, dan doa untuk mendoakan para arwah kaum muslimin.
 

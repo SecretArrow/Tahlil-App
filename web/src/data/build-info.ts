@@ -15,7 +15,7 @@
  *   - footer version chip   → v{version}
  */
 export const BUILD_INFO = {
-  app: "Tahlil App Web",
+  app: "Tahlil Web",
   version: "1.2.2",
   commit: "local-dev",
   builtAt: "unknown",

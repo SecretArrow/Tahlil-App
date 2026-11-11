@@ -63,7 +63,7 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
             <BookOpen className="h-5 w-5" strokeWidth={2.2} />
           </motion.span>
           <div className="flex flex-col leading-none">
-            <span className="font-semibold tracking-tight">Tahlil App</span>
+            <span className="font-semibold tracking-tight">Tahlil</span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
               Tahlil Lengkap
             </span>

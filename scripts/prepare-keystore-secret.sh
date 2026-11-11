@@ -30,7 +30,7 @@ ZIP_FILE="key-sign-apk.zip"
 EXTRACT_DIR="key-sign-apk-extracted"
 OUTPUT_FILE="keystore.b64"
 
-echo "=== Tahlil App — Keystore Secret Preparation ==="
+echo "=== Tahlil — Keystore Secret Preparation ==="
 echo ""
 
 # 1. Verify zip exists

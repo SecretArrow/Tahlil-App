@@ -1,4 +1,4 @@
-# Tahlil App
+# Tahlil
 
 > Web + Native Android (Kotlin) application for reading Tahlil Lengkap (Malam Jumat) — sourced from Kitab Tahlil Lengkap with 32 sections.
 

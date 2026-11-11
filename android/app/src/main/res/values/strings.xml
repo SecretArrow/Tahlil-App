@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tahlil App</string>
+    <string name="app_name">Tahlil</string>
     <string name="app_subtitle">Tahlil Lengkap Malam Jumat</string>
     <string name="settings">Pengaturan</string>
     <string name="theme">Tema</string>
@@ -17,6 +17,6 @@
     <string name="cta_dzikir">Dzikir</string>
     <string name="cta_doa">Doa</string>
     <string name="bismillah">بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ</string>
-    <string name="content_description_app_icon">Ikon Tahlil App</string>
+    <string name="content_description_app_icon">Ikon Tahlil</string>
     <string name="content_description_ayah_mark">Tanda akhir ayat</string>
 </resources>

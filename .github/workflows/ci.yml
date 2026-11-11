@@ -1,7 +1,7 @@
 name: CI
 
 # ============================================================
-# Tahlil App — Continuous Integration & Delivery Pipeline
+# Tahlil — Continuous Integration & Delivery Pipeline
 # ============================================================
 #
 # Triggers:
@@ -91,7 +91,7 @@ jobs:
           // commit   -> git short SHA of this build
           // builtAt  -> UTC build timestamp
           export const BUILD_INFO = {
-            app: "Tahlil App Web",
+            app: "Tahlil Web",
             version: "${VERSION}",
             commit: "${SHORT_SHA}",
             builtAt: "${BUILT_AT}",
@@ -504,7 +504,7 @@ jobs:
           tag_name: v${{ github.run_number }}
           name: Release v${{ github.run_number }}
           body: |
-            ## Tahlil App — Release v${{ github.run_number }}
+            ## Tahlil — Release v${{ github.run_number }}
 
             Built from commit ${{ github.sha }} on branch ${{ github.ref_name }}.
 

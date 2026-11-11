@@ -65,7 +65,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="text-center sm:text-left">
               <p className="text-sm font-semibold">
-                Tahlil App — Tahlil Lengkap Malam Jumat
+                Tahlil — Tahlil Lengkap Malam Jumat
                 <span
                   className="ms-2 inline-flex items-center rounded-full bg-muted px-2 py-0.5 align-middle text-[10px] font-medium text-muted-foreground"
                   title="Versi aplikasi — jika bukan versi terbaru, halaman ini cache lama atau deploy lama"
