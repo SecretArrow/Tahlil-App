@@ -31,26 +31,20 @@ export async function POST(req: NextRequest) {
   }
 
   if (!body || typeof body.key !== "string" || typeof body.value !== "string") {
-    return NextResponse.json(
-      { error: "Missing key or value" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Missing key or value" }, { status: 400 });
   }
 
   const cookieName = ALLOWED_KEYS[body.key];
   if (!cookieName) {
     return NextResponse.json(
       { error: `Unknown key: ${body.key}. Allowed: ${Object.keys(ALLOWED_KEYS).join(", ")}` },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   // Sanity check: cap value size to prevent abuse
   if (body.value.length > 2048) {
-    return NextResponse.json(
-      { error: "Value too large" },
-      { status: 413 }
-    );
+    return NextResponse.json({ error: "Value too large" }, { status: 413 });
   }
 
   const res = NextResponse.json({ ok: true });

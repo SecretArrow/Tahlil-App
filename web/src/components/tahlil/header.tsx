@@ -6,7 +6,6 @@ import { Menu, Moon, BookOpen, X, Type, Eye } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { tahlilSections } from "@/data/tahlil-content";
 
-
 type HeaderProps = {
   onOpenNav: () => void;
   onOpenArabicStyle: () => void;
@@ -32,7 +31,7 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
           }
         });
       },
-      { rootMargin: "-30% 0px -55% 0px", threshold: 0 }
+      { rootMargin: "-30% 0px -55% 0px", threshold: 0 },
     );
     tahlilSections.forEach((s) => {
       const el = document.getElementById(s.id);
@@ -47,9 +46,7 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "glass border-b border-border/60 shadow-sm"
-          : "bg-transparent"
+        scrolled ? "glass border-b border-border/60 shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -146,13 +143,7 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
   );
 }
 
-export function MobileNav({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+export function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <motion.div
       initial={false}
@@ -165,9 +156,7 @@ export function MobileNav({
         <div className="flex items-center justify-between border-b border-border p-4">
           <div>
             <p className="font-semibold">Daftar Isi</p>
-            <p className="text-xs text-muted-foreground">
-              {tahlilSections.length} bagian
-            </p>
+            <p className="text-xs text-muted-foreground">{tahlilSections.length} bagian</p>
           </div>
           <button
             type="button"
@@ -190,9 +179,7 @@ export function MobileNav({
                 {s.number}
               </span>
               <span className="flex flex-col">
-                <span className="text-sm font-medium leading-tight">
-                  {s.title}
-                </span>
+                <span className="text-sm font-medium leading-tight">{s.title}</span>
                 {s.subtitle && (
                   <span className="text-xs text-muted-foreground leading-tight mt-0.5">
                     {s.subtitle}

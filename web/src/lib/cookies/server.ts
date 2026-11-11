@@ -16,7 +16,7 @@ const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
 export async function getCookie<T>(
   name: string,
-  parse: (raw: string) => T | null
+  parse: (raw: string) => T | null,
 ): Promise<T | null> {
   const store = await cookies();
   const raw = store.get(name)?.value;

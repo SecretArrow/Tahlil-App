@@ -21,9 +21,7 @@ export function setCookie(name: string, value: string): void {
 
 export function getCookie(name: string): string | null {
   if (typeof document === "undefined") return null;
-  const match = document.cookie
-    .split("; ")
-    .find((c) => c.startsWith(`${name}=`));
+  const match = document.cookie.split("; ").find((c) => c.startsWith(`${name}=`));
   if (!match) return null;
   const value = match.slice(name.length + 1);
   try {

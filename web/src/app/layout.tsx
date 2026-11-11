@@ -5,18 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ArabicStyleProvider } from "@/components/arabic-style-provider";
 import { DisplaySettingsProvider } from "@/components/display-settings-provider";
-import {
-  getArabicStyleCookie,
-  getDisplayTogglesCookie,
-} from "@/lib/cookies/server";
-import {
-  ArabicStyleSettings,
-  defaultArabicSettings,
-} from "@/data/arabic-style";
-import {
-  DisplayToggles,
-  defaultDisplayToggles,
-} from "@/data/display-settings";
+import { getArabicStyleCookie, getDisplayTogglesCookie } from "@/lib/cookies/server";
+import { ArabicStyleSettings, defaultArabicSettings } from "@/data/arabic-style";
+import { DisplayToggles, defaultDisplayToggles } from "@/data/display-settings";
 
 const amiri = Amiri({
   variable: "--font-arabic",
@@ -97,36 +88,24 @@ function parseArabicStyle(raw: string | null): ArabicStyleSettings {
   try {
     const p = JSON.parse(raw) as Partial<ArabicStyleSettings>;
     return {
-      mode:
-        p.mode === "standard" || p.mode === "quran" || p.mode === "naskhi"
-          ? p.mode
-          : "quran",
+      mode: p.mode === "standard" || p.mode === "quran" || p.mode === "naskhi" ? p.mode : "quran",
       fontSize:
         typeof p.fontSize === "number" && p.fontSize >= 1.2 && p.fontSize <= 3.5
           ? p.fontSize
           : defaultArabicSettings.fontSize,
       lineHeight:
-        typeof p.lineHeight === "number" &&
-        p.lineHeight >= 1.4 &&
-        p.lineHeight <= 3.5
+        typeof p.lineHeight === "number" && p.lineHeight >= 1.4 && p.lineHeight <= 3.5
           ? p.lineHeight
           : defaultArabicSettings.lineHeight,
       wordSpacing:
-        typeof p.wordSpacing === "number" &&
-        p.wordSpacing >= 0 &&
-        p.wordSpacing <= 0.6
+        typeof p.wordSpacing === "number" && p.wordSpacing >= 0 && p.wordSpacing <= 0.6
           ? p.wordSpacing
           : defaultArabicSettings.wordSpacing,
       letterSpacing:
-        typeof p.letterSpacing === "number" &&
-        p.letterSpacing >= 0 &&
-        p.letterSpacing <= 0.2
+        typeof p.letterSpacing === "number" && p.letterSpacing >= 0 && p.letterSpacing <= 0.2
           ? p.letterSpacing
           : defaultArabicSettings.letterSpacing,
-      align:
-        p.align === "justify" || p.align === "right"
-          ? p.align
-          : defaultArabicSettings.align,
+      align: p.align === "justify" || p.align === "right" ? p.align : defaultArabicSettings.align,
     };
   } catch {
     return defaultArabicSettings;
@@ -139,16 +118,11 @@ function parseDisplayToggles(raw: string | null): DisplayToggles {
     const p = JSON.parse(raw) as Partial<DisplayToggles>;
     return {
       arabic: typeof p.arabic === "boolean" ? p.arabic : true,
-      transliteration:
-        typeof p.transliteration === "boolean" ? p.transliteration : true,
-      translation:
-        typeof p.translation === "boolean" ? p.translation : true,
-      punctuateArabic:
-        typeof p.punctuateArabic === "boolean" ? p.punctuateArabic : false,
-      splitArabicLines:
-        typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
-      colorizeArabic:
-        typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
+      transliteration: typeof p.transliteration === "boolean" ? p.transliteration : true,
+      translation: typeof p.translation === "boolean" ? p.translation : true,
+      punctuateArabic: typeof p.punctuateArabic === "boolean" ? p.punctuateArabic : false,
+      splitArabicLines: typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
+      colorizeArabic: typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
       tajwid: typeof p.tajwid === "boolean" ? p.tajwid : false,
     };
   } catch {

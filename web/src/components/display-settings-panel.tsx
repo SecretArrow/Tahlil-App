@@ -28,8 +28,7 @@ const PREVIEW_ARABIC = "بِسْمِ اللَّهِ الرَّحْمٰنِ ال�
 const PREVIEW_ARABIC_LIST =
   "وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّتِهِ وَأَهْلِ بَيْتِهِ";
 const PREVIEW_LATIN = "Bismillaahirrahmaanir-rahiim.";
-const PREVIEW_ID =
-  "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang.";
+const PREVIEW_ID = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang.";
 // Contains Arabic commas (،) + a final period so the live preview shows the
 // "Koma = Baris Baru" toggle in action: ON → one clause per line, OFF → a
 // single flowing paragraph.
@@ -61,30 +60,22 @@ function ToggleRow({
       onClick={onToggle}
       aria-pressed={active}
       className={`flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all ${
-        active
-          ? "border-primary/40 bg-primary/5"
-          : "border-border bg-card/60 hover:bg-accent"
+        active ? "border-primary/40 bg-primary/5" : "border-border bg-card/60 hover:bg-accent"
       }`}
     >
       <span
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors ${
-          active
-            ? "bg-primary text-primary-foreground"
-            : "bg-muted text-muted-foreground"
+          active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
         }`}
       >
         <Icon className="h-5 w-5" />
       </span>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-foreground">
-            {label}
-          </span>
+          <span className="text-sm font-semibold text-foreground">{label}</span>
           <span
             className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
-              active
-                ? "bg-primary/15 text-primary"
-                : "bg-muted text-muted-foreground"
+              active ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"
             }`}
           >
             {active ? activeLabel : inactiveLabel}
@@ -169,9 +160,7 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                 description="Teks Arab dalam huruf Latin (mis: Bismillaahirrahmaanir-rahiim)"
                 icon={Languages}
                 active={toggles.transliteration}
-                onToggle={() =>
-                  setToggle("transliteration", !toggles.transliteration)
-                }
+                onToggle={() => setToggle("transliteration", !toggles.transliteration)}
               />
               <ToggleRow
                 label="Terjemahan Indonesia"
@@ -185,9 +174,7 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                 description="Tambahkan koma (،) pada teks Arab mengikuti tanda koma di terjemahan — misalnya pada shalawat, daftar ahli kubur, dan doa. Ayat Al-Qur'an tidak diubah."
                 icon={ListPlus}
                 active={toggles.punctuateArabic}
-                onToggle={() =>
-                  setToggle("punctuateArabic", !toggles.punctuateArabic)
-                }
+                onToggle={() => setToggle("punctuateArabic", !toggles.punctuateArabic)}
               />
               <ToggleRow
                 label="Koma = Baris Baru"
@@ -196,18 +183,14 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                 active={toggles.splitArabicLines}
                 activeLabel="Baris Baru"
                 inactiveLabel="Paragraf"
-                onToggle={() =>
-                  setToggle("splitArabicLines", !toggles.splitArabicLines)
-                }
+                onToggle={() => setToggle("splitArabicLines", !toggles.splitArabicLines)}
               />
               <ToggleRow
                 label="Warnai Kata Arab"
                 description="Setiap kata Arab diberi warna bergantian agar mudah dibedakan. Tema terang: #000000 & #011b45. Tema gelap: #ffffff & #d9dadb."
                 icon={Palette}
                 active={toggles.colorizeArabic}
-                onToggle={() =>
-                  setToggle("colorizeArabic", !toggles.colorizeArabic)
-                }
+                onToggle={() => setToggle("colorizeArabic", !toggles.colorizeArabic)}
               />
               <ToggleRow
                 label="Tajwid"
@@ -235,25 +218,13 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                 <div className="space-y-2">
                   {toggles.arabic && (
                     <>
-                      <ArabicText
-                        text={PREVIEW_ARABIC}
-                        className="text-foreground/90"
-                      />
+                      <ArabicText text={PREVIEW_ARABIC} className="text-foreground/90" />
                       {toggles.punctuateArabic && (
-                        <ArabicText
-                          text={PREVIEW_ARABIC_LIST}
-                          className="text-foreground/90"
-                        />
+                        <ArabicText text={PREVIEW_ARABIC_LIST} className="text-foreground/90" />
                       )}
-                      <ArabicText
-                        text={PREVIEW_ARABIC_COMMAS}
-                        className="text-foreground/90"
-                      />
+                      <ArabicText text={PREVIEW_ARABIC_COMMAS} className="text-foreground/90" />
                       {toggles.tajwid && (
-                        <ArabicText
-                          text={PREVIEW_TAJWID_TEXT}
-                          className="text-foreground/90"
-                        />
+                        <ArabicText text={PREVIEW_TAJWID_TEXT} className="text-foreground/90" />
                       )}
                     </>
                   )}
@@ -263,24 +234,18 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                     </p>
                   )}
                   {toggles.translation && (
-                    <p className="text-[13px] text-foreground/75">
-                      {PREVIEW_ID}
+                    <p className="text-[13px] text-foreground/75">{PREVIEW_ID}</p>
+                  )}
+                  {!toggles.arabic && !toggles.transliteration && !toggles.translation && (
+                    <p className="text-xs italic text-muted-foreground">
+                      Semua tampilan disembunyikan. Aktifkan minimal satu.
                     </p>
                   )}
-                  {!toggles.arabic &&
-                    !toggles.transliteration &&
-                    !toggles.translation && (
-                      <p className="text-xs italic text-muted-foreground">
-                        Semua tampilan disembunyikan. Aktifkan minimal satu.
-                      </p>
-                    )}
                 </div>
               </div>
 
               <div className="flex items-center justify-between border-t border-border pt-3">
-                <p className="text-xs text-muted-foreground">
-                  Tersimpan otomatis di browser ini.
-                </p>
+                <p className="text-xs text-muted-foreground">Tersimpan otomatis di browser ini.</p>
                 <button
                   type="button"
                   onClick={reset}

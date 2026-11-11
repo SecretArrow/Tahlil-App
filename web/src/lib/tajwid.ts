@@ -27,13 +27,7 @@
  */
 
 export type TajwidRule =
-  | "izhar"
-  | "ikhfa"
-  | "idgham-ghunnah"
-  | "idgham-laghunnah"
-  | "iqlab"
-  | "ghunnah"
-  | "qalqalah";
+  "izhar" | "ikhfa" | "idgham-ghunnah" | "idgham-laghunnah" | "iqlab" | "ghunnah" | "qalqalah";
 
 export type TajwidRange = {
   /** Inclusive start index into the source string. */
@@ -205,8 +199,7 @@ export function analyzeTajwid(text: string): TajwidRange[] {
       const j = nextLetterIdx(clusters, i);
       if (j !== -1) {
         const nb = clusters[j].base;
-        const rule: TajwidRule =
-          nb === "ب" ? "ikhfa" : nb === "م" ? "idgham-ghunnah" : "izhar";
+        const rule: TajwidRule = nb === "ب" ? "ikhfa" : nb === "م" ? "idgham-ghunnah" : "izhar";
         raw.push({ start: c.start, end: clusters[j].end, rule });
       }
     }

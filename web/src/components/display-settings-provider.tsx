@@ -1,10 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  DisplayToggles,
-  defaultDisplayToggles,
-} from "@/data/display-settings";
+import { DisplayToggles, defaultDisplayToggles } from "@/data/display-settings";
 import { COOKIE_KEYS, getCookie, setCookie } from "@/lib/cookies/client";
 
 type Ctx = {
@@ -22,24 +19,12 @@ function parseStored(raw: string | null): DisplayToggles {
     const parsed = JSON.parse(raw) as Partial<DisplayToggles>;
     return {
       arabic: typeof parsed.arabic === "boolean" ? parsed.arabic : true,
-      transliteration:
-        typeof parsed.transliteration === "boolean"
-          ? parsed.transliteration
-          : true,
-      translation:
-        typeof parsed.translation === "boolean" ? parsed.translation : true,
-      punctuateArabic:
-        typeof parsed.punctuateArabic === "boolean"
-          ? parsed.punctuateArabic
-          : false,
+      transliteration: typeof parsed.transliteration === "boolean" ? parsed.transliteration : true,
+      translation: typeof parsed.translation === "boolean" ? parsed.translation : true,
+      punctuateArabic: typeof parsed.punctuateArabic === "boolean" ? parsed.punctuateArabic : false,
       splitArabicLines:
-        typeof parsed.splitArabicLines === "boolean"
-          ? parsed.splitArabicLines
-          : true,
-      colorizeArabic:
-        typeof parsed.colorizeArabic === "boolean"
-          ? parsed.colorizeArabic
-          : false,
+        typeof parsed.splitArabicLines === "boolean" ? parsed.splitArabicLines : true,
+      colorizeArabic: typeof parsed.colorizeArabic === "boolean" ? parsed.colorizeArabic : false,
       tajwid: typeof parsed.tajwid === "boolean" ? parsed.tajwid : false,
     };
   } catch {
@@ -48,9 +33,7 @@ function parseStored(raw: string | null): DisplayToggles {
 }
 
 const SERVER_INITIAL: DisplayToggles | null =
-  typeof window !== "undefined"
-    ? parseStored(getCookie(COOKIE_KEYS.displayToggles))
-    : null;
+  typeof window !== "undefined" ? parseStored(getCookie(COOKIE_KEYS.displayToggles)) : null;
 
 export function DisplaySettingsProvider({
   children,
@@ -60,7 +43,7 @@ export function DisplaySettingsProvider({
   initialToggles?: DisplayToggles;
 }) {
   const [toggles, setToggles] = React.useState<DisplayToggles>(
-    () => initialToggles ?? SERVER_INITIAL ?? defaultDisplayToggles
+    () => initialToggles ?? SERVER_INITIAL ?? defaultDisplayToggles,
   );
 
   const persist = React.useCallback((next: DisplayToggles) => {
@@ -81,33 +64,28 @@ export function DisplaySettingsProvider({
       setToggles(next);
       persist(next);
     },
-    [persist]
+    [persist],
   );
 
   const value = React.useMemo<Ctx>(
     () => ({
       toggles,
-      setToggle: (key, val) =>
-        update({ ...toggles, [key]: val } as DisplayToggles),
+      setToggle: (key, val) => update({ ...toggles, [key]: val } as DisplayToggles),
       setAll: (next) => update(next),
       reset: () => update(defaultDisplayToggles),
     }),
-    [toggles, update]
+    [toggles, update],
   );
 
   return (
-    <DisplaySettingsContext.Provider value={value}>
-      {children}
-    </DisplaySettingsContext.Provider>
+    <DisplaySettingsContext.Provider value={value}>{children}</DisplaySettingsContext.Provider>
   );
 }
 
 export function useDisplaySettings() {
   const ctx = React.useContext(DisplaySettingsContext);
   if (!ctx) {
-    throw new Error(
-      "useDisplaySettings must be used within DisplaySettingsProvider"
-    );
+    throw new Error("useDisplaySettings must be used within DisplaySettingsProvider");
   }
   return ctx;
 }

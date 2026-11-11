@@ -21,18 +21,12 @@ import { arabicStyleModes } from "@/data/arabic-style";
 import { ArabicText } from "@/components/arabic-text";
 import { TajwidLegend } from "@/components/tajwid-legend";
 import { PREVIEW_TAJWID_TEXT } from "@/lib/tajwid";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Sample text chosen to showcase ligatures, harakat, kashrah, and connections
 // — same string in both modes so the user can directly compare rendering.
 // Uses the harakat-fixed version (with sukun on lam1 of articles, fathah+shadda on lam2 of li-llah).
-const SAMPLE_TEXT =
-  "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ. الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ";
+const SAMPLE_TEXT = "بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحِيْمِ. الْحَمْدُ لِلَّهِ رَبِّ الْعٰلَمِيْنَ";
 
 // Sample with "wa + al + syamsiyyah" pattern to showcase comma & colorize features
 const SAMPLE_TEXT_LIST =
@@ -88,9 +82,10 @@ function ModeCard({
 }) {
   const cfg = arabicStyleModes[mode];
   // For Naskhi mode, use the suggested spacing in the preview so user can see the benefit
-  const previewSettings = mode === "naskhi"
-    ? { fontSize: 1.4, lineHeight: 2.2, wordSpacing: 0.18, align: "right" as const }
-    : { fontSize: 1.4, lineHeight: 1.9, wordSpacing: 0.05, align: "right" as const };
+  const previewSettings =
+    mode === "naskhi"
+      ? { fontSize: 1.4, lineHeight: 2.2, wordSpacing: 0.18, align: "right" as const }
+      : { fontSize: 1.4, lineHeight: 1.9, wordSpacing: 0.05, align: "right" as const };
   return (
     <button
       type="button"
@@ -119,22 +114,22 @@ function ModeCard({
         className="mb-2 text-foreground/90"
       />
       <p className="text-sm font-semibold text-foreground">{cfg.label}</p>
-      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-        {cfg.description}
-      </p>
+      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{cfg.description}</p>
     </button>
   );
 }
 
-export function ArabicStylePanel({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
-  const { settings, setMode, setFontSize, setLineHeight, setWordSpacing, setLetterSpacing, setAlign, reset } =
-    useArabicStyle();
+export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const {
+    settings,
+    setMode,
+    setFontSize,
+    setLineHeight,
+    setWordSpacing,
+    setLetterSpacing,
+    setAlign,
+    reset,
+  } = useArabicStyle();
   const { toggles, setToggle } = useDisplaySettings();
 
   const [compare, setCompare] = React.useState(false);
@@ -149,9 +144,7 @@ export function ArabicStylePanel({
                 <Type className="h-5 w-5" />
               </span>
               <div>
-                <DialogTitle className="text-base font-bold">
-                  Pengaturan Teks Arab
-                </DialogTitle>
+                <DialogTitle className="text-base font-bold">Pengaturan Teks Arab</DialogTitle>
                 <p className="text-xs text-muted-foreground">
                   Pilih gaya, ukuran, dan tata letak. Pratinjau langsung.
                 </p>
@@ -191,9 +184,21 @@ export function ArabicStylePanel({
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              <ModeCard mode="quran" active={settings.mode === "quran"} onSelect={() => setMode("quran")} />
-              <ModeCard mode="standard" active={settings.mode === "standard"} onSelect={() => setMode("standard")} />
-              <ModeCard mode="naskhi" active={settings.mode === "naskhi"} onSelect={() => setMode("naskhi")} />
+              <ModeCard
+                mode="quran"
+                active={settings.mode === "quran"}
+                onSelect={() => setMode("quran")}
+              />
+              <ModeCard
+                mode="standard"
+                active={settings.mode === "standard"}
+                onSelect={() => setMode("standard")}
+              />
+              <ModeCard
+                mode="naskhi"
+                active={settings.mode === "naskhi"}
+                onSelect={() => setMode("naskhi")}
+              />
             </div>
 
             {/* Side-by-side comparison */}
@@ -252,8 +257,8 @@ export function ArabicStylePanel({
                       ))}
                     </div>
                     <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
-                      Teks identik di ketiga kolom — hanya tipografi yang berbeda.
-                      Tidak ada huruf, harakat, atau urutan yang diubah.
+                      Teks identik di ketiga kolom — hanya tipografi yang berbeda. Tidak ada huruf,
+                      harakat, atau urutan yang diubah.
                     </p>
                   </div>
                 </motion.div>
@@ -289,9 +294,7 @@ export function ArabicStylePanel({
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-foreground">
-                    Koma pada Teks Arab
-                  </span>
+                  <span className="text-sm font-semibold text-foreground">Koma pada Teks Arab</span>
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
                       toggles.punctuateArabic
@@ -303,7 +306,8 @@ export function ArabicStylePanel({
                   </span>
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  Tambahkan koma (،) pada teks Arab mengikuti tanda koma di terjemahan. Ayat Al-Qur'an tidak diubah.
+                  Tambahkan koma (،) pada teks Arab mengikuti tanda koma di terjemahan. Ayat
+                  Al-Qur'an tidak diubah.
                 </p>
               </div>
               <span
@@ -343,9 +347,7 @@ export function ArabicStylePanel({
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-foreground">
-                    Warnai Kata Arab
-                  </span>
+                  <span className="text-sm font-semibold text-foreground">Warnai Kata Arab</span>
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
                       toggles.colorizeArabic
@@ -357,7 +359,8 @@ export function ArabicStylePanel({
                   </span>
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  Setiap kata Arab diberi warna bergantian agar mudah dibedakan. Tema terang: #000000 & #011b45. Tema gelap: #ffffff & #d9dadb.
+                  Setiap kata Arab diberi warna bergantian agar mudah dibedakan. Tema terang:
+                  #000000 & #011b45. Tema gelap: #ffffff & #d9dadb.
                 </p>
               </div>
               <span
@@ -397,9 +400,7 @@ export function ArabicStylePanel({
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-foreground">
-                    Tajwid
-                  </span>
+                  <span className="text-sm font-semibold text-foreground">Tajwid</span>
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
                       toggles.tajwid
@@ -411,7 +412,8 @@ export function ArabicStylePanel({
                   </span>
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  Warnai hukum bacaan (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah) pada teks Arab. Teks tidak diubah.
+                  Warnai hukum bacaan (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah) pada teks
+                  Arab. Teks tidak diubah.
                 </p>
               </div>
               <span
@@ -482,9 +484,7 @@ export function ArabicStylePanel({
               />
               {/* Alignment */}
               <div className="space-y-1.5">
-                <span className="block text-sm font-medium text-foreground">
-                  Perataan
-                </span>
+                <span className="block text-sm font-medium text-foreground">Perataan</span>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
@@ -523,20 +523,14 @@ export function ArabicStylePanel({
               Pratinjau Langsung
             </h3>
             <div className="rounded-2xl border border-border bg-gradient-to-br from-emerald-50/80 to-amber-50/60 p-5 dark:from-emerald-950/40 dark:to-amber-950/20">
-              <ArabicText
-                text={SAMPLE_TEXT}
-                className="text-foreground"
-              />
+              <ArabicText text={SAMPLE_TEXT} className="text-foreground" />
               {/* Show list sample if either toggle is ON */}
               {(toggles.punctuateArabic || toggles.colorizeArabic) && (
                 <div className="mt-3 border-t border-border/40 pt-3">
                   <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                     Contoh daftar (untuk demo fitur):
                   </p>
-                  <ArabicText
-                    text={SAMPLE_TEXT_LIST}
-                    className="text-foreground"
-                  />
+                  <ArabicText text={SAMPLE_TEXT_LIST} className="text-foreground" />
                 </div>
               )}
               {toggles.tajwid && (
@@ -544,16 +538,17 @@ export function ArabicStylePanel({
                   <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                     Contoh tajwid (semua 7 hukum berwarna):
                   </p>
-                  <ArabicText
-                    text={PREVIEW_TAJWID_TEXT}
-                    className="text-foreground"
-                  />
+                  <ArabicText text={PREVIEW_TAJWID_TEXT} className="text-foreground" />
                 </div>
               )}
               <p className="mt-3 border-t border-border/40 pt-3 text-[11px] text-muted-foreground">
-                Mode aktif: <span className="font-semibold text-foreground">{arabicStyleModes[settings.mode].label}</span>
+                Mode aktif:{" "}
+                <span className="font-semibold text-foreground">
+                  {arabicStyleModes[settings.mode].label}
+                </span>
                 {" · "}
-                {settings.fontSize.toFixed(2)}rem / LH {settings.lineHeight.toFixed(2)} / WS {settings.wordSpacing.toFixed(2)}em / LS {settings.letterSpacing.toFixed(3)}em /{" "}
+                {settings.fontSize.toFixed(2)}rem / LH {settings.lineHeight.toFixed(2)} / WS{" "}
+                {settings.wordSpacing.toFixed(2)}em / LS {settings.letterSpacing.toFixed(3)}em /{" "}
                 {settings.align === "right" ? "rata kanan" : "rata kanan-kiri"}
                 {" · "}
                 Koma: {toggles.punctuateArabic ? "ON" : "OFF"}

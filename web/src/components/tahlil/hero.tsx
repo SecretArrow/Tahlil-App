@@ -18,10 +18,7 @@ const ctaButtons: CtaButton[] = [
 
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-40 lg:pb-20"
-    >
+    <section id="top" className="relative overflow-hidden pt-28 pb-14 sm:pt-32 lg:pt-40 lg:pb-20">
       {/* Decorative background orbs */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <motion.div

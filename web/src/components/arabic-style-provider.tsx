@@ -27,11 +27,12 @@ function parseStored(raw: string | null): ArabicStyleSettings {
   try {
     const parsed = JSON.parse(raw) as Partial<ArabicStyleSettings>;
     return {
-      mode: parsed.mode === "standard" || parsed.mode === "quran" || parsed.mode === "naskhi" ? parsed.mode : "quran",
+      mode:
+        parsed.mode === "standard" || parsed.mode === "quran" || parsed.mode === "naskhi"
+          ? parsed.mode
+          : "quran",
       fontSize:
-        typeof parsed.fontSize === "number" &&
-        parsed.fontSize >= 1.2 &&
-        parsed.fontSize <= 3.5
+        typeof parsed.fontSize === "number" && parsed.fontSize >= 1.2 && parsed.fontSize <= 3.5
           ? parsed.fontSize
           : defaultArabicSettings.fontSize,
       lineHeight:
@@ -66,9 +67,7 @@ function parseStored(raw: string | null): ArabicStyleSettings {
 // When provided, this is used as the initial useState value so SSR and
 // first client render agree — no hydration mismatch, no flicker.
 const SERVER_INITIAL: ArabicStyleSettings | null =
-  typeof window !== "undefined"
-    ? parseStored(getCookie(COOKIE_KEYS.arabicStyle))
-    : null;
+  typeof window !== "undefined" ? parseStored(getCookie(COOKIE_KEYS.arabicStyle)) : null;
 
 export function ArabicStyleProvider({
   children,
@@ -81,7 +80,7 @@ export function ArabicStyleProvider({
   // fall back to defaults. SSR renders with `initialSettings` so the markup
   // matches the very first client render.
   const [settings, setSettings] = React.useState<ArabicStyleSettings>(
-    () => initialSettings ?? SERVER_INITIAL ?? defaultArabicSettings
+    () => initialSettings ?? SERVER_INITIAL ?? defaultArabicSettings,
   );
 
   // Write to cookie every time settings change.
@@ -114,7 +113,7 @@ export function ArabicStyleProvider({
         return next;
       });
     },
-    [persist]
+    [persist],
   );
 
   // Cross-tab sync via the `storage` event (covers localStorage writes from
@@ -149,14 +148,10 @@ export function ArabicStyleProvider({
       setAlign: (align) => update({ align }),
       reset: () => update(defaultArabicSettings),
     }),
-    [settings, update]
+    [settings, update],
   );
 
-  return (
-    <ArabicStyleContext.Provider value={value}>
-      {children}
-    </ArabicStyleContext.Provider>
-  );
+  return <ArabicStyleContext.Provider value={value}>{children}</ArabicStyleContext.Provider>;
 }
 
 export function useArabicStyle() {

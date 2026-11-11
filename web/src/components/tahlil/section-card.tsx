@@ -6,10 +6,7 @@ import { type Section } from "@/data/tahlil-content";
 import { ArabicText } from "@/components/arabic-text";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 
-const typeConfig: Record<
-  Section["type"],
-  { label: string; color: string; ring: string }
-> = {
+const typeConfig: Record<Section["type"], { label: string; color: string; ring: string }> = {
   pembukaan: {
     label: "Pembukaan",
     color: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
@@ -49,12 +46,7 @@ const typeConfig: Record<
 
 function ArabicOrnament({ className = "" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 60 12"
-      className={className}
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 60 12" className={className} fill="none" aria-hidden="true">
       <path
         d="M2 6 L18 6 M22 6 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 M34 6 L40 6 M30 1 L40 6 L30 11 M42 6 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0 M52 6 L58 6"
         stroke="currentColor"
@@ -71,8 +63,7 @@ export function SectionCard({ section }: { section: Section }) {
   const inView = useInView(ref, { once: true, margin: "-80px 0px -80px 0px" });
   const cfg = typeConfig[section.type];
   const { toggles } = useDisplaySettings();
-  const allHidden =
-    !toggles.arabic && !toggles.transliteration && !toggles.translation;
+  const allHidden = !toggles.arabic && !toggles.transliteration && !toggles.translation;
 
   return (
     <motion.section
@@ -110,9 +101,7 @@ export function SectionCard({ section }: { section: Section }) {
                 </span>
               </div>
               {section.subtitle && (
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {section.subtitle}
-                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{section.subtitle}</p>
               )}
             </div>
           </div>

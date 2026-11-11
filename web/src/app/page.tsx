@@ -100,15 +100,9 @@ export default function Home() {
       )}
       <MobileNav open={navOpen} onClose={() => setNavOpen(false)} />
 
-      <ArabicStylePanel
-        open={arabicStyleOpen}
-        onClose={() => setArabicStyleOpen(false)}
-      />
+      <ArabicStylePanel open={arabicStyleOpen} onClose={() => setArabicStyleOpen(false)} />
 
-      <DisplaySettingsPanel
-        open={displayOpen}
-        onClose={() => setDisplayOpen(false)}
-      />
+      <DisplaySettingsPanel open={displayOpen} onClose={() => setDisplayOpen(false)} />
 
       <BackToTop />
     </div>

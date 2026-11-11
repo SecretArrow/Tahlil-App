@@ -192,6 +192,7 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 ### Perbaikan yang Diterapkan (Sesuai Keputusan User)
 
 #### ✅ Fix 1: Tambah sukun (ْ) di lam1 artikel "wa+al+syamsiyyah"
+
 - Pattern: `وَال(?!ْ)([تثدذرزسشصضطظلن])` → `وَالْ\1`
 - 10 kemunculan di-fix:
   - `وَالشُّهَدَاءِ` → `وَالْشُّهَدَاءِ`
@@ -202,10 +203,12 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
   - `وَالنَّجَاةَ` → `وَالْنَّجَاةَ`
 
 #### ✅ Fix 2: Tambah fathah+syadda di lam2 "li-llah" yang telanjang
+
 - Pattern: `لِلهِ` → `لِلَّهِ` (lam2 dari li-llah sebelumnya telanjang, sekarang punya fathah+syadda)
 - 6 kemunculan di-fix
 
 #### ❌ Revert (sesuai permintaan user): Tidak menambah sukun di lam1 varian "Allah"
+
 - User memilih untuk TIDAK menambah sukun di lam1 "Allah" (konvensi standar idgham Arab dipertahankan)
 - Semua varian "Allah" tetap menggunakan konvensi idgham:
   - `اللَّهِ` (Allah standalone) — 34 kemunculan, tanpa sukun di lam1

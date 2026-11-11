@@ -200,7 +200,7 @@ function colorizeWords(
   text: string,
   colors: readonly [string, string],
   counterRef: { current: number },
-  keyPrefix: string
+  keyPrefix: string,
 ): React.ReactNode[] {
   if (!text) return [text];
   // Split on whitespace but keep the separators so spacing is preserved.
@@ -218,7 +218,7 @@ function colorizeWords(
     out.push(
       <span key={`${keyPrefix}-w${i}`} style={{ color }}>
         {tok}
-      </span>
+      </span>,
     );
   }
   return out;
@@ -231,7 +231,7 @@ function maybeColorize(
   text: string,
   colors: readonly [string, string] | null,
   counterRef: { current: number },
-  keyPrefix: string
+  keyPrefix: string,
 ): React.ReactNode {
   if (!colors) return text;
   return colorizeWords(text, colors, counterRef, keyPrefix);
@@ -255,7 +255,7 @@ function renderTajwidText(text: string, keyPrefix: string): React.ReactNode {
     nodes.push(
       <span key={`${keyPrefix}-tw-${i}`} className={`tajwid-${r.rule}`}>
         {text.slice(r.start, r.end)}
-      </span>
+      </span>,
     );
     cursor = r.end;
   });
@@ -270,7 +270,7 @@ function decorateText(
   colors: readonly [string, string] | null,
   counterRef: { current: number },
   keyPrefix: string,
-  tajwid: boolean
+  tajwid: boolean,
 ): React.ReactNode {
   if (tajwid) return renderTajwidText(text, keyPrefix);
   return maybeColorize(text, colors, counterRef, keyPrefix);
@@ -297,7 +297,7 @@ function renderArabicWithAyahMarks(
   colors: readonly [string, string] | null = null,
   counterRef: { current: number } = { current: 0 },
   splitSentences: boolean = true,
-  tajwid: boolean = false
+  tajwid: boolean = false,
 ): React.ReactNode[] {
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
   if (matches.length === 0) {
@@ -336,7 +336,7 @@ function renderArabicWithAyahMarks(
       <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={LINE_STYLE}>
         {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid)}
         <AyahMark digit={digit} />
-      </span>
+      </span>,
     );
 
     cursor = markStart + full.length;
@@ -353,7 +353,7 @@ function renderArabicWithAyahMarks(
         nodes.push(
           <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={LINE_STYLE}>
             {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid)}
-          </span>
+          </span>,
         );
       }
     } else {
@@ -379,7 +379,7 @@ function splitBySentence(
   keyPrefix: string,
   colors: readonly [string, string] | null = null,
   counterRef: { current: number } = { current: 0 },
-  tajwid: boolean = false
+  tajwid: boolean = false,
 ): React.ReactNode[] {
   // Trim leading/trailing whitespace
   const trimmed = text.trim();
@@ -400,7 +400,7 @@ function splitBySentence(
       lines.push(
         <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={LINE_STYLE}>
           {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
-        </span>
+        </span>,
       );
       current = "";
     }
@@ -410,7 +410,7 @@ function splitBySentence(
     lines.push(
       <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={LINE_STYLE}>
         {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
-      </span>
+      </span>,
     );
   }
 
@@ -457,9 +457,7 @@ export function ArabicText({
 
   // Apply Arabic comma transformation if the punctuateArabic toggle is ON.
   // The transform is a no-op for Quran verses (texts containing ۝ or ۩).
-  const renderedText = toggles.punctuateArabic
-    ? addArabicCommas(text)
-    : text;
+  const renderedText = toggles.punctuateArabic ? addArabicCommas(text) : text;
 
   // Tajwid highlighting — deterministic pure function of the text, so it
   // renders identically on server and client (no mounted gate needed,
@@ -469,8 +467,7 @@ export function ArabicText({
   // Pick color pair based on resolved theme. Only applied after mount to
   // avoid SSR mismatch (resolvedTheme is undefined on first render).
   // Tajwid wins over colorize — combining both would be unreadable.
-  const wantColors =
-    mounted && toggles.colorizeArabic && !forceMode && !tajwidOn; // skip in compare view
+  const wantColors = mounted && toggles.colorizeArabic && !forceMode && !tajwidOn; // skip in compare view
   const colors: readonly [string, string] | null = wantColors
     ? resolvedTheme === "dark"
       ? COLORIZE_COLORS.dark
@@ -509,7 +506,7 @@ export function ArabicText({
         colors,
         counterRef,
         toggles.splitArabicLines,
-        tajwidOn
+        tajwidOn,
       )}
       {suffix}
     </p>
