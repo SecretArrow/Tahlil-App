@@ -20,11 +20,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -353,44 +359,52 @@ private fun LazyListScope.typographySection(
                 valueRange = ArabicStyleSettings.LETTER_SPACING_RANGE,
                 valueFormat = { String.format("%.3f em", it) },
             )
-            // Alignment selector
+            // Alignment selector (dropdown)
+            var alignExpanded by remember { mutableStateOf(false) }
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Text(
                     text = "Perataan:",
                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
                     color = MaterialTheme.colorScheme.onSurface,
                 )
-                FilterChip(
-                    selected = style.align == ArabicAlign.Right,
-                    onClick = { onChange(style.copy(align = ArabicAlign.Right)) },
-                    label = { Text(ArabicAlign.Right.label) },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
-                        selectedLabelColor = MaterialTheme.colorScheme.primary,
-                    ),
-                )
-                FilterChip(
-                    selected = style.align == ArabicAlign.Justify,
-                    onClick = { onChange(style.copy(align = ArabicAlign.Justify)) },
-                    label = { Text(ArabicAlign.Justify.label) },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
-                        selectedLabelColor = MaterialTheme.colorScheme.primary,
-                    ),
-                )
-                FilterChip(
-                    selected = style.align == ArabicAlign.Center,
-                    onClick = { onChange(style.copy(align = ArabicAlign.Center)) },
-                    label = { Text(ArabicAlign.Center.label) },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
-                        selectedLabelColor = MaterialTheme.colorScheme.primary,
-                    ),
-                )
+                ExposedDropdownMenuBox(
+                    expanded = alignExpanded,
+                    onExpandedChange = { alignExpanded = it },
+                    modifier = Modifier.weight(1f),
+                ) {
+                    OutlinedTextField(
+                        value = style.align.label,
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("Mode") },
+                        trailingIcon = {
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = alignExpanded)
+                        },
+                        colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        ),
+                        modifier = Modifier.menuAnchor().fillMaxWidth(),
+                    )
+                    ExposedDropdownMenu(
+                        expanded = alignExpanded,
+                        onDismissRequest = { alignExpanded = false },
+                    ) {
+                        ArabicAlign.entries.forEach { align ->
+                            DropdownMenuItem(
+                                text = { Text(align.label) },
+                                onClick = {
+                                    onChange(style.copy(align = align))
+                                    alignExpanded = false
+                                },
+                            )
+                        }
+                    }
+                }
             }
         }
     }

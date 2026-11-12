@@ -5,9 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
   Type,
-  AlignRight,
-  AlignJustify,
-  AlignCenter,
+  ChevronDown,
   RotateCcw,
   Columns2,
   Eye,
@@ -486,46 +484,17 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
               {/* Alignment */}
               <div className="space-y-1.5">
                 <span className="block text-sm font-medium text-foreground">Perataan</span>
-                <div className="grid grid-cols-3 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setAlign("right")}
-                    aria-pressed={settings.align === "right"}
-                    className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-sm transition-colors ${
-                      settings.align === "right"
-                        ? "border-primary bg-primary/10 text-primary"
-                        : "border-border text-muted-foreground hover:bg-accent"
-                    }`}
+                <div className="relative">
+                  <select
+                    value={settings.align}
+                    onChange={(e) => setAlign(e.target.value as "right" | "justify" | "center")}
+                    className="w-full appearance-none rounded-xl border border-border bg-background px-3 py-2 pr-9 text-sm text-foreground transition-colors hover:bg-accent focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   >
-                    <AlignRight className="h-4 w-4" />
-                    Kanan
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAlign("justify")}
-                    aria-pressed={settings.align === "justify"}
-                    className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-sm transition-colors ${
-                      settings.align === "justify"
-                        ? "border-primary bg-primary/10 text-primary"
-                        : "border-border text-muted-foreground hover:bg-accent"
-                    }`}
-                  >
-                    <AlignJustify className="h-4 w-4" />
-                    Rata Kanan-Kiri
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAlign("center")}
-                    aria-pressed={settings.align === "center"}
-                    className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-sm transition-colors ${
-                      settings.align === "center"
-                        ? "border-primary bg-primary/10 text-primary"
-                        : "border-border text-muted-foreground hover:bg-accent"
-                    }`}
-                  >
-                    <AlignCenter className="h-4 w-4" />
-                    Tengah
-                  </button>
+                    <option value="right">Kanan</option>
+                    <option value="justify">Rata Kanan-Kiri</option>
+                    <option value="center">Tengah</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 </div>
               </div>
             </div>
