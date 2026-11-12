@@ -25,7 +25,7 @@ Tahlil-App/
 
 **Fitur:**
 - 32 section lengkap (Pembuka → Salam Penutup) — Tahlil Lengkap Malam Jumat
-- 3 mode font Arab: Standar, Gaya Mushaf Utsmani, Naskhi Tebal
+- 3 mode font Arab: Standar, Gaya Mushaf Utsmani, Naskh Tradisional
 - Toggle show/hide Arab/Latin/Terjemah
 - Toggle "Koma pada Teks Arab"
 - Toggle "Warnai Kata Arab" (alternating colors per word)
@@ -61,7 +61,7 @@ npm run format:check # cek tanpa ubah
 - Toggle show/hide Arab/Latin/Terjemah
 - Toggle "Koma pada Teks Arab"
 - Toggle "Warnai Kata Arab"
-- 3 mode font Arab (Standard, Quran, Naskhi Tebal)
+- 3 mode font Arab (Standard, Quran, Naskh Tradisional)
 - Slider tipografi
 - Dark/Light theme (auto-save via DataStore)
 - Navigasi drawer + scroll active tracking

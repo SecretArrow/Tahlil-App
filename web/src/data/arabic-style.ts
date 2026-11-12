@@ -44,9 +44,9 @@ export const arabicStyleModes: Record<
     cssClass: "font-arabic-quran",
   },
   naskhi: {
-    label: "Naskhi Tebal",
+    label: "Naskh Tradisional",
     description:
-      "Font Naskhi tradisional yang tebal & estetik, dengan struktur huruf horizontal lurus (tanpa ligatur/sambungan rumit), harakat lengkap, dan spasi antarbaris renggang agar setiap huruf & harakatnya jelas. Font: Scheherazade New.",
+      "Font Naskh tradisional (Scheherazade New), dengan struktur huruf horizontal lurus tanpa ligatur Utsmani, harakat lengkap, dan spasi antarbaris renggang agar setiap huruf & harakatnya jelas.",
     fontFamily: "var(--font-arabic-naskh), 'Scheherazade New', 'Amiri', serif",
     cssClass: "font-arabic-naskhi",
     suggested: {

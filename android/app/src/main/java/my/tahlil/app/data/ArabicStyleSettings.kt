@@ -22,8 +22,8 @@ enum class ArabicStyleMode(val storageKey: String, val label: String, val descri
     ),
     Naskhi(
         storageKey = "naskhi",
-        label = "Naskhi Tebal",
-        description = "Font Naskhi tradisional yang tebal & estetik, dengan struktur huruf horizontal lurus, harakat lengkap, dan spasi antarbaris renggang."
+        label = "Naskh Tradisional",
+        description = "Font Naskh tradisional (Scheherazade New), dengan struktur huruf horizontal lurus tanpa ligatur Utsmani, harakat lengkap, dan spasi antarbaris renggang."
     );
 
     companion object {

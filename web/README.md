@@ -5,7 +5,7 @@ Aplikasi web Tahlil Lengkap (Malam Jumat) — 32 bagian rangkaian zikir, tahlil,
 ## Fitur
 
 - 32 section lengkap (Pembuka → Salam Penutup) — Tahlil Lengkap Malam Jumat
-- 3 mode font Arab: Standar, Gaya Mushaf Utsmani, Naskhi Tebal
+- 3 mode font Arab: Standar, Gaya Mushaf Utsmani, Naskh Tradisional
 - Toggle show/hide Arab/Latin/Terjemah
 - Toggle "Koma pada Teks Arab" (auto tambah koma Arab mengikuti terjemahan)
 - Toggle "Warnai Kata Arab" (warna bergantian per kata)
