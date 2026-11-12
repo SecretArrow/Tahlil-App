@@ -88,7 +88,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ • الرَّحْمٰنِ الرَّحِيْمِ • مٰلِكِ يَوْمِ الدِّيْنِ • إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ • اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ • صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ • رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ۝٧. رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Alhamdu lillâhi rabbil-'âlamîn. Ar-rahmânir-rahîm. Mâliki yaumid-dîn. Iyyâka na'budu wa iyyâka nasta'în. Ihdinash-shirâthal-mustaqîm. Shirâthal-ladzîna an'amta 'alaihim, ghairil-maghdhûbi 'alaihim wa ladh-dhâllîn. Rabbighfir lî wa liwâlidayya wa lil-mu'minîna, âmîn",
         translation:
@@ -162,7 +162,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • قُلْ هُوَ اللّٰهُ أَحَدٌ • اَللّٰهُ الصَّمَدُ • لَمْ يَلِدْ وَلَمْ يُوْلَدْ • وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ هُوَ اللّٰهُ أَحَدٌ ۝١ اَللّٰهُ الصَّمَدُ ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝٤",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Qul huwallâhu ahad. Allâhush-shamad. Lam yalid wa lam yûlad. Wa lam yakul lahû kufuwan ahad (×3)",
         translation:
@@ -189,7 +189,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ • مِنْ شَرِّ مَا خَلَقَ • وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ • وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ • وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝١ مِنْ شَرِّ مَا خَلَقَ ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٥",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbil-falaq. Min syarri mâ khalaq. Wa min syarri ghâsiqin idzâ waqab. Wa min syarrin-naffâtsâti fil-'uqad. Wa min syarri hâsidin idzâ hasad",
         translation:
@@ -208,7 +208,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • قُلْ أَعُوْذُ بِرَبِّ النَّاسِ • مَلِكِ النَّاسِ • إِلٰهِ النَّاسِ • مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ • الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ • مِنَ الْجِنَّةِ وَالنَّاسِ",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝١ مَلِكِ النَّاسِ ۝٢ إِلٰهِ النَّاسِ ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ ۝٦",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbin-nâs. Malikin-nâs. Ilâhin-nâs. Min syarril-waswâsil-khannâs. Alladzî yuwaswisu fî shudûrin-nâs. Minal-jinnati wan-nâs",
         translation:
@@ -227,7 +227,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • الۤمّۤ • ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ • الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ • وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ • أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. الۤمّۤ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Alif lâm mîm. Dzâlikal-kitâbu lâ raiba fîhi hudal lil-muttaqîn. Alladzîna yu'minûna bil-ghaibi wa yuqîmûnash-shalâta wa mimmâ razaqnâhum yunfiqûn. Walladzîna yu'minûna bimâ unzila ilaika wa mâ unzila min qablika wa bil-âkhirati hum yûqinûn. Ulâ'ika 'alâ hudam mir rabbihim wa ulâ'ika humul-muflihûn",
         translation:
@@ -245,7 +245,7 @@ export const tahlilSections: Section[] = [
     type: "ayat",
     blocks: [
       {
-        arabic: "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ لَا إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ",
+        arabic: "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ لَا إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ ۝١٦٣",
         transliteration: "Wa ilâhukum ilâhun wâhid, lâ ilâha illâ huwar-rahmânur-rahîm",
         translation:
           "Dan Tuhanmu adalah Tuhan Yang Maha Esa. Tidak ada Tuhan selain Dia Yang Maha Pengasih lagi Maha Penyayang.",
@@ -263,7 +263,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "اَللّٰهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ، لَهُ مَا فِي السَّمٰوٰتِ وَمَا فِي الْأَرْضِ، مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ، يَعْلَمُ مَا بَيْنَ أَيْدِيْهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ، وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْأَرْضَ، وَلَا يَئُوْدُهُ حِفْظُهُمَا، وَهُوَ الْعَلِيُّ الْعَظِيْمُ",
+          "اَللّٰهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ، لَهُ مَا فِي السَّمٰوٰتِ وَمَا فِي الْأَرْضِ، مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ، يَعْلَمُ مَا بَيْنَ أَيْدِيْهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ، وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْأَرْضَ، وَلَا يَئُوْدُهُ حِفْظُهُمَا، وَهُوَ الْعَلِيُّ الْعَظِيْمُ ۝٢٥٥",
         transliteration:
           "Allâhu lâ ilâha illâ huwal-hayyul-qayyûm. Lâ ta'khudzuhû sinatuw wa lâ naum. Lahû mâ fis-samâwâti wa mâ fil-ardh. Man dzal-ladzî yasyfa'u 'indahû illâ bi idznih. Ya'lamu mâ baina aidîhim wa mâ khalfahum. Wa lâ yuhîthûna bi syai'in min 'ilmihî illâ bimâ syâ'. Wasi'a kursiyyuhus-samâwâti wal-ardh. Wa lâ ya'ûduhû hifzhuhumâ. Wa huwal-'aliyyul-'azhîm",
         translation:
@@ -291,7 +291,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "اٰمَنَ الرَّسُوْلُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُوْنَ، كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ، لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ، وَقَالُوْا سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيْرُ",
+          "اٰمَنَ الرَّسُوْلُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُوْنَ، كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ، لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ، وَقَالُوْا سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيْرُ ۝٢٨٥",
         transliteration:
           "Âmanar-rasûlu bimâ unzila ilaihi mir rabbihî wal-mu'minûn. Kullun âmana billâhi wa malâ'ikatihî wa kutubihî wa rusulih. Lâ nufarriqu baina ahadim mir rusulih. Wa qâlû sami'nâ wa atha'nâ, ghufrânaka rabbanâ wa ilaikal-mashîr",
         translation:
@@ -309,7 +309,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا • أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ",
+          "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
         transliteration:
           "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn (×7)",
         translation:
@@ -606,7 +606,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ • الرَّحْمٰنِ الرَّحِيْمِ • مٰلِكِ يَوْمِ الدِّيْنِ • إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ • اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ • صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ • رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ۝٧. رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Alhamdu lillâhi rabbil-'âlamîn. Ar-rahmânir-rahîm. Mâliki yaumid-dîn. Iyyâka na'budu wa iyyâka nasta'în. Ihdinash-shirâthal-mustaqîm. Shirâthal-ladzîna an'amta 'alaihim, ghairil-maghdhûbi 'alaihim wa ladh-dhâllîn. Rabbighfir lî wa liwâlidayya wa lil-mu'minîna, âmîn",
         translation:
