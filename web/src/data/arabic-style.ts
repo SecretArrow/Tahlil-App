@@ -6,7 +6,7 @@ export type ArabicStyleSettings = {
   lineHeight: number; // unitless
   wordSpacing: number; // em
   letterSpacing: number; // em — space BETWEEN letters within a word
-  align: "right" | "justify";
+  align: "right" | "justify" | "center";
 };
 
 export const defaultArabicSettings: ArabicStyleSettings = {

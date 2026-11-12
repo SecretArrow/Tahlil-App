@@ -425,7 +425,7 @@ type Props = {
     lineHeight: number;
     wordSpacing: number;
     letterSpacing?: number;
-    align: "right" | "justify";
+    align: "right" | "justify" | "center";
   };
   className?: string;
   lang?: string;

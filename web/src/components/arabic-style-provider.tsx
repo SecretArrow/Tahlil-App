@@ -54,7 +54,7 @@ function parseStored(raw: string | null): ArabicStyleSettings {
           ? parsed.letterSpacing
           : defaultArabicSettings.letterSpacing,
       align:
-        parsed.align === "justify" || parsed.align === "right"
+        parsed.align === "justify" || parsed.align === "right" || parsed.align === "center"
           ? parsed.align
           : defaultArabicSettings.align,
     };

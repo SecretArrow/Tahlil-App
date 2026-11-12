@@ -382,6 +382,15 @@ private fun LazyListScope.typographySection(
                         selectedLabelColor = MaterialTheme.colorScheme.primary,
                     ),
                 )
+                FilterChip(
+                    selected = style.align == ArabicAlign.Center,
+                    onClick = { onChange(style.copy(align = ArabicAlign.Center)) },
+                    label = { Text(ArabicAlign.Center.label) },
+                    colors = FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
+                        selectedLabelColor = MaterialTheme.colorScheme.primary,
+                    ),
+                )
             }
         }
     }

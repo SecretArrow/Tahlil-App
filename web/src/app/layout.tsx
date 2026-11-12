@@ -105,7 +105,10 @@ function parseArabicStyle(raw: string | null): ArabicStyleSettings {
         typeof p.letterSpacing === "number" && p.letterSpacing >= 0 && p.letterSpacing <= 0.2
           ? p.letterSpacing
           : defaultArabicSettings.letterSpacing,
-      align: p.align === "justify" || p.align === "right" ? p.align : defaultArabicSettings.align,
+      align:
+        p.align === "justify" || p.align === "right" || p.align === "center"
+          ? p.align
+          : defaultArabicSettings.align,
     };
   } catch {
     return defaultArabicSettings;

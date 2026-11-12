@@ -97,6 +97,7 @@ fun ArabicText(
     val textAlign = when (style.align) {
         ArabicAlign.Right -> TextAlign.Right
         ArabicAlign.Justify -> TextAlign.Justify
+        ArabicAlign.Center -> TextAlign.Center
     }
 
     // Apply Arabic comma transformation if the toggle is on.

@@ -7,6 +7,7 @@ import {
   Type,
   AlignRight,
   AlignJustify,
+  AlignCenter,
   RotateCcw,
   Columns2,
   Eye,
@@ -485,7 +486,7 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
               {/* Alignment */}
               <div className="space-y-1.5">
                 <span className="block text-sm font-medium text-foreground">Perataan</span>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   <button
                     type="button"
                     onClick={() => setAlign("right")}
@@ -511,6 +512,19 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                   >
                     <AlignJustify className="h-4 w-4" />
                     Rata Kanan-Kiri
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAlign("center")}
+                    aria-pressed={settings.align === "center"}
+                    className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-sm transition-colors ${
+                      settings.align === "center"
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-border text-muted-foreground hover:bg-accent"
+                    }`}
+                  >
+                    <AlignCenter className="h-4 w-4" />
+                    Tengah
                   </button>
                 </div>
               </div>
@@ -549,7 +563,11 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                 {" · "}
                 {settings.fontSize.toFixed(2)}rem / LH {settings.lineHeight.toFixed(2)} / WS{" "}
                 {settings.wordSpacing.toFixed(2)}em / LS {settings.letterSpacing.toFixed(3)}em /{" "}
-                {settings.align === "right" ? "rata kanan" : "rata kanan-kiri"}
+                {settings.align === "right"
+                  ? "rata kanan"
+                  : settings.align === "justify"
+                    ? "rata kanan-kiri"
+                    : "rata tengah"}
                 {" · "}
                 Koma: {toggles.punctuateArabic ? "ON" : "OFF"}
                 {" · "}

@@ -32,11 +32,12 @@ enum class ArabicStyleMode(val storageKey: String, val label: String, val descri
     }
 }
 
-/** Alignment for Arabic text — right-aligned (Mushaf style) or justified. */
+/** Alignment for Arabic text — right-aligned (Mushaf style), justified, or centered. */
 @Serializable
 enum class ArabicAlign(val storageKey: String, val label: String) {
     Right("right", "Kanan"),
-    Justify("justify", "Rata Kanan-Kiri");
+    Justify("justify", "Rata Kanan-Kiri"),
+    Center("center", "Tengah");
 
     companion object {
         fun fromStorageKey(key: String?): ArabicAlign =
