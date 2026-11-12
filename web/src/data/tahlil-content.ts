@@ -125,12 +125,12 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ الْمَرْحُوْمِ / الْمَرْحُوْمَةِ … اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ، شَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ ...، وَرُوْحِ ...، وَرُوْحِ ...، اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ، شَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
         transliteration:
-          "Tsumma khushûshan ilâ rûhil-marhûm / al-marhûmah … Allâhummaghfir lahum warhamhum wa 'âfihim wa'fu 'anhum, syai'un lillâhi lahumul-Fâtihah",
+          "Tsumma khushûshan ilâ rûhi ..., wa rûhi ..., wa rûhi ..., Allâhummaghfir lahum warhamhum wa 'âfihim wa'fu 'anhum, syai'un lillâhi lahumul-Fâtihah",
         translation:
-          "Kemudian khususnya kepada roh almarhum / almarhumah … (sebut nama arwah yang dituju). Ya Allah, ampunilah mereka, rahmatilah mereka, sejahterakanlah mereka, dan maafkanlah mereka. Al-Fatihah…",
-        note: "Sebutkan nama arwah yang dituju pada bagian …",
+          "Kemudian khususnya kepada roh ..., dan roh ..., dan roh ... (sebutkan nama arwah yang dituju pada bagian ...). Ya Allah, ampunilah mereka, rahmatilah mereka, sejahterakanlah mereka, dan maafkanlah mereka. Al-Fatihah…",
+        note: "Sebutkan nama arwah yang dituju pada bagian ... (dapat diisi hingga tiga arwah).",
       },
     ],
   },
