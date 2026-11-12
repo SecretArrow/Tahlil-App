@@ -668,12 +668,12 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ الْمَرْحُوْمِ / الْمَرْحُوْمَةِ … ثُمَّ إِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ إِلَى مَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى اٰبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا وَمَشَايِخِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
+          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ ...، وَرُوْحِ ...، وَرُوْحِ ...، ثُمَّ إِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ إِلَى مَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى اٰبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا وَمَشَايِخِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
         transliteration:
-          "Tsumma khushûshan ilâ rûhil-marhûm / al-marhûmah … Tsumma ilâ jamî'i ahlil-qubûri minal-muslimîna wal-muslimâti wal-mu'minîna wal-mu'minâti min masyâriqil-ardhi ilâ maghâribihâ barrihâ wa bahrihâ, khushûshan ilâ âbâ'inâ wa ummahâtinâ wa ajdâdinâ wa jaddâtinâ wa masyâyikhinâ wa liman ijtama'nâ hâhunâ bisababihi wa li ajlih",
+          "Tsumma khushûshan ilâ rûhi ..., wa rûhi ..., wa rûhi ..., tsumma ilâ jamî'i ahlil-qubûri minal-muslimîna wal-muslimâti wal-mu'minîna wal-mu'minâti min masyâriqil-ardhi ilâ maghâribihâ barrihâ wa bahrihâ, khushûshan ilâ âbâ'inâ wa ummahâtinâ wa ajdâdinâ wa jaddâtinâ wa masyâyikhinâ wa liman ijtama'nâ hâhunâ bisababihi wa li ajlih",
         translation:
-          "Kemudian khususnya kepada roh almarhum / almarhumah … Kemudian kepada semua ahli kubur dari kaum Muslimin, Muslimat, Mukminin, dan Mukminat dari timur bumi sampai baratnya, di darat maupun di laut, khususnya kepada bapak-bapak kami, ibu-ibu kami, kakek-kakek kami, nenek-nenek kami, guru-guru kami, dan kepada orang yang menjadi sebab kami berkumpul di sini dan untuk keperluannya.",
-        note: "Sebutkan nama arwah yang dituju pada bagian …",
+          "Kemudian khususnya kepada roh ..., dan roh ..., dan roh ... (sebutkan nama arwah yang dituju pada bagian ...). Kemudian kepada semua ahli kubur dari kaum Muslimin, Muslimat, Mukminin, dan Mukminat dari timur bumi sampai baratnya, di darat maupun di laut, khususnya kepada bapak-bapak kami, ibu-ibu kami, kakek-kakek kami, nenek-nenek kami, guru-guru kami, dan kepada orang yang menjadi sebab kami berkumpul di sini dan untuk keperluannya.",
+        note: "Sebutkan nama arwah yang dituju pada bagian ... (dapat diisi hingga tiga arwah).",
       },
     ],
   },
