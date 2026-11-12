@@ -137,7 +137,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ۝٧. رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ۝١ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ۝٢ الرَّحْمٰنِ الرَّحِيْمِ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ۝٧ رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Alhamdu lillâhi rabbil-'âlamîn. Ar-rahmânir-rahîm. Mâliki yaumid-dîn. Iyyâka na'budu wa iyyâka nasta'în. Ihdinash-shirâthal-mustaqîm. Shirâthal-ladzîna an'amta 'alaihim, ghairil-maghdhûbi 'alaihim wa ladh-dhâllîn. Rabbighfir lî wa liwâlidayya wa lil-mu'minîna, âmîn",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan semesta alam. Yang Maha Pengasih lagi Maha Penyayang. Yang menguasai hari pembalasan. Hanya kepada-Mu kami menyembah dan hanya kepada-Mu kami mohon pertolongan. Tunjukilah kami jalan yang lurus, yaitu jalan orang-orang yang telah Engkau beri nikmat, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat. Ya Tuhanku, ampunilah aku, kedua orang tuaku, dan orang-orang mukmin. Kabulkanlah.",
                 note = "Al-Fatihah (Surat ke-1)",
@@ -203,7 +203,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ هُوَ اللّٰهُ أَحَدٌ ۝١ اَللّٰهُ الصَّمَدُ ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝٤",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ هُوَ اللّٰهُ أَحَدٌ۝١ اَللّٰهُ الصَّمَدُ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ۝٤",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Qul huwallâhu ahad. Allâhush-shamad. Lam yalid wa lam yûlad. Wa lam yakul lahû kufuwan ahad (×3)",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah (Muhammad), \"Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. Dia tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia.\" (×3)",
                 note = "Al-Ikhlas (Surat ke-112)",
@@ -227,7 +227,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝١ مِنْ شَرِّ مَا خَلَقَ ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٥",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ۝١ مِنْ شَرِّ مَا خَلَقَ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ۝٥",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbil-falaq. Min syarri mâ khalaq. Wa min syarri ghâsiqin idzâ waqab. Wa min syarrin-naffâtsâti fil-'uqad. Wa min syarri hâsidin idzâ hasad",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah, \"Aku berlindung kepada Tuhan yang menguasai subuh, dari kejahatan makhluk yang Dia ciptakan, dan dari kejahatan malam apabila telah gelap gulita, dan dari kejahatan perempuan-perempuan penyihir yang meniup pada buhul-buhul, dan dari kejahatan orang yang dengki apabila dia dengki.\"",
                 note = "Al-Falaq (Surat ke-113)",
@@ -244,7 +244,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝١ مَلِكِ النَّاسِ ۝٢ إِلٰهِ النَّاسِ ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ ۝٦",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ أَعُوْذُ بِرَبِّ النَّاسِ۝١ مَلِكِ النَّاسِ۝٢ إِلٰهِ النَّاسِ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ۝٦",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbin-nâs. Malikin-nâs. Ilâhin-nâs. Min syarril-waswâsil-khannâs. Alladzî yuwaswisu fî shudûrin-nâs. Minal-jinnati wan-nâs",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah, \"Aku berlindung kepada Tuhan manusia, Raja manusia, Sembahan manusia, dari kejahatan bisikan setan yang bersembunyi, yang membisikkan kejahatan ke dalam dada manusia, dari golongan jin dan manusia.\"",
                 note = "An-Nas (Surat ke-114)",
@@ -261,7 +261,7 @@ Section(
     type = SectionType.Ayat,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. الۤمّۤ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ الۤمّۤ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ۝٥",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Alif lâm mîm. Dzâlikal-kitâbu lâ raiba fîhi hudal lil-muttaqîn. Alladzîna yu'minûna bil-ghaibi wa yuqîmûnash-shalâta wa mimmâ razaqnâhum yunfiqûn. Walladzîna yu'minûna bimâ unzila ilaika wa mâ unzila min qablika wa bil-âkhirati hum yûqinûn. Ulâ'ika 'alâ hudam mir rabbihim wa ulâ'ika humul-muflihûn",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Alif Lam Mim. Kitab (Al-Qur'an) ini tidak ada keraguan di dalamnya; petunjuk bagi orang-orang yang bertakwa, yaitu orang-orang yang beriman pada yang gaib, menegakkan salat, dan menginfakkan sebagian rezeki yang Kami anugerahkan kepada mereka, dan mereka yang beriman pada (Al-Qur'an) yang diturunkan kepadamu dan kitab-kitab yang diturunkan sebelum engkau, dan mereka yakin akan adanya akhirat. Merekalah yang mendapat petunjuk dari Tuhannya dan mereka itulah orang-orang yang beruntung.",
                 note = "QS Al-Baqarah: 1–5",
@@ -278,7 +278,7 @@ Section(
     type = SectionType.Ayat,
     blocks = listOf(
         ContentBlock(
-                arabic = "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ لَا إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ ۝١٦٣",
+                arabic = "وَإِلٰهُكُمْ إِلٰهٌ وَاحِدٌ لَا إِلٰهَ إِلَّا هُوَ الرَّحْمٰنُ الرَّحِيْمُ۝١٦٣",
                 transliteration = "Wa ilâhukum ilâhun wâhid, lâ ilâha illâ huwar-rahmânur-rahîm",
                 translation = "Dan Tuhanmu adalah Tuhan Yang Maha Esa. Tidak ada Tuhan selain Dia Yang Maha Pengasih lagi Maha Penyayang.",
                 note = "QS Al-Baqarah: 163",
@@ -295,7 +295,7 @@ Section(
     type = SectionType.Ayat,
     blocks = listOf(
         ContentBlock(
-                arabic = "اَللّٰهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ، لَهُ مَا فِي السَّمٰوٰتِ وَمَا فِي الْأَرْضِ، مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ، يَعْلَمُ مَا بَيْنَ أَيْدِيْهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ، وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْأَرْضَ، وَلَا يَئُوْدُهُ حِفْظُهُمَا، وَهُوَ الْعَلِيُّ الْعَظِيْمُ ۝٢٥٥",
+                arabic = "اَللّٰهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ، لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ، لَهُ مَا فِي السَّمٰوٰتِ وَمَا فِي الْأَرْضِ، مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ، يَعْلَمُ مَا بَيْنَ أَيْدِيْهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ، وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْأَرْضَ، وَلَا يَئُوْدُهُ حِفْظُهُمَا، وَهُوَ الْعَلِيُّ الْعَظِيْمُ۝٢٥٥",
                 transliteration = "Allâhu lâ ilâha illâ huwal-hayyul-qayyûm. Lâ ta'khudzuhû sinatuw wa lâ naum. Lahû mâ fis-samâwâti wa mâ fil-ardh. Man dzal-ladzî yasyfa'u 'indahû illâ bi idznih. Ya'lamu mâ baina aidîhim wa mâ khalfahum. Wa lâ yuhîthûna bi syai'in min 'ilmihî illâ bimâ syâ'. Wasi'a kursiyyuhus-samâwâti wal-ardh. Wa lâ ya'ûduhû hifzhuhumâ. Wa huwal-'aliyyul-'azhîm",
                 translation = "Allah, tidak ada Tuhan selain Dia, Yang Maha Hidup lagi terus-menerus mengurus makhluk-Nya. Dia tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan di bumi. Tidak ada yang dapat memberi syafaat di sisi-Nya tanpa izin-Nya. Dia mengetahui apa yang ada di hadapan mereka dan apa yang ada di belakang mereka, dan mereka tidak mengetahui sesuatu pun tentang ilmu-Nya melainkan apa yang Dia kehendaki. Kursi-Nya meliputi langit dan bumi, dan Dia tidak merasa berat memelihara keduanya. Dan Dia Maha Tinggi lagi Maha Agung.",
                 note = "QS Al-Baqarah: 255",
@@ -318,7 +318,7 @@ Section(
                 note = "QS Al-Baqarah: 284",
         ),
         ContentBlock(
-                arabic = "اٰمَنَ الرَّسُوْلُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُوْنَ، كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ، لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ، وَقَالُوْا سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيْرُ ۝٢٨٥",
+                arabic = "اٰمَنَ الرَّسُوْلُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُوْنَ، كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ، لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ، وَقَالُوْا سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيْرُ۝٢٨٥",
                 transliteration = "Âmanar-rasûlu bimâ unzila ilaihi mir rabbihî wal-mu'minûn. Kullun âmana billâhi wa malâ'ikatihî wa kutubihî wa rusulih. Lâ nufarriqu baina ahadim mir rusulih. Wa qâlû sami'nâ wa atha'nâ, ghufrânaka rabbanâ wa ilaikal-mashîr",
                 translation = "Rasul telah beriman pada apa yang diturunkan kepadanya dari Tuhannya, demikian pula orang-orang mukmin. Semuanya beriman kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya, dan rasul-rasul-Nya. Kami tidak membeda-bedakan seorang pun dari rasul-rasul-Nya. Mereka berkata, \"Kami dengar dan kami taat. Ampunilah kami, ya Tuhan kami, dan hanya kepada-Mu tempat kembali.\"",
                 note = "QS Al-Baqarah: 285",
@@ -330,7 +330,7 @@ Section(
                 note = "QS Al-Baqarah: 286 (awal)",
         ),
         ContentBlock(
-                arabic = "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
+                arabic = "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ۝٢٨٦",
                 transliteration = "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn (×7)",
                 translation = "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang. (×7)",
                 note = "QS Al-Baqarah: 286 (penutup)",
@@ -596,7 +596,7 @@ Section(
                 note = "Lihat section 4 (Surah Al-Fatihah) untuk teks lengkap.",
         ),
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ ۝١ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ ۝٢ الرَّحْمٰنِ الرَّحِيْمِ ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ ۝٧. رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ۝١ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ۝٢ الرَّحْمٰنِ الرَّحِيْمِ۝٣ مٰلِكِ يَوْمِ الدِّيْنِ۝٤ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِيْنُ۝٥ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ۝٦ صِرَاطَ الَّذِيْنَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّاۤلِّيْنَ۝٧ رَبِّ اغْفِرْ لِيْ وَلِوَالِدَيَّ وَلِلْمُؤْمِنِيْنَ اٰمِيْنَ",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Alhamdu lillâhi rabbil-'âlamîn. Ar-rahmânir-rahîm. Mâliki yaumid-dîn. Iyyâka na'budu wa iyyâka nasta'în. Ihdinash-shirâthal-mustaqîm. Shirâthal-ladzîna an'amta 'alaihim, ghairil-maghdhûbi 'alaihim wa ladh-dhâllîn. Rabbighfir lî wa liwâlidayya wa lil-mu'minîna, âmîn",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan semesta alam. Yang Maha Pengasih lagi Maha Penyayang. Yang menguasai hari pembalasan. Hanya kepada-Mu kami menyembah dan hanya kepada-Mu kami mohon pertolongan. Tunjukilah kami jalan yang lurus, yaitu jalan orang-orang yang telah Engkau beri nikmat, bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat. Ya Tuhanku, ampunilah aku, kedua orang tuaku, dan orang-orang mukmin. Kabulkanlah.",
                 note = "Al-Fatihah (Surat ke-1)",
