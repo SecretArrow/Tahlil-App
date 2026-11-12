@@ -125,12 +125,12 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ ...، وَرُوْحِ ...، وَرُوْحِ ...، اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ، شَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ ______، وَرُوْحِ ______، وَرُوْحِ ______، اَللّٰهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ، شَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
         transliteration:
-          "Tsumma khushûshan ilâ rûhi ..., wa rûhi ..., wa rûhi ..., Allâhummaghfir lahum warhamhum wa 'âfihim wa'fu 'anhum, syai'un lillâhi lahumul-Fâtihah",
+          "Tsumma khushûshan ilâ rûhi ______, wa rûhi ______, wa rûhi ______, Allâhummaghfir lahum warhamhum wa 'âfihim wa'fu 'anhum, syai'un lillâhi lahumul-Fâtihah",
         translation:
-          "Kemudian khususnya kepada roh ..., dan roh ..., dan roh ... (sebutkan nama arwah yang dituju pada bagian ...). Ya Allah, ampunilah mereka, rahmatilah mereka, sejahterakanlah mereka, dan maafkanlah mereka. Al-Fatihah…",
-        note: "Sebutkan nama arwah yang dituju pada bagian ... (dapat diisi hingga tiga arwah).",
+          "Kemudian khususnya kepada roh ______, dan roh ______, dan roh ______ (sebutkan nama arwah yang dituju pada bagian ______). Ya Allah, ampunilah mereka, rahmatilah mereka, sejahterakanlah mereka, dan maafkanlah mereka. Al-Fatihah…",
+        note: "Sebutkan nama arwah yang dituju pada bagian ______ (dapat diisi hingga tiga arwah).",
       },
     ],
   },
@@ -668,12 +668,12 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ ...، وَرُوْحِ ...، وَرُوْحِ ...، ثُمَّ إِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ إِلَى مَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى اٰبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا وَمَشَايِخِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
+          "ثُمَّ خُصُوْصًا إِلَى رُوْحِ ______، وَرُوْحِ ______، وَرُوْحِ ______، ثُمَّ إِلَى جَمِيْعِ أَهْلِ الْقُبُوْرِ مِنَ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ مِنْ مَشَارِقِ الْأَرْضِ إِلَى مَغَارِبِهَا بَرِّهَا وَبَحْرِهَا، خُصُوْصًا إِلَى اٰبَائِنَا وَأُمَّهَاتِنَا وَأَجْدَادِنَا وَجَدَّاتِنَا وَمَشَايِخِنَا وَلِمَنِ اجْتَمَعْنَا هٰهُنَا بِسَبَبِهِ وَلِأَجْلِهِ",
         transliteration:
-          "Tsumma khushûshan ilâ rûhi ..., wa rûhi ..., wa rûhi ..., tsumma ilâ jamî'i ahlil-qubûri minal-muslimîna wal-muslimâti wal-mu'minîna wal-mu'minâti min masyâriqil-ardhi ilâ maghâribihâ barrihâ wa bahrihâ, khushûshan ilâ âbâ'inâ wa ummahâtinâ wa ajdâdinâ wa jaddâtinâ wa masyâyikhinâ wa liman ijtama'nâ hâhunâ bisababihi wa li ajlih",
+          "Tsumma khushûshan ilâ rûhi ______, wa rûhi ______, wa rûhi ______, tsumma ilâ jamî'i ahlil-qubûri minal-muslimîna wal-muslimâti wal-mu'minîna wal-mu'minâti min masyâriqil-ardhi ilâ maghâribihâ barrihâ wa bahrihâ, khushûshan ilâ âbâ'inâ wa ummahâtinâ wa ajdâdinâ wa jaddâtinâ wa masyâyikhinâ wa liman ijtama'nâ hâhunâ bisababihi wa li ajlih",
         translation:
-          "Kemudian khususnya kepada roh ..., dan roh ..., dan roh ... (sebutkan nama arwah yang dituju pada bagian ...). Kemudian kepada semua ahli kubur dari kaum Muslimin, Muslimat, Mukminin, dan Mukminat dari timur bumi sampai baratnya, di darat maupun di laut, khususnya kepada bapak-bapak kami, ibu-ibu kami, kakek-kakek kami, nenek-nenek kami, guru-guru kami, dan kepada orang yang menjadi sebab kami berkumpul di sini dan untuk keperluannya.",
-        note: "Sebutkan nama arwah yang dituju pada bagian ... (dapat diisi hingga tiga arwah).",
+          "Kemudian khususnya kepada roh ______, dan roh ______, dan roh ______ (sebutkan nama arwah yang dituju pada bagian ______). Kemudian kepada semua ahli kubur dari kaum Muslimin, Muslimat, Mukminin, dan Mukminat dari timur bumi sampai baratnya, di darat maupun di laut, khususnya kepada bapak-bapak kami, ibu-ibu kami, kakek-kakek kami, nenek-nenek kami, guru-guru kami, dan kepada orang yang menjadi sebab kami berkumpul di sini dan untuk keperluannya.",
+        note: "Sebutkan nama arwah yang dituju pada bagian ______ (dapat diisi hingga tiga arwah).",
       },
     ],
   },
