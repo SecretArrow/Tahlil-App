@@ -157,16 +157,16 @@ export const tahlilSections: Section[] = [
     id: "surah-al-ikhlas",
     number: 8,
     title: "Surah Al-Ikhlas",
-    subtitle: "Dibaca 3 kali",
+    subtitle: "Surat ke-112, keesaan Allah",
     type: "surah",
     blocks: [
       {
         arabic:
           "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ • قُلْ هُوَ اللّٰهُ أَحَدٌ • اَللّٰهُ الصَّمَدُ • لَمْ يَلِدْ وَلَمْ يُوْلَدْ • وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
         transliteration:
-          "Bismillâhir-rahmânir-rahîm. Qul huwallâhu ahad. Allâhush-shamad. Lam yalid wa lam yûlad. Wa lam yakul lahû kufuwan ahad",
+          "Bismillâhir-rahmânir-rahîm. Qul huwallâhu ahad. Allâhush-shamad. Lam yalid wa lam yûlad. Wa lam yakul lahû kufuwan ahad (×3)",
         translation:
-          'Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah (Muhammad), "Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. Dia tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia."',
+          'Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah (Muhammad), "Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. Dia tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia." (×3)',
         note: "Al-Ikhlas (Surat ke-112)",
         repeat: 3,
       },
@@ -311,10 +311,10 @@ export const tahlilSections: Section[] = [
         arabic:
           "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا • أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ",
         transliteration:
-          "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
+          "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn (×7)",
         translation:
-          "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang.",
-        note: "QS Al-Baqarah: 286 (penutup) — 'wa'fu 'annâ waghfir lanâ warhamnâ' diulang 7 kali",
+          "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang. (×7)",
+        note: "QS Al-Baqarah: 286 (penutup)",
         repeat: 7,
       },
     ],
@@ -324,13 +324,14 @@ export const tahlilSections: Section[] = [
     id: "irhamna-ya-arhamar-rahimin",
     number: 15,
     title: "Irhamna Ya Arhamar Rahimin",
-    subtitle: "Memohon rahmat Allah, dibaca 7 kali",
+    subtitle: "Memohon rahmat Allah",
     type: "dzikir",
     blocks: [
       {
         arabic: "اِرْحَمْنَا يَا أَرْحَمَ الرَّاحِمِيْنَ",
-        transliteration: "Irhamnâ yâ arhamar-râhimîn",
-        translation: "Rahmatilah kami, wahai Zat Yang Paling Penyayang di antara para penyayang.",
+        transliteration: "Irhamnâ yâ arhamar-râhimîn (×7)",
+        translation:
+          "Rahmatilah kami, wahai Zat Yang Paling Penyayang di antara para penyayang. (×7)",
         repeat: 7,
       },
     ],
@@ -386,16 +387,16 @@ export const tahlilSections: Section[] = [
     id: "sholawat-afdhal",
     number: 18,
     title: "Sholawat Afdhal",
-    subtitle: "3 kali dengan 3 Sebutan untuk Nabi Muhammad ﷺ",
+    subtitle: "Tiga Sebutan untuk Nabi Muhammad ﷺ",
     type: "sholawat",
     blocks: [
       {
         arabic:
           "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ نُوْرِ الْهُدَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
         transliteration:
-          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika nûril-hudâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn",
+          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika nûril-hudâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn (×3)",
         translation:
-          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, cahaya petunjuk, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu.",
+          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, cahaya petunjuk, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu. (×3)",
         note: "Sebutan ke-1: Nûrul-Hudâ (Cahaya Petunjuk)",
         repeat: 3,
       },
@@ -403,9 +404,9 @@ export const tahlilSections: Section[] = [
         arabic:
           "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ شَمْسِ الضُّحَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
         transliteration:
-          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika syamsidh-dhuhâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn",
+          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika syamsidh-dhuhâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn (×3)",
         translation:
-          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, matahari dhuha, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu.",
+          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, matahari dhuha, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu. (×3)",
         note: "Sebutan ke-2: Syamsidh-Dhuhâ (Matahari Dhuha)",
         repeat: 3,
       },
@@ -413,9 +414,9 @@ export const tahlilSections: Section[] = [
         arabic:
           "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ بَدْرِ الدُّجَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
         transliteration:
-          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika badrid-dujâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn",
+          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika badrid-dujâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn (×3)",
         translation:
-          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, purnama di kegelapan malam, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu.",
+          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, purnama di kegelapan malam, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu. (×3)",
         note: "Sebutan ke-3: Badrid-Dujâ (Purnama di Kegelapan Malam)",
         repeat: 3,
       },
@@ -461,17 +462,17 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic: "أَسْتَغْفِرُ اللّٰهَ الْعَظِيْمَ",
-        transliteration: "Astaghfirullâhal-'azhîm",
-        translation: "Saya mohon ampun kepada Allah Yang Maha Agung.",
+        transliteration: "Astaghfirullâhal-'azhîm (×3)",
+        translation: "Saya mohon ampun kepada Allah Yang Maha Agung. (×3)",
         repeat: 3,
       },
       {
         arabic:
           "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
         transliteration:
-          "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim",
+          "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim (×3)",
         translation:
-          "Ya Allah, limpahkanlah rahmat kepada junjungan kami Nabi Muhammad. Ya Allah, limpahkanlah rahmat dan keselamatan kepadanya.",
+          "Ya Allah, limpahkanlah rahmat kepada junjungan kami Nabi Muhammad. Ya Allah, limpahkanlah rahmat dan keselamatan kepadanya. (×3)",
         repeat: 3,
       },
     ],
@@ -513,14 +514,14 @@ export const tahlilSections: Section[] = [
     id: "tahlil-la-ilaha-illallah",
     number: 22,
     title: "Tahlil — La Ilaha Illallah",
-    subtitle: "Inti tahlil, dibaca sekitar 100 kali",
+    subtitle: "Inti tahlil",
     type: "tahlil",
     blocks: [
       {
         arabic: "لَا إِلٰهَ إِلَّا اللّٰهُ",
-        transliteration: "Lâ ilâha illallâh",
-        translation: "Tiada Tuhan yang berhak disembah selain Allah.",
-        note: "Diulang sekitar 100 kali. Pada beberapa bagian disambung: Muhammadur rasûlullâh shallallâhu 'alaihi wa sallam — Muhammad adalah utusan Allah, semoga rahmat dan keselamatan Allah tercurah kepadanya.",
+        transliteration: "Lâ ilâha illallâh (×100)",
+        translation: "Tiada Tuhan yang berhak disembah selain Allah. (×100)",
+        note: "Pada beberapa bagian disambung: Muhammadur rasûlullâh shallallâhu 'alaihi wa sallam — Muhammad adalah utusan Allah, semoga rahmat dan keselamatan Allah tercurah kepadanya.",
         repeat: 100,
       },
     ],
