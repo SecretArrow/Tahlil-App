@@ -287,7 +287,7 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
 - Hapus `wa khushushon ilaa mu-aassisi jam'iyyati nahdhatil-'ulamaa` dari Arab/Latin/Terjemahan
 - Tidak ada satu pun penyebutan NU di seluruh teks
 
-### Tambah Blok: Ikhwan Nabi + Syekh Abdul Qadir al-Jilani
+### Tambah Blok: Ikhwan Nabi + Syekh Abdul Qadir Al-Jailani
 
 - Section 3 sekarang 7 blok:
   1. Ikhwan Nabi (TANPA menyebut NU)
@@ -297,7 +297,7 @@ Semua pembaharuan dan perbaikan dari awal pengembangan hingga saat ini.
   5. Al-Fatihah
   6. Mimman dzukirot
   7. Al-Fatihah
-- Termasuk blok Syekh Abdul Qadir al-Jilani
+- Termasuk blok Syekh Abdul Qadir Al-Jailani
 
 ### Perubahan Terjemahan Blok-Blok Tertentu
 

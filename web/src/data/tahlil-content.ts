@@ -30,7 +30,7 @@ export const tahlilSections: Section[] = [
       },
       {
         arabic:
-          "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللّٰهِ",
+          "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُوْلُ اللّٰهِ",
         transliteration: "Asyhadu an lâ ilâha illallâh, wa asyhadu anna Muhammadar rasûlullâh",
         translation:
           "Saya bersaksi tidak ada Tuhan yang berhak disembah kecuali Allah. Dan saya bersaksi bahwa sesungguhnya Nabi Muhammad adalah utusan Allah.",
@@ -102,16 +102,16 @@ export const tahlilSections: Section[] = [
     id: "tawassul-kedua",
     number: 5,
     title: "Tawassul Kedua",
-    subtitle: "Kepada Para Nabi, Wali, dan Syekh Abdul Qadir al-Jailani",
+    subtitle: "Kepada Para Nabi, Wali, dan Syekh Abdul Qadir Al-Jailani",
     type: "tahlil",
     blocks: [
       {
         arabic:
           "ثُمَّ إِلَى حَضْرَةِ إِخْوَانِهِ مِنَ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَالْأَوْلِيَاءِ وَالشُّهَدَاءِ وَالصَّالِحِيْنَ وَالصَّحَابَةِ وَالتَّابِعِيْنَ وَالْعُلَمَاءِ الْعَامِلِيْنَ وَالْمُصَنِّفِيْنَ الْمُخْلِصِيْنَ وَجَمِيْعِ الْمُجَاهِدِيْنَ فِيْ سَبِيْلِ اللّٰهِ رَبِّ الْعٰلَمِيْنَ وَالْمَلَائِكَةِ الْمُقَرَّبِيْنَ، خُصُوْصًا إِلَى سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيْلَانِيْ رَضِيَ اللّٰهُ عَنْهُ، شَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
         transliteration:
-          "Tsumma ilâ hadhrati ikhwânihi minal-anbiyâ'i wal-mursalîn, wal-auliyâ'i wasy-syuhadâ'i wash-shâlihîn, wash-shahâbati wat-tâbi'în, wal-'ulamâ'il-'âmilîn, wal-mushannifînal-mukhlishîn, wa jamî'il-mujâhidîna fî sabîlillâhi rabbil-'âlamîn, wal-malâ'ikatil-muqarrabîn, khushûshan ilâ sayyidinâsy-syaikh 'Abdil-Qâdir al-Jîlânî radhiyallâhu 'anhu, syai'un lillâhi lahumul-Fâtihah",
+          "Tsumma ilâ hadhrati ikhwânihi minal-anbiyâ'i wal-mursalîn, wal-auliyâ'i wasy-syuhadâ'i wash-shâlihîn, wash-shahâbati wat-tâbi'în, wal-'ulamâ'il-'âmilîn, wal-mushannifînal-mukhlishîn, wa jamî'il-mujâhidîna fî sabîlillâhi rabbil-'âlamîn, wal-malâ'ikatil-muqarrabîn, khushûshan ilâ sayyidinâsy-syaikh 'Abdil-Qâdir Al-Jîlânî radhiyallâhu 'anhu, syai'un lillâhi lahumul-Fâtihah",
         translation:
-          "Kemudian kepada segenap saudara beliau dari kalangan para nabi, rasul, wali, syuhada, orang-orang saleh, sahabat, tabi'in, ulama yang mengamalkan ilmunya, para pengarang yang ikhlas, semua pejuang di jalan Allah Tuhan semesta alam, dan para malaikat yang dekat dengan Allah, khususnya kepada junjungan kami Syekh Abdul Qadir al-Jailani — semoga Allah meridhainya. Al-Fatihah…",
+          "Kemudian kepada segenap saudara beliau dari kalangan para nabi, rasul, wali, syuhada, orang-orang saleh, sahabat, tabi'in, ulama yang mengamalkan ilmunya, para pengarang yang ikhlas, semua pejuang di jalan Allah Tuhan semesta alam, dan para malaikat yang dekat dengan Allah, khususnya kepada junjungan kami Syekh Abdul Qadir Al-Jailani — semoga Allah meridhainya. Al-Fatihah…",
       },
     ],
   },
