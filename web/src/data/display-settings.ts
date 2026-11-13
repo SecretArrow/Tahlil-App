@@ -36,7 +36,23 @@ export type DisplayToggles = {
    * colorize toggle is temporarily ignored.
    */
   tajwid: boolean;
+  /**
+   * Auto-scroll speed multiplier for the "Gulir Otomatis" feature
+   * (0.5–5.0). 1.0 ≈ 55 px/s — a comfortable reading pace. The feature
+   * is started/stopped from the bottom-left FAB; tapping the page pauses
+   * it, tapping again resumes.
+   */
+  autoScrollSpeed: number;
+  /**
+   * Seconds the auto-scroll holds when a new section card scrolls into
+   * view before continuing (0 = no pause; UI offers 0 / 2 / 5 / 10).
+   */
+  autoScrollSectionPauseSec: number;
 };
+
+export const AUTO_SCROLL_SPEED_MIN = 0.5;
+export const AUTO_SCROLL_SPEED_MAX = 5;
+export const AUTO_SCROLL_PAUSE_CHOICES = [0, 2, 5, 10] as const;
 
 export const defaultDisplayToggles: DisplayToggles = {
   arabic: true,
@@ -46,4 +62,6 @@ export const defaultDisplayToggles: DisplayToggles = {
   splitArabicLines: true,
   colorizeArabic: false,
   tajwid: false,
+  autoScrollSpeed: 1,
+  autoScrollSectionPauseSec: 0,
 };

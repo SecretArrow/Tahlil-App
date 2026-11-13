@@ -13,8 +13,14 @@ import {
   Palette,
   WrapText,
   Highlighter,
+  ArrowDownToLine,
 } from "lucide-react";
 import { useDisplaySettings } from "@/components/display-settings-provider";
+import {
+  AUTO_SCROLL_PAUSE_CHOICES,
+  AUTO_SCROLL_SPEED_MAX,
+  AUTO_SCROLL_SPEED_MIN,
+} from "@/data/display-settings";
 import { ArabicText } from "@/components/arabic-text";
 import { TajwidLegend } from "@/components/tajwid-legend";
 import { PREVIEW_TAJWID_TEXT } from "@/lib/tajwid";
@@ -101,7 +107,7 @@ function ToggleRow({
 }
 
 export function DisplaySettingsPanel({ open, onClose }: Props) {
-  const { toggles, setToggle, reset } = useDisplaySettings();
+  const { toggles, setToggle, setNumber, reset } = useDisplaySettings();
 
   return (
     <AnimatePresence>
@@ -209,6 +215,64 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                   <TajwidLegend />
                 </div>
               )}
+
+              {/* Auto scroll (Gulir Otomatis) */}
+              <div className="rounded-2xl border border-border bg-muted/30 p-3">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <ArrowDownToLine className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Gulir Otomatis</p>
+                    <p className="text-xs text-muted-foreground">
+                      Mulai/hentikan dari tombol bulat di kiri bawah. Ketuk layar 1× atau tahan =
+                      jeda; ketuk lagi = lanjut.
+                    </p>
+                  </div>
+                </div>
+                <label className="mt-1 block">
+                  <span className="flex items-center justify-between text-xs font-medium text-foreground">
+                    Kecepatan Gulir
+                    <span className="font-semibold text-primary">
+                      {toggles.autoScrollSpeed.toFixed(1)}×
+                    </span>
+                  </span>
+                  <input
+                    type="range"
+                    min={AUTO_SCROLL_SPEED_MIN}
+                    max={AUTO_SCROLL_SPEED_MAX}
+                    step={0.1}
+                    value={toggles.autoScrollSpeed}
+                    onChange={(e) => setNumber("autoScrollSpeed", Number(e.target.value))}
+                    className="mt-1 w-full accent-primary"
+                  />
+                </label>
+                <div className="mt-2">
+                  <p className="text-xs font-medium text-foreground">Jeda per Bagian</p>
+                  <p className="text-[11px] text-muted-foreground">
+                    Berhenti sesaat setiap masuk bagian baru
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {AUTO_SCROLL_PAUSE_CHOICES.map((sec) => {
+                      const isActive = toggles.autoScrollSectionPauseSec === sec;
+                      return (
+                        <button
+                          key={sec}
+                          type="button"
+                          onClick={() => setNumber("autoScrollSectionPauseSec", sec)}
+                          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                            isActive
+                              ? "bg-primary text-primary-foreground"
+                              : "border border-border bg-card text-muted-foreground hover:bg-accent"
+                          }`}
+                        >
+                          {sec === 0 ? "Mati" : `${sec} dtk`}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
 
               {/* Live preview */}
               <div className="rounded-2xl border border-border bg-gradient-to-br from-emerald-50/80 to-amber-50/60 p-4 dark:from-emerald-950/40 dark:to-amber-950/20">

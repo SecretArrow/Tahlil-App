@@ -29,6 +29,14 @@ import kotlinx.serialization.Serializable
  * - keepScreenOn:     When true, the device screen stays awake while the app
  *                     is in the foreground (FLAG_KEEP_SCREEN_ON). Default
  *                     OFF so users don't drain their battery accidentally.
+ * - autoScrollSpeed:  Multiplier for the auto-scroll feature (0.5–5.0).
+ *                     1.0 ≈ 56 dp/s — a comfortable reading pace. Used by
+ *                     the auto-scroll engine on the Home & Section detail
+ *                     screens. Default 1.0.
+ * - autoScrollSectionPauseSec:
+ *                     Seconds the auto-scroll holds at each new section
+ *                     card before continuing (0 = no pause; UI offers
+ *                     0 / 2 / 5 / 10). Default 0.
  *
  * All toggles default to true except [punctuateArabic], [colorizeArabic],
  * [tajwid], and [keepScreenOn], matching the web app's defaults.
@@ -45,8 +53,16 @@ data class DisplayToggles(
     val colorizeArabic: Boolean = false,
     val tajwid: Boolean = false,
     val keepScreenOn: Boolean = false,
+    val autoScrollSpeed: Float = 1.0f,
+    val autoScrollSectionPauseSec: Int = 0,
 ) {
     companion object {
         val Default = DisplayToggles()
+
+        /** Valid range of [autoScrollSpeed] — shared by UI slider & persistence. */
+        val AUTO_SCROLL_SPEED_RANGE = 0.5f..5.0f
+
+        /** Choices (seconds) offered for [autoScrollSectionPauseSec]. */
+        val AUTO_SCROLL_PAUSE_CHOICES = intArrayOf(0, 2, 5, 10)
     }
 }

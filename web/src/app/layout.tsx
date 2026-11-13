@@ -131,6 +131,17 @@ function parseDisplayToggles(raw: string | null): DisplayToggles {
       splitArabicLines: typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
       colorizeArabic: typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
       tajwid: typeof p.tajwid === "boolean" ? p.tajwid : false,
+      // Auto-scroll numeric settings — clamped to the valid ranges.
+      autoScrollSpeed:
+        typeof p.autoScrollSpeed === "number"
+          ? Math.min(5, Math.max(0.5, p.autoScrollSpeed))
+          : defaultDisplayToggles.autoScrollSpeed,
+      autoScrollSectionPauseSec:
+        typeof p.autoScrollSectionPauseSec === "number" &&
+        p.autoScrollSectionPauseSec >= 0 &&
+        p.autoScrollSectionPauseSec <= 30
+          ? p.autoScrollSectionPauseSec
+          : defaultDisplayToggles.autoScrollSectionPauseSec,
     };
   } catch {
     return defaultDisplayToggles;

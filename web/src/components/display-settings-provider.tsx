@@ -1,12 +1,22 @@
 "use client";
 
 import * as React from "react";
-import { DisplayToggles, defaultDisplayToggles } from "@/data/display-settings";
+import {
+  AUTO_SCROLL_SPEED_MAX,
+  AUTO_SCROLL_SPEED_MIN,
+  DisplayToggles,
+  defaultDisplayToggles,
+} from "@/data/display-settings";
 import { COOKIE_KEYS, getCookie, setCookie } from "@/lib/cookies/client";
 
 type Ctx = {
   toggles: DisplayToggles;
   setToggle: (key: keyof DisplayToggles, value: boolean) => void;
+  /** Update a numeric setting (autoScrollSpeed / autoScrollSectionPauseSec). */
+  setNumber: <K extends "autoScrollSpeed" | "autoScrollSectionPauseSec">(
+    key: K,
+    value: DisplayToggles[K],
+  ) => void;
   setAll: (next: DisplayToggles) => void;
   reset: () => void;
 };
@@ -26,6 +36,18 @@ function parseStored(raw: string | null): DisplayToggles {
         typeof parsed.splitArabicLines === "boolean" ? parsed.splitArabicLines : true,
       colorizeArabic: typeof parsed.colorizeArabic === "boolean" ? parsed.colorizeArabic : false,
       tajwid: typeof parsed.tajwid === "boolean" ? parsed.tajwid : false,
+      // Auto-scroll numeric settings — clamp into the valid ranges so a
+      // hand-edited cookie can never produce a runaway scroll speed.
+      autoScrollSpeed:
+        typeof parsed.autoScrollSpeed === "number"
+          ? Math.min(AUTO_SCROLL_SPEED_MAX, Math.max(AUTO_SCROLL_SPEED_MIN, parsed.autoScrollSpeed))
+          : defaultDisplayToggles.autoScrollSpeed,
+      autoScrollSectionPauseSec:
+        typeof parsed.autoScrollSectionPauseSec === "number" &&
+        parsed.autoScrollSectionPauseSec >= 0 &&
+        parsed.autoScrollSectionPauseSec <= 30
+          ? parsed.autoScrollSectionPauseSec
+          : defaultDisplayToggles.autoScrollSectionPauseSec,
     };
   } catch {
     return defaultDisplayToggles;
@@ -71,6 +93,7 @@ export function DisplaySettingsProvider({
     () => ({
       toggles,
       setToggle: (key, val) => update({ ...toggles, [key]: val } as DisplayToggles),
+      setNumber: (key, val) => update({ ...toggles, [key]: val } as DisplayToggles),
       setAll: (next) => update(next),
       reset: () => update(defaultDisplayToggles),
     }),

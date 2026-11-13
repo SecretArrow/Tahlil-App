@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
@@ -53,6 +54,10 @@ class SettingsRepository(private val context: Context) {
     private val KEY_TAJWID = booleanPreferencesKey("display_tajwid")
     private val KEY_KEEP_SCREEN_ON = booleanPreferencesKey("display_keep_screen_on")
 
+    // --- Auto scroll -------------------------------------------------------
+    private val KEY_AUTO_SCROLL_SPEED = floatPreferencesKey("auto_scroll_speed")
+    private val KEY_AUTO_SCROLL_PAUSE = intPreferencesKey("auto_scroll_section_pause_sec")
+
     // --- Arabic style ----------------------------------------------------
     private val KEY_MODE = stringPreferencesKey("arabic_mode")
     private val KEY_FONT_SIZE = floatPreferencesKey("arabic_font_size")
@@ -69,6 +74,13 @@ class SettingsRepository(private val context: Context) {
     private val KEY_LAST_READ_SECTION = stringPreferencesKey("last_read_section_id")
 
     val displayToggles: Flow<DisplayToggles> = context.tahlilDataStore.data.map { p ->
+        // autoScrollSpeed legacy/foreign values are clamped into the valid
+        // range so a stray write can never produce a runaway scroll speed.
+        val clampedSpeed = (p[KEY_AUTO_SCROLL_SPEED] ?: DisplayToggles.Default.autoScrollSpeed)
+            .coerceIn(
+                DisplayToggles.AUTO_SCROLL_SPEED_RANGE.start,
+                DisplayToggles.AUTO_SCROLL_SPEED_RANGE.endInclusive,
+            )
         DisplayToggles(
             arabic = p[KEY_ARABIC] ?: true,
             transliteration = p[KEY_TRANSLIT] ?: true,
@@ -78,6 +90,9 @@ class SettingsRepository(private val context: Context) {
             colorizeArabic = p[KEY_COLORIZE] ?: false,
             tajwid = p[KEY_TAJWID] ?: false,
             keepScreenOn = p[KEY_KEEP_SCREEN_ON] ?: false,
+            autoScrollSpeed = clampedSpeed,
+            autoScrollSectionPauseSec = p[KEY_AUTO_SCROLL_PAUSE]
+                ?: DisplayToggles.Default.autoScrollSectionPauseSec,
         )
     }
 
@@ -126,6 +141,8 @@ class SettingsRepository(private val context: Context) {
             p[KEY_COLORIZE] = toggles.colorizeArabic
             p[KEY_TAJWID] = toggles.tajwid
             p[KEY_KEEP_SCREEN_ON] = toggles.keepScreenOn
+            p[KEY_AUTO_SCROLL_SPEED] = toggles.autoScrollSpeed
+            p[KEY_AUTO_SCROLL_PAUSE] = toggles.autoScrollSectionPauseSec
         }
     }
 

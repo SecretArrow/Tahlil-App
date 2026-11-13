@@ -31,6 +31,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.AlertDialog
@@ -41,6 +43,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -67,8 +70,11 @@ import androidx.compose.ui.unit.sp
 import my.tahlil.app.BuildConfig
 import my.tahlil.app.data.HeroInfo
 import my.tahlil.app.data.TahlilContent
+import my.tahlil.app.ui.components.AutoScrollEngine
 import my.tahlil.app.ui.components.SectionCard
+import my.tahlil.app.ui.components.autoScrollTapControl
 import my.tahlil.app.ui.components.contentMaxWidth
+import my.tahlil.app.ui.components.rememberAutoScrollSession
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -138,6 +144,20 @@ fun HomeScreen(
     val state = rememberLazyListState()
     val sections = remember { TahlilContent.sections }
     val scope = rememberCoroutineScope()
+
+    // --- Auto scroll (Gulir Otomatis) --------------------------------------
+    // Start/stop via the bottom-start FAB; tap or long-press anywhere on the
+    // list pauses; tapping again resumes. Speed & per-section pause come
+    // from the user's display settings (SettingsScreen → Gulir Otomatis).
+    val autoScroll = rememberAutoScrollSession()
+    AutoScrollEngine(
+        state = state,
+        active = autoScroll.active,
+        paused = autoScroll.paused,
+        speedMultiplier = toggles.autoScrollSpeed,
+        pauseSecPerSection = toggles.autoScrollSectionPauseSec,
+        onReachEnd = { autoScroll.stop() },
+    )
 
     // Track the first visible section's id (for drawer highlighting).
     LaunchedEffect(state) {
@@ -229,7 +249,10 @@ fun HomeScreen(
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .contentMaxWidth()
-                .fillMaxSize(),
+                .fillMaxSize()
+                // Tap / long-press anywhere on the list toggles auto-scroll
+                // pause (no-op while the feature is off).
+                .autoScrollTapControl(autoScroll.active) { autoScroll.togglePaused() },
             contentPadding = PaddingValues(
                 bottom = contentPadding.calculateBottomPadding() + navBarBottomDp + 8.dp
             ),
@@ -307,6 +330,65 @@ fun HomeScreen(
                 Icon(
                     imageVector = Icons.Filled.KeyboardArrowUp,
                     contentDescription = "Kembali ke atas",
+                )
+            }
+        }
+
+        // Auto-scroll start/stop FAB (bottom-start, always visible).
+        // Icon: Pause while scrolling, PlayArrow when off or paused.
+        FloatingActionButton(
+            onClick = { autoScroll.toggleActive() },
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .navigationBarsPadding()
+                .padding(start = 16.dp, bottom = 16.dp),
+            containerColor = if (autoScroll.active) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                MaterialTheme.colorScheme.surface
+            },
+            contentColor = if (autoScroll.active) {
+                MaterialTheme.colorScheme.onPrimary
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            },
+            shape = CircleShape,
+        ) {
+            Icon(
+                imageVector = if (autoScroll.scrolling) {
+                    Icons.Filled.Pause
+                } else {
+                    Icons.Filled.PlayArrow
+                },
+                contentDescription = if (autoScroll.active) {
+                    "Hentikan gulir otomatis"
+                } else {
+                    "Mulai gulir otomatis"
+                },
+            )
+        }
+
+        // Paused hint — small pill above the FAB telling the user the scroll
+        // is on hold and that tapping the screen resumes it.
+        AnimatedVisibility(
+            visible = autoScroll.active && autoScroll.paused,
+            enter = fadeIn() + scaleIn(initialScale = 0.8f),
+            exit = fadeOut() + scaleOut(targetScale = 0.8f),
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .navigationBarsPadding()
+                .padding(start = 16.dp, bottom = 84.dp),
+        ) {
+            Surface(
+                shape = RoundedCornerShape(50),
+                color = MaterialTheme.colorScheme.inverseSurface,
+                contentColor = MaterialTheme.colorScheme.inverseOnSurface,
+                shadowElevation = 4.dp,
+            ) {
+                Text(
+                    text = "Gulir dijeda — ketuk layar untuk lanjut",
+                    style = MaterialTheme.typography.labelMedium,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
                 )
             }
         }

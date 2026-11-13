@@ -6,6 +6,7 @@ import { Hero } from "@/components/tahlil/hero";
 import { SectionCard } from "@/components/tahlil/section-card";
 import { BackToTop } from "@/components/tahlil/back-to-top";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { AutoScroll } from "@/components/auto-scroll";
 import { ArabicStylePanel } from "@/components/arabic-style-panel";
 import { DisplaySettingsPanel } from "@/components/display-settings-panel";
 import { tahlilSections } from "@/data/tahlil-content";
@@ -105,6 +106,8 @@ export default function Home() {
       <DisplaySettingsPanel open={displayOpen} onClose={() => setDisplayOpen(false)} />
 
       <BackToTop />
+
+      <AutoScroll />
     </div>
   );
 }

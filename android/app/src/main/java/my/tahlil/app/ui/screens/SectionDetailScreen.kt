@@ -7,10 +7,18 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -21,8 +29,11 @@ import androidx.compose.ui.unit.dp
 import my.tahlil.app.data.ArabicStyleSettings
 import my.tahlil.app.data.DisplayToggles
 import my.tahlil.app.data.TahlilContent
+import my.tahlil.app.ui.components.AutoScrollEngine
 import my.tahlil.app.ui.components.SectionCard
+import my.tahlil.app.ui.components.autoScrollTapControl
 import my.tahlil.app.ui.components.contentMaxWidth
+import my.tahlil.app.ui.components.rememberAutoScrollSession
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 /**
@@ -79,6 +90,19 @@ fun SectionDetailScreen(
             }
     }
 
+    // --- Auto scroll (Gulir Otomatis) --------------------------------------
+    // Same engine & interaction as HomeScreen: start/stop via the
+    // bottom-start FAB, tap/long-press anywhere pauses, tap again resumes.
+    val autoScroll = rememberAutoScrollSession()
+    AutoScrollEngine(
+        state = state,
+        active = autoScroll.active,
+        paused = autoScroll.paused,
+        speedMultiplier = toggles.autoScrollSpeed,
+        pauseSecPerSection = toggles.autoScrollSectionPauseSec,
+        onReachEnd = { autoScroll.stop() },
+    )
+
     // When the requested section changes while this screen is already on
     // screen (drawer navigation with launchSingleTop), jump to it.
     LaunchedEffect(sectionId) {
@@ -90,7 +114,11 @@ fun SectionDetailScreen(
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         LazyColumn(
             state = state,
-            modifier = Modifier.contentMaxWidth().fillMaxSize(),
+            modifier = Modifier
+                .contentMaxWidth()
+                .fillMaxSize()
+                // Tap / long-press anywhere pauses auto-scroll (no-op off).
+                .autoScrollTapControl(autoScroll.active) { autoScroll.togglePaused() },
             contentPadding = PaddingValues(
                 top = 8.dp,
                 bottom = contentPadding.calculateBottomPadding() + navBarBottomDp + 8.dp
@@ -111,6 +139,39 @@ fun SectionDetailScreen(
             item(key = "footer") {
                 Footer(modifier = Modifier.fillMaxWidth())
             }
+        }
+
+        // Auto-scroll start/stop FAB (bottom-start, always visible).
+        FloatingActionButton(
+            onClick = { autoScroll.toggleActive() },
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .navigationBarsPadding()
+                .padding(start = 16.dp, bottom = 16.dp),
+            containerColor = if (autoScroll.active) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                MaterialTheme.colorScheme.surface
+            },
+            contentColor = if (autoScroll.active) {
+                MaterialTheme.colorScheme.onPrimary
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            },
+            shape = CircleShape,
+        ) {
+            Icon(
+                imageVector = if (autoScroll.scrolling) {
+                    Icons.Filled.Pause
+                } else {
+                    Icons.Filled.PlayArrow
+                },
+                contentDescription = if (autoScroll.active) {
+                    "Hentikan gulir otomatis"
+                } else {
+                    "Mulai gulir otomatis"
+                },
+            )
         }
     }
 }

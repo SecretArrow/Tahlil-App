@@ -102,6 +102,9 @@ fun SettingsScreen(
             item { SectionTitle("Tampilan") }
             togglesSection(toggles, onTogglesChange, isDark)
 
+            item { SectionTitle("Gulir Otomatis") }
+            autoScrollSection(toggles, onTogglesChange)
+
             item { SectionTitle("Tema") }
             themeSection(themeMode, onThemeModeChange)
 
@@ -125,6 +128,74 @@ private fun SectionTitle(text: String) {
             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
             color = MaterialTheme.colorScheme.primary,
         )
+    }
+}
+
+/**
+ * Auto-scroll (Gulir Otomatis) settings:
+ *  - "Kecepatan Gulir" slider — multiplier 0.5×–5.0× of the base pace
+ *    (56 dp/s). Higher = faster scrolling.
+ *  - "Jeda per Bagian" chips — how long the auto-scroll holds at each new
+ *    section card before continuing (0 = no pause).
+ *
+ * The feature itself is started/stopped from the bottom-start FAB on the
+ * reading screens; tap or long-press the screen to pause/resume.
+ */
+private fun LazyListScope.autoScrollSection(
+    toggles: DisplayToggles,
+    onChange: (DisplayToggles) -> Unit,
+) {
+    item {
+        SettingsCard {
+            SliderRow(
+                title = "Kecepatan Gulir",
+                value = toggles.autoScrollSpeed,
+                onValueChange = { v ->
+                    onChange(
+                        toggles.copy(
+                            autoScrollSpeed = v.coerceIn(
+                                DisplayToggles.AUTO_SCROLL_SPEED_RANGE.start,
+                                DisplayToggles.AUTO_SCROLL_SPEED_RANGE.endInclusive,
+                            )
+                        )
+                    )
+                },
+                valueRange = DisplayToggles.AUTO_SCROLL_SPEED_RANGE,
+                valueFormat = { String.format("%.1f×", it) },
+            )
+            // Jeda per bagian — segmented chips (Mati / 2 / 5 / 10 detik).
+            Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                Text(
+                    text = "Jeda per Bagian",
+                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+                Text(
+                    text = "Berhenti sesaat setiap masuk bagian baru",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 2.dp, bottom = 8.dp),
+                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    DisplayToggles.AUTO_SCROLL_PAUSE_CHOICES.forEach { sec ->
+                        val label = if (sec == 0) "Mati" else "$sec dtk"
+                        FilterChip(
+                            selected = toggles.autoScrollSectionPauseSec == sec,
+                            onClick = {
+                                onChange(toggles.copy(autoScrollSectionPauseSec = sec))
+                            },
+                            label = { Text(label) },
+                            colors = FilterChipDefaults.filterChipColors(
+                                selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
+                                selectedLabelColor = MaterialTheme.colorScheme.primary,
+                            ),
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
