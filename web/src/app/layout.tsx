@@ -110,7 +110,7 @@ function parseArabicStyle(raw: string | null): ArabicStyleSettings {
           ? p.letterSpacing
           : defaultArabicSettings.letterSpacing,
       align:
-        p.align === "justify" || p.align === "right" || p.align === "center"
+        p.align === "smart" || p.align === "justify" || p.align === "right" || p.align === "center"
           ? p.align
           : defaultArabicSettings.align,
     };

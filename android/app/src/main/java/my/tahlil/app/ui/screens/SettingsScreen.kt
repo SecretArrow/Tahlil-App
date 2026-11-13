@@ -110,6 +110,9 @@ fun SettingsScreen(
 
             item { SectionTitle("Tipografi Arab") }
             typographySection(style, onStyleChange)
+
+            item { SectionTitle("Perataan Teks Arab") }
+            alignmentSection(style, onStyleChange)
         }
     }
 }
@@ -370,7 +373,22 @@ private fun LazyListScope.typographySection(
                 valueRange = ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE,
                 valueFormat = { String.format("%.2f em", it) },
             )
-            // Alignment selector (dropdown)
+        }
+    }
+}
+
+/**
+ * Alignment section — its own card at the bottom of the Settings screen.
+ * The user picks how Arabic text should be aligned. The default is
+ * "Smart (Adaptif)" which picks the best alignment per-block based on
+ * content (Quran verses → right, dua/dzikir → justify).
+ */
+private fun LazyListScope.alignmentSection(
+    style: ArabicStyleSettings,
+    onChange: (ArabicStyleSettings) -> Unit,
+) {
+    item {
+        SettingsCard {
             var alignExpanded by remember { mutableStateOf(false) }
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
@@ -417,6 +435,18 @@ private fun LazyListScope.typographySection(
                     }
                 }
             }
+            // Helpful description of what the current mode does.
+            Text(
+                text = when (style.align) {
+                    ArabicAlign.Smart -> "Ayat Al-Qur'an (ber tanda ۝/۩) otomatis rata kanan (gaya Mushaf). Doa, dzikir, dan shalawat diratakan rata kanan-kiri agar blok bacaan rapi dan mudah dipindai. Frasa pendek tidak terpengaruh."
+                    ArabicAlign.Right -> "Seluruh teks Arab rata kanan (arah baca default Arab). Cocok untuk Mushaf gaya tradisional."
+                    ArabicAlign.Justify -> "Seluruh teks Arab diratakan rata kanan-kiri (kedua sisi rapi). Teks panjang yang terbalik ke beberapa baris akan direntangkan."
+                    ArabicAlign.Center -> "Seluruh teks Arab rata tengah. Cocok untuk kalimat pendek/frasa; teks panjang bisa terlihat berantakan."
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 4.dp, top = 0.dp, bottom = 4.dp),
+            )
         }
     }
 }

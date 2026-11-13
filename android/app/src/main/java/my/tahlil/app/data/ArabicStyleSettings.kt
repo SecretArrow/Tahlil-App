@@ -32,16 +32,18 @@ enum class ArabicStyleMode(val storageKey: String, val label: String, val descri
     }
 }
 
-/** Alignment for Arabic text — right-aligned (Mushaf style), justified, or centered. */
+/** Alignment for Arabic text — right-aligned (Mushaf style), justified, centered,
+ *  or Smart (adaptive: Quran verses → Right, dua/dzikir → Justify). */
 @Serializable
 enum class ArabicAlign(val storageKey: String, val label: String) {
+    Smart("smart", "Smart (Adaptif)"),
     Right("right", "Kanan"),
     Justify("justify", "Rata Kanan-Kiri"),
     Center("center", "Tengah");
 
     companion object {
         fun fromStorageKey(key: String?): ArabicAlign =
-            values().firstOrNull { it.storageKey == key } ?: Right
+            values().firstOrNull { it.storageKey == key } ?: Smart
     }
 }
 
@@ -63,7 +65,7 @@ data class ArabicStyleSettings(
     val bodyLineHeight: Float = 0.3f,  // em — extra gap between Arabic kalimat/sentences
     val wordSpacing: Float = 0.05f,     // em
     val letterSpacing: Float = 0f,      // em
-    val align: ArabicAlign = ArabicAlign.Right,
+    val align: ArabicAlign = ArabicAlign.Smart,
 ) {
     companion object {
         val Default = ArabicStyleSettings()
@@ -82,7 +84,7 @@ data class ArabicStyleSettings(
             lineHeight = 2.6f,
             wordSpacing = 0.18f,
             letterSpacing = 0.03f,
-            align = ArabicAlign.Right,
+            align = ArabicAlign.Smart,
         )
 
         /**

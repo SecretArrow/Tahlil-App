@@ -4,7 +4,7 @@ import * as React from "react";
 import { useTheme } from "next-themes";
 import { useArabicStyle } from "@/components/arabic-style-provider";
 import { useDisplaySettings } from "@/components/display-settings-provider";
-import { arabicStyleModes } from "@/data/arabic-style";
+import { arabicStyleModes, type ArabicStyleSettings } from "@/data/arabic-style";
 import { analyzeTajwid } from "@/lib/tajwid";
 
 /**
@@ -50,6 +50,29 @@ import { analyzeTajwid } from "@/lib/tajwid";
 // Matches ۝ (U+06DD ARABIC END OF AYAH) followed by one or more Arabic-Indic
 // digits (٠-٩). Capturing group lets String.split() include the marks.
 const AYAH_MARK_REGEX = /(۝[٠-٩]+)/g;
+
+/**
+ * Resolve the actual text-align value for a given Arabic string under the
+ * user's chosen alignment setting.
+ *
+ * "smart" mode picks adaptively based on content:
+ *  - Text containing Quran ayah marks (۝ or ۩) → Right. Quran verses are
+ *    traditionally right-aligned in Mushafs and never justified.
+ *  - Other text (dua, dzikir, shalawat) → Justify. Each clause is already
+ *    on its own line (display:block), so justify only stretches clauses that
+ *    wrap to multiple visual lines — producing a cleaner block reading.
+ *    Short single-line phrases are unaffected by justify (nothing to stretch).
+ *
+ * The other modes ("right" / "justify" / "center") pass through unchanged.
+ */
+function resolveTextAlign(
+  align: ArabicStyleSettings["align"],
+  text: string,
+): "right" | "justify" | "center" {
+  if (align !== "smart") return align;
+  if (text.includes("۝") || text.includes("۩")) return "right";
+  return "justify";
+}
 
 /** Color pairs for the colorizeArabic feature, indexed by resolved theme. */
 const COLORIZE_COLORS = {
@@ -437,7 +460,7 @@ type Props = {
     lineHeight: number;
     wordSpacing: number;
     letterSpacing?: number;
-    align: "right" | "justify" | "center";
+    align: ArabicStyleSettings["align"];
   };
   className?: string;
   lang?: string;
@@ -499,7 +522,10 @@ export function ArabicText({
     lineHeight: s.lineHeight,
     wordSpacing: `${s.wordSpacing}em`,
     letterSpacing: `${s.letterSpacing ?? 0}em`,
-    textAlign: s.align,
+    // Resolve "smart" alignment based on this block's text content so each
+    // block gets the appropriate alignment (Quran verses → right, dua/dzikir
+    // → justify). Pass through right/justify/center unchanged.
+    textAlign: resolveTextAlign(s.align, renderedText),
     direction: "rtl",
     unicodeBidi: "isolate",
   };

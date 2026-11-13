@@ -15,7 +15,17 @@ export type ArabicStyleSettings = {
   bodyLineHeight: number; // em — extra gap between Arabic kalimat lines
   wordSpacing: number; // em
   letterSpacing: number; // em — space BETWEEN letters within a word
-  align: "right" | "justify" | "center";
+  /**
+   * Text alignment for the Arabic block.
+   *  - "smart"     : Adaptive — Quran verses (with ۝/۩) are right-aligned
+   *                  (Mushaf convention), other text (dua, dzikir) is
+   *                  justified for a cleaner block reading. Short
+   *                  single-line phrases are unaffected by justify.
+   *  - "right"     : Always right-aligned (default Arabic reading direction).
+   *  - "justify"   : Always justified (both edges neat).
+   *  - "center"    : Always centered.
+   */
+  align: "smart" | "right" | "justify" | "center";
 };
 
 export const defaultArabicSettings: ArabicStyleSettings = {
@@ -25,7 +35,7 @@ export const defaultArabicSettings: ArabicStyleSettings = {
   bodyLineHeight: 0.3,
   wordSpacing: 0.05,
   letterSpacing: 0,
-  align: "right",
+  align: "smart",
 };
 
 export const arabicStyleModes: Record<

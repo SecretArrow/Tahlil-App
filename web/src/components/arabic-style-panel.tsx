@@ -491,22 +491,6 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                 onChange={setBodyLineHeight}
                 formatValue={(v) => `${v.toFixed(2)} em`}
               />
-              {/* Alignment */}
-              <div className="space-y-1.5">
-                <span className="block text-sm font-medium text-foreground">Perataan</span>
-                <div className="relative">
-                  <select
-                    value={settings.align}
-                    onChange={(e) => setAlign(e.target.value as "right" | "justify" | "center")}
-                    className="w-full appearance-none rounded-xl border border-border bg-background px-3 py-2 pr-9 text-sm text-foreground transition-colors hover:bg-accent focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  >
-                    <option value="right">Kanan</option>
-                    <option value="justify">Rata Kanan-Kiri</option>
-                    <option value="center">Tengah</option>
-                  </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                </div>
-              </div>
             </div>
           </section>
 
@@ -542,11 +526,13 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                 {" · "}
                 {settings.fontSize.toFixed(2)}rem / LH {settings.lineHeight.toFixed(2)} / WS{" "}
                 {settings.wordSpacing.toFixed(2)}em / LS {settings.letterSpacing.toFixed(3)}em /{" "}
-                {settings.align === "right"
-                  ? "rata kanan"
-                  : settings.align === "justify"
-                    ? "rata kanan-kiri"
-                    : "rata tengah"}
+                {settings.align === "smart"
+                  ? "smart adaptif"
+                  : settings.align === "right"
+                    ? "rata kanan"
+                    : settings.align === "justify"
+                      ? "rata kanan-kiri"
+                      : "rata tengah"}
                 {" · "}
                 Jarak Kalimat {settings.bodyLineHeight.toFixed(2)}em{" · "}
                 Koma: {toggles.punctuateArabic ? "ON" : "OFF"}
@@ -554,6 +540,39 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                 Warna: {toggles.colorizeArabic ? "ON" : "OFF"}
                 {" · "}
                 Tajwid: {toggles.tajwid ? "ON" : "OFF"}
+              </p>
+            </div>
+          </section>
+
+          {/* Alignment — own section at the bottom (after live preview) */}
+          <section className="space-y-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              Perataan Teks Arab
+            </h3>
+            <div className="space-y-1.5">
+              <div className="relative">
+                <select
+                  value={settings.align}
+                  onChange={(e) =>
+                    setAlign(e.target.value as "smart" | "right" | "justify" | "center")
+                  }
+                  className="w-full appearance-none rounded-xl border border-border bg-background px-3 py-2 pr-9 text-sm text-foreground transition-colors hover:bg-accent focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                >
+                  <option value="smart">Smart (Adaptif)</option>
+                  <option value="right">Kanan</option>
+                  <option value="justify">Rata Kanan-Kiri</option>
+                  <option value="center">Tengah</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {settings.align === "smart"
+                  ? "Ayat Al-Qur'an (ber tanda ۝/۩) otomatis rata kanan (gaya Mushaf). Doa, dzikir, dan shalawat diratakan rata kanan-kiri agar blok bacaan rapi dan mudah dipindai. Frasa pendek tidak terpengaruh."
+                  : settings.align === "right"
+                    ? "Seluruh teks Arab rata kanan (arah baca default Arab). Cocok untuk Mushaf gaya tradisional."
+                    : settings.align === "justify"
+                      ? "Seluruh teks Arab diratakan rata kanan-kiri (kedua sisi rapi). Teks panjang yang terbalik ke beberapa baris akan direntangkan."
+                      : "Seluruh teks Arab rata tengah. Cocok untuk kalimat pendek/frasa; teks panjang bisa terlihat berantakan."}
               </p>
             </div>
           </section>

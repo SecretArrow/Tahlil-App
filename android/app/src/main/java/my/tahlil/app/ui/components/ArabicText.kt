@@ -100,16 +100,26 @@ fun ArabicText(
         }
     }
 
-    val textAlign = when (style.align) {
-        ArabicAlign.Right -> TextAlign.Right
-        ArabicAlign.Justify -> TextAlign.Justify
-        ArabicAlign.Center -> TextAlign.Center
-    }
-
     // Apply Arabic comma transformation if the toggle is on.
     // (No-op for Quran verses — handled internally.)
     val renderedText = remember(text, toggles.punctuateArabic) {
         if (toggles.punctuateArabic) ArabicCommaUtil.addArabicCommas(text) else text
+    }
+
+    // Resolve the actual text alignment. "Smart" picks adaptively based on
+    // content: Quran verses (with ۝/۩ ayah marks) → Right (Mushaf
+    // convention — Quran is never justified in Mushafs); other text
+    // (dua, dzikir, shalawat) → Justify for a cleaner block reading.
+    // Short single-line phrases are unaffected by justify (no wrap to stretch).
+    val textAlign = when (style.align) {
+        ArabicAlign.Smart -> if (renderedText.contains("۝") || renderedText.contains("۩")) {
+            TextAlign.Right
+        } else {
+            TextAlign.Justify
+        }
+        ArabicAlign.Right -> TextAlign.Right
+        ArabicAlign.Justify -> TextAlign.Justify
+        ArabicAlign.Center -> TextAlign.Center
     }
 
     // Pick color pair based on theme.
