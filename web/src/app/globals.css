@@ -319,6 +319,15 @@
 .waqaf-mark {
   color: #1b51d0;
 }
+/* Hamzatul Washal marking (src/lib/hamza-washal.ts) — grayish blue
+   #7893B0 marks the wasl alif that stays SILENT when the recitation is
+   connected (washal); a word-initial wasl alif is pronounced when
+   starting the recitation (ibtida') and keeps the normal text color.
+   Follows the tajwid toggle automatically. Dark theme lightens the same
+   hue for contrast. */
+.hamza-washal-mark {
+  color: #7893b0;
+}
 .dark .tajwid-izhar {
   color: #fbbf24;
 }
@@ -342,6 +351,9 @@
 }
 .dark .waqaf-mark {
   color: #7b9dff;
+}
+.dark .hamza-washal-mark {
+  color: #a8bed4;
 }
 
 /* Decorative Islamic pattern background utility */

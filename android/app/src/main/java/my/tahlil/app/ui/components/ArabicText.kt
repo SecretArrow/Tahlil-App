@@ -39,6 +39,7 @@ import my.tahlil.app.data.DisplayToggles
 import my.tahlil.app.util.ArabicCommaUtil
 import my.tahlil.app.util.AyahMarkUtil
 import my.tahlil.app.util.ColorizeUtil
+import my.tahlil.app.util.HamzaWashalUtil
 import my.tahlil.app.util.TajwidUtil
 import my.tahlil.app.util.WaqafUtil
 
@@ -57,6 +58,25 @@ internal val WAQAF_BLUE_DARK = Color(0xFF7B9DFF)
  */
 internal fun waqafColorFor(isDark: Boolean): Color =
     if (isDark) WAQAF_BLUE_DARK else WAQAF_BLUE_LIGHT
+
+/**
+ * Hamzatul Washal highlight — grayish blue for the SILENT wasl-alif, the
+ * exact spec color of the web's hamza-washal engine (light theme).
+ */
+internal val HAMZA_WASHAL_LIGHT = Color(0xFF7893B0)
+
+/** Hamzatul Washal gray-blue — lightened in dark theme for contrast (same as web). */
+internal val HAMZA_WASHAL_DARK = Color(0xFFA8BED4)
+
+/**
+ * Hamzatul Washal color for the active theme — shared by the text
+ * highlighting in [ArabicText] and the settings legend swatch so both
+ * always match. The feature has no toggle of its own: it is automatically
+ * active together with the Tajwid switch (see [hamzaOn] in the render
+ * pipeline below).
+ */
+internal fun hamzaWashalColorFor(isDark: Boolean): Color =
+    if (isDark) HAMZA_WASHAL_DARK else HAMZA_WASHAL_LIGHT
 
 /**
  * ArabicText — renders an Arabic string with the user's chosen style settings
@@ -98,6 +118,12 @@ internal fun waqafColorFor(isDark: Boolean): Color =
  * the sub-segments NOT already covered by a tajwid rule (same behavior as
  * the web's `renderTajwidAndWaqafText`). Either toggle being on disables
  * word colorization.
+ *
+ * Hamzatul Washal ([HamzaWashalUtil.analyzeHamzaWashal]) has NO toggle of
+ * its own: it is automatically active together with the Tajwid switch, and
+ * its silent wasl-alifs are filled with grayish blue ([HAMZA_WASHAL_LIGHT] /
+ * [HAMZA_WASHAL_DARK]) at the LOWEST precedence — tajwid > waqaf > hamza
+ * (same behavior as the web's hamza-washal clipping).
  *
  * Port of `ArabicText` from `arabic-text.tsx`.
  *
@@ -161,6 +187,9 @@ fun ArabicText(
     // not already covered by a tajwid rule).
     val tajwidOn = toggles.tajwid
     val waqafOn = toggles.waqafColor
+    // Hamzatul Washal has NO toggle/setting of its own (spec): it rides the
+    // EXISTING tajwid flag — one switch lights both, nothing is persisted.
+    val hamzaOn = tajwidOn
     val effectiveColors = if (tajwidOn) null else colors
 
     // Shared counter for colorize alternation — reset each render.
@@ -176,10 +205,11 @@ fun ArabicText(
     )
 
     val lines = remember(
-        renderedText, effectiveColors, counter, toggles.splitArabicLines, tajwidOn, waqafOn, isDark,
+        renderedText, effectiveColors, counter, toggles.splitArabicLines, tajwidOn, waqafOn, hamzaOn, isDark,
     ) {
         buildLines(
             renderedText, effectiveColors, counter, toggles.splitArabicLines, tajwidOn, waqafOn, isDark,
+            hamzaOn,
         )
     }
 
@@ -339,7 +369,8 @@ private fun AyahMark(digits: String, baseFontSize: TextUnit) {
  *
  * [tajwidOn] / [waqafOn] switch to the combined tajwid+waqaf renderer
  * ([tajwidAndWaqafLine]) — rule colors take precedence, the waqaf blue only
- * fills uncovered sub-segments.
+ * fills uncovered sub-segments. [hamzaOn] adds the Hamzatul Washal marking
+ * (always together with tajwid — see [ArabicText]).
  */
 private fun buildLines(
     text: String,
@@ -349,6 +380,7 @@ private fun buildLines(
     tajwidOn: Boolean,
     waqafOn: Boolean,
     isDark: Boolean,
+    hamzaOn: Boolean = false,
 ): List<Line> {
     val ayahMarks = AyahMarkUtil.findMarks(text)
     val out = mutableListOf<Line>()
@@ -356,13 +388,21 @@ private fun buildLines(
     if (ayahMarks.isEmpty()) {
         if (!splitSentences) {
             if (text.isNotBlank()) {
-                out.add(Line.Sentence(colorizeLine(text.trim(), colors, counter, tajwidOn, waqafOn, isDark)))
+                out.add(
+                    Line.Sentence(
+                        colorizeLine(text.trim(), colors, counter, tajwidOn, waqafOn, isDark, hamzaOn)
+                    )
+                )
             }
             return out
         }
         // No ayah marks — split by sentence.
         AyahMarkUtil.splitBySentence(text).forEach { sentenceLine ->
-            out.add(Line.Sentence(colorizeLine(sentenceLine.text, colors, counter, tajwidOn, waqafOn, isDark)))
+            out.add(
+                Line.Sentence(
+                    colorizeLine(sentenceLine.text, colors, counter, tajwidOn, waqafOn, isDark, hamzaOn)
+                )
+            )
         }
         return out
     }
@@ -372,7 +412,12 @@ private fun buildLines(
         val verse = text.substring(cursor, mark.start)
         if (!splitSentences) {
             // Keep the whole verse on one line — comma splitting off.
-            out.add(Line.Ayah(colorizeLine(verse, colors, counter, tajwidOn, waqafOn, isDark), mark.digits))
+            out.add(
+                Line.Ayah(
+                    colorizeLine(verse, colors, counter, tajwidOn, waqafOn, isDark, hamzaOn),
+                    mark.digits,
+                )
+            )
         } else {
             // Try sentence-splitting within the verse for dua-style text mixed
             // with ayah marks. If splitBySentence yields one fragment, colorize
@@ -380,14 +425,28 @@ private fun buildLines(
             // final verse with the mark.
             val sentences = AyahMarkUtil.splitBySentence(verse)
             if (sentences.size <= 1) {
-                out.add(Line.Ayah(colorizeLine(verse, colors, counter, tajwidOn, waqafOn, isDark), mark.digits))
+                out.add(
+                    Line.Ayah(
+                        colorizeLine(verse, colors, counter, tajwidOn, waqafOn, isDark, hamzaOn),
+                        mark.digits,
+                    )
+                )
             } else {
                 // Emit each sentence, then attach the mark to the LAST fragment.
                 sentences.forEachIndexed { i, s ->
                     if (i == sentences.lastIndex) {
-                        out.add(Line.Ayah(colorizeLine(s.text, colors, counter, tajwidOn, waqafOn, isDark), mark.digits))
+                        out.add(
+                            Line.Ayah(
+                                colorizeLine(s.text, colors, counter, tajwidOn, waqafOn, isDark, hamzaOn),
+                                mark.digits,
+                            )
+                        )
                     } else {
-                        out.add(Line.Sentence(colorizeLine(s.text, colors, counter, tajwidOn, waqafOn, isDark)))
+                        out.add(
+                            Line.Sentence(
+                                colorizeLine(s.text, colors, counter, tajwidOn, waqafOn, isDark, hamzaOn)
+                            )
+                        )
                     }
                 }
             }
@@ -400,11 +459,19 @@ private fun buildLines(
         val trailing = text.substring(cursor)
         if (!splitSentences) {
             if (trailing.isNotBlank()) {
-                out.add(Line.Trailing(colorizeLine(trailing.trim(), colors, counter, tajwidOn, waqafOn, isDark)))
+                out.add(
+                    Line.Trailing(
+                        colorizeLine(trailing.trim(), colors, counter, tajwidOn, waqafOn, isDark, hamzaOn)
+                    )
+                )
             }
         } else {
             AyahMarkUtil.splitBySentence(trailing).forEach { s ->
-                out.add(Line.Trailing(colorizeLine(s.text, colors, counter, tajwidOn, waqafOn, isDark)))
+                out.add(
+                    Line.Trailing(
+                        colorizeLine(s.text, colors, counter, tajwidOn, waqafOn, isDark, hamzaOn)
+                    )
+                )
             }
         }
     }
@@ -417,7 +484,10 @@ private fun buildLines(
  *
  * When [tajwidOn] or [waqafOn] is true, the combined tajwid+waqaf renderer
  * is used instead and word colorization is skipped entirely (rule colors
- * take precedence — matching the web's `decorateText` entry point).
+ * take precedence — matching the web's `decorateText` entry point). The
+ * same applies when [hamzaOn] is true (Hamzatul Washal marking, which is
+ * active together with tajwid and renders through the combined pipeline
+ * too — see [tajwidAndWaqafLine]).
  *
  * Whitespace tokens are preserved verbatim so word spacing is unaffected.
  */
@@ -428,9 +498,10 @@ private fun colorizeLine(
     tajwidOn: Boolean,
     waqafOn: Boolean,
     isDark: Boolean,
+    hamzaOn: Boolean = false,
 ): AnnotatedString {
     if (text.isEmpty()) return AnnotatedString("")
-    if (tajwidOn || waqafOn) return tajwidAndWaqafLine(text, isDark, waqafOn)
+    if (tajwidOn || waqafOn || hamzaOn) return tajwidAndWaqafLine(text, isDark, waqafOn, hamzaOn)
     if (colors == null) return AnnotatedString(text)
 
     return buildAnnotatedString {
@@ -448,8 +519,8 @@ private fun colorizeLine(
 }
 
 /**
- * One highlighted segment in the combined tajwid+waqaf render — either a
- * tajwid rule span or a waqaf (blue) span.
+ * One highlighted segment in the combined tajwid+waqaf render — a tajwid
+ * rule span, a waqaf (blue) span, or a hamza-washal (gray-blue) span.
  */
 private sealed class HighlightSeg {
     abstract val start: Int
@@ -460,26 +531,40 @@ private sealed class HighlightSeg {
         val rule: TajwidUtil.Rule,
     ) : HighlightSeg()
     data class Waqaf(override val start: Int, override val end: Int) : HighlightSeg()
+    data class Hamza(override val start: Int, override val end: Int) : HighlightSeg()
 }
 
 /**
- * Wrap tajwid rule segments (detected by [TajwidUtil.analyzeTajwid]) AND
- * waqaf segments (detected by [WaqafUtil.analyzeWaqaf], when [waqafOn] is
- * true) in colored spans — the Compose counterpart of the web's
- * `renderTajwidAndWaqafText`. All ranges are already sorted &
- * non-overlapping WITHIN each set, so the merge is a simple walk:
+ * Wrap tajwid rule segments (detected by [TajwidUtil.analyzeTajwid]), waqaf
+ * segments (detected by [WaqafUtil.analyzeWaqaf], when [waqafOn] is true)
+ * AND hamza-washal segments (detected by [HamzaWashalUtil.analyzeHamzaWashal],
+ * when [hamzaOn] is true) in colored spans — the Compose counterpart of the
+ * web's `renderTajwidAndWaqafText` + hamza-washal composition. All ranges
+ * are already sorted & non-overlapping WITHIN each set, so the merge is a
+ * simple walk:
  *
- *  - Tajwid ranges take PRECEDENCE: any overlap between a waqaf range and
- *    a tajwid range is clipped away from the waqaf side, so the seven
- *    tajwid colors are never disturbed.
+ *  - Tajwid ranges take the HIGHEST precedence: any overlap between a waqaf
+ *    range and a tajwid range is clipped away from the waqaf side, so the
+ *    seven tajwid colors are never disturbed.
  *  - Waqaf segments get the theme-aware waqaf blue
  *    ([WAQAF_BLUE_LIGHT] / [WAQAF_BLUE_DARK]).
+ *  - Hamza-washal ranges have the LOWEST precedence: they are clipped
+ *    against the UNION of tajwid + surviving waqaf ranges, so both existing
+ *    features are never disturbed (spec requirement 8:
+ *    tajwid > waqaf > hamza). In practice they rarely meet — waqaf colors
+ *    word tails while the wasl alif is always the word head.
  */
-private fun tajwidAndWaqafLine(text: String, isDark: Boolean, waqafOn: Boolean): AnnotatedString {
+private fun tajwidAndWaqafLine(
+    text: String,
+    isDark: Boolean,
+    waqafOn: Boolean,
+    hamzaOn: Boolean = false,
+): AnnotatedString {
     if (text.isEmpty()) return AnnotatedString("")
     val tajwidRanges = TajwidUtil.analyzeTajwid(text)
     val waqafRanges = if (waqafOn) WaqafUtil.analyzeWaqaf(text) else emptyList()
-    if (tajwidRanges.isEmpty() && waqafRanges.isEmpty()) return AnnotatedString(text)
+    val hamzaRanges = if (hamzaOn) HamzaWashalUtil.analyzeHamzaWashal(text) else emptyList()
+    if (tajwidRanges.isEmpty() && waqafRanges.isEmpty() && hamzaRanges.isEmpty()) return AnnotatedString(text)
 
     val segs = mutableListOf<HighlightSeg>()
     tajwidRanges.forEach { r ->
@@ -487,19 +572,52 @@ private fun tajwidAndWaqafLine(text: String, isDark: Boolean, waqafOn: Boolean):
     }
 
     // Subtract tajwid-covered intervals from each waqaf range. Tajwid ranges
-    // are sorted & disjoint, so a linear clip per waqaf range suffices.
+    // are sorted & disjoint, so a linear clip per waqaf range suffices. The
+    // surviving waqaf segments are kept — they become part of the blocker
+    // set that hamza ranges must yield to below.
+    val waqafSegs = mutableListOf<HighlightSeg.Waqaf>()
     for (w in waqafRanges) {
         var s = w.start
         for (t in tajwidRanges) {
             if (t.end <= s) continue // entirely before
             if (t.start >= w.end) break // entirely after
             if (t.start > s) {
-                segs.add(HighlightSeg.Waqaf(s, minOf(t.start, w.end)))
+                val seg = HighlightSeg.Waqaf(s, minOf(t.start, w.end))
+                segs.add(seg)
+                waqafSegs.add(seg)
             }
             s = maxOf(s, t.end)
             if (s >= w.end) break
         }
-        if (s < w.end) segs.add(HighlightSeg.Waqaf(s, w.end))
+        if (s < w.end) {
+            val seg = HighlightSeg.Waqaf(s, w.end)
+            segs.add(seg)
+            waqafSegs.add(seg)
+        }
+    }
+
+    // Subtract tajwid + waqaf covered intervals from each hamza range —
+    // hamza-washal has the lowest color precedence. The blocker set is the
+    // union of all tajwid ranges and all surviving waqaf segments, sorted by
+    // start for a linear clip per hamza range (same algorithm as above).
+    if (hamzaRanges.isNotEmpty()) {
+        val blockers = buildList {
+            tajwidRanges.forEach { add(it.start to it.end) }
+            waqafSegs.forEach { add(it.start to it.end) }
+        }.sortedBy { it.first }
+        for (h in hamzaRanges) {
+            var s = h.start
+            for ((bStart, bEnd) in blockers) {
+                if (bEnd <= s) continue // entirely before
+                if (bStart >= h.end) break // entirely after
+                if (bStart > s) {
+                    segs.add(HighlightSeg.Hamza(s, minOf(bStart, h.end)))
+                }
+                s = maxOf(s, bEnd)
+                if (s >= h.end) break
+            }
+            if (s < h.end) segs.add(HighlightSeg.Hamza(s, h.end))
+        }
     }
 
     segs.sortBy { it.start }
@@ -516,6 +634,11 @@ private fun tajwidAndWaqafLine(text: String, isDark: Boolean, waqafOn: Boolean):
                 }
                 is HighlightSeg.Waqaf -> withStyle(
                     SpanStyle(color = waqafColorFor(isDark))
+                ) {
+                    append(text.substring(seg.start, seg.end))
+                }
+                is HighlightSeg.Hamza -> withStyle(
+                    SpanStyle(color = hamzaWashalColorFor(isDark))
                 ) {
                     append(text.substring(seg.start, seg.end))
                 }

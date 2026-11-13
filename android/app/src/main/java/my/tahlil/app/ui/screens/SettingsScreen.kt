@@ -49,7 +49,9 @@ import my.tahlil.app.ui.components.ArabicText
 import my.tahlil.app.ui.components.SliderRow
 import my.tahlil.app.ui.components.ToggleRow
 import my.tahlil.app.ui.components.contentMaxWidth
+import my.tahlil.app.ui.components.hamzaWashalColorFor
 import my.tahlil.app.ui.components.waqafColorFor
+import my.tahlil.app.util.HamzaWashalUtil
 import my.tahlil.app.util.TajwidUtil
 import my.tahlil.app.util.WaqafUtil
 
@@ -380,6 +382,10 @@ private fun ThemeChip(label: String, selected: Boolean, onClick: () -> Unit) {
  * shown right under the "Tajwid" toggle while it is active (port of the
  * web's `TajwidLegend` component). Colors come from [TajwidUtil.COLORS],
  * so the legend always matches the actual highlighting.
+ *
+ * An extra row documents Hamzatul Washal ([HamzaWashalUtil]): the silent
+ * wasl-alif is marked grayish blue automatically whenever Tajwid is on —
+ * the feature has no toggle of its own, so its legend lives in this block.
  */
 @Composable
 private fun TajwidLegend(isDark: Boolean) {
@@ -412,6 +418,27 @@ private fun TajwidLegend(isDark: Boolean) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
+        }
+        // Hamzatul Washal — active together with Tajwid (no separate
+        // toggle). Same row pattern as the waqaf legend rows; the swatch
+        // uses [hamzaWashalColorFor], the same helper the text highlighting
+        // uses, so the legend always matches the actual coloring.
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(vertical = 2.dp),
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(10.dp)
+                    .clip(CircleShape)
+                    .background(hamzaWashalColorFor(isDark)),
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                text = HamzaWashalUtil.META.name + " — " + HamzaWashalUtil.META.desc,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }

@@ -7,6 +7,7 @@ import { useDisplaySettings } from "@/components/display-settings-provider";
 import { arabicStyleModes, type ArabicStyleSettings } from "@/data/arabic-style";
 import { analyzeTajwid } from "@/lib/tajwid";
 import { analyzeWaqaf } from "@/lib/waqaf";
+import { analyzeHamzaWashal } from "@/lib/hamza-washal";
 
 /**
  * ArabicText — renders an Arabic string with the user's chosen style settings
@@ -46,6 +47,10 @@ import { analyzeWaqaf } from "@/lib/waqaf";
  *    are wrapped in `.tajwid-<rule>` spans colored via globals.css.
  *    Detection is deterministic (pure function of the text), so unlike
  *    colorize it needs no "mounted" gate — SSR and client agree.
+ *  - Hamzatul Washal (auto with tajwid): when tajwid is on, the wasl
+ *    alifs that stay SILENT in connected recitation (src/lib/hamza-washal.ts)
+ *    are wrapped in `.hamza-washal-mark` spans (grayish blue #7893B0).
+ *    No separate toggle — the marking follows the tajwid toggle.
  */
 
 // Matches ۝ (U+06DD ARABIC END OF AYAH) followed by one or more Arabic-Indic
@@ -267,30 +272,59 @@ function maybeColorize(
   return colorizeWords(text, colors, counterRef, keyPrefix);
 }
 
+type SegKind = "tajwid" | "waqaf" | "hamza";
+
+type Seg = { start: number; end: number; kind: SegKind; rule?: string };
+
+/** Push `range` (kind) into `segs`, clipped against the sorted & disjoint
+ *  `blockers` intervals — the blocked parts are already covered by a
+ *  higher-precedence marking (tajwid rule color or waqaf blue), so only
+ *  the uncovered sub-intervals are emitted. */
+function pushClipped(
+  segs: Seg[],
+  range: { start: number; end: number },
+  kind: SegKind,
+  blockers: { start: number; end: number }[],
+) {
+  let s = range.start;
+  for (const b of blockers) {
+    if (b.end <= s) continue; // entirely before
+    if (b.start >= range.end) break; // entirely after
+    if (b.start > s) {
+      segs.push({ start: s, end: Math.min(b.start, range.end), kind });
+    }
+    s = Math.max(s, b.end);
+    if (s >= range.end) break;
+  }
+  if (s < range.end) segs.push({ start: s, end: range.end, kind });
+}
+
 /**
- * Wrap tajwid rule segments (detected by analyzeTajwid) AND waqaf segments
- * (detected by analyzeWaqaf, when the waqafColor toggle is on) in colored
- * spans. All ranges are already sorted & non-overlapping WITHIN each set,
- * so the merge is a simple two-pointer walk:
+ * Wrap tajwid rule segments (detected by analyzeTajwid), waqaf segments
+ * (detected by analyzeWaqaf, when the waqafColor toggle is on) AND silent
+ * hamzatul-wasl alif segments (detected by analyzeHamzaWashal, auto-on
+ * with tajwid) in colored spans. All ranges are already sorted &
+ * non-overlapping WITHIN each set; precedence is resolved by clipping:
  *
- *  - Tajwid ranges take PRECEDENCE: any overlap between a waqaf range and
- *    a tajwid range is clipped away from the waqaf side, so the seven
- *    tajwid colors are never disturbed (per spec requirement 6).
+ *  - Tajwid ranges take the HIGHEST precedence: any overlap between a
+ *    waqaf range and a tajwid range is clipped away from the waqaf side.
+ *  - Hamzatul-wasl ranges take the LOWEST precedence: they are clipped
+ *    against BOTH tajwid and waqaf ranges (the seven tajwid colors and
+ *    the waqaf blue #1B51D0 are never disturbed — spec requirement 8).
  *  - Waqaf segments get the `.waqaf-mark` class (blue #1B51D0, lightened
- *    in dark theme via globals.css).
+ *    in dark theme); hamza segments get `.hamza-washal-mark` (grayish
+ *    blue #7893B0, lightened in dark theme).
  */
 function renderTajwidAndWaqafText(
   text: string,
   keyPrefix: string,
   waqafOn: boolean,
+  hamzaOn: boolean,
 ): React.ReactNode {
   const tajwidRanges = analyzeTajwid(text);
   const waqafRanges = waqafOn ? analyzeWaqaf(text) : [];
+  const hamzaRanges = hamzaOn ? analyzeHamzaWashal(text) : [];
 
-  // Subtract tajwid-covered intervals from each waqaf range.
-  type Seg =
-    | { start: number; end: number; kind: "tajwid"; rule: string }
-    | { start: number; end: number; kind: "waqaf" };
   const segs: Seg[] = tajwidRanges.map((r) => ({
     start: r.start,
     end: r.end,
@@ -299,21 +333,21 @@ function renderTajwidAndWaqafText(
   }));
 
   for (const w of waqafRanges) {
-    let s = w.start;
-    // Clip against every tajwid range (they are sorted & disjoint).
-    for (const t of tajwidRanges) {
-      if (t.end <= s) continue; // entirely before
-      if (t.start >= w.end) break; // entirely after
-      if (t.start > s) {
-        segs.push({ start: s, end: Math.min(t.start, w.end), kind: "waqaf" });
-      }
-      s = Math.max(s, t.end);
-      if (s >= w.end) break;
-    }
-    if (s < w.end) segs.push({ start: s, end: w.end, kind: "waqaf" });
+    pushClipped(segs, w, "waqaf", tajwidRanges);
   }
 
-  if (segs.length === 0) return text;
+  // Hamzatul washal loses to both tajwid and waqaf — combine them into
+  // one sorted blocker list (both sets are individually sorted & disjoint).
+  if (hamzaRanges.length > 0) {
+    const blockers = [
+      ...tajwidRanges.map((r) => ({ start: r.start, end: r.end })),
+      ...waqafRanges.map((r) => ({ start: r.start, end: r.end })),
+    ].sort((a, b) => a.start - b.start);
+    for (const h of hamzaRanges) {
+      pushClipped(segs, h, "hamza", blockers);
+    }
+  }
+
   segs.sort((a, b) => a.start - b.start);
 
   const nodes: React.ReactNode[] = [];
@@ -326,9 +360,15 @@ function renderTajwidAndWaqafText(
           {text.slice(seg.start, seg.end)}
         </span>,
       );
-    } else {
+    } else if (seg.kind === "waqaf") {
       nodes.push(
         <span key={`${keyPrefix}-wq-${i}`} className="waqaf-mark">
+          {text.slice(seg.start, seg.end)}
+        </span>,
+      );
+    } else {
+      nodes.push(
+        <span key={`${keyPrefix}-hw-${i}`} className="hamza-washal-mark">
           {text.slice(seg.start, seg.end)}
         </span>,
       );
@@ -341,7 +381,8 @@ function renderTajwidAndWaqafText(
 
 /** Single text-decoration entry point used by every render path: tajwid
  *  highlighting takes precedence over the alternating word colorize, and
- *  waqaf blue composes with tajwid (clipped to non-overlapping segments). */
+ *  waqaf blue + hamzatul-wasl gray-blue compose with tajwid (clipped to
+ *  non-overlapping segments). */
 function decorateText(
   text: string,
   colors: readonly [string, string] | null,
@@ -349,8 +390,9 @@ function decorateText(
   keyPrefix: string,
   tajwid: boolean,
   waqaf = false,
+  hamza = false,
 ): React.ReactNode {
-  if (tajwid || waqaf) return renderTajwidAndWaqafText(text, keyPrefix, waqaf);
+  if (tajwid || waqaf || hamza) return renderTajwidAndWaqafText(text, keyPrefix, waqaf, hamza);
   return maybeColorize(text, colors, counterRef, keyPrefix);
 }
 
@@ -378,6 +420,7 @@ function renderArabicWithAyahMarks(
   tajwid: boolean = false,
   gapEm: number = 0.25,
   waqaf: boolean = false,
+  hamza: boolean = false,
 ): React.ReactNode[] {
   const lineStyle = makeLineStyle(gapEm);
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
@@ -390,12 +433,12 @@ function renderArabicWithAyahMarks(
       if (!trimmed) return [];
       return [
         <span key={`${keyPrefix}-0`} className="ayah-line" style={lineStyle}>
-          {decorateText(trimmed, colors, counterRef, keyPrefix, tajwid, waqaf)}
+          {decorateText(trimmed, colors, counterRef, keyPrefix, tajwid, waqaf, hamza)}
         </span>,
       ];
     }
     // Split by Arabic comma (،) or Latin period (.) to break into lines.
-    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid, gapEm, waqaf);
+    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid, gapEm, waqaf, hamza);
   }
 
   const nodes: React.ReactNode[] = [];
@@ -415,7 +458,7 @@ function renderArabicWithAyahMarks(
     // AyahMark ornament keeps its own CSS-driven styling.
     nodes.push(
       <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={lineStyle}>
-        {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid, waqaf)}
+        {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid, waqaf, hamza)}
         <AyahMark digit={digit} />
       </span>,
     );
@@ -433,7 +476,7 @@ function renderArabicWithAyahMarks(
       if (trimmed) {
         nodes.push(
           <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={lineStyle}>
-            {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid, waqaf)}
+            {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid, waqaf, hamza)}
           </span>,
         );
       }
@@ -448,6 +491,7 @@ function renderArabicWithAyahMarks(
           tajwid,
           gapEm,
           waqaf,
+          hamza,
         ),
       );
     }
@@ -473,6 +517,7 @@ function splitBySentence(
   tajwid: boolean = false,
   gapEm: number = 0.25,
   waqaf: boolean = false,
+  hamza: boolean = false,
 ): React.ReactNode[] {
   const lineStyle = makeLineStyle(gapEm);
   // Trim leading/trailing whitespace
@@ -493,7 +538,15 @@ function splitBySentence(
     if (part === "،" || part === ".") {
       lines.push(
         <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={lineStyle}>
-          {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid, waqaf)}
+          {decorateText(
+            current,
+            colors,
+            counterRef,
+            `${keyPrefix}-${keyIdx}`,
+            tajwid,
+            waqaf,
+            hamza,
+          )}
         </span>,
       );
       current = "";
@@ -503,7 +556,7 @@ function splitBySentence(
   if (current.trim()) {
     lines.push(
       <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={lineStyle}>
-        {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid, waqaf)}
+        {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid, waqaf, hamza)}
       </span>,
     );
   }
@@ -561,6 +614,10 @@ export function ArabicText({
   // waqaf blue only fills segments not already colored by a tajwid rule).
   // Also skipped in the compare view.
   const waqafOn = toggles.waqafColor && !forceMode;
+  // Hamzatul Washal marking — follows the TAJWID toggle automatically
+  // (spec requirement 7): active when tajwid is on, off when it is off.
+  // The gray-blue fills segments not already covered by tajwid or waqaf.
+  const hamzaOn = tajwidOn;
 
   // Pick color pair based on resolved theme. Only applied after mount to
   // avoid SSR mismatch (resolvedTheme is undefined on first render).
@@ -615,6 +672,7 @@ export function ArabicText({
         // gap knob — and forceSettings's type doesn't carry bodyLineHeight.
         settings.bodyLineHeight,
         waqafOn,
+        hamzaOn,
       )}
       {suffix}
     </p>
