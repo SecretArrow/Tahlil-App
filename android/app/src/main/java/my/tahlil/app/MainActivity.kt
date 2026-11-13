@@ -20,9 +20,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
@@ -108,7 +108,12 @@ class MainActivity : ComponentActivity() {
         }
 
         val viewModel: TahlilViewModel = viewModel(factory = factory)
-        val uiState by viewModel.uiState.collectAsState()
+        // collectAsStateWithLifecycle: stops collecting the StateFlow when the
+        // Composable isn't at least STARTED — saves battery when the app is
+        // backgrounded. Recommended by the jetpack-compose-performance skill
+        // (Category 5: Effects, lifecycle, and threading) for any UI state
+        // Flow collected on Android.
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
         // Compute the actual dark flag from the user's preference + system.
         val systemDark = isSystemInDarkTheme()

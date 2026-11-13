@@ -100,22 +100,22 @@ fun SettingsScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            item { SectionTitle("Tampilan") }
+            item(key = "title_tampilan", contentType = { "title" }) { SectionTitle("Tampilan") }
             togglesSection(toggles, onTogglesChange, isDark)
 
-            item { SectionTitle("Gulir Otomatis") }
+            item(key = "title_autoscroll", contentType = { "title" }) { SectionTitle("Gulir Otomatis") }
             autoScrollSection(toggles, onTogglesChange)
 
-            item { SectionTitle("Tema") }
+            item(key = "title_tema", contentType = { "title" }) { SectionTitle("Tema") }
             themeSection(themeMode, onThemeModeChange)
 
-            item { SectionTitle("Mode Font Arab") }
+            item(key = "title_fontmode", contentType = { "title" }) { SectionTitle("Mode Font Arab") }
             fontModeSection(style, onStyleChange)
 
-            item { SectionTitle("Tipografi Arab") }
+            item(key = "title_tipografi", contentType = { "title" }) { SectionTitle("Tipografi Arab") }
             typographySection(style, onStyleChange)
 
-            item { SectionTitle("Perataan Teks Arab") }
+            item(key = "title_perataan", contentType = { "title" }) { SectionTitle("Perataan Teks Arab") }
             alignmentSection(style, onStyleChange)
         }
     }
@@ -151,7 +151,7 @@ private fun LazyListScope.autoScrollSection(
     toggles: DisplayToggles,
     onChange: (DisplayToggles) -> Unit,
 ) {
-    item {
+    item(key = "autoscroll", contentType = { "settings_card" }) {
         SettingsCard {
             ToggleRow(
                 title = "Aktifkan Gulir Otomatis",
@@ -270,7 +270,7 @@ private fun LazyListScope.togglesSection(
     onChange: (DisplayToggles) -> Unit,
     isDark: Boolean,
 ) {
-    item {
+    item(key = "toggles", contentType = { "settings_card" }) {
         SettingsCard {
             ToggleRow(
                 title = "Teks Arab",
@@ -331,7 +331,7 @@ private fun LazyListScope.themeSection(
     themeMode: ThemeMode,
     onChange: (ThemeMode) -> Unit,
 ) {
-    item {
+    item(key = "theme", contentType = { "settings_card" }) {
         SettingsCard {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
@@ -403,7 +403,7 @@ private fun LazyListScope.fontModeSection(
     style: ArabicStyleSettings,
     onChange: (ArabicStyleSettings) -> Unit,
 ) {
-    item {
+    item(key = "fontmode", contentType = { "settings_card" }) {
         SettingsCard {
             Column(modifier = Modifier.padding(vertical = 8.dp)) {
                 ArabicStyleMode.values().forEach { mode ->
@@ -460,7 +460,7 @@ private fun LazyListScope.typographySection(
     style: ArabicStyleSettings,
     onChange: (ArabicStyleSettings) -> Unit,
 ) {
-    item {
+    item(key = "tipografi", contentType = { "settings_card" }) {
         SettingsCard {
             SliderRow(
                 title = "Ukuran Font",
@@ -511,7 +511,7 @@ private fun LazyListScope.alignmentSection(
     style: ArabicStyleSettings,
     onChange: (ArabicStyleSettings) -> Unit,
 ) {
-    item {
+    item(key = "perataan", contentType = { "settings_card" }) {
         SettingsCard {
             var alignExpanded by remember { mutableStateOf(false) }
             Row(

@@ -264,7 +264,7 @@ fun HomeScreen(
                 sections.firstOrNull { it.id == id }
             }
             if (lastSection != null) {
-                item(key = "continue_reading") {
+                item(key = "continue_reading", contentType = { "continue_reading" }) {
                     ContinueReadingCard(
                         sectionTitle = lastSection.title,
                         sectionNumber = lastSection.number,
@@ -275,12 +275,19 @@ fun HomeScreen(
                 }
             }
 
-            item(key = "hero") {
+            item(key = "hero", contentType = { "hero" }) {
                 Hero(
                     onCtaClick = onSectionClick,
                 )
             }
-            items(items = sections, key = { it.id }) { section ->
+            items(
+                items = sections,
+                key = { it.id },
+                // contentType lets Compose reuse composition slots when items
+                // scroll out and back in (Compose 1.7+ best practice — see
+                // the jetpack-compose-performance skill, Category 3).
+                contentType = { "section" },
+            ) { section ->
                 SectionCard(
                     section = section,
                     toggles = toggles,
@@ -289,7 +296,7 @@ fun HomeScreen(
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )
             }
-            item(key = "footer") {
+            item(key = "footer", contentType = { "footer" }) {
                 Footer()
             }
         }

@@ -128,7 +128,14 @@ fun SectionDetailScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            items(items = sections, key = { it.id }) { section ->
+            items(
+                items = sections,
+                key = { it.id },
+                // contentType lets Compose reuse composition slots when items
+                // scroll out and back in (Compose 1.7+ best practice — see
+                // the jetpack-compose-performance skill, Category 3).
+                contentType = { "section" },
+            ) { section ->
                 SectionCard(
                     section = section,
                     toggles = toggles,
@@ -139,7 +146,7 @@ fun SectionDetailScreen(
                         .padding(horizontal = 16.dp),
                 )
             }
-            item(key = "footer") {
+            item(key = "footer", contentType = { "footer" }) {
                 Footer(modifier = Modifier.fillMaxWidth())
             }
         }
