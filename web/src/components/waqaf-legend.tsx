@@ -9,9 +9,9 @@ import { WAQAF_RULES_META } from "@/lib/waqaf";
  *
  * The blue marks letters whose reading changes when the reciter stops:
  * waqaf bil iskan, mad aridh lissukun, mad iwadh. Light theme uses the
- * exact #1B51D0; dark theme lightens the same blue (#7B9DFF) for
- * contrast — the legend swatch follows the active theme via the same
- * `.waqaf-mark` class the text uses.
+ * exact specified blue; dark theme lightens the same blue for contrast —
+ * the legend swatch follows the active theme via the same `.waqaf-mark`
+ * class the text uses.
  */
 export function WaqafLegend({ className = "" }: { className?: string }) {
   return (
@@ -30,9 +30,9 @@ export function WaqafLegend({ className = "" }: { className?: string }) {
         </div>
       ))}
       <p className="text-[11px] leading-snug text-muted-foreground/80">
-        Warna biru <span className="waqaf-mark font-semibold">#1B51D0</span> menandai huruf yang
-        terpengaruh cara baca ketika berhenti (di akhir klausa, akhir ayat, dan akhir teks). Teks
-        asli Al-Qur&apos;an tidak diubah.
+        Warna <span className="waqaf-mark font-semibold">biru</span> menandai huruf yang terpengaruh
+        cara baca ketika berhenti (di akhir klausa, akhir ayat, dan akhir teks). Teks asli
+        Al-Qur&apos;an tidak diubah.
       </p>
     </div>
   );

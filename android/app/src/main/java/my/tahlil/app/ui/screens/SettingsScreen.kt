@@ -323,7 +323,7 @@ private fun LazyListScope.togglesSection(
             }
             ToggleRow(
                 title = "Warnai Waqaf",
-                subtitle = "Biru #1B51D0 pada huruf yang cara bacanya berubah saat berhenti: Waqaf bil Iskan, Mad Aridh Lissukun, Mad Iwadh. Pelengkap warna tajwid; teks asli tidak diubah.",
+                subtitle = "Ditandai warna biru pada huruf yang cara bacanya berubah saat berhenti: Waqaf bil Iskan, Mad Aridh Lissukun, Mad Iwadh. Pelengkap warna tajwid; teks asli tidak diubah.",
                 checked = toggles.waqafColor,
                 onCheckedChange = { v -> onChange(toggles.copy(waqafColor = v)) },
             )
@@ -421,10 +421,10 @@ private fun TajwidLegend(isDark: Boolean) {
  * shown right under the "Warnai Waqaf" toggle while it is active (port of
  * the web's `WaqafLegend` component + the panel's preview block). The blue
  * marks letters whose reading changes when the reciter stops: waqaf bil
- * iskan, mad aridh lissukun, mad iwadh. Light theme uses the exact #1B51D0;
- * dark theme lightens the same blue (#7B9DFF) for contrast — the swatch
- * uses [waqafColorFor], the same helper the text highlighting uses, so the
- * legend always matches the actual coloring.
+ * iskan, mad aridh lissukun, mad iwadh. Light theme uses the exact
+ * specified blue; dark theme lightens the same blue for contrast — the
+ * swatch uses [waqafColorFor], the same helper the text highlighting
+ * uses, so the legend always matches the actual coloring.
  *
  * Also renders a live ArabicText preview ([WaqafUtil.PREVIEW_WAQAF_TEXT])
  * so the user sees the three waqaf kinds in action, mirroring the web's
@@ -467,7 +467,7 @@ private fun WaqafLegend(
             }
         }
         Text(
-            text = "Warna biru #1B51D0 menandai huruf yang terpengaruh cara baca ketika berhenti " +
+            text = "Warna biru menandai huruf yang terpengaruh cara baca ketika berhenti " +
                 "(di akhir klausa, akhir ayat, dan akhir teks). Teks asli Al-Qur'an tidak diubah.",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),

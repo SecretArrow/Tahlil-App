@@ -476,8 +476,8 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                   </span>
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  Biru #1B51D0 pada huruf yang cara bacanya berubah saat berhenti (Iskan, Mad Aridh
-                  Lissukun, Mad Iwadh). Pelengkap warna tajwid; teks asli tidak diubah.
+                  Ditandai warna biru pada huruf yang cara bacanya berubah saat berhenti (Iskan, Mad
+                  Aridh Lissukun, Mad Iwadh). Pelengkap warna tajwid; teks asli tidak diubah.
                 </p>
               </div>
               <span

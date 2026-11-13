@@ -222,7 +222,7 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
               )}
               <ToggleRow
                 label="Warnai Waqaf"
-                description="Warnai huruf yang cara bacanya berubah ketika berhenti: Waqaf bil Iskan, Mad Aridh Lissukun, dan Mad Iwadh — biru #1B51D0 (di akhir klausa/ayat/teks). Pelengkap warna tajwid; teks asli tidak diubah."
+                description="Warnai huruf yang cara bacanya berubah ketika berhenti: Waqaf bil Iskan, Mad Aridh Lissukun, dan Mad Iwadh — ditandai warna biru di akhir klausa/ayat/teks. Pelengkap warna tajwid; teks asli tidak diubah."
                 icon={Pause}
                 active={toggles.waqafColor}
                 activeLabel="Aktif"
