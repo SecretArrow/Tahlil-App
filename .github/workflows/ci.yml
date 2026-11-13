@@ -189,6 +189,14 @@ jobs:
             echo "No signing secrets found — using debug signing."
           fi
 
+      - name: Compute versionCode (100 + run_number)
+        run: |
+          # versionCode harus > 23 (hard-coded versi lama) supaya Android
+          # menerima update tanpa konflik "versionCode downgrade".
+          # Pakai 100 + run_number agar selalu naik tiap release.
+          echo "VERSION_CODE=$((100 + ${{ github.run_number }}))" >> "$GITHUB_ENV"
+          echo "Computed VERSION_CODE: $((100 + ${{ github.run_number }}))"
+
       - name: Gradle lint
         env:
           KEYSTORE_PATH: ${{ env.KEYSTORE_PATH }}
@@ -211,10 +219,8 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          # versionCode = 100 + run_number → naik otomatis tiap release,
-          # selalu > 23 (hard-coded versi lama) supaya Android menerima update
-          # dari versi lama tanpa konflik "versionCode downgrade".
-          VERSION_CODE: ${{ github.run_number + 100 }}
+          # VERSION_CODE di-set oleh step 'Compute versionCode' di atas
+          # (100 + github.run_number). Dipakai build.gradle.kts.
         run: ./gradlew assembleRelease --no-daemon --stacktrace
 
       - name: Upload lint reports
