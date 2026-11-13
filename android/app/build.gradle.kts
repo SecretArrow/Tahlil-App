@@ -15,7 +15,11 @@ android {
         applicationId = "my.tahlil.app"
         minSdk = 24
         targetSdk = 34
-        versionCode = 23
+
+        // versionCode: dari env VERSION_CODE (di-set CI ke github.run_number
+        // agar NAIK OTOMATIS tiap release — Android menolak update dengan
+        // versionCode sama/lebih rendah). Fallback 23 untuk build lokal.
+        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 23
         versionName = "2.0.0"
 
         // Ship only the locales the app actually uses (Indonesian + English
