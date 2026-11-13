@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 64" width="256" height="64">
+  <defs>
+    <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FCD34D"/>
+      <stop offset="1" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBBF24"/>
+      <stop offset="1" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark: 8-point star + crescent + small star (right-aligned, no bg) -->
+  <g transform="translate(32,32)">
+    <!-- 8-point star outline -->
+    <path d="M-22,-22 L22,-22 L22,22 L-22,22 Z"
+          fill="none" stroke="url(#goldStroke)" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M0,-30 L30,0 L0,30 L-30,0 Z"
+          fill="none" stroke="url(#goldStroke)" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Crescent (cream), opens upward -->
+    <path d="M0,-12 A 12 12 0 1 0 0 12 A 12 12 0 1 0 0,-12 Z
+             M0,-14 A 10 10 0 1 0 0 6 A 10 10 0 1 0 0,-14 Z"
+          fill="#FEF3C7" fill-rule="evenodd"/>
+
+    <!-- Inner gold 5-point star -->
+    <path d="M0,-7 L1.5,-2 L7,-2 L2.5,2 L4,7 L0,4 L-4,7 L-2.5,2 L-7,-2 L-1.5,-2 Z"
+          fill="url(#gold)"/>
+  </g>
+
+  <!-- Wordmark: "Tahlil" + "App" -->
+  <g transform="translate(72,40)" font-family="'Segoe UI', Roboto, system-ui, sans-serif">
+    <text x="0" y="0" font-size="28" font-weight="700" fill="#064E3B">Tahlil</text>
+    <text x="92" y="0" font-size="28" font-weight="300" fill="#0D9488">App</text>
+  </g>
+</svg>
