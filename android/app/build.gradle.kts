@@ -16,10 +16,11 @@ android {
         minSdk = 24
         targetSdk = 34
 
-        // versionCode: dari env VERSION_CODE (di-set CI ke github.run_number
-        // agar NAIK OTOMATIS tiap release — Android menolak update dengan
-        // versionCode sama/lebih rendah). Fallback 23 untuk build lokal.
-        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 23
+        // versionCode: dari env VERSION_CODE (di-set CI ke 100 + github.run_number
+        // agar NAIK OTOMATIS tiap release DAN selalu > 23 (hard-coded versi lama).
+        // Android menolak update dengan versionCode sama/lebih rendah.
+        // Fallback 100 untuk build lokal.
+        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 100
         versionName = "2.0.0"
 
         // Ship only the locales the app actually uses (Indonesian + English

@@ -211,6 +211,10 @@ private fun ArabicLineRenderer(line: Line, baseStyle: TextStyle, isDark: Boolean
  * Render a single ayah mark (۝X) as an ornamental circle with the digit
  * centered inside. Matches the web app's `.ayah-mark` styling — a soft
  * circular ornament with the digit overlaid.
+ *
+ * Visual: solid circle with accent-color tint, prominent border, digit
+ * centered. The decorative ۝ ornament sits faded behind the digit so
+ * the circle reads as a clear "frame" around the number.
  */
 @Composable
 private fun AyahMark(digits: String, isDark: Boolean) {
@@ -218,13 +222,17 @@ private fun AyahMark(digits: String, isDark: Boolean) {
     val accentColor = MaterialTheme.colorScheme.primary
     val digitColor = MaterialTheme.colorScheme.onSurface
     val isMultiDigit = digits.length > 1
-    val size = if (isMultiDigit) 28.dp else 22.dp
+    // Perbesar ukuran agar bingkai jelas terlihat (sebelumnya 22/28dp terlalu kecil).
+    val size = if (isMultiDigit) 34.dp else 28.dp
+    // Border tebal + alpha tinggi supaya jelas terlihat sebagai bingkai.
+    val borderAlpha = 0.85f
+    val bgAlpha = 0.20f
 
     Box(
         modifier = Modifier
             .size(size)
-            .background(accentColor.copy(alpha = 0.12f), CircleShape)
-            .border(1.5.dp, accentColor.copy(alpha = 0.5f), CircleShape),
+            .background(accentColor.copy(alpha = bgAlpha), CircleShape)
+            .border(2.dp, accentColor.copy(alpha = borderAlpha), CircleShape),
         contentAlignment = Alignment.Center,
     ) {
         // The decorative ۝ ornament sits behind the digit, faded.
@@ -238,12 +246,12 @@ private fun AyahMark(digits: String, isDark: Boolean) {
             ),
             modifier = Modifier.alpha(0.6f),
         )
-        // The digit centered.
+        // The digit centered, dengan font lebih besar agar mudah dibaca.
         Text(
             text = digits,
             color = digitColor,
             style = TextStyle(
-                fontSize = (size.value * 0.42f).sp,
+                fontSize = (size.value * 0.48f).sp,
                 fontFamily = FontFamily.Serif,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                 textDirection = TextDirection.Rtl,
