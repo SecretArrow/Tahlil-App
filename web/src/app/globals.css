@@ -237,9 +237,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.1em;
-  height: 1.1em;
-  margin: 0 0.15em;
+  width: 0.55em;
+  height: 0.55em;
+  margin: 0 0.075em;
   vertical-align: middle;
   position: relative;
   /* Outer decorative circle */
@@ -251,7 +251,7 @@
 .ayah-mark::before {
   content: "";
   position: absolute;
-  inset: 2px;
+  inset: 1px;
   border: 0.5px solid currentColor;
   border-radius: 50%;
   opacity: 0.45;
@@ -268,7 +268,7 @@
 .ayah-mark-digit {
   position: relative;
   z-index: 1;
-  font-size: 0.55em;
+  font-size: 0.275em;
   font-weight: 700;
   line-height: 1;
   font-family: inherit;

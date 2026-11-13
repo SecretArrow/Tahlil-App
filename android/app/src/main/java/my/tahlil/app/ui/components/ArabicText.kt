@@ -210,7 +210,7 @@ private fun ArabicLineRenderer(line: Line, baseStyle: TextStyle) {
             // Placeholder box sized in em so the badge scales with the
             // user's font-size setting. Width grows for multi-digit marks
             // (e.g. ۝٢٨٦). Vertical: centered on the text line.
-            val markWidthEm = 1.35f + 0.5f * (line.digits.length - 1).coerceAtLeast(0)
+            val markWidthEm = 0.675f + 0.25f * (line.digits.length - 1).coerceAtLeast(0)
             Text(
                 text = annotated,
                 style = baseStyle,
@@ -221,7 +221,7 @@ private fun ArabicLineRenderer(line: Line, baseStyle: TextStyle) {
                     AYAH_MARK_INLINE_ID to InlineTextContent(
                         Placeholder(
                             width = markWidthEm.em,
-                            height = 1.35f.em,
+                            height = 0.675f.em,
                             placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
                         )
                     ) {
@@ -268,16 +268,17 @@ private fun AyahMark(digits: String, baseFontSize: TextUnit) {
         modifier = Modifier
             .fillMaxSize()
             .background(accentColor.copy(alpha = 0.18f), CircleShape)
-            .border(1.5.dp, accentColor.copy(alpha = 0.80f), CircleShape),
+            .border(1.dp, accentColor.copy(alpha = 0.80f), CircleShape),
         contentAlignment = Alignment.Center,
     ) {
-        // The digit centered — same 0.55em proportion as the web's
-        // .ayah-mark-digit, bold for legibility at small sizes.
+        // The digit centered — same 0.275em proportion as the web's
+        // .ayah-mark-digit (halved from 0.55em per user request:
+        // "lingkaran angka ayat ukurannya kecilkan 50%").
         Text(
             text = digits,
             color = digitColor,
             style = TextStyle(
-                fontSize = (baseFontSize.value * 0.55f).sp,
+                fontSize = (baseFontSize.value * 0.275f).sp,
                 fontFamily = FontFamily.Serif,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                 textDirection = TextDirection.Rtl,
