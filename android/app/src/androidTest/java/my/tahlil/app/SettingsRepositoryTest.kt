@@ -2,12 +2,15 @@ package my.tahlil.app
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import my.tahlil.app.data.AutoScrollMode
+import my.tahlil.app.data.DisplayToggles
 import my.tahlil.app.data.SettingsRepository
 import my.tahlil.app.data.ThemeMode
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,7 +44,14 @@ class SettingsRepositoryTest {
         // next test starts from defaults.
         runBlocking {
             try {
-                repo.updateDisplayToggles(repo.displayToggles.first().copy(keepScreenOn = false))
+                repo.updateDisplayToggles(
+                    repo.displayToggles.first().copy(
+                        keepScreenOn = false,
+                        autoScrollEnabled = false,
+                        autoScrollMode = AutoScrollMode.Continuous,
+                        autoScrollSpeed = DisplayToggles.Default.autoScrollSpeed,
+                    )
+                )
                 repo.setLastReadSectionId(null)
             } catch (_: Throwable) {
                 // Swallow — clean-up is best-effort.
@@ -82,5 +92,38 @@ class SettingsRepositoryTest {
 
         repo.setLastReadSectionId(null)
         assertEquals(null, repo.lastReadSectionId.first())
+    }
+
+    @Test
+    fun defaultAutoScrollIsDisabled() = runBlocking {
+        val t = repo.displayToggles.first()
+        assertEquals(false, t.autoScrollEnabled)
+        assertEquals(AutoScrollMode.Continuous, t.autoScrollMode)
+        // Default speed is now 3.0f.
+        assertEquals(3.0f, t.autoScrollSpeed, 0.001f)
+    }
+
+    @Test
+    fun updatingAutoScrollSettingsPersists() = runBlocking {
+        val updated = repo.displayToggles.first().copy(
+            autoScrollEnabled = true,
+            autoScrollMode = AutoScrollMode.Block,
+            autoScrollSpeed = 12.5f,
+        )
+        repo.updateDisplayToggles(updated)
+        val reloaded = repo.displayToggles.first()
+        assertEquals(true, reloaded.autoScrollEnabled)
+        assertEquals(AutoScrollMode.Block, reloaded.autoScrollMode)
+        assertEquals(12.5f, reloaded.autoScrollSpeed, 0.001f)
+    }
+
+    @Test
+    fun autoScrollSpeedClampsOutOfRangeLegacy() = runBlocking {
+        // Write an out-of-range legacy value (100f) and confirm the flow
+        // clamps it back into the supported range (<= 25).
+        repo.updateDisplayToggles(repo.displayToggles.first().copy(autoScrollSpeed = 100f))
+        val reloaded = repo.displayToggles.first()
+        assertTrue(reloaded.autoScrollSpeed <= DisplayToggles.AUTO_SCROLL_SPEED_RANGE.endInclusive)
+        assertTrue(reloaded.autoScrollSpeed >= DisplayToggles.AUTO_SCROLL_SPEED_RANGE.start)
     }
 }

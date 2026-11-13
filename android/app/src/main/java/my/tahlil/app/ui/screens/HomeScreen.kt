@@ -154,6 +154,7 @@ fun HomeScreen(
         state = state,
         active = autoScroll.active,
         paused = autoScroll.paused,
+        mode = toggles.autoScrollMode,
         speedMultiplier = toggles.autoScrollSpeed,
         pauseSecPerSection = toggles.autoScrollSectionPauseSec,
         onReachEnd = { autoScroll.stop() },
@@ -334,62 +335,87 @@ fun HomeScreen(
             }
         }
 
-        // Auto-scroll start/stop FAB (bottom-start, always visible).
+        // Auto-scroll start/stop FAB (bottom-end, above the back-to-top FAB).
         // Icon: Pause while scrolling, PlayArrow when off or paused.
-        FloatingActionButton(
-            onClick = { autoScroll.toggleActive() },
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .navigationBarsPadding()
-                .padding(start = 16.dp, bottom = 16.dp),
-            containerColor = if (autoScroll.active) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.surface
-            },
-            contentColor = if (autoScroll.active) {
-                MaterialTheme.colorScheme.onPrimary
-            } else {
-                MaterialTheme.colorScheme.onSurface
-            },
-            shape = CircleShape,
-        ) {
-            Icon(
-                imageVector = if (autoScroll.scrolling) {
-                    Icons.Filled.Pause
-                } else {
-                    Icons.Filled.PlayArrow
-                },
-                contentDescription = if (autoScroll.active) {
-                    "Hentikan gulir otomatis"
-                } else {
-                    "Mulai gulir otomatis"
-                },
-            )
-        }
-
-        // Paused hint — small pill above the FAB telling the user the scroll
-        // is on hold and that tapping the screen resumes it.
-        AnimatedVisibility(
-            visible = autoScroll.active && autoScroll.paused,
-            enter = fadeIn() + scaleIn(initialScale = 0.8f),
-            exit = fadeOut() + scaleOut(targetScale = 0.8f),
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .navigationBarsPadding()
-                .padding(start = 16.dp, bottom = 84.dp),
-        ) {
+        // Rendered only while the user has enabled Gulir Otomatis in
+        // Settings; otherwise the FAB is omitted entirely so it never
+        // obscures the reading surface.
+        //
+        // Implementation note: we use Surface (not Material3
+        // FloatingActionButton) because FloatingActionButton has a
+        // built-in 16.dp contentPadding that, combined with .size(36.dp),
+        // would leave only ~4dp of content area and clip the icon.
+        // Surface lets us control the icon sizing directly while keeping
+        // the FAB-like look (circular shape, elevation, ripple).
+        if (toggles.autoScrollEnabled) {
             Surface(
-                shape = RoundedCornerShape(50),
-                color = MaterialTheme.colorScheme.inverseSurface,
-                contentColor = MaterialTheme.colorScheme.inverseOnSurface,
-                shadowElevation = 4.dp,
+                onClick = { autoScroll.toggleActive() },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .navigationBarsPadding()
+                    // Sit ABOVE the back-to-top FAB (which is bottom = 16.dp
+                    // + 56.dp height ≈ 72.dp from screen bottom).
+                    .padding(end = 16.dp, bottom = 72.dp)
+                    // Size 36.dp = ~70% of the default 56.dp FAB (matches
+                    // the web's 36px button).
+                    .size(36.dp),
+                shape = CircleShape,
+                color = if (autoScroll.active) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.surface
+                },
+                contentColor = if (autoScroll.active) {
+                    MaterialTheme.colorScheme.onPrimary
+                } else {
+                    MaterialTheme.colorScheme.onSurface
+                },
+                shadowElevation = 6.dp,
+                tonalElevation = 6.dp,
             ) {
-                Text(
-                    text = "Gulir dijeda — ketuk layar untuk lanjut",
-                    style = MaterialTheme.typography.labelMedium,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                )
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        imageVector = if (autoScroll.scrolling) {
+                            Icons.Filled.Pause
+                        } else {
+                            Icons.Filled.PlayArrow
+                        },
+                        contentDescription = if (autoScroll.active) {
+                            "Hentikan gulir otomatis"
+                        } else {
+                            "Mulai gulir otomatis"
+                        },
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
+
+            // Paused hint — small pill above the FAB telling the user the
+            // scroll is on hold and that tapping the screen resumes it.
+            AnimatedVisibility(
+                visible = autoScroll.active && autoScroll.paused,
+                enter = fadeIn() + scaleIn(initialScale = 0.8f),
+                exit = fadeOut() + scaleOut(targetScale = 0.8f),
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .navigationBarsPadding()
+                    .padding(end = 16.dp, bottom = 116.dp),
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(50),
+                    color = MaterialTheme.colorScheme.inverseSurface,
+                    contentColor = MaterialTheme.colorScheme.inverseOnSurface,
+                    shadowElevation = 4.dp,
+                ) {
+                    Text(
+                        text = "Gulir dijeda — ketuk layar untuk lanjut",
+                        style = MaterialTheme.typography.labelMedium,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                    )
+                }
             }
         }
     }

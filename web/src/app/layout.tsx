@@ -7,7 +7,12 @@ import { ArabicStyleProvider } from "@/components/arabic-style-provider";
 import { DisplaySettingsProvider } from "@/components/display-settings-provider";
 import { getArabicStyleCookie, getDisplayTogglesCookie } from "@/lib/cookies/server";
 import { ArabicStyleSettings, defaultArabicSettings } from "@/data/arabic-style";
-import { DisplayToggles, defaultDisplayToggles } from "@/data/display-settings";
+import {
+  DisplayToggles,
+  defaultDisplayToggles,
+  AUTO_SCROLL_SPEED_MIN,
+  AUTO_SCROLL_SPEED_MAX,
+} from "@/data/display-settings";
 
 const amiri = Amiri({
   variable: "--font-arabic",
@@ -131,10 +136,19 @@ function parseDisplayToggles(raw: string | null): DisplayToggles {
       splitArabicLines: typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
       colorizeArabic: typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
       tajwid: typeof p.tajwid === "boolean" ? p.tajwid : false,
+      autoScrollEnabled: typeof p.autoScrollEnabled === "boolean" ? p.autoScrollEnabled : false,
+      autoScrollMode:
+        p.autoScrollMode === "continuous" || p.autoScrollMode === "block"
+          ? p.autoScrollMode
+          : "continuous",
       // Auto-scroll numeric settings — clamped to the valid ranges.
+      // Speed range was widened from 0.5–5 to 0.1–25; the clamp uses the
+      // new bounds so legacy cookies with a 5.0 value stay valid (no
+      // behavior change) and out-of-range values are pinned to the new
+      // ceiling of 25.
       autoScrollSpeed:
         typeof p.autoScrollSpeed === "number"
-          ? Math.min(5, Math.max(0.5, p.autoScrollSpeed))
+          ? Math.min(AUTO_SCROLL_SPEED_MAX, Math.max(AUTO_SCROLL_SPEED_MIN, p.autoScrollSpeed))
           : defaultDisplayToggles.autoScrollSpeed,
       autoScrollSectionPauseSec:
         typeof p.autoScrollSectionPauseSec === "number" &&

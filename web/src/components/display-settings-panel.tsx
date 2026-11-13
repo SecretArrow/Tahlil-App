@@ -14,12 +14,14 @@ import {
   WrapText,
   Highlighter,
   ArrowDownToLine,
+  FastForward,
 } from "lucide-react";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import {
   AUTO_SCROLL_PAUSE_CHOICES,
   AUTO_SCROLL_SPEED_MAX,
   AUTO_SCROLL_SPEED_MIN,
+  AUTO_SCROLL_SPEED_STEP,
 } from "@/data/display-settings";
 import { ArabicText } from "@/components/arabic-text";
 import { TajwidLegend } from "@/components/tajwid-legend";
@@ -107,7 +109,7 @@ function ToggleRow({
 }
 
 export function DisplaySettingsPanel({ open, onClose }: Props) {
-  const { toggles, setToggle, setNumber, reset } = useDisplaySettings();
+  const { toggles, setToggle, setNumber, setAutoScrollMode, reset } = useDisplaySettings();
 
   return (
     <AnimatePresence>
@@ -220,58 +222,133 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
               <div className="rounded-2xl border border-border bg-muted/30 p-3">
                 <div className="mb-2 flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <ArrowDownToLine className="h-4 w-4" />
+                    <FastForward className="h-4 w-4" />
                   </span>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-foreground">Gulir Otomatis</p>
                     <p className="text-xs text-muted-foreground">
-                      Mulai/hentikan dari tombol bulat di kiri bawah. Ketuk layar 1× atau tahan =
-                      jeda; ketuk lagi = lanjut.
+                      Aktifkan untuk menampilkan tombol play/pause di kanan layar. Ketuk layar 1×
+                      atau tahan = jeda; ketuk lagi = lanjut.
                     </p>
                   </div>
+                  {/* Master enable/disable switch */}
+                  <button
+                    type="button"
+                    onClick={() => setToggle("autoScrollEnabled", !toggles.autoScrollEnabled)}
+                    aria-pressed={toggles.autoScrollEnabled}
+                    aria-label="Aktifkan Gulir Otomatis"
+                    className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+                      toggles.autoScrollEnabled ? "bg-primary" : "bg-muted-foreground/30"
+                    }`}
+                  >
+                    <motion.span
+                      layout
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      className={`inline-block h-5 w-5 transform rounded-full bg-white shadow ${
+                        toggles.autoScrollEnabled ? "translate-x-5" : "translate-x-0.5"
+                      }`}
+                    />
+                  </button>
                 </div>
-                <label className="mt-1 block">
-                  <span className="flex items-center justify-between text-xs font-medium text-foreground">
-                    Kecepatan Gulir
-                    <span className="font-semibold text-primary">
-                      {toggles.autoScrollSpeed.toFixed(1)}×
-                    </span>
-                  </span>
-                  <input
-                    type="range"
-                    min={AUTO_SCROLL_SPEED_MIN}
-                    max={AUTO_SCROLL_SPEED_MAX}
-                    step={0.1}
-                    value={toggles.autoScrollSpeed}
-                    onChange={(e) => setNumber("autoScrollSpeed", Number(e.target.value))}
-                    className="mt-1 w-full accent-primary"
-                  />
-                </label>
-                <div className="mt-2">
-                  <p className="text-xs font-medium text-foreground">Jeda per Bagian</p>
-                  <p className="text-[11px] text-muted-foreground">
-                    Berhenti sesaat setiap masuk bagian baru
-                  </p>
-                  <div className="mt-1.5 flex flex-wrap gap-1.5">
-                    {AUTO_SCROLL_PAUSE_CHOICES.map((sec) => {
-                      const isActive = toggles.autoScrollSectionPauseSec === sec;
-                      return (
+
+                {toggles.autoScrollEnabled && (
+                  <>
+                    {/* Mode picker */}
+                    <div className="mt-1 mb-3">
+                      <p className="mb-1 text-xs font-medium text-foreground">Mode Gulir</p>
+                      <div className="grid grid-cols-2 gap-2">
                         <button
-                          key={sec}
                           type="button"
-                          onClick={() => setNumber("autoScrollSectionPauseSec", sec)}
-                          className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-                            isActive
-                              ? "bg-primary text-primary-foreground"
-                              : "border border-border bg-card text-muted-foreground hover:bg-accent"
+                          onClick={() => setAutoScrollMode("continuous")}
+                          aria-pressed={toggles.autoScrollMode === "continuous"}
+                          className={`flex flex-col items-start gap-0.5 rounded-xl border p-2 text-left transition-all ${
+                            toggles.autoScrollMode === "continuous"
+                              ? "border-primary bg-primary/5"
+                              : "border-border hover:bg-accent"
                           }`}
                         >
-                          {sec === 0 ? "Mati" : `${sec} dtk`}
+                          <span className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
+                            <FastForward className="h-3.5 w-3.5" />
+                            Terus-menerus
+                          </span>
+                          <span className="text-[11px] leading-snug text-muted-foreground">
+                            Halaman menggulir halus tanpa henti.
+                          </span>
                         </button>
-                      );
-                    })}
-                  </div>
-                </div>
+                        <button
+                          type="button"
+                          onClick={() => setAutoScrollMode("block")}
+                          aria-pressed={toggles.autoScrollMode === "block"}
+                          className={`flex flex-col items-start gap-0.5 rounded-xl border p-2 text-left transition-all ${
+                            toggles.autoScrollMode === "block"
+                              ? "border-primary bg-primary/5"
+                              : "border-border hover:bg-accent"
+                          }`}
+                        >
+                          <span className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
+                            <ArrowDownToLine className="h-3.5 w-3.5" />
+                            Per Blok
+                          </span>
+                          <span className="text-[11px] leading-snug text-muted-foreground">
+                            Lompat dari satu bagian ke bagian berikutnya.
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Speed slider — 0.1 to 25 */}
+                    <label className="mt-1 block">
+                      <span className="flex items-center justify-between text-xs font-medium text-foreground">
+                        Kecepatan Gulir
+                        <span className="font-semibold text-primary">
+                          {toggles.autoScrollSpeed.toFixed(1)}
+                        </span>
+                      </span>
+                      <input
+                        type="range"
+                        min={AUTO_SCROLL_SPEED_MIN}
+                        max={AUTO_SCROLL_SPEED_MAX}
+                        step={AUTO_SCROLL_SPEED_STEP}
+                        value={toggles.autoScrollSpeed}
+                        onChange={(e) => setNumber("autoScrollSpeed", Number(e.target.value))}
+                        className="mt-1 w-full accent-primary"
+                      />
+                      <div className="flex justify-between text-[10px] text-muted-foreground">
+                        <span>0.1 (pelan)</span>
+                        <span>25 (cepat)</span>
+                      </div>
+                    </label>
+
+                    {/* Section pause — only meaningful in continuous mode */}
+                    {toggles.autoScrollMode === "continuous" && (
+                      <div className="mt-2">
+                        <p className="text-xs font-medium text-foreground">Jeda per Bagian</p>
+                        <p className="text-[11px] text-muted-foreground">
+                          Berhenti sesaat setiap masuk bagian baru (hanya mode Terus-menerus)
+                        </p>
+                        <div className="mt-1.5 flex flex-wrap gap-1.5">
+                          {AUTO_SCROLL_PAUSE_CHOICES.map((sec) => {
+                            const isActive = toggles.autoScrollSectionPauseSec === sec;
+                            return (
+                              <button
+                                key={sec}
+                                type="button"
+                                onClick={() => setNumber("autoScrollSectionPauseSec", sec)}
+                                className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                                  isActive
+                                    ? "bg-primary text-primary-foreground"
+                                    : "border border-border bg-card text-muted-foreground hover:bg-accent"
+                                }`}
+                              >
+                                {sec === 0 ? "Mati" : `${sec} dtk`}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
 
               {/* Live preview */}

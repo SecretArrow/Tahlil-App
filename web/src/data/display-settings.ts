@@ -37,21 +37,41 @@ export type DisplayToggles = {
    */
   tajwid: boolean;
   /**
-   * Auto-scroll speed multiplier for the "Gulir Otomatis" feature
-   * (0.5–5.0). 1.0 ≈ 55 px/s — a comfortable reading pace. The feature
-   * is started/stopped from the bottom-left FAB; tapping the page pauses
-   * it, tapping again resumes.
+   * Master toggle for the auto-scroll (Gulir Otomatis) feature. When
+   * false (default), the play/pause FAB is NOT rendered on the reading
+   * page. When true, a small FAB appears at the right edge of the
+   * reading view; tap it to start/stop scrolling, tap the reading
+   * surface to pause/resume.
+   */
+  autoScrollEnabled: boolean;
+  /**
+   * Auto-scroll mode:
+   *  - "continuous": the page scrolls smoothly pixel-by-pixel at a
+   *    fixed rate derived from `autoScrollSpeed`.
+   *  - "block":      the page jumps one section card at a time
+   *    (`[data-autoscroll-block]`), with a delay derived from
+   *    `autoScrollSpeed`.
+   */
+  autoScrollMode: "continuous" | "block";
+  /**
+   * Dimensionless auto-scroll speed (0.1 – 25). Higher = faster.
+   *  - In "continuous" mode: px/sec = 12 + speed * 18 (so 0.1 ≈ 14 px/s,
+   *    25 ≈ 462 px/s).
+   *  - In "block" mode:      ms between jumps = clamp(7000 / speed, 700,
+   *    30000) (so 0.1 = 70s between jumps, 25 = 280ms).
    */
   autoScrollSpeed: number;
   /**
    * Seconds the auto-scroll holds when a new section card scrolls into
    * view before continuing (0 = no pause; UI offers 0 / 2 / 5 / 10).
+   * Only meaningful in "continuous" mode.
    */
   autoScrollSectionPauseSec: number;
 };
 
-export const AUTO_SCROLL_SPEED_MIN = 0.5;
-export const AUTO_SCROLL_SPEED_MAX = 5;
+export const AUTO_SCROLL_SPEED_MIN = 0.1;
+export const AUTO_SCROLL_SPEED_MAX = 25;
+export const AUTO_SCROLL_SPEED_STEP = 0.1;
 export const AUTO_SCROLL_PAUSE_CHOICES = [0, 2, 5, 10] as const;
 
 export const defaultDisplayToggles: DisplayToggles = {
@@ -62,6 +82,8 @@ export const defaultDisplayToggles: DisplayToggles = {
   splitArabicLines: true,
   colorizeArabic: false,
   tajwid: false,
-  autoScrollSpeed: 1,
+  autoScrollEnabled: false,
+  autoScrollMode: "continuous",
+  autoScrollSpeed: 3,
   autoScrollSectionPauseSec: 0,
 };

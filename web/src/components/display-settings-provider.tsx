@@ -17,6 +17,8 @@ type Ctx = {
     key: K,
     value: DisplayToggles[K],
   ) => void;
+  /** Update the auto-scroll mode (continuous / block). */
+  setAutoScrollMode: (mode: "continuous" | "block") => void;
   setAll: (next: DisplayToggles) => void;
   reset: () => void;
 };
@@ -36,6 +38,12 @@ function parseStored(raw: string | null): DisplayToggles {
         typeof parsed.splitArabicLines === "boolean" ? parsed.splitArabicLines : true,
       colorizeArabic: typeof parsed.colorizeArabic === "boolean" ? parsed.colorizeArabic : false,
       tajwid: typeof parsed.tajwid === "boolean" ? parsed.tajwid : false,
+      autoScrollEnabled:
+        typeof parsed.autoScrollEnabled === "boolean" ? parsed.autoScrollEnabled : false,
+      autoScrollMode:
+        parsed.autoScrollMode === "continuous" || parsed.autoScrollMode === "block"
+          ? parsed.autoScrollMode
+          : "continuous",
       // Auto-scroll numeric settings — clamp into the valid ranges so a
       // hand-edited cookie can never produce a runaway scroll speed.
       autoScrollSpeed:
@@ -94,6 +102,7 @@ export function DisplaySettingsProvider({
       toggles,
       setToggle: (key, val) => update({ ...toggles, [key]: val } as DisplayToggles),
       setNumber: (key, val) => update({ ...toggles, [key]: val } as DisplayToggles),
+      setAutoScrollMode: (mode) => update({ ...toggles, autoScrollMode: mode }),
       setAll: (next) => update(next),
       reset: () => update(defaultDisplayToggles),
     }),

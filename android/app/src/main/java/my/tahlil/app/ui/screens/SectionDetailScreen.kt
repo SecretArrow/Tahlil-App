@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -16,9 +17,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -92,12 +93,14 @@ fun SectionDetailScreen(
 
     // --- Auto scroll (Gulir Otomatis) --------------------------------------
     // Same engine & interaction as HomeScreen: start/stop via the
-    // bottom-start FAB, tap/long-press anywhere pauses, tap again resumes.
+    // bottom-end FAB (rendered only while the user has enabled Gulir
+    // Otomatis), tap/long-press anywhere pauses, tap again resumes.
     val autoScroll = rememberAutoScrollSession()
     AutoScrollEngine(
         state = state,
         active = autoScroll.active,
         paused = autoScroll.paused,
+        mode = toggles.autoScrollMode,
         speedMultiplier = toggles.autoScrollSpeed,
         pauseSecPerSection = toggles.autoScrollSectionPauseSec,
         onReachEnd = { autoScroll.stop() },
@@ -141,37 +144,61 @@ fun SectionDetailScreen(
             }
         }
 
-        // Auto-scroll start/stop FAB (bottom-start, always visible).
-        FloatingActionButton(
-            onClick = { autoScroll.toggleActive() },
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .navigationBarsPadding()
-                .padding(start = 16.dp, bottom = 16.dp),
-            containerColor = if (autoScroll.active) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.surface
-            },
-            contentColor = if (autoScroll.active) {
-                MaterialTheme.colorScheme.onPrimary
-            } else {
-                MaterialTheme.colorScheme.onSurface
-            },
-            shape = CircleShape,
-        ) {
-            Icon(
-                imageVector = if (autoScroll.scrolling) {
-                    Icons.Filled.Pause
+        // Auto-scroll start/stop FAB (bottom-end, above where the back-to-
+        // top FAB would be on HomeScreen — but this screen has none, so we
+        // still keep the same vertical offset for cross-screen parity).
+        // Rendered only while the user has enabled Gulir Otomatis in
+        // Settings; otherwise the FAB is omitted entirely so it never
+        // obscures the reading surface.
+        //
+        // Implementation note: we use Surface (not Material3
+        // FloatingActionButton) because FloatingActionButton has a built-in
+        // 16.dp contentPadding that, combined with .size(36.dp), would
+        // leave only ~4dp of content area and clip the icon. Surface lets
+        // us control the icon sizing directly while keeping the FAB-like
+        // look (circular shape, elevation, ripple).
+        if (toggles.autoScrollEnabled) {
+            Surface(
+                onClick = { autoScroll.toggleActive() },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .navigationBarsPadding()
+                    .padding(end = 16.dp, bottom = 72.dp)
+                    // Size 36.dp = ~70% of the default 56.dp FAB.
+                    .size(36.dp),
+                shape = CircleShape,
+                color = if (autoScroll.active) {
+                    MaterialTheme.colorScheme.primary
                 } else {
-                    Icons.Filled.PlayArrow
+                    MaterialTheme.colorScheme.surface
                 },
-                contentDescription = if (autoScroll.active) {
-                    "Hentikan gulir otomatis"
+                contentColor = if (autoScroll.active) {
+                    MaterialTheme.colorScheme.onPrimary
                 } else {
-                    "Mulai gulir otomatis"
+                    MaterialTheme.colorScheme.onSurface
                 },
-            )
+                shadowElevation = 6.dp,
+                tonalElevation = 6.dp,
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        imageVector = if (autoScroll.scrolling) {
+                            Icons.Filled.Pause
+                        } else {
+                            Icons.Filled.PlayArrow
+                        },
+                        contentDescription = if (autoScroll.active) {
+                            "Hentikan gulir otomatis"
+                        } else {
+                            "Mulai gulir otomatis"
+                        },
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            }
         }
     }
 }

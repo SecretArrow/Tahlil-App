@@ -55,6 +55,8 @@ class SettingsRepository(private val context: Context) {
     private val KEY_KEEP_SCREEN_ON = booleanPreferencesKey("display_keep_screen_on")
 
     // --- Auto scroll -------------------------------------------------------
+    private val KEY_AUTO_SCROLL_ENABLED = booleanPreferencesKey("auto_scroll_enabled")
+    private val KEY_AUTO_SCROLL_MODE = stringPreferencesKey("auto_scroll_mode")
     private val KEY_AUTO_SCROLL_SPEED = floatPreferencesKey("auto_scroll_speed")
     private val KEY_AUTO_SCROLL_PAUSE = intPreferencesKey("auto_scroll_section_pause_sec")
 
@@ -90,6 +92,9 @@ class SettingsRepository(private val context: Context) {
             colorizeArabic = p[KEY_COLORIZE] ?: false,
             tajwid = p[KEY_TAJWID] ?: false,
             keepScreenOn = p[KEY_KEEP_SCREEN_ON] ?: false,
+            autoScrollEnabled = p[KEY_AUTO_SCROLL_ENABLED]
+                ?: DisplayToggles.Default.autoScrollEnabled,
+            autoScrollMode = AutoScrollMode.fromStorageKey(p[KEY_AUTO_SCROLL_MODE]),
             autoScrollSpeed = clampedSpeed,
             autoScrollSectionPauseSec = p[KEY_AUTO_SCROLL_PAUSE]
                 ?: DisplayToggles.Default.autoScrollSectionPauseSec,
@@ -141,6 +146,8 @@ class SettingsRepository(private val context: Context) {
             p[KEY_COLORIZE] = toggles.colorizeArabic
             p[KEY_TAJWID] = toggles.tajwid
             p[KEY_KEEP_SCREEN_ON] = toggles.keepScreenOn
+            p[KEY_AUTO_SCROLL_ENABLED] = toggles.autoScrollEnabled
+            p[KEY_AUTO_SCROLL_MODE] = toggles.autoScrollMode.storageKey
             p[KEY_AUTO_SCROLL_SPEED] = toggles.autoScrollSpeed
             p[KEY_AUTO_SCROLL_PAUSE] = toggles.autoScrollSectionPauseSec
         }

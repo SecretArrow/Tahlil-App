@@ -74,6 +74,10 @@ export function SectionCard({ section }: { section: Section }) {
     <motion.section
       id={section.id}
       ref={ref}
+      // Marks this section as a boundary for auto-scroll "block" mode —
+      // the AutoScroll component's block loop uses `[data-autoscroll-block]`
+      // to find each section and scroll into view one at a time.
+      data-autoscroll-block=""
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
