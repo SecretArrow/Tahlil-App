@@ -143,7 +143,16 @@ fun ArabicText(
     SelectionContainer {
         Column(
             modifier = modifier,
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            // The user-adjustable "Jarak Antar Kalimat" slider
+            // (style.bodyLineHeight, in em) controls the breathing room
+            // BETWEEN Arabic kalimat/sentences (ayah lines & comma-split
+            // clause lines). 1em = fontSize in sp (1rem ≈ 16sp), so we
+            // convert em → dp via LocalDensity.
+            verticalArrangement = Arrangement.spacedBy(
+                with(androidx.compose.ui.platform.LocalDensity.current) {
+                    (style.fontSize * 16f * style.bodyLineHeight).sp.toDp()
+                }
+            ),
             // End = right in this (LTR) composition context — keeps the
             // suffix (repeat badge) and any wrap-content child on the
             // Arabic side of the block.

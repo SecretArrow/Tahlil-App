@@ -50,17 +50,17 @@ enum class ArabicAlign(val storageKey: String, val label: String) {
  * knobs that the user controls with sliders on the Settings screen.
  *
  * Besides the Arabic-text knobs, this also carries [bodyLineHeight]: the
- * line-spacing multiplier for the LATIN transliteration + Indonesian
- * translation ("kalimat") text shown under each Arabic verse. It lives here
- * (not in DisplayToggles) because every screen that renders reading text
- * already receives [ArabicStyleSettings] — no extra threading needed.
+ * EXTRA gap (in em) BETWEEN Arabic kalimat/sentences (ayah lines &
+ * comma-split clause lines). It is NOT applied to the Latin transliteration
+ * or Indonesian translation text — those use Material3's bodyMedium default
+ * line-height. The slider is in the “Tipografi Arab” section on Settings.
  */
 @Serializable
 data class ArabicStyleSettings(
     val mode: ArabicStyleMode = ArabicStyleMode.Quran,
     val fontSize: Float = 1.75f,        // rem (mapped to sp via scale)
-    val lineHeight: Float = 2.1f,       // unitless multiplier (Arabic text)
-    val bodyLineHeight: Float = 1.55f,  // unitless multiplier (Latin + terjemahan)
+    val lineHeight: Float = 2.1f,       // unitless multiplier (Arabic line-height within a single ayah/clause)
+    val bodyLineHeight: Float = 0.3f,  // em — extra gap between Arabic kalimat/sentences
     val wordSpacing: Float = 0.05f,     // em
     val letterSpacing: Float = 0f,      // em
     val align: ArabicAlign = ArabicAlign.Right,
@@ -71,7 +71,7 @@ data class ArabicStyleSettings(
         // Slider ranges — kept here so the UI and persistence use the same bounds.
         val FONT_SIZE_RANGE = 1.0f..3.0f
         val LINE_HEIGHT_RANGE = 1.4f..3.5f
-        val BODY_LINE_HEIGHT_RANGE = 1.0f..2.5f
+        val BODY_LINE_HEIGHT_RANGE = 0f..1.5f  // em — extra gap between Arabic kalimat lines
         val WORD_SPACING_RANGE = 0f..0.5f
         val LETTER_SPACING_RANGE = 0f..0.1f
 
@@ -87,8 +87,9 @@ data class ArabicStyleSettings(
 
         /**
          * Base font size (sp) of the Latin/translation body text — Material3's
-         * `bodyMedium`. [bodyLineHeight] multiplies this to produce the final
-         * TextUnit line height, so 1.55 ≈ the previous fixed 22.sp (14 × 1.55 ≈ 21.7).
+         * `bodyMedium`. The Latin/translation Text composables now use
+         * Material3's default lineHeight (no bodyLineHeight multiplier) —
+         * bodyLineHeight is repurposed as the Arabic sentence gap.
          */
         const val BODY_FONT_SIZE_SP = 14f
     }

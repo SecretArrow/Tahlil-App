@@ -82,11 +82,21 @@ class SettingsRepository(private val context: Context) {
     }
 
     val arabicStyle: Flow<ArabicStyleSettings> = context.tahlilDataStore.data.map { p ->
+        // bodyLineHeight was repurposed from "Latin/translation line-height
+        // multiplier (1.0-2.5)" to "gap between Arabic kalimat sentences
+        // (em, 0-1.5)". Clamp any legacy stored value into the new range so
+        // users updating from an older build don't end up with a 1.55em gap
+        // (= ~43dp at default font size — far too large).
+        val rawBodyLineHeight = p[KEY_BODY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.bodyLineHeight
+        val clampedBodyLineHeight = rawBodyLineHeight.coerceIn(
+            ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE.start,
+            ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE.endInclusive,
+        )
         ArabicStyleSettings(
             mode = ArabicStyleMode.fromStorageKey(p[KEY_MODE]),
             fontSize = p[KEY_FONT_SIZE] ?: ArabicStyleSettings.Default.fontSize,
             lineHeight = p[KEY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.lineHeight,
-            bodyLineHeight = p[KEY_BODY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.bodyLineHeight,
+            bodyLineHeight = clampedBodyLineHeight,
             wordSpacing = p[KEY_WORD_SPACING] ?: ArabicStyleSettings.Default.wordSpacing,
             letterSpacing = p[KEY_LETTER_SPACING] ?: ArabicStyleSettings.Default.letterSpacing,
             align = ArabicAlign.fromStorageKey(p[KEY_ALIGN]),

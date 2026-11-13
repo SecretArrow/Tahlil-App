@@ -180,11 +180,17 @@ function AyahMark({ digit }: { digit: string }) {
 
 /** Inline style for each line — display:block + margin to ensure each
     ayah/clause is on its own line (CSS class sometimes gets overridden
-    by Tailwind v4 layer system, so inline style is more reliable). */
-const LINE_STYLE: React.CSSProperties = {
-  display: "block",
-  marginBottom: "0.25em",
-};
+    by Tailwind v4 layer system, so inline style is more reliable).
+    The bottom margin is the user-adjustable "Jarak Antar Kalimat" slider
+    (ArabicStyleSettings.bodyLineHeight, in em) — it adds breathing room
+    BETWEEN Arabic kalimat/sentences (ayah lines & comma-split clause
+    lines). The lineHeight setting (within a single line) is separate. */
+function makeLineStyle(gapEm: number): React.CSSProperties {
+  return {
+    display: "block",
+    marginBottom: `${gapEm}em`,
+  };
+}
 
 /**
  * Wrap each non-whitespace token of `text` in a colored span, alternating
@@ -298,7 +304,9 @@ function renderArabicWithAyahMarks(
   counterRef: { current: number } = { current: 0 },
   splitSentences: boolean = true,
   tajwid: boolean = false,
+  gapEm: number = 0.25,
 ): React.ReactNode[] {
+  const lineStyle = makeLineStyle(gapEm);
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
   if (matches.length === 0) {
     // No ayah marks — this is likely a long dua text.
@@ -308,13 +316,13 @@ function renderArabicWithAyahMarks(
       const trimmed = text.trim();
       if (!trimmed) return [];
       return [
-        <span key={`${keyPrefix}-0`} className="ayah-line" style={LINE_STYLE}>
+        <span key={`${keyPrefix}-0`} className="ayah-line" style={lineStyle}>
           {decorateText(trimmed, colors, counterRef, keyPrefix, tajwid)}
         </span>,
       ];
     }
     // Split by Arabic comma (،) or Latin period (.) to break into lines.
-    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid);
+    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid, gapEm);
   }
 
   const nodes: React.ReactNode[] = [];
@@ -333,7 +341,7 @@ function renderArabicWithAyahMarks(
     // The verse text is colorized word-by-word if colors is set; the
     // AyahMark ornament keeps its own CSS-driven styling.
     nodes.push(
-      <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={LINE_STYLE}>
+      <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={lineStyle}>
         {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid)}
         <AyahMark digit={digit} />
       </span>,
@@ -351,14 +359,16 @@ function renderArabicWithAyahMarks(
       const trimmed = trailing.trim();
       if (trimmed) {
         nodes.push(
-          <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={LINE_STYLE}>
+          <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={lineStyle}>
             {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid)}
           </span>,
         );
       }
     } else {
       // Also split trailing by sentence for dua-style text
-      nodes.push(...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef, tajwid));
+      nodes.push(
+        ...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef, tajwid, gapEm),
+      );
     }
   }
 
@@ -380,7 +390,9 @@ function splitBySentence(
   colors: readonly [string, string] | null = null,
   counterRef: { current: number } = { current: 0 },
   tajwid: boolean = false,
+  gapEm: number = 0.25,
 ): React.ReactNode[] {
+  const lineStyle = makeLineStyle(gapEm);
   // Trim leading/trailing whitespace
   const trimmed = text.trim();
   if (!trimmed) return [<React.Fragment key={`${keyPrefix}-0`} />];
@@ -398,7 +410,7 @@ function splitBySentence(
     // If this part is a delimiter, finish the current line
     if (part === "،" || part === ".") {
       lines.push(
-        <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={LINE_STYLE}>
+        <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={lineStyle}>
           {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
         </span>,
       );
@@ -408,7 +420,7 @@ function splitBySentence(
   // Trailing text without delimiter
   if (current.trim()) {
     lines.push(
-      <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={LINE_STYLE}>
+      <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={lineStyle}>
         {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
       </span>,
     );
@@ -507,6 +519,12 @@ export function ArabicText({
         counterRef,
         toggles.splitArabicLines,
         tajwidOn,
+        // Always use the user's bodyLineHeight (gap between Arabic kalimat
+        // lines). When `forceSettings` is set (the compare-view branch), we
+        // intentionally fall back to the user's gap value because the compare
+        // view is about font/size/spacing comparison, not about the sentence
+        // gap knob — and forceSettings's type doesn't carry bodyLineHeight.
+        settings.bodyLineHeight,
       )}
       {suffix}
     </p>

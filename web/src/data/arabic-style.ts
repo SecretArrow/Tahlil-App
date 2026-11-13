@@ -3,8 +3,16 @@ export type ArabicStyleMode = "standard" | "quran" | "naskhi";
 export type ArabicStyleSettings = {
   mode: ArabicStyleMode;
   fontSize: number; // rem
-  lineHeight: number; // unitless — Arabic text
-  bodyLineHeight: number; // unitless — Latin transliteration + Indonesian translation
+  lineHeight: number; // unitless — Arabic text line-height (within a single ayah/clause line)
+  /**
+   * Extra gap (em) BETWEEN Arabic sentences (ayah lines / comma-split
+   * clause lines). This is the user-adjustable "Jarak Antar Kalimat"
+   * slider in Pengaturan Teks Arab → Tipografi. It controls the
+   * breathing room between one Arabic kalimat and the next, NOT the
+   * line-height of the Latin transliteration / Indonesian translation
+   * (those use their own sensible default line-height).
+   */
+  bodyLineHeight: number; // em — extra gap between Arabic kalimat lines
   wordSpacing: number; // em
   letterSpacing: number; // em — space BETWEEN letters within a word
   align: "right" | "justify" | "center";
@@ -14,7 +22,7 @@ export const defaultArabicSettings: ArabicStyleSettings = {
   mode: "quran",
   fontSize: 1.75,
   lineHeight: 2.1,
-  bodyLineHeight: 1.6,
+  bodyLineHeight: 0.3,
   wordSpacing: 0.05,
   letterSpacing: 0,
   align: "right",

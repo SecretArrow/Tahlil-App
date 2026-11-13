@@ -110,9 +110,6 @@ fun SettingsScreen(
 
             item { SectionTitle("Tipografi Arab") }
             typographySection(style, onStyleChange)
-
-            item { SectionTitle("Teks Latin & Terjemahan") }
-            bodyTypographySection(style, onStyleChange)
         }
     }
 }
@@ -332,30 +329,6 @@ private fun FontModeRow(
     )
 }
 
-/**
- * Line-spacing control for the NON-Arabic reading text: the Latin
- * transliteration and the Indonesian translation (the "kalimat" lines under
- * each Arabic verse). The Arabic text has its own "Tinggi Baris" slider in
- * the Tipografi Arab section above — this one only affects Latin/Indonesian
- * body text.
- */
-private fun LazyListScope.bodyTypographySection(
-    style: ArabicStyleSettings,
-    onChange: (ArabicStyleSettings) -> Unit,
-) {
-    item {
-        SettingsCard {
-            SliderRow(
-                title = "Jarak Antar Baris Kalimat",
-                value = style.bodyLineHeight,
-                onValueChange = { v -> onChange(style.copy(bodyLineHeight = v)) },
-                valueRange = ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE,
-                valueFormat = { String.format("%.2f×", it) },
-            )
-        }
-    }
-}
-
 private fun LazyListScope.typographySection(
     style: ArabicStyleSettings,
     onChange: (ArabicStyleSettings) -> Unit,
@@ -389,6 +362,13 @@ private fun LazyListScope.typographySection(
                 onValueChange = { v -> onChange(style.copy(letterSpacing = v)) },
                 valueRange = ArabicStyleSettings.LETTER_SPACING_RANGE,
                 valueFormat = { String.format("%.3f em", it) },
+            )
+            SliderRow(
+                title = "Jarak Antar Kalimat (Arab)",
+                value = style.bodyLineHeight,
+                onValueChange = { v -> onChange(style.copy(bodyLineHeight = v)) },
+                valueRange = ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE,
+                valueFormat = { String.format("%.2f em", it) },
             )
             // Alignment selector (dropdown)
             var alignExpanded by remember { mutableStateOf(false) }

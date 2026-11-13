@@ -44,8 +44,8 @@ function parseStored(raw: string | null): ArabicStyleSettings {
           : defaultArabicSettings.lineHeight,
       bodyLineHeight:
         typeof parsed.bodyLineHeight === "number" &&
-        parsed.bodyLineHeight >= 1 &&
-        parsed.bodyLineHeight <= 2.5
+        parsed.bodyLineHeight >= 0 &&
+        parsed.bodyLineHeight <= 1.5
           ? parsed.bodyLineHeight
           : defaultArabicSettings.bodyLineHeight,
       wordSpacing:

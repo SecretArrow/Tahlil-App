@@ -482,6 +482,15 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                 onChange={setLetterSpacing}
                 formatValue={(v) => `${v.toFixed(3)} em`}
               />
+              <Slider
+                label="Jarak Antar Kalimat (Arab)"
+                value={settings.bodyLineHeight}
+                min={0}
+                max={1.5}
+                step={0.05}
+                onChange={setBodyLineHeight}
+                formatValue={(v) => `${v.toFixed(2)} em`}
+              />
               {/* Alignment */}
               <div className="space-y-1.5">
                 <span className="block text-sm font-medium text-foreground">Perataan</span>
@@ -498,45 +507,6 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                   <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 </div>
               </div>
-            </div>
-          </section>
-
-          {/* Body text (Latin + translation) line spacing */}
-          <section className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              Teks Latin &amp; Terjemahan
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Slider
-                label="Jarak Antar Baris Kalimat"
-                value={settings.bodyLineHeight}
-                min={1}
-                max={2.5}
-                step={0.05}
-                onChange={setBodyLineHeight}
-                formatValue={(v) => `${v.toFixed(2)}×`}
-              />
-            </div>
-            {/* Live preview so the user sees the spacing change immediately */}
-            <div className="rounded-2xl border border-border bg-muted/30 p-4">
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-                Pratinjau jarak antar baris
-              </p>
-              <p
-                className="text-[15px] italic text-primary/90 dark:text-primary"
-                style={{ lineHeight: settings.bodyLineHeight }}
-              >
-                Bismillaahirrahmaanir-rahiim. Alhamdulillaahi rabbil-'aalamiin. Wa taghfir lanaa
-                warhamnaa innaka antal-ghafuurur-rahiim.
-              </p>
-              <p
-                className="mt-2 text-[15px] text-foreground/80 dark:text-foreground/75"
-                style={{ lineHeight: settings.bodyLineHeight }}
-              >
-                Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi
-                Allah, Tuhan semesta alam. Ampunilah kami dan rahmatilah kami, sesungguhnya
-                Engkaulah Yang Maha Pengampun lagi Maha Penyayang.
-              </p>
             </div>
           </section>
 
@@ -578,7 +548,7 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                     ? "rata kanan-kiri"
                     : "rata tengah"}
                 {" · "}
-                Latin/ID LH {settings.bodyLineHeight.toFixed(2)}×{" · "}
+                Jarak Kalimat {settings.bodyLineHeight.toFixed(2)}em{" · "}
                 Koma: {toggles.punctuateArabic ? "ON" : "OFF"}
                 {" · "}
                 Warna: {toggles.colorizeArabic ? "ON" : "OFF"}
