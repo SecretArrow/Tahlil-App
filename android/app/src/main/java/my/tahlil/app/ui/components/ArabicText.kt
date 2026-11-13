@@ -5,10 +5,11 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,16 +17,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.PlaceholderVerticalAlign
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import my.tahlil.app.data.ArabicAlign
 import my.tahlil.app.data.ArabicStyleMode
@@ -46,9 +50,11 @@ import my.tahlil.app.util.TajwidUtil
  * are inserted before " وَ" connectors (see [ArabicCommaUtil.addArabicCommas]).
  *
  * Ayah marks (۝ followed by Arabic-Indic digits) are detected and rendered
- * as a styled circle with the digit overlaid in the center — mimicking
- * proper Mushaf typography. Each ayah (verse + mark) is wrapped in its own
- * line (Column with spacedBy) so each verse gets its own row for
+ * as a circled digit INLINE at the end of the verse text — the badge flows
+ * with the text via Compose `inlineContent`, so it always hugs the last
+ * word of the verse exactly like the web's `.ayah-mark` span (mimicking
+ * proper Mushaf typography). Each ayah (verse + mark) is wrapped in its
+ * own line (Column with spacedBy) so each verse gets its own row for
  * readability.
  *
  * For Arabic text WITHOUT ayah marks (e.g., long dua text), split by Arabic
@@ -147,7 +153,6 @@ fun ArabicText(
                 ArabicLineRenderer(
                     line = line,
                     baseStyle = baseTextStyle,
-                    isDark = isDark,
                 )
             }
             suffix?.invoke()
@@ -165,32 +170,49 @@ private sealed class Line {
     data class Trailing(val text: AnnotatedString) : Line()
 }
 
+/** Inline-content id used to embed the ayah mark inside the verse Text. */
+private const val AYAH_MARK_INLINE_ID = "ayah-mark"
+
 @Composable
-private fun ArabicLineRenderer(line: Line, baseStyle: TextStyle, isDark: Boolean) {
+private fun ArabicLineRenderer(line: Line, baseStyle: TextStyle) {
     when (line) {
         is Line.Ayah -> {
-            // Render in an RTL layout direction so the verse text appears on the
-            // right (start of RTL reading direction) and the ayah mark appears on
-            // the left (end of the verse — matching Mushaf convention).
-            androidx.compose.runtime.CompositionLocalProvider(
-                androidx.compose.ui.platform.LocalLayoutDirection provides
-                    androidx.compose.ui.unit.LayoutDirection.Rtl
-            ) {
-                Row(
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    modifier = Modifier,
-                ) {
-                    if (line.text.isNotEmpty()) {
-                        Text(
-                            text = line.text,
-                            style = baseStyle,
-                            modifier = Modifier.weight(1f),
-                        )
-                    }
-                    AyahMark(digits = line.digits, isDark = isDark)
+            // The ayah mark is embedded as INLINE CONTENT at the end of the
+            // verse text: the circled digit becomes part of the text flow and
+            // always sits immediately after (RTL: to the left of) the last
+            // word — never pinned to the margin. Matches the web, where the
+            // .ayah-mark span flows inline inside the .ayah-line block.
+            val annotated = remember(line) {
+                buildAnnotatedString {
+                    append(line.text)
+                    appendInlineContent(AYAH_MARK_INLINE_ID, "[${line.digits}]")
                 }
             }
+            // Placeholder box sized in em so the badge scales with the
+            // user's font-size setting. Width grows for multi-digit marks
+            // (e.g. ۝٢٨٦). Vertical: centered on the text line.
+            val markWidthEm = 1.35f + 0.5f * (line.digits.length - 1).coerceAtLeast(0)
+            Text(
+                text = annotated,
+                style = baseStyle,
+                // fillMaxWidth is REQUIRED for TextAlign.Right/Justify to
+                // take effect — same reason as the Sentence branch.
+                modifier = Modifier.fillMaxWidth(),
+                inlineContent = mapOf(
+                    AYAH_MARK_INLINE_ID to InlineTextContent(
+                        Placeholder(
+                            width = markWidthEm.em,
+                            height = 1.35f.em,
+                            placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                        )
+                    ) {
+                        AyahMark(
+                            digits = line.digits,
+                            baseFontSize = baseStyle.fontSize,
+                        )
+                    },
+                ),
+            )
         }
         is Line.Sentence -> Text(
             text = line.text,
@@ -209,49 +231,34 @@ private fun ArabicLineRenderer(line: Line, baseStyle: TextStyle, isDark: Boolean
 
 /**
  * Render a single ayah mark (۝X) as an ornamental circle with the digit
- * centered inside. Matches the web app's `.ayah-mark` styling — a soft
- * circular ornament with the digit overlaid.
+ * centered inside. Matches the web app's `.ayah-mark` styling — a circular
+ * ornament with the digit overlaid (the raw ۝ glyph is NOT drawn; the
+ * circle is vector-drawn so it renders identically on every device font).
  *
- * Visual: solid circle with accent-color tint, prominent border, digit
- * centered. The decorative ۝ ornament sits faded behind the digit so
- * the circle reads as a clear "frame" around the number.
+ * The composable FILLS the inline-content placeholder box, which is sized
+ * in em relative to the verse font size — so the badge scales together
+ * with the user's font-size setting.
  */
 @Composable
-private fun AyahMark(digits: String, isDark: Boolean) {
+private fun AyahMark(digits: String, baseFontSize: TextUnit) {
     if (digits.isEmpty()) return
     val accentColor = MaterialTheme.colorScheme.primary
     val digitColor = MaterialTheme.colorScheme.onSurface
-    val isMultiDigit = digits.length > 1
-    // Perbesar ukuran agar bingkai jelas terlihat (sebelumnya 22/28dp terlalu kecil).
-    val size = if (isMultiDigit) 34.dp else 28.dp
-    // Border tebal + alpha tinggi supaya jelas terlihat sebagai bingkai.
-    val borderAlpha = 0.85f
-    val bgAlpha = 0.20f
 
     Box(
         modifier = Modifier
-            .size(size)
-            .background(accentColor.copy(alpha = bgAlpha), CircleShape)
-            .border(2.dp, accentColor.copy(alpha = borderAlpha), CircleShape),
+            .fillMaxSize()
+            .background(accentColor.copy(alpha = 0.18f), CircleShape)
+            .border(1.5.dp, accentColor.copy(alpha = 0.80f), CircleShape),
         contentAlignment = Alignment.Center,
     ) {
-        // The decorative ۝ ornament sits behind the digit, faded.
-        Text(
-            text = "۝",
-            color = accentColor.copy(alpha = 0.35f),
-            style = TextStyle(
-                fontSize = (size.value * 0.95f).sp,
-                fontFamily = FontFamily.Serif,
-                textDirection = TextDirection.Rtl,
-            ),
-            modifier = Modifier.alpha(0.6f),
-        )
-        // The digit centered, dengan font lebih besar agar mudah dibaca.
+        // The digit centered — same 0.55em proportion as the web's
+        // .ayah-mark-digit, bold for legibility at small sizes.
         Text(
             text = digits,
             color = digitColor,
             style = TextStyle(
-                fontSize = (size.value * 0.48f).sp,
+                fontSize = (baseFontSize.value * 0.55f).sp,
                 fontFamily = FontFamily.Serif,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                 textDirection = TextDirection.Rtl,
