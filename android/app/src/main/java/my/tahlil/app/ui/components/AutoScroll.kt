@@ -1,7 +1,6 @@
 package my.tahlil.app.ui.components
 
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -55,7 +54,8 @@ fun AutoScrollEngine(
     val density = LocalDensity.current
     LaunchedEffect(active, paused, speedMultiplier, pauseSecPerSection) {
         if (!active || paused) return@LaunchedEffect
-        val pxPerSecond = with(density) { (BASE_DP_PER_SECOND * speedMultiplier).toPx() }
+        // px per second = dp/s × multiplier × device density factor.
+        val pxPerSecond = BASE_DP_PER_SECOND * speedMultiplier * density.density
         var holdUntil = 0L
         var lastSeenIndex = state.firstVisibleItemIndex
         coroutineScope {
@@ -72,18 +72,22 @@ fun AutoScrollEngine(
                         lastSeenIndex = idx
                     }
             }
-            // Scroller: one scrollBy per frame, delta derived from elapsed
+            // Scroller: canonical per-frame scroll session — ScrollScope.scrollBy
+            // is a member (no extension import), delta derived from elapsed
             // nanoseconds so the pace is frame-rate independent.
-            var lastFrame = withFrameNanos { it }
-            while (isActive) {
-                val now = withFrameNanos { it }
-                val dt = ((now - lastFrame).coerceAtLeast(0)) / 1_000_000_000f
-                lastFrame = now
-                if (System.currentTimeMillis() < holdUntil) continue
-                state.scrollBy(pxPerSecond * dt)
-                if (!state.canScrollForward) {
-                    onReachEnd()
-                    break
+            state.scroll {
+                var lastFrame = withFrameNanos { it }
+                while (isActive) {
+                    val now = withFrameNanos { it }
+                    val dt = ((now - lastFrame).coerceAtLeast(0L)) / 1_000_000_000f
+                    lastFrame = now
+                    if (System.currentTimeMillis() >= holdUntil) {
+                        scrollBy(pxPerSecond * dt)
+                    }
+                    if (!state.canScrollForward) {
+                        onReachEnd()
+                        break
+                    }
                 }
             }
         }
