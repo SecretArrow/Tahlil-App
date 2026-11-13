@@ -29,7 +29,8 @@ export const tahlilSections: Section[] = [
         translation: "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang.",
       },
       {
-        arabic: "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُوْلُ اللّٰهِ",
+        arabic:
+          "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُوْلُ اللّٰهِ",
         transliteration: "Asyhadu an lâ ilâha illallâh, wa asyhadu anna Muhammadar rasûlullâh",
         translation:
           "Saya bersaksi tidak ada Tuhan yang berhak disembah kecuali Allah. Dan saya bersaksi bahwa sesungguhnya Nabi Muhammad adalah utusan Allah.",
@@ -50,7 +51,8 @@ export const tahlilSections: Section[] = [
         translation: "Saya mohon ampun kepada Allah Yang Maha Agung.",
       },
       {
-        arabic: "أَسْتَغْفِرُ اللّٰهَ الْعَظِيْمَ الَّذِيْ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ وَأَتُوْبُ إِلَيْهِ",
+        arabic:
+          "أَسْتَغْفِرُ اللّٰهَ الْعَظِيْمَ الَّذِيْ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّوْمُ وَأَتُوْبُ إِلَيْهِ",
         transliteration:
           "Astaghfirullâhal-'azhîmal-ladzî lâ ilâha illâ huwal-hayyul-qayyûm wa atûbu ilaih",
         translation:
@@ -306,7 +308,8 @@ export const tahlilSections: Section[] = [
         note: "QS Al-Baqarah: 286 (awal)",
       },
       {
-        arabic: "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
+        arabic:
+          "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
         transliteration:
           "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
         translation:
@@ -341,14 +344,16 @@ export const tahlilSections: Section[] = [
     type: "ayat",
     blocks: [
       {
-        arabic: "رَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ عَلَيْكُمْ أَهْلَ الْبَيْتِ، إِنَّهُ حَمِيْدٌ مَجِيْدٌ",
+        arabic:
+          "رَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ عَلَيْكُمْ أَهْلَ الْبَيْتِ، إِنَّهُ حَمِيْدٌ مَجِيْدٌ",
         transliteration: "Rahmatullâhi wa barakâtuhû 'alaikum ahlal-bait, innahû hamîdum majîd",
         translation:
           "Rahmat Allah dan berkah-Nya semoga tercurah atas kamu, wahai ahlul bait. Sesungguhnya Dia Maha Terpuji lagi Maha Mulia.",
         note: "QS Hud: 73",
       },
       {
-        arabic: "إِنَّمَا يُرِيْدُ اللّٰهُ لِيُذْهِبَ عَنْكُمُ الرِّجْسَ أَهْلَ الْبَيْتِ وَيُطَهِّرَكُمْ تَطْهِيْرًا",
+        arabic:
+          "إِنَّمَا يُرِيْدُ اللّٰهُ لِيُذْهِبَ عَنْكُمُ الرِّجْسَ أَهْلَ الْبَيْتِ وَيُطَهِّرَكُمْ تَطْهِيْرًا",
         transliteration:
           "Innamâ yurîdullâhu liyudzhiba 'ankumur-rijsa ahlal-baiti wa yuthahhirakum tathhîrâ",
         translation:
@@ -366,7 +371,8 @@ export const tahlilSections: Section[] = [
     type: "ayat",
     blocks: [
       {
-        arabic: "إِنَّ اللّٰهَ وَمَلَائِكَتَهُ يُصَلُّوْنَ عَلَى النَّبِيِّ، يَا أَيُّهَا الَّذِيْنَ اٰمَنُوْا صَلُّوْا عَلَيْهِ وَسَلِّمُوْا تَسْلِيْمًا",
+        arabic:
+          "إِنَّ اللّٰهَ وَمَلَائِكَتَهُ يُصَلُّوْنَ عَلَى النَّبِيِّ، يَا أَيُّهَا الَّذِيْنَ اٰمَنُوْا صَلُّوْا عَلَيْهِ وَسَلِّمُوْا تَسْلِيْمًا",
         transliteration:
           "Innallâha wa malâ'ikatahû yushallûna 'alan-nabiyy. Yâ ayyuhal-ladzîna âmanû shallû 'alaihi wa sallimû taslîmâ",
         translation:
@@ -414,7 +420,8 @@ export const tahlilSections: Section[] = [
         repeat: 3,
       },
       {
-        arabic: "وَسَلِّمْ وَرَضِيَ اللّٰهُ تَبَارَكَ وَتَعَالَى عَنْ سَادَاتِنَا أَصْحَابِ رَسُوْلِ اللّٰهِ أَجْمَعِيْنَ",
+        arabic:
+          "وَسَلِّمْ وَرَضِيَ اللّٰهُ تَبَارَكَ وَتَعَالَى عَنْ سَادَاتِنَا أَصْحَابِ رَسُوْلِ اللّٰهِ أَجْمَعِيْنَ",
         transliteration:
           "Wa sallim wa radhiyallâhu tabâraka wa ta'âlâ 'an sâdâtinâ ashhâbi rasûlillâhi ajma'în",
         translation:
@@ -459,7 +466,8 @@ export const tahlilSections: Section[] = [
         repeat: 3,
       },
       {
-        arabic: "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
+        arabic:
+          "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
         transliteration:
           "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim (×3)",
         translation:
@@ -526,7 +534,8 @@ export const tahlilSections: Section[] = [
     type: "sholawat",
     blocks: [
       {
-        arabic: "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
+        arabic:
+          "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
         transliteration:
           "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim",
         translation:
@@ -563,14 +572,16 @@ export const tahlilSections: Section[] = [
     type: "sholawat",
     blocks: [
       {
-        arabic: "اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ أَجْمَعِيْنَ",
+        arabic:
+          "اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ أَجْمَعِيْنَ",
         transliteration:
           "Allâhumma shalli 'alâ habîbika sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim ajma'în",
         translation:
           "Ya Allah, limpahkanlah rahmat dan keselamatan kepada kekasih-Mu, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya seluruhnya.",
       },
       {
-        arabic: "اَللّٰهُمَّ صَلِّ عَلَى رَسُوْلِكَ وَحَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ أَجْمَعِيْنَ",
+        arabic:
+          "اَللّٰهُمَّ صَلِّ عَلَى رَسُوْلِكَ وَحَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ أَجْمَعِيْنَ",
         transliteration:
           "Allâhumma shalli 'alâ rasûlika wa habîbika sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim ajma'în",
         translation:
@@ -683,7 +694,8 @@ export const tahlilSections: Section[] = [
           'Ya Allah, ampunilah mereka, rahmatilah mereka, sejahterakanlah mereka, dan maafkanlah mereka. Ya Allah, turunkanlah rahmat dan ampunan kepada para ahli kubur dari kalangan ahli kalimat "Lâ ilâha illallâh, Muhammadur rasûlullâh" (Tiada Tuhan selain Allah, Muhammad adalah utusan Allah).',
       },
       {
-        arabic: "يَا مُهَيْمِنُ يَا سَلَامُ، سَلِّمْنَا وَالْمُسْلِمِيْنَ فِي الدُّنْيَا وَالْاٰخِرَةِ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِيْنَ",
+        arabic:
+          "يَا مُهَيْمِنُ يَا سَلَامُ، سَلِّمْنَا وَالْمُسْلِمِيْنَ فِي الدُّنْيَا وَالْاٰخِرَةِ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِيْنَ",
         transliteration:
           "Yâ muhaiminu yâ salâm, sallimnâ wal-muslimîna fid-dunyâ wal-âkhirah, bi rahmatika yâ arhamar-râhimîn",
         translation:
@@ -698,7 +710,8 @@ export const tahlilSections: Section[] = [
           "Ya Allah, sesungguhnya kami memohon ridha-Mu dan surga, dan kami berlindung kepada-Mu dari murka-Mu dan api neraka. Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan peliharalah kami dari siksa api neraka.",
       },
       {
-        arabic: "سُبْحٰنَ رَبِّكَ رَبِّ الْعِزَّةِ عَمَّا يَصِفُوْنَ، وَسَلَامٌ عَلَى الْمُرْسَلِيْنَ، وَالْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ، اَلْفَاتِحَةُ",
+        arabic:
+          "سُبْحٰنَ رَبِّكَ رَبِّ الْعِزَّةِ عَمَّا يَصِفُوْنَ، وَسَلَامٌ عَلَى الْمُرْسَلِيْنَ، وَالْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ، اَلْفَاتِحَةُ",
         transliteration:
           "Subhâna rabbika rabbil-'izzati 'ammâ yashifûn, wa salâmun 'alal-mursalîn, wal-hamdu lillâhi rabbil-'âlamîn. Al-Fâtihah",
         translation:
@@ -715,28 +728,32 @@ export const tahlilSections: Section[] = [
     type: "sholawat",
     blocks: [
       {
-        arabic: "مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا عَلَى حَبِيْبِكَ خَيْرِ الْخَلْقِ كُلِّهِمِ",
+        arabic:
+          "مَوْلَايَ صَلِّ وَسَلِّمْ دَائِمًا أَبَدًا عَلَى حَبِيْبِكَ خَيْرِ الْخَلْقِ كُلِّهِمِ",
         transliteration:
           "Maulâya shalli wa sallim dâ'iman abadan 'alâ habîbika khairil-khalqi kullihimi",
         translation:
           "Wahai Tuhanku, limpahkanlah rahmat dan keselamatan selamanya kepada kekasih-Mu, sebaik-baik makhluk seluruhnya.",
       },
       {
-        arabic: "هُوَ الْحَبِيْبُ الَّذِيْ تُرْجَى شَفَاعَتُهُ لِكُلِّ هَوْلٍ مِنَ الْأَهْوَالِ مُقْتَحَمِ",
+        arabic:
+          "هُوَ الْحَبِيْبُ الَّذِيْ تُرْجَى شَفَاعَتُهُ لِكُلِّ هَوْلٍ مِنَ الْأَهْوَالِ مُقْتَحَمِ",
         transliteration:
           "Huwal-habîbul-ladzî turjâ syafâ'atuhû likulli haulin minal-ahwâli muqtahami",
         translation:
           "Dialah kekasih yang diharapkan syafaatnya pada setiap kejadian yang mengerikan dari semua kejadian yang menakutkan.",
       },
       {
-        arabic: "يَا رَبِّ بِالْمُصْطَفَى بَلِّغْ مَقَاصِدَنَا وَاغْفِرْ لَنَا مَا مَضَى يَا وَاسِعَ الْكَرَمِ",
+        arabic:
+          "يَا رَبِّ بِالْمُصْطَفَى بَلِّغْ مَقَاصِدَنَا وَاغْفِرْ لَنَا مَا مَضَى يَا وَاسِعَ الْكَرَمِ",
         transliteration:
           "Yâ rabbi bil-musthafâ balligh maqâshidanâ, waghfir lanâ mâ madhâ yâ wâsi'al-karami",
         translation:
           "Wahai Tuhanku, dengan perantara Nabi terpilih, sampaikanlah kami kepada tujuan-tujuan kami, dan ampunilah dosa kami yang telah lalu, wahai Zat Yang Maha Luas kedermawanan-Nya.",
       },
       {
-        arabic: "يَا أَرْحَمَ الرَّاحِمِيْنَ يَا أَرْحَمَ الرَّاحِمِيْنَ يَا أَرْحَمَ الرَّاحِمِيْنَ، فَرِّجْ عَلَى الْمُسْلِمِيْنَ",
+        arabic:
+          "يَا أَرْحَمَ الرَّاحِمِيْنَ يَا أَرْحَمَ الرَّاحِمِيْنَ يَا أَرْحَمَ الرَّاحِمِيْنَ، فَرِّجْ عَلَى الْمُسْلِمِيْنَ",
         transliteration:
           "Yâ arhamar-râhimîn, yâ arhamar-râhimîn, yâ arhamar-râhimîn, farrij 'alal-muslimîn",
         translation:
