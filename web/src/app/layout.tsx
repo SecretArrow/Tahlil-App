@@ -97,6 +97,10 @@ function parseArabicStyle(raw: string | null): ArabicStyleSettings {
         typeof p.lineHeight === "number" && p.lineHeight >= 1.4 && p.lineHeight <= 3.5
           ? p.lineHeight
           : defaultArabicSettings.lineHeight,
+      bodyLineHeight:
+        typeof p.bodyLineHeight === "number" && p.bodyLineHeight >= 1 && p.bodyLineHeight <= 2.5
+          ? p.bodyLineHeight
+          : defaultArabicSettings.bodyLineHeight,
       wordSpacing:
         typeof p.wordSpacing === "number" && p.wordSpacing >= 0 && p.wordSpacing <= 0.6
           ? p.wordSpacing

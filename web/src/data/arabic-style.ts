@@ -3,7 +3,8 @@ export type ArabicStyleMode = "standard" | "quran" | "naskhi";
 export type ArabicStyleSettings = {
   mode: ArabicStyleMode;
   fontSize: number; // rem
-  lineHeight: number; // unitless
+  lineHeight: number; // unitless — Arabic text
+  bodyLineHeight: number; // unitless — Latin transliteration + Indonesian translation
   wordSpacing: number; // em
   letterSpacing: number; // em — space BETWEEN letters within a word
   align: "right" | "justify" | "center";
@@ -13,6 +14,7 @@ export const defaultArabicSettings: ArabicStyleSettings = {
   mode: "quran",
   fontSize: 1.75,
   lineHeight: 2.1,
+  bodyLineHeight: 1.6,
   wordSpacing: 0.05,
   letterSpacing: 0,
   align: "right",

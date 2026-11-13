@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { type Section } from "@/data/tahlil-content";
 import { ArabicText } from "@/components/arabic-text";
 import { useDisplaySettings } from "@/components/display-settings-provider";
+import { useArabicStyle } from "@/components/arabic-style-provider";
 
 const typeConfig: Record<Section["type"], { label: string; color: string; ring: string }> = {
   pembukaan: {
@@ -63,6 +64,9 @@ export function SectionCard({ section }: { section: Section }) {
   const inView = useInView(ref, { once: true, margin: "-80px 0px -80px 0px" });
   const cfg = typeConfig[section.type];
   const { toggles } = useDisplaySettings();
+  // Line spacing for the Latin/translation ("kalimat") lines — user-adjustable
+  // in Pengaturan Tampilan Teks → "Jarak Antar Baris Kalimat".
+  const { settings: styleSettings } = useArabicStyle();
   const allHidden = !toggles.arabic && !toggles.transliteration && !toggles.translation;
 
   return (
@@ -144,7 +148,10 @@ export function SectionCard({ section }: { section: Section }) {
                 {/* Transliteration */}
                 {toggles.transliteration && (
                   <div className="px-1">
-                    <p className="text-[15px] italic leading-relaxed text-primary/90 dark:text-primary">
+                    <p
+                      className="text-[15px] italic text-primary/90 dark:text-primary"
+                      style={{ lineHeight: styleSettings.bodyLineHeight }}
+                    >
                       {block.transliteration}
                     </p>
                   </div>
@@ -153,7 +160,10 @@ export function SectionCard({ section }: { section: Section }) {
                 {/* Translation */}
                 {toggles.translation && (
                   <div className="px-1">
-                    <p className="text-[15px] leading-relaxed text-foreground/80 dark:text-foreground/75">
+                    <p
+                      className="text-[15px] text-foreground/80 dark:text-foreground/75"
+                      style={{ lineHeight: styleSettings.bodyLineHeight }}
+                    >
                       {block.translation}
                     </p>
                   </div>

@@ -183,7 +183,9 @@ private fun BlockItem(
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontWeight = FontWeight.Normal,
                     fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
-                    lineHeight = 22.sp,
+                    // Line spacing driven by the user's "Jarak Antar Baris"
+                    // setting (bodyLineHeight × bodyMedium's 14sp base).
+                    lineHeight = (ArabicStyleSettings.BODY_FONT_SIZE_SP * style.bodyLineHeight).sp,
                 ),
                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.95f),
             )
@@ -193,7 +195,9 @@ private fun BlockItem(
         if (toggles.translation) {
             Text(
                 text = block.translation,
-                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 22.sp),
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    lineHeight = (ArabicStyleSettings.BODY_FONT_SIZE_SP * style.bodyLineHeight).sp,
+                ),
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
             )
         }

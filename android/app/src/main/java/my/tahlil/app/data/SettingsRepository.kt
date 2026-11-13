@@ -57,6 +57,7 @@ class SettingsRepository(private val context: Context) {
     private val KEY_MODE = stringPreferencesKey("arabic_mode")
     private val KEY_FONT_SIZE = floatPreferencesKey("arabic_font_size")
     private val KEY_LINE_HEIGHT = floatPreferencesKey("arabic_line_height")
+    private val KEY_BODY_LINE_HEIGHT = floatPreferencesKey("body_line_height")
     private val KEY_WORD_SPACING = floatPreferencesKey("arabic_word_spacing")
     private val KEY_LETTER_SPACING = floatPreferencesKey("arabic_letter_spacing")
     private val KEY_ALIGN = stringPreferencesKey("arabic_align")
@@ -85,6 +86,7 @@ class SettingsRepository(private val context: Context) {
             mode = ArabicStyleMode.fromStorageKey(p[KEY_MODE]),
             fontSize = p[KEY_FONT_SIZE] ?: ArabicStyleSettings.Default.fontSize,
             lineHeight = p[KEY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.lineHeight,
+            bodyLineHeight = p[KEY_BODY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.bodyLineHeight,
             wordSpacing = p[KEY_WORD_SPACING] ?: ArabicStyleSettings.Default.wordSpacing,
             letterSpacing = p[KEY_LETTER_SPACING] ?: ArabicStyleSettings.Default.letterSpacing,
             align = ArabicAlign.fromStorageKey(p[KEY_ALIGN]),
@@ -122,6 +124,7 @@ class SettingsRepository(private val context: Context) {
             p[KEY_MODE] = settings.mode.storageKey
             p[KEY_FONT_SIZE] = settings.fontSize
             p[KEY_LINE_HEIGHT] = settings.lineHeight
+            p[KEY_BODY_LINE_HEIGHT] = settings.bodyLineHeight
             p[KEY_WORD_SPACING] = settings.wordSpacing
             p[KEY_LETTER_SPACING] = settings.letterSpacing
             p[KEY_ALIGN] = settings.align.storageKey

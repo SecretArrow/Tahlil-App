@@ -122,8 +122,8 @@ export function Header({ onOpenNav, onOpenArabicStyle, onOpenDisplay }: HeaderPr
           <button
             type="button"
             onClick={onOpenArabicStyle}
-            aria-label="Pengaturan teks Arab"
-            title="Pengaturan teks Arab"
+            aria-label="Pengaturan tampilan teks"
+            title="Pengaturan tampilan teks (Arab, Latin, terjemahan)"
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/80 backdrop-blur-md transition-colors hover:bg-accent"
           >
             <Type className="h-5 w-5" />

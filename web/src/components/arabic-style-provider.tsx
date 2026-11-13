@@ -14,6 +14,7 @@ type Ctx = {
   setMode: (mode: ArabicStyleMode) => void;
   setFontSize: (v: number) => void;
   setLineHeight: (v: number) => void;
+  setBodyLineHeight: (v: number) => void;
   setWordSpacing: (v: number) => void;
   setLetterSpacing: (v: number) => void;
   setAlign: (a: ArabicStyleSettings["align"]) => void;
@@ -41,6 +42,12 @@ function parseStored(raw: string | null): ArabicStyleSettings {
         parsed.lineHeight <= 3.5
           ? parsed.lineHeight
           : defaultArabicSettings.lineHeight,
+      bodyLineHeight:
+        typeof parsed.bodyLineHeight === "number" &&
+        parsed.bodyLineHeight >= 1 &&
+        parsed.bodyLineHeight <= 2.5
+          ? parsed.bodyLineHeight
+          : defaultArabicSettings.bodyLineHeight,
       wordSpacing:
         typeof parsed.wordSpacing === "number" &&
         parsed.wordSpacing >= 0 &&
@@ -143,6 +150,7 @@ export function ArabicStyleProvider({
       },
       setFontSize: (fontSize) => update({ fontSize }),
       setLineHeight: (lineHeight) => update({ lineHeight }),
+      setBodyLineHeight: (bodyLineHeight) => update({ bodyLineHeight }),
       setWordSpacing: (wordSpacing) => update({ wordSpacing }),
       setLetterSpacing: (letterSpacing) => update({ letterSpacing }),
       setAlign: (align) => update({ align }),
