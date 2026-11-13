@@ -801,10 +801,9 @@ export const tahlilSections: Section[] = [
 ];
 
 export const heroInfo = {
-  title: "Tahlil Lengkap",
-  subtitle: "Tahlil Malam Jumat & Doa Arwah",
-  description:
-    "Rangkaian lengkap tahlil, zikir, dan doa untuk mendoakan para arwah kaum muslimin. 32 bagian disusun dari Al-Qur'an, hadits, dan amaliah ulama — sesuai tatacara Tahlil Malam Jumat.",
+  title: "Tahlil & Doa",
+  subtitle: "",
+  description: "Rangkaian lengkap tahlil, zikir, dan doa untuk mendoakan para arwah kaum muslimin.",
   arabicBismillah: "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ",
   source: "Kitab Tahlil Lengkap (Malam Jumat)",
 };

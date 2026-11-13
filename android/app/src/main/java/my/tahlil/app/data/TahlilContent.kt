@@ -42,10 +42,10 @@ data class Section(
 
 /** Hero copy shown at the top of the home screen. */
 object HeroInfo {
-    const val title = "Tahlil Lengkap"
-    const val subtitle = "Tahlil Malam Jumat & Doa Arwah"
+    const val title = "Tahlil & Doa"
+    const val subtitle = ""
     const val description =
-        "Rangkaian lengkap tahlil, zikir, dan doa untuk mendoakan para arwah kaum muslimin. 32 bagian disusun dari Al-Qur'an, hadits, dan amaliah ulama — sesuai tatacara Tahlil Malam Jumat."
+        "Rangkaian lengkap tahlil, zikir, dan doa untuk mendoakan para arwah kaum muslimin."
     const val arabicBismillah = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"
     const val source = "Kitab Tahlil Lengkap (Malam Jumat)"
 }

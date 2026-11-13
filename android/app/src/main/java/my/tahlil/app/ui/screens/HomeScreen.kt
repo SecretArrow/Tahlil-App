@@ -436,12 +436,16 @@ private fun Hero(onCtaClick: (String) -> Unit, modifier: Modifier = Modifier) {
                 color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
             )
-            Text(
-                text = HeroInfo.subtitle,
-                style = MaterialTheme.typography.titleMedium,
-                color = primary,
-                textAlign = TextAlign.Center,
-            )
+            // Only render subtitle when non-empty — the hero can work
+            // without one (e.g. when the title alone is sufficient).
+            if (HeroInfo.subtitle.isNotEmpty()) {
+                Text(
+                    text = HeroInfo.subtitle,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = primary,
+                    textAlign = TextAlign.Center,
+                )
+            }
 
             Spacer(Modifier.height(8.dp))
 

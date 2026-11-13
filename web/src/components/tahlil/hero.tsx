@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import { heroInfo } from "@/data/tahlil-content";
 
 type CtaButton = {
   href: string;
@@ -36,11 +37,55 @@ export function Hero() {
       </div>
 
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        {/* Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.05 }}
+          className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+        >
+          {heroInfo.title}
+        </motion.h1>
+
+        {/* Subtitle (only when non-empty) */}
+        {heroInfo.subtitle && (
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-3 text-lg font-medium text-primary sm:text-xl"
+          >
+            {heroInfo.subtitle}
+          </motion.p>
+        )}
+
+        {/* Bismillah */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          dir="rtl"
+          lang="ar"
+          className="mt-6 font-arabic text-2xl leading-relaxed text-foreground sm:text-3xl"
+        >
+          {heroInfo.arabicBismillah}
+        </motion.p>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base"
+        >
+          {heroInfo.description}
+        </motion.p>
+
         {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
           {ctaButtons.map((btn) => (
