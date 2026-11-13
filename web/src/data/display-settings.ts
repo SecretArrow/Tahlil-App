@@ -37,6 +37,16 @@ export type DisplayToggles = {
    */
   tajwid: boolean;
   /**
+   * Waqaf coloring — when true, letters whose reading CHANGES when the
+   * reciter stops (waqaf bil iskan, mad aridh lissukun, mad iwadh) are
+   * highlighted in blue (#1B51D0 light theme / #7B9DFF dark) at natural
+   * stopping points (clause delimiters, verse ends, text end). Detected
+   * by src/lib/waqaf.ts. Independent of `tajwid` — when both are on, the
+   * waqaf blue only fills segments NOT already colored by a tajwid rule.
+   * The original text is never modified.
+   */
+  waqafColor: boolean;
+  /**
    * Master toggle for the auto-scroll (Gulir Otomatis) feature. When
    * false (default), the play/pause FAB is NOT rendered on the reading
    * page. When true, a small FAB appears at the right edge of the
@@ -82,6 +92,7 @@ export const defaultDisplayToggles: DisplayToggles = {
   splitArabicLines: true,
   colorizeArabic: false,
   tajwid: false,
+  waqafColor: false,
   autoScrollEnabled: false,
   autoScrollMode: "continuous",
   autoScrollSpeed: 3,

@@ -312,6 +312,13 @@
 .tajwid-qalqalah {
   color: #ea580c;
 }
+/* Waqaf coloring (src/lib/waqaf.ts) — blue #1B51D0 marks letters whose
+   reading changes when the reciter stops (waqaf bil iskan, mad aridh
+   lissukun, mad iwadh). Dark theme lightens the same blue for contrast
+   (same hue family; #1B51D0 itself is too dark against the dark bg). */
+.waqaf-mark {
+  color: #1b51d0;
+}
 .dark .tajwid-izhar {
   color: #fbbf24;
 }
@@ -332,6 +339,9 @@
 }
 .dark .tajwid-qalqalah {
   color: #fb923c;
+}
+.dark .waqaf-mark {
+  color: #7b9dff;
 }
 
 /* Decorative Islamic pattern background utility */

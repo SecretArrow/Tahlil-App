@@ -38,6 +38,7 @@ function parseStored(raw: string | null): DisplayToggles {
         typeof parsed.splitArabicLines === "boolean" ? parsed.splitArabicLines : true,
       colorizeArabic: typeof parsed.colorizeArabic === "boolean" ? parsed.colorizeArabic : false,
       tajwid: typeof parsed.tajwid === "boolean" ? parsed.tajwid : false,
+      waqafColor: typeof parsed.waqafColor === "boolean" ? parsed.waqafColor : false,
       autoScrollEnabled:
         typeof parsed.autoScrollEnabled === "boolean" ? parsed.autoScrollEnabled : false,
       autoScrollMode:

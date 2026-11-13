@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import { Pause, Play, FastForward, ArrowDownToLine } from "lucide-react";
 import { tahlilSections } from "@/data/tahlil-content";
 import { useDisplaySettings } from "@/components/display-settings-provider";
+import { getCookie, setCookie } from "@/lib/cookies/client";
 
 /**
  * AutoScroll — "Gulir Otomatis" controller for the reading page.
@@ -47,6 +48,17 @@ const BLOCK_MAX_MS = 30000;
 /** Selectors whose clicks must NOT toggle pause. */
 const INTERACTIVE_SELECTOR =
   'a, button, input, select, textarea, label, summary, [role="button"], [role="dialog"], dialog, [data-no-autoscroll-pause]';
+
+/**
+ * Cookie that persists the FAB's drag offset (x, y from its default
+ * corner) so the user's chosen position survives reloads. The user can
+ * drag the FAB anywhere on screen ("bisa di pindah kemanapun user mau").
+ */
+const FAB_POS_COOKIE = "tahlil-autoscroll-fab-pos-v1";
+
+/** Clamp helper for the persisted drag offsets. */
+const clampOffset = (v: unknown): number =>
+  typeof v === "number" && Number.isFinite(v) ? Math.max(-8000, Math.min(8000, v)) : 0;
 
 export function AutoScroll() {
   const { toggles } = useDisplaySettings();
@@ -224,9 +236,13 @@ export function AutoScroll() {
   // --- Manual wheel / touch scroll pauses (continuous mode only) ----------
   // In block mode, manual scroll would conflict with smooth-scrollIntoView,
   // so we don't auto-pause there — the user can use the FAB to stop.
+  // Touchmoves that ORIGINATE on the FAB (dragging it to a new position)
+  // must not pause the engine — that's repositioning, not reading.
   React.useEffect(() => {
     if (!scrolling || mode !== "continuous") return;
-    const pause = () => {
+    const pause = (e: Event) => {
+      const target = e.target as Element | null;
+      if (target && target.closest("[data-autoscroll-fab]")) return;
       setPaused(true);
       holdUntilRef.current = 0;
     };
@@ -238,67 +254,121 @@ export function AutoScroll() {
     };
   }, [scrolling, mode]);
 
+  // --- Draggable FAB position ---------------------------------------------
+  // The wrapper (pill + button) is drag-enabled via framer-motion. The
+  // x/y motion values hold the drag OFFSET from the default corner
+  // (right-5 bottom-20) and persist to a cookie so the user's chosen
+  // position survives reloads. dragConstraints clamps the FAB within the
+  // viewport; dragMomentum={false} + tap detection keep a tap = click
+  // (start/stop) and a drag = reposition.
+  const constraintsRef = React.useRef<HTMLDivElement>(null);
+  const fabX = useMotionValue(0);
+  const fabY = useMotionValue(0);
+
+  React.useEffect(() => {
+    try {
+      const raw = getCookie(FAB_POS_COOKIE);
+      if (!raw) return;
+      const p = JSON.parse(raw) as { x?: unknown; y?: unknown };
+      fabX.set(clampOffset(p.x));
+      fabY.set(clampOffset(p.y));
+    } catch {
+      /* corrupt cookie — keep default corner */
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (!enabled) return null;
 
   return (
-    <div className="fixed right-5 bottom-20 z-40 sm:bottom-24 sm:right-6">
-      {/* Paused hint pill */}
-      <AnimatePresence>
-        {active && paused && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            className="mb-2 inline-block rounded-full bg-foreground/85 px-3 py-1 text-[11px] font-medium text-background shadow"
-          >
-            Gulir dijeda — ketuk layar untuk lanjut
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <motion.button
-        type="button"
+    <>
+      {/* Full-viewport drag constraints — pointer-events-none so it never
+          blocks clicks; framer only reads its bounds. */}
+      <div
+        ref={constraintsRef}
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-40"
+      />
+      <motion.div
+        drag
+        dragConstraints={constraintsRef}
+        dragMomentum={false}
+        dragElastic={0}
+        style={{ x: fabX, y: fabY, touchAction: "none" }}
+        onDragEnd={() => {
+          try {
+            setCookie(FAB_POS_COOKIE, JSON.stringify({ x: fabX.get(), y: fabY.get() }));
+          } catch {
+            /* cookie full/blocked — position is session-only then */
+          }
+        }}
+        data-autoscroll-fab
         data-no-autoscroll-pause
-        onClick={toggleActive}
-        aria-label={active ? "Jeda gulir otomatis" : "Mulai gulir otomatis"}
-        title={
-          active
-            ? mode === "continuous"
-              ? "Gulir otomatis berjalan — ketuk layar untuk jeda"
-              : "Gulir otomatis berjalan (mode blok) — ketuk layar untuk jeda"
-            : mode === "continuous"
-              ? "Mulai gulir otomatis (ketuk layar untuk jeda/lanjut)"
-              : "Mulai gulir otomatis per blok (ketuk layar untuk jeda/lanjut)"
-        }
-        initial={false}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
-        // h-9 w-9 (36px) — 70% of the back-to-top FAB (h-12 w-12 = 48px).
-        // Pinned to the right edge, above the back-to-top button.
-        className={`flex h-9 w-9 items-center justify-center rounded-full shadow-lg transition-colors ${
-          active
-            ? "bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-emerald-900/30 dark:from-emerald-500 dark:to-teal-600"
-            : "border border-border bg-card text-foreground"
-        }`}
+        title="Tahan & geser untuk memindah tombol"
+        className="fixed right-5 bottom-20 z-40 sm:bottom-24 sm:right-6"
       >
-        {scrolling ? (
-          <Pause className="h-4 w-4" strokeWidth={2.5} />
-        ) : (
-          <Play className="h-4 w-4 translate-x-0.5" strokeWidth={2.5} />
-        )}
-      </motion.button>
-      {/* Pulsing ring while running so the user knows it's active. */}
-      <AnimatePresence>
-        {scrolling && (
-          <motion.span
-            aria-hidden
-            initial={{ opacity: 0.5, scale: 1 }}
-            animate={{ opacity: 0, scale: 1.8 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
-            className="pointer-events-none absolute inset-0 rounded-full bg-emerald-400/40"
-          />
-        )}
-      </AnimatePresence>
-    </div>
+        {/* Paused hint pill */}
+        <AnimatePresence>
+          {active && paused && (
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              className="mb-2 inline-block rounded-full bg-foreground/85 px-3 py-1 text-[11px] font-medium text-background shadow"
+            >
+              Gulir dijeda — ketuk layar untuk lanjut
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.button
+          type="button"
+          onClick={toggleActive}
+          aria-label={active ? "Jeda gulir otomatis" : "Mulai gulir otomatis"}
+          title={
+            active
+              ? mode === "continuous"
+                ? "Gulir otomatis berjalan — ketuk layar untuk jeda"
+                : "Gulir otomatis berjalan (mode blok) — ketuk layar untuk jeda"
+              : mode === "continuous"
+                ? "Mulai gulir otomatis (ketuk layar untuk jeda/lanjut) — tahan & geser untuk memindah"
+                : "Mulai gulir otomatis per blok — tahan & geser untuk memindah"
+          }
+          initial={false}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          // h-9 w-9 (36px) — 70% of the back-to-top FAB (h-12 w-12 = 48px).
+          // Default position: right edge, above the back-to-top button —
+          // draggable to any position (position persists via cookie).
+          className="flex h-9 w-9 items-center justify-center rounded-full shadow-lg transition-colors"
+        >
+          <span
+            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+              active
+                ? "bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-emerald-900/30 dark:from-emerald-500 dark:to-teal-600"
+                : "border border-border bg-card text-foreground"
+            }`}
+          >
+            {scrolling ? (
+              <Pause className="h-4 w-4" strokeWidth={2.5} />
+            ) : (
+              <Play className="h-4 w-4 translate-x-0.5" strokeWidth={2.5} />
+            )}
+          </span>
+        </motion.button>
+        {/* Pulsing ring while running so the user knows it's active. */}
+        <AnimatePresence>
+          {scrolling && (
+            <motion.span
+              aria-hidden
+              initial={{ opacity: 0.5, scale: 1 }}
+              animate={{ opacity: 0, scale: 1.8 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
+              className="pointer-events-none absolute right-0 top-[calc(100%-2.25rem)] h-9 w-9 rounded-full bg-emerald-400/40"
+            />
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </>
   );
 }

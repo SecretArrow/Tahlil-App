@@ -1,17 +1,37 @@
 package my.tahlil.app.ui.components
 
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -249,3 +269,145 @@ class AutoScrollSessionState {
 /** Remember an [AutoScrollSessionState] for the current screen. */
 @Composable
 fun rememberAutoScrollSession(): AutoScrollSessionState = remember { AutoScrollSessionState() }
+
+// ── Draggable auto-scroll FAB ──────────────────────────────────────────────
+
+/** FAB diameter — 36.dp, ~70% of the standard 56.dp FAB (matches the web's 36px button). */
+private val AutoScrollFabSize = 36.dp
+
+/** Default horizontal gap from the screen's end edge. */
+private val FabEndPadding = 16.dp
+
+/**
+ * Default gap above the navigation-bar inset — sits above the back-to-top
+ * FAB on HomeScreen (which occupies roughly the bottom 72.dp).
+ */
+private val FabBottomPadding = 72.dp
+
+/** Guard margin the FAB keeps from the screen edges when dragged. */
+private val FabScreenMargin = 8.dp
+
+/**
+ * Shared, DRAGGABLE auto-scroll start/pause FAB (port of the draggable FAB
+ * from the web's `auto-scroll.tsx`).
+ *
+ * Look & wiring: a 36dp circular [Surface] — primary + onPrimary while
+ * [scrolling], surface + onSurface otherwise — showing Pause while
+ * scrolling and PlayArrow otherwise. The start/pause logic stays with the
+ * caller via [onClick]; the session state
+ * ([rememberAutoScrollSession]/[AutoScrollEngine]) is untouched.
+ *
+ * Dragging: the outer Box consumes drag gestures (`detectDragGestures`,
+ * which only fires after touch slop) and offsets the FAB from its default
+ * bottom-end corner (end 16.dp, bottom 72.dp, above the navigation-bar
+ * inset). The offsets are clamped so the FAB never leaves the screen:
+ *  - horizontal ∈ [-(screenW − fab − 16 − 8) .. 0]
+ *  - vertical   ∈ [-(screenH − fab − 72 − 64 − 8) .. +(72 − 16).toPx()]
+ *    (down to just above the nav-bar zone).
+ *
+ * Position persistence: the offsets are [rememberSaveable] floats — they
+ * survive configuration changes (rotation) and reset on process death
+ * (the web persists to a cookie; session-scoped persistence is acceptable
+ * here per spec).
+ *
+ * Tap vs drag: `detectDragGestures` consumes position changes only after
+ * touch slop, so a plain tap still reaches the Surface's onClick (and a
+ * [hasDragged] guard suppresses the click when a real drag occurred,
+ * regardless of event-dispatch order). While paused, the screens' hint
+ * pill stays at the FAB's default corner — it does NOT follow the drag.
+ *
+ * Equivalent of the web's "touchmove pauses, except when it originates on
+ * the FAB": gestures that begin on the FAB are fully consumed here and
+ * never reach the reading surface's tap-to-pause detector
+ * ([autoScrollTapControl]).
+ */
+@Composable
+fun AutoScrollFab(
+    scrolling: Boolean,
+    contentDescription: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    // Drag offsets (px) from the default bottom-end corner. Float is
+    // autosaveable — survives rotation, resets on process death (acceptable).
+    var offsetX by rememberSaveable { mutableStateOf(0f) }
+    var offsetY by rememberSaveable { mutableStateOf(0f) }
+    // True once an actual drag (touch slop passed) moved the FAB in the
+    // current gesture — lets the click handler distinguish a tap (start /
+    // pause) from a drag (reposition).
+    var hasDragged by remember { mutableStateOf(false) }
+
+    val density = LocalDensity.current
+    val configuration = LocalConfiguration.current
+
+    // Drag bounds (px), recomputed whenever screen size / density changes
+    // (pointerInput below is keyed on them, so a rotation re-clamps). The
+    // coerceAtMost guards keep the range valid on absurdly small screens.
+    val minOffsetX = with(density) {
+        -(configuration.screenWidthDp.dp - AutoScrollFabSize - FabEndPadding - FabScreenMargin).toPx()
+    }.coerceAtMost(0f)
+    val minOffsetY = with(density) {
+        -(configuration.screenHeightDp.dp - AutoScrollFabSize - FabBottomPadding - 64.dp - FabScreenMargin)
+            .toPx()
+    }.coerceAtMost(0f)
+    val maxOffsetY = with(density) {
+        // Down to just above the nav-bar zone (72.dp − 16.dp below the base).
+        (FabBottomPadding - FabEndPadding).toPx()
+    }.coerceAtLeast(0f)
+
+    Box(
+        modifier = modifier
+            .navigationBarsPadding()
+            .padding(end = FabEndPadding, bottom = FabBottomPadding)
+            .offset {
+                IntOffset(
+                    offsetX.coerceIn(minOffsetX, 0f).roundToInt(),
+                    offsetY.coerceIn(minOffsetY, maxOffsetY).roundToInt(),
+                )
+            }
+            .pointerInput(minOffsetX, minOffsetY, maxOffsetY) {
+                detectDragGestures(
+                    onDragEnd = { hasDragged = false },
+                    onDragCancel = { hasDragged = false },
+                ) { change, dragAmount ->
+                    change.consume()
+                    hasDragged = true
+                    offsetX = (offsetX + dragAmount.x).coerceIn(minOffsetX, 0f)
+                    offsetY = (offsetY + dragAmount.y).coerceIn(minOffsetY, maxOffsetY)
+                }
+            },
+    ) {
+        Surface(
+            onClick = { if (!hasDragged) onClick() },
+            modifier = Modifier.size(AutoScrollFabSize),
+            shape = CircleShape,
+            color = if (scrolling) {
+                MaterialTheme.colorScheme.primary
+            } else {
+                MaterialTheme.colorScheme.surface
+            },
+            contentColor = if (scrolling) {
+                MaterialTheme.colorScheme.onPrimary
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            },
+            shadowElevation = 6.dp,
+            tonalElevation = 6.dp,
+        ) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    imageVector = if (scrolling) {
+                        Icons.Filled.Pause
+                    } else {
+                        Icons.Filled.PlayArrow
+                    },
+                    contentDescription = contentDescription,
+                    modifier = Modifier.size(20.dp),
+                )
+            }
+        }
+    }
+}

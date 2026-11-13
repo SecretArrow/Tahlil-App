@@ -31,8 +31,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.Pause
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.AlertDialog
@@ -71,6 +69,7 @@ import my.tahlil.app.BuildConfig
 import my.tahlil.app.data.HeroInfo
 import my.tahlil.app.data.TahlilContent
 import my.tahlil.app.ui.components.AutoScrollEngine
+import my.tahlil.app.ui.components.AutoScrollFab
 import my.tahlil.app.ui.components.SectionCard
 import my.tahlil.app.ui.components.autoScrollTapControl
 import my.tahlil.app.ui.components.contentMaxWidth
@@ -342,63 +341,23 @@ fun HomeScreen(
             }
         }
 
-        // Auto-scroll start/stop FAB (bottom-end, above the back-to-top FAB).
-        // Icon: Pause while scrolling, PlayArrow when off or paused.
-        // Rendered only while the user has enabled Gulir Otomatis in
-        // Settings; otherwise the FAB is omitted entirely so it never
-        // obscures the reading surface.
-        //
-        // Implementation note: we use Surface (not Material3
-        // FloatingActionButton) because FloatingActionButton has a
-        // built-in 16.dp contentPadding that, combined with .size(36.dp),
-        // would leave only ~4dp of content area and clip the icon.
-        // Surface lets us control the icon sizing directly while keeping
-        // the FAB-like look (circular shape, elevation, ripple).
+        // Auto-scroll start/stop FAB (bottom-end, above the back-to-top FAB) —
+        // shared, DRAGGABLE composable: hold & drag to reposition anywhere on
+        // screen; a plain tap still toggles start/pause. Icon: Pause while
+        // scrolling, PlayArrow when off or paused. Rendered only while the
+        // user has enabled Gulir Otomatis in Settings; otherwise the FAB is
+        // omitted entirely so it never obscures the reading surface.
         if (toggles.autoScrollEnabled) {
-            Surface(
+            AutoScrollFab(
+                scrolling = autoScroll.scrolling,
+                contentDescription = if (autoScroll.scrolling) {
+                    "Jeda gulir otomatis — tahan dan geser untuk memindah"
+                } else {
+                    "Mulai gulir otomatis — tahan dan geser untuk memindah"
+                },
                 onClick = { autoScroll.toggleActive() },
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .navigationBarsPadding()
-                    // Sit ABOVE the back-to-top FAB (which is bottom = 16.dp
-                    // + 56.dp height ≈ 72.dp from screen bottom).
-                    .padding(end = 16.dp, bottom = 72.dp)
-                    // Size 36.dp = ~70% of the default 56.dp FAB (matches
-                    // the web's 36px button).
-                    .size(36.dp),
-                shape = CircleShape,
-                color = if (autoScroll.active) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    MaterialTheme.colorScheme.surface
-                },
-                contentColor = if (autoScroll.active) {
-                    MaterialTheme.colorScheme.onPrimary
-                } else {
-                    MaterialTheme.colorScheme.onSurface
-                },
-                shadowElevation = 6.dp,
-                tonalElevation = 6.dp,
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Icon(
-                        imageVector = if (autoScroll.scrolling) {
-                            Icons.Filled.Pause
-                        } else {
-                            Icons.Filled.PlayArrow
-                        },
-                        contentDescription = if (autoScroll.active) {
-                            "Hentikan gulir otomatis"
-                        } else {
-                            "Mulai gulir otomatis"
-                        },
-                        modifier = Modifier.size(20.dp),
-                    )
-                }
-            }
+                modifier = Modifier.align(Alignment.BottomEnd),
+            )
 
             // Paused hint — small pill above the FAB telling the user the
             // scroll is on hold and that tapping the screen resumes it.

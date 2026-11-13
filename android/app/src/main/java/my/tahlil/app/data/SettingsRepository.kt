@@ -52,6 +52,7 @@ class SettingsRepository(private val context: Context) {
     private val KEY_SPLIT_LINES = booleanPreferencesKey("display_split_arabic_lines")
     private val KEY_COLORIZE = booleanPreferencesKey("display_colorize_arabic")
     private val KEY_TAJWID = booleanPreferencesKey("display_tajwid")
+    private val KEY_WAQAF_COLOR = booleanPreferencesKey("display_waqaf_color")
     private val KEY_KEEP_SCREEN_ON = booleanPreferencesKey("display_keep_screen_on")
 
     // --- Auto scroll -------------------------------------------------------
@@ -91,6 +92,7 @@ class SettingsRepository(private val context: Context) {
             splitArabicLines = p[KEY_SPLIT_LINES] ?: true,
             colorizeArabic = p[KEY_COLORIZE] ?: false,
             tajwid = p[KEY_TAJWID] ?: false,
+            waqafColor = p[KEY_WAQAF_COLOR] ?: false,
             keepScreenOn = p[KEY_KEEP_SCREEN_ON] ?: false,
             autoScrollEnabled = p[KEY_AUTO_SCROLL_ENABLED]
                 ?: DisplayToggles.Default.autoScrollEnabled,
@@ -145,6 +147,7 @@ class SettingsRepository(private val context: Context) {
             p[KEY_SPLIT_LINES] = toggles.splitArabicLines
             p[KEY_COLORIZE] = toggles.colorizeArabic
             p[KEY_TAJWID] = toggles.tajwid
+            p[KEY_WAQAF_COLOR] = toggles.waqafColor
             p[KEY_KEEP_SCREEN_ON] = toggles.keepScreenOn
             p[KEY_AUTO_SCROLL_ENABLED] = toggles.autoScrollEnabled
             p[KEY_AUTO_SCROLL_MODE] = toggles.autoScrollMode.storageKey

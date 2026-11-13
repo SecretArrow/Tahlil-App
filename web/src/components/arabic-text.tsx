@@ -6,6 +6,7 @@ import { useArabicStyle } from "@/components/arabic-style-provider";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import { arabicStyleModes, type ArabicStyleSettings } from "@/data/arabic-style";
 import { analyzeTajwid } from "@/lib/tajwid";
+import { analyzeWaqaf } from "@/lib/waqaf";
 
 /**
  * ArabicText — renders an Arabic string with the user's chosen style settings
@@ -267,41 +268,89 @@ function maybeColorize(
 }
 
 /**
- * Wrap tajwid rule segments (detected by analyzeTajwid) in colored spans.
- * Ranges are already sorted & overlap-resolved by the engine, so this is
- * a simple linear walk. Inline spans inside Arabic words are safe: modern
- * shapers (HarfBuzz/Blink/Gecko/WebKit) keep cursive joining across
- * inline element boundaries, and the Naskhi mode intentionally disables
- * joining anyway.
+ * Wrap tajwid rule segments (detected by analyzeTajwid) AND waqaf segments
+ * (detected by analyzeWaqaf, when the waqafColor toggle is on) in colored
+ * spans. All ranges are already sorted & non-overlapping WITHIN each set,
+ * so the merge is a simple two-pointer walk:
+ *
+ *  - Tajwid ranges take PRECEDENCE: any overlap between a waqaf range and
+ *    a tajwid range is clipped away from the waqaf side, so the seven
+ *    tajwid colors are never disturbed (per spec requirement 6).
+ *  - Waqaf segments get the `.waqaf-mark` class (blue #1B51D0, lightened
+ *    in dark theme via globals.css).
  */
-function renderTajwidText(text: string, keyPrefix: string): React.ReactNode {
-  const ranges = analyzeTajwid(text);
-  if (ranges.length === 0) return text;
+function renderTajwidAndWaqafText(
+  text: string,
+  keyPrefix: string,
+  waqafOn: boolean,
+): React.ReactNode {
+  const tajwidRanges = analyzeTajwid(text);
+  const waqafRanges = waqafOn ? analyzeWaqaf(text) : [];
+
+  // Subtract tajwid-covered intervals from each waqaf range.
+  type Seg =
+    | { start: number; end: number; kind: "tajwid"; rule: string }
+    | { start: number; end: number; kind: "waqaf" };
+  const segs: Seg[] = tajwidRanges.map((r) => ({
+    start: r.start,
+    end: r.end,
+    kind: "tajwid" as const,
+    rule: r.rule,
+  }));
+
+  for (const w of waqafRanges) {
+    let s = w.start;
+    // Clip against every tajwid range (they are sorted & disjoint).
+    for (const t of tajwidRanges) {
+      if (t.end <= s) continue; // entirely before
+      if (t.start >= w.end) break; // entirely after
+      if (t.start > s) {
+        segs.push({ start: s, end: Math.min(t.start, w.end), kind: "waqaf" });
+      }
+      s = Math.max(s, t.end);
+      if (s >= w.end) break;
+    }
+    if (s < w.end) segs.push({ start: s, end: w.end, kind: "waqaf" });
+  }
+
+  if (segs.length === 0) return text;
+  segs.sort((a, b) => a.start - b.start);
+
   const nodes: React.ReactNode[] = [];
   let cursor = 0;
-  ranges.forEach((r, i) => {
-    if (r.start > cursor) nodes.push(text.slice(cursor, r.start));
-    nodes.push(
-      <span key={`${keyPrefix}-tw-${i}`} className={`tajwid-${r.rule}`}>
-        {text.slice(r.start, r.end)}
-      </span>,
-    );
-    cursor = r.end;
+  segs.forEach((seg, i) => {
+    if (seg.start > cursor) nodes.push(text.slice(cursor, seg.start));
+    if (seg.kind === "tajwid") {
+      nodes.push(
+        <span key={`${keyPrefix}-tw-${i}`} className={`tajwid-${seg.rule}`}>
+          {text.slice(seg.start, seg.end)}
+        </span>,
+      );
+    } else {
+      nodes.push(
+        <span key={`${keyPrefix}-wq-${i}`} className="waqaf-mark">
+          {text.slice(seg.start, seg.end)}
+        </span>,
+      );
+    }
+    cursor = seg.end;
   });
   if (cursor < text.length) nodes.push(text.slice(cursor));
   return nodes;
 }
 
 /** Single text-decoration entry point used by every render path: tajwid
- *  highlighting takes precedence over the alternating word colorize. */
+ *  highlighting takes precedence over the alternating word colorize, and
+ *  waqaf blue composes with tajwid (clipped to non-overlapping segments). */
 function decorateText(
   text: string,
   colors: readonly [string, string] | null,
   counterRef: { current: number },
   keyPrefix: string,
   tajwid: boolean,
+  waqaf = false,
 ): React.ReactNode {
-  if (tajwid) return renderTajwidText(text, keyPrefix);
+  if (tajwid || waqaf) return renderTajwidAndWaqafText(text, keyPrefix, waqaf);
   return maybeColorize(text, colors, counterRef, keyPrefix);
 }
 
@@ -328,6 +377,7 @@ function renderArabicWithAyahMarks(
   splitSentences: boolean = true,
   tajwid: boolean = false,
   gapEm: number = 0.25,
+  waqaf: boolean = false,
 ): React.ReactNode[] {
   const lineStyle = makeLineStyle(gapEm);
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
@@ -340,12 +390,12 @@ function renderArabicWithAyahMarks(
       if (!trimmed) return [];
       return [
         <span key={`${keyPrefix}-0`} className="ayah-line" style={lineStyle}>
-          {decorateText(trimmed, colors, counterRef, keyPrefix, tajwid)}
+          {decorateText(trimmed, colors, counterRef, keyPrefix, tajwid, waqaf)}
         </span>,
       ];
     }
     // Split by Arabic comma (،) or Latin period (.) to break into lines.
-    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid, gapEm);
+    return splitBySentence(text, keyPrefix, colors, counterRef, tajwid, gapEm, waqaf);
   }
 
   const nodes: React.ReactNode[] = [];
@@ -365,7 +415,7 @@ function renderArabicWithAyahMarks(
     // AyahMark ornament keeps its own CSS-driven styling.
     nodes.push(
       <span key={`${keyPrefix}-${lineKey++}`} className="ayah-line" style={lineStyle}>
-        {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid)}
+        {decorateText(textBefore, colors, counterRef, `${keyPrefix}-${i}`, tajwid, waqaf)}
         <AyahMark digit={digit} />
       </span>,
     );
@@ -383,14 +433,22 @@ function renderArabicWithAyahMarks(
       if (trimmed) {
         nodes.push(
           <span key={`${keyPrefix}-trail-0`} className="ayah-line" style={lineStyle}>
-            {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid)}
+            {decorateText(trimmed, colors, counterRef, `${keyPrefix}-trail`, tajwid, waqaf)}
           </span>,
         );
       }
     } else {
       // Also split trailing by sentence for dua-style text
       nodes.push(
-        ...splitBySentence(trailing, `${keyPrefix}-trail`, colors, counterRef, tajwid, gapEm),
+        ...splitBySentence(
+          trailing,
+          `${keyPrefix}-trail`,
+          colors,
+          counterRef,
+          tajwid,
+          gapEm,
+          waqaf,
+        ),
       );
     }
   }
@@ -414,6 +472,7 @@ function splitBySentence(
   counterRef: { current: number } = { current: 0 },
   tajwid: boolean = false,
   gapEm: number = 0.25,
+  waqaf: boolean = false,
 ): React.ReactNode[] {
   const lineStyle = makeLineStyle(gapEm);
   // Trim leading/trailing whitespace
@@ -434,7 +493,7 @@ function splitBySentence(
     if (part === "،" || part === ".") {
       lines.push(
         <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={lineStyle}>
-          {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
+          {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid, waqaf)}
         </span>,
       );
       current = "";
@@ -444,7 +503,7 @@ function splitBySentence(
   if (current.trim()) {
     lines.push(
       <span key={`${keyPrefix}-${keyIdx++}`} className="ayah-line" style={lineStyle}>
-        {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid)}
+        {decorateText(current, colors, counterRef, `${keyPrefix}-${keyIdx}`, tajwid, waqaf)}
       </span>,
     );
   }
@@ -498,6 +557,10 @@ export function ArabicText({
   // renders identically on server and client (no mounted gate needed,
   // unlike the theme-dependent colorize). Skipped in the compare view.
   const tajwidOn = toggles.tajwid && !forceMode;
+  // Waqaf coloring — its own display toggle; composes with tajwid (the
+  // waqaf blue only fills segments not already colored by a tajwid rule).
+  // Also skipped in the compare view.
+  const waqafOn = toggles.waqafColor && !forceMode;
 
   // Pick color pair based on resolved theme. Only applied after mount to
   // avoid SSR mismatch (resolvedTheme is undefined on first render).
@@ -551,6 +614,7 @@ export function ArabicText({
         // view is about font/size/spacing comparison, not about the sentence
         // gap knob — and forceSettings's type doesn't carry bodyLineHeight.
         settings.bodyLineHeight,
+        waqafOn,
       )}
       {suffix}
     </p>

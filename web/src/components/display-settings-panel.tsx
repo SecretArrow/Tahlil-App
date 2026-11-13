@@ -15,6 +15,7 @@ import {
   Highlighter,
   ArrowDownToLine,
   FastForward,
+  Pause,
 } from "lucide-react";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import {
@@ -25,7 +26,9 @@ import {
 } from "@/data/display-settings";
 import { ArabicText } from "@/components/arabic-text";
 import { TajwidLegend } from "@/components/tajwid-legend";
+import { WaqafLegend } from "@/components/waqaf-legend";
 import { PREVIEW_TAJWID_TEXT } from "@/lib/tajwid";
+import { PREVIEW_WAQAF_TEXT } from "@/lib/waqaf";
 
 type Props = {
   open: boolean;
@@ -215,6 +218,29 @@ export function DisplaySettingsPanel({ open, onClose }: Props) {
                     Kode warna tajwid
                   </p>
                   <TajwidLegend />
+                </div>
+              )}
+              <ToggleRow
+                label="Warnai Waqaf"
+                description="Warnai huruf yang cara bacanya berubah ketika berhenti: Waqaf bil Iskan, Mad Aridh Lissukun, dan Mad Iwadh — biru #1B51D0 (di akhir klausa/ayat/teks). Pelengkap warna tajwid; teks asli tidak diubah."
+                icon={Pause}
+                active={toggles.waqafColor}
+                activeLabel="Aktif"
+                inactiveLabel="Mati"
+                onToggle={() => setToggle("waqafColor", !toggles.waqafColor)}
+              />
+              {toggles.waqafColor && (
+                <div className="rounded-2xl border border-border bg-muted/30 p-3">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Keterangan warna waqaf
+                  </p>
+                  <WaqafLegend />
+                  <div className="mt-3 border-t border-border/40 pt-3">
+                    <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                      Contoh waqaf (pratinjau):
+                    </p>
+                    <ArabicText text={PREVIEW_WAQAF_TEXT} className="text-foreground/90" />
+                  </div>
                 </div>
               )}
 

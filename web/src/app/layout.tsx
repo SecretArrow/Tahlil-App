@@ -136,6 +136,7 @@ function parseDisplayToggles(raw: string | null): DisplayToggles {
       splitArabicLines: typeof p.splitArabicLines === "boolean" ? p.splitArabicLines : true,
       colorizeArabic: typeof p.colorizeArabic === "boolean" ? p.colorizeArabic : false,
       tajwid: typeof p.tajwid === "boolean" ? p.tajwid : false,
+      waqafColor: typeof p.waqafColor === "boolean" ? p.waqafColor : false,
       autoScrollEnabled: typeof p.autoScrollEnabled === "boolean" ? p.autoScrollEnabled : false,
       autoScrollMode:
         p.autoScrollMode === "continuous" || p.autoScrollMode === "block"

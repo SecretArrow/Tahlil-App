@@ -45,10 +45,13 @@ import my.tahlil.app.data.ArabicStyleSettings
 import my.tahlil.app.data.AutoScrollMode
 import my.tahlil.app.data.DisplayToggles
 import my.tahlil.app.data.ThemeMode
+import my.tahlil.app.ui.components.ArabicText
 import my.tahlil.app.ui.components.SliderRow
 import my.tahlil.app.ui.components.ToggleRow
 import my.tahlil.app.ui.components.contentMaxWidth
+import my.tahlil.app.ui.components.waqafColorFor
 import my.tahlil.app.util.TajwidUtil
+import my.tahlil.app.util.WaqafUtil
 
 /**
  * SettingsScreen — all display & typography settings on one scrollable
@@ -101,7 +104,7 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             item(key = "title_tampilan", contentType = { "title" }) { SectionTitle("Tampilan") }
-            togglesSection(toggles, onTogglesChange, isDark)
+            togglesSection(toggles, style, onTogglesChange, isDark)
 
             item(key = "title_autoscroll", contentType = { "title" }) { SectionTitle("Gulir Otomatis") }
             autoScrollSection(toggles, onTogglesChange)
@@ -267,6 +270,7 @@ private fun SettingsCard(content: @Composable () -> Unit) {
 
 private fun LazyListScope.togglesSection(
     toggles: DisplayToggles,
+    style: ArabicStyleSettings,
     onChange: (DisplayToggles) -> Unit,
     isDark: Boolean,
 ) {
@@ -316,6 +320,19 @@ private fun LazyListScope.togglesSection(
             )
             if (toggles.tajwid) {
                 TajwidLegend(isDark = isDark)
+            }
+            ToggleRow(
+                title = "Warnai Waqaf",
+                subtitle = "Biru #1B51D0 pada huruf yang cara bacanya berubah saat berhenti: Waqaf bil Iskan, Mad Aridh Lissukun, Mad Iwadh. Pelengkap warna tajwid; teks asli tidak diubah.",
+                checked = toggles.waqafColor,
+                onCheckedChange = { v -> onChange(toggles.copy(waqafColor = v)) },
+            )
+            if (toggles.waqafColor) {
+                WaqafLegend(
+                    isDark = isDark,
+                    toggles = toggles,
+                    style = style,
+                )
             }
             ToggleRow(
                 title = "Layar Tetap Hidup",
@@ -396,6 +413,89 @@ private fun TajwidLegend(isDark: Boolean) {
                 )
             }
         }
+    }
+}
+
+/**
+ * WaqafLegend — blue swatch + explanation for the waqaf coloring feature,
+ * shown right under the "Warnai Waqaf" toggle while it is active (port of
+ * the web's `WaqafLegend` component + the panel's preview block). The blue
+ * marks letters whose reading changes when the reciter stops: waqaf bil
+ * iskan, mad aridh lissukun, mad iwadh. Light theme uses the exact #1B51D0;
+ * dark theme lightens the same blue (#7B9DFF) for contrast — the swatch
+ * uses [waqafColorFor], the same helper the text highlighting uses, so the
+ * legend always matches the actual coloring.
+ *
+ * Also renders a live ArabicText preview ([WaqafUtil.PREVIEW_WAQAF_TEXT])
+ * so the user sees the three waqaf kinds in action, mirroring the web's
+ * "Contoh waqaf (pratinjau)" block.
+ */
+@Composable
+private fun WaqafLegend(
+    isDark: Boolean,
+    toggles: DisplayToggles,
+    style: ArabicStyleSettings,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+    ) {
+        Text(
+            text = "KETERANGAN WARNA WAQAF",
+            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 6.dp),
+        )
+        WaqafUtil.RULES_META.forEach { meta ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(vertical = 2.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .clip(CircleShape)
+                        .background(waqafColorFor(isDark)),
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    text = meta.name + " — " + meta.desc,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        Text(
+            text = "Warna biru #1B51D0 menandai huruf yang terpengaruh cara baca ketika berhenti " +
+                "(di akhir klausa, akhir ayat, dan akhir teks). Teks asli Al-Qur'an tidak diubah.",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+            modifier = Modifier.padding(top = 6.dp),
+        )
+
+        // Live preview — same pattern as the reading view: the ArabicText
+        // composable applies the waqaf coloring itself (toggles.waqafColor
+        // is already on inside this branch).
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 12.dp, bottom = 8.dp)
+                .height(1.dp)
+                .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.24f)),
+        )
+        Text(
+            text = "CONTOH WAQAF (PRATINJAU)",
+            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 4.dp),
+        )
+        ArabicText(
+            text = WaqafUtil.PREVIEW_WAQAF_TEXT,
+            style = style,
+            toggles = toggles,
+            isDark = isDark,
+        )
     }
 }
 

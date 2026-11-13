@@ -13,12 +13,15 @@ import {
   ListPlus,
   Palette,
   Highlighter,
+  Pause,
 } from "lucide-react";
 import { useArabicStyle } from "@/components/arabic-style-provider";
 import { useDisplaySettings } from "@/components/display-settings-provider";
 import { arabicStyleModes } from "@/data/arabic-style";
 import { ArabicText } from "@/components/arabic-text";
 import { TajwidLegend } from "@/components/tajwid-legend";
+import { WaqafLegend } from "@/components/waqaf-legend";
+import { PREVIEW_WAQAF_TEXT } from "@/lib/waqaf";
 import { PREVIEW_TAJWID_TEXT } from "@/lib/tajwid";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -436,6 +439,73 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                   Kode warna tajwid
                 </p>
                 <TajwidLegend />
+              </div>
+            )}
+
+            {/* Toggle: Warnai Waqaf */}
+            <button
+              type="button"
+              onClick={() => setToggle("waqafColor", !toggles.waqafColor)}
+              aria-pressed={toggles.waqafColor}
+              className={`flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all ${
+                toggles.waqafColor
+                  ? "border-primary/40 bg-primary/5"
+                  : "border-border bg-card/60 hover:bg-accent"
+              }`}
+            >
+              <span
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors ${
+                  toggles.waqafColor
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                <Pause className="h-5 w-5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-foreground">Warnai Waqaf</span>
+                  <span
+                    className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide ${
+                      toggles.waqafColor
+                        ? "bg-primary/15 text-primary"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {toggles.waqafColor ? "Aktif" : "Mati"}
+                  </span>
+                </div>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  Biru #1B51D0 pada huruf yang cara bacanya berubah saat berhenti (Iskan, Mad Aridh
+                  Lissukun, Mad Iwadh). Pelengkap warna tajwid; teks asli tidak diubah.
+                </p>
+              </div>
+              <span
+                className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+                  toggles.waqafColor ? "bg-primary" : "bg-muted-foreground/30"
+                }`}
+              >
+                <motion.span
+                  layout
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  className={`inline-block h-5 w-5 transform rounded-full bg-white shadow ${
+                    toggles.waqafColor ? "translate-x-5" : "translate-x-0.5"
+                  }`}
+                />
+              </span>
+            </button>
+            {toggles.waqafColor && (
+              <div className="rounded-2xl border border-border bg-muted/30 p-3">
+                <p className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  Keterangan warna waqaf
+                </p>
+                <WaqafLegend />
+                <div className="mt-3 border-t border-border/40 pt-3">
+                  <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Contoh waqaf (pratinjau):
+                  </p>
+                  <ArabicText text={PREVIEW_WAQAF_TEXT} className="text-foreground/90" />
+                </div>
               </div>
             )}
           </section>

@@ -7,19 +7,10 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Pause
-import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -31,6 +22,7 @@ import my.tahlil.app.data.ArabicStyleSettings
 import my.tahlil.app.data.DisplayToggles
 import my.tahlil.app.data.TahlilContent
 import my.tahlil.app.ui.components.AutoScrollEngine
+import my.tahlil.app.ui.components.AutoScrollFab
 import my.tahlil.app.ui.components.SectionCard
 import my.tahlil.app.ui.components.autoScrollTapControl
 import my.tahlil.app.ui.components.contentMaxWidth
@@ -154,58 +146,22 @@ fun SectionDetailScreen(
         // Auto-scroll start/stop FAB (bottom-end, above where the back-to-
         // top FAB would be on HomeScreen — but this screen has none, so we
         // still keep the same vertical offset for cross-screen parity).
-        // Rendered only while the user has enabled Gulir Otomatis in
-        // Settings; otherwise the FAB is omitted entirely so it never
-        // obscures the reading surface.
-        //
-        // Implementation note: we use Surface (not Material3
-        // FloatingActionButton) because FloatingActionButton has a built-in
-        // 16.dp contentPadding that, combined with .size(36.dp), would
-        // leave only ~4dp of content area and clip the icon. Surface lets
-        // us control the icon sizing directly while keeping the FAB-like
-        // look (circular shape, elevation, ripple).
+        // Shared, DRAGGABLE composable: hold & drag to reposition anywhere
+        // on screen; a plain tap still toggles start/pause. Rendered only
+        // while the user has enabled Gulir Otomatis in Settings; otherwise
+        // the FAB is omitted entirely so it never obscures the reading
+        // surface.
         if (toggles.autoScrollEnabled) {
-            Surface(
+            AutoScrollFab(
+                scrolling = autoScroll.scrolling,
+                contentDescription = if (autoScroll.scrolling) {
+                    "Jeda gulir otomatis — tahan dan geser untuk memindah"
+                } else {
+                    "Mulai gulir otomatis — tahan dan geser untuk memindah"
+                },
                 onClick = { autoScroll.toggleActive() },
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .navigationBarsPadding()
-                    .padding(end = 16.dp, bottom = 72.dp)
-                    // Size 36.dp = ~70% of the default 56.dp FAB.
-                    .size(36.dp),
-                shape = CircleShape,
-                color = if (autoScroll.active) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    MaterialTheme.colorScheme.surface
-                },
-                contentColor = if (autoScroll.active) {
-                    MaterialTheme.colorScheme.onPrimary
-                } else {
-                    MaterialTheme.colorScheme.onSurface
-                },
-                shadowElevation = 6.dp,
-                tonalElevation = 6.dp,
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Icon(
-                        imageVector = if (autoScroll.scrolling) {
-                            Icons.Filled.Pause
-                        } else {
-                            Icons.Filled.PlayArrow
-                        },
-                        contentDescription = if (autoScroll.active) {
-                            "Hentikan gulir otomatis"
-                        } else {
-                            "Mulai gulir otomatis"
-                        },
-                        modifier = Modifier.size(20.dp),
-                    )
-                }
-            }
+                modifier = Modifier.align(Alignment.BottomEnd),
+            )
         }
     }
 }

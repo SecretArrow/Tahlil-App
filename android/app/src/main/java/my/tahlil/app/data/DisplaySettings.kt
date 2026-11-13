@@ -41,6 +41,16 @@ enum class AutoScrollMode(val storageKey: String, val label: String) {
  *                     [my.tahlil.app.util.TajwidUtil.analyzeTajwid]
  *                     (Izhar, Ikhfa, Idgham, Iqlab, Ghunnah, Qalqalah) are
  *                     highlighted with per-rule colors. Default OFF.
+ * - waqafColor:       When true, letters whose reading CHANGES when the
+ *                     reciter stops (waqaf bil iskan, mad aridh lissukun,
+ *                     mad iwadh) are highlighted in blue (#1B51D0 light
+ *                     theme / #7B9DFF dark) at natural stopping points
+ *                     (clause delimiters, verse ends, text end). Detected
+ *                     by [my.tahlil.app.util.WaqafUtil.analyzeWaqaf].
+ *                     Independent of [tajwid] — when both are on, the waqaf
+ *                     blue only fills segments NOT already colored by a
+ *                     tajwid rule. The original text is never modified.
+ *                     Default OFF.
  * - keepScreenOn:     When true, the device screen stays awake while the app
  *                     is in the foreground (FLAG_KEEP_SCREEN_ON). Default
  *                     OFF so users don't drain their battery accidentally.
@@ -64,9 +74,9 @@ enum class AutoScrollMode(val storageKey: String, val label: String) {
  *                     Default 0.
  *
  * All toggles default to true except [punctuateArabic], [colorizeArabic],
- * [tajwid], [keepScreenOn], and [autoScrollEnabled], matching the web app's
- * defaults. [splitArabicLines] defaults to true because per-clause lines are
- * the traditional tahlil book layout.
+ * [tajwid], [waqafColor], [keepScreenOn], and [autoScrollEnabled], matching
+ * the web app's defaults. [splitArabicLines] defaults to true because
+ * per-clause lines are the traditional tahlil book layout.
  */
 @Serializable
 data class DisplayToggles(
@@ -77,6 +87,7 @@ data class DisplayToggles(
     val splitArabicLines: Boolean = true,
     val colorizeArabic: Boolean = false,
     val tajwid: Boolean = false,
+    val waqafColor: Boolean = false,
     val keepScreenOn: Boolean = false,
     val autoScrollEnabled: Boolean = false,
     val autoScrollMode: AutoScrollMode = AutoScrollMode.Continuous,
