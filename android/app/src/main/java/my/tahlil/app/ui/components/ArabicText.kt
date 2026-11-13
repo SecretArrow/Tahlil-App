@@ -452,8 +452,14 @@ private fun colorizeLine(
  * tajwid rule span or a waqaf (blue) span.
  */
 private sealed class HighlightSeg {
-    data class Tajwid(val start: Int, val end: Int, val rule: TajwidUtil.Rule) : HighlightSeg()
-    data class Waqaf(val start: Int, val end: Int) : HighlightSeg()
+    abstract val start: Int
+    abstract val end: Int
+    data class Tajwid(
+        override val start: Int,
+        override val end: Int,
+        val rule: TajwidUtil.Rule,
+    ) : HighlightSeg()
+    data class Waqaf(override val start: Int, override val end: Int) : HighlightSeg()
 }
 
 /**
