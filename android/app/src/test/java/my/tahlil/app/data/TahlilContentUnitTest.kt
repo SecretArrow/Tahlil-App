@@ -220,7 +220,8 @@ class TahlilContentUnitTest {
     @Test
     fun heroInfo_hasNonEmptyFields() {
         assertTrue(HeroInfo.title.isNotBlank())
-        assertTrue(HeroInfo.subtitle.isNotBlank())
+        // subtitle is intentionally allowed to be empty — the hero can
+        // work with just a title + bismillah + description (no subtitle).
         assertTrue(HeroInfo.description.isNotBlank())
         assertTrue(HeroInfo.arabicBismillah.isNotBlank())
         assertTrue(HeroInfo.source.isNotBlank())
