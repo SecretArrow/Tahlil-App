@@ -167,15 +167,29 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Read user preferences from cookies on the server so SSR matches
-  // the first client render — no hydration mismatch, no flash of defaults.
-  const [arabicStyleRaw, displayTogglesRaw] = await Promise.all([
-    getArabicStyleCookie(),
-    getDisplayTogglesCookie(),
-  ]);
+  // In static-export mode (`BUILD_TARGET=pages`), `cookies()` from
+  // `next/headers` throws because there's no request context during
+  // static generation. We skip the server-side cookie read entirely —
+  // the providers fall back to `getCookie()` from `client.ts` (which
+  // reads `document.cookie`) on the client, so settings still persist,
+  // just with a brief first-paint flash of defaults. The `<html
+  // suppressHydrationWarning>` mask below hides the mismatch.
+  //
+  // In standalone/server mode, we DO read cookies server-side so SSR
+  // matches the first client render — no flash.
+  const isStaticExport = process.env.BUILD_TARGET === "pages";
 
-  const initialArabicStyle = parseArabicStyle(arabicStyleRaw);
-  const initialDisplayToggles = parseDisplayToggles(displayTogglesRaw);
+  let initialArabicStyle = defaultArabicSettings;
+  let initialDisplayToggles = defaultDisplayToggles;
+
+  if (!isStaticExport) {
+    const [arabicStyleRaw, displayTogglesRaw] = await Promise.all([
+      getArabicStyleCookie(),
+      getDisplayTogglesCookie(),
+    ]);
+    initialArabicStyle = parseArabicStyle(arabicStyleRaw);
+    initialDisplayToggles = parseDisplayToggles(displayTogglesRaw);
+  }
 
   return (
     <html lang="id" suppressHydrationWarning>

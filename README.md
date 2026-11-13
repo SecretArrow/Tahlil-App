@@ -4,6 +4,15 @@
 
 [![CI](https://github.com/SecretArrow/Tahlil-App/actions/workflows/ci.yml/badge.svg)](https://github.com/SecretArrow/Tahlil-App/actions/workflows/ci.yml)
 [![Auto-fix](https://github.com/SecretArrow/Tahlil-App/actions/workflows/auto-fix.yml/badge.svg)](https://github.com/SecretArrow/Tahlil-App/actions/workflows/auto-fix.yml)
+[![GitHub Pages](https://img.shields.io/badge/web-GitHub%20Pages-emerald?logo=github)](https://secretarrow.github.io/Tahlil-App/)
+
+## 🌐 Live Web
+
+**URL:** https://secretarrow.github.io/Tahlil-App/
+
+Di-deploy otomatis dari branch `main` ke GitHub Pages (job `pages-deploy` di CI).
+Semua settings (mode gelap/terang, tipografi Arab, toggles tampilan, auto-scroll)
+disimpan di cookie browser — tidak butuh akun, tidak butuh server.
 
 ## 📱 Struktur Repository
 
