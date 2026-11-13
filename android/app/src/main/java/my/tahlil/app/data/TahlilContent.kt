@@ -331,10 +331,9 @@ Section(
         ),
         ContentBlock(
                 arabic = "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
-                transliteration = "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn (×7)",
-                translation = "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang. (×7)",
-                note = "QS Al-Baqarah: 286 (penutup)",
-                repeat = 7,
+                transliteration = "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
+                translation = "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang.",
+                note = "QS Al-Baqarah: 286 (penutup) — ayat dibaca sekali, bukan 7×; ulangan 7× ada pada dhikr 'Irhamnâ yâ arhamar-râhimîn' (bagian berikutnya)",
         )
     ),
 ),
