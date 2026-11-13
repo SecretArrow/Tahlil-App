@@ -308,13 +308,19 @@ export const tahlilSections: Section[] = [
         note: "QS Al-Baqarah: 286 (awal)",
       },
       {
-        arabic:
-          "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا. أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
+        arabic: "وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا",
+        transliteration: "Wa'fu 'annâ waghfir lanâ warhamnâ (×7)",
+        translation: "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. (×7)",
+        note: "Frasa penutup QS Al-Baqarah: 286 — dibaca 7× (sumber MUI); ayatnya sendiri dibaca sekali",
+        repeat: 7,
+      },
+      {
+        arabic: "أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
         transliteration:
-          "Wa'fu 'annâ waghfir lanâ warhamnâ. Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
+          "Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
         translation:
-          "Maafkanlah kami, ampunilah kami, dan rahmatilah kami. Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang.",
-        note: "QS Al-Baqarah: 286 (penutup) — ayat dibaca sekali, bukan 7×; ulangan 7× ada pada dhikr 'Irhamnâ yâ arhamar-râhimîn' (bagian berikutnya)",
+          "Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang.",
+        note: "QS Al-Baqarah: 286 (penutup) — dibaca sekali setelah frasa 'Wa'fu 'annâ…' 7×",
       },
     ],
   },
@@ -393,31 +399,28 @@ export const tahlilSections: Section[] = [
         arabic:
           "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ نُوْرِ الْهُدَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
         transliteration:
-          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika nûril-hudâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn (×3)",
+          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika nûril-hudâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn",
         translation:
-          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, cahaya petunjuk, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu. (×3)",
-        note: "Sebutan ke-1: Nûrul-Hudâ (Cahaya Petunjuk)",
-        repeat: 3,
+          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, cahaya petunjuk, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu.",
+        note: "Sebutan ke-1: Nûrul-Hudâ (Cahaya Petunjuk) — dibaca sekali (sumber MUI tidak menandai pengulangan)",
       },
       {
         arabic:
           "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ شَمْسِ الضُّحَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
         transliteration:
-          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika syamsidh-dhuhâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn (×3)",
+          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika syamsidh-dhuhâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn",
         translation:
-          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, matahari dhuha, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu. (×3)",
-        note: "Sebutan ke-2: Syamsidh-Dhuhâ (Matahari Dhuha)",
-        repeat: 3,
+          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, matahari dhuha, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu.",
+        note: "Sebutan ke-2: Syamsidh-Dhuhâ (Matahari Dhuha) — dibaca sekali (sumber MUI tidak menandai pengulangan)",
       },
       {
         arabic:
           "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ بَدْرِ الدُّجَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
         transliteration:
-          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika badrid-dujâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn (×3)",
+          "Allâhumma shalli afdhalash-shalâti 'alâ as'adi makhlûqâtika badrid-dujâ sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim, 'adada ma'lûmâtika wa midâda kalimâtika kullamâ dzakarakadz-dzâkirûna wa ghafala 'an dzikrikal-ghâfilûn",
         translation:
-          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, purnama di kegelapan malam, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu. (×3)",
-        note: "Sebutan ke-3: Badrid-Dujâ (Purnama di Kegelapan Malam)",
-        repeat: 3,
+          "Ya Allah, limpahkanlah sholawat yang paling utama kepada makhluk-Mu yang paling bahagia, purnama di kegelapan malam, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu, setiap kali orang-orang yang berdzikir mengingat-Mu dan setiap kali orang-orang yang lalai lupa mengingat-Mu.",
+        note: "Sebutan ke-3: Badrid-Dujâ (Purnama di Kegelapan Malam) — dibaca sekali (sumber MUI tidak menandai pengulangan)",
       },
       {
         arabic:
@@ -469,10 +472,10 @@ export const tahlilSections: Section[] = [
         arabic:
           "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
         transliteration:
-          "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim (×3)",
+          "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim",
         translation:
-          "Ya Allah, limpahkanlah rahmat kepada junjungan kami Nabi Muhammad. Ya Allah, limpahkanlah rahmat dan keselamatan kepadanya. (×3)",
-        repeat: 3,
+          "Ya Allah, limpahkanlah rahmat kepada junjungan kami Nabi Muhammad. Ya Allah, limpahkanlah rahmat dan keselamatan kepadanya.",
+        note: "Pengantar sebelum tahlil — dibaca sekali; penanda ×2 ada pada sholawat pendek SETELAH tahlil (sumber MUI)",
       },
     ],
   },
@@ -537,10 +540,11 @@ export const tahlilSections: Section[] = [
         arabic:
           "اَللّٰهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ، اَللّٰهُمَّ صَلِّ عَلَيْهِ وَسَلِّمْ",
         transliteration:
-          "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim",
+          "Allâhumma shalli 'alâ sayyidinâ Muhammad. Allâhumma shalli 'alaihi wa sallim (×2)",
         translation:
-          "Ya Allah, limpahkanlah rahmat kepada junjungan kami Nabi Muhammad. Ya Allah, limpahkanlah rahmat dan keselamatan kepadanya.",
-        note: "Dibaca berulang setelah tahlil.",
+          "Ya Allah, limpahkanlah rahmat kepada junjungan kami Nabi Muhammad. Ya Allah, limpahkanlah rahmat dan keselamatan kepadanya. (×2)",
+        note: "Dibaca 2× setelah tahlil 100× (sumber MUI).",
+        repeat: 2,
       },
     ],
   },
@@ -559,7 +563,20 @@ export const tahlilSections: Section[] = [
           "Qâla rasûlullâhi shallallâhu 'alaihi wa sallam: kalimatâni habîbatâni ilar-rahmân, khafîfatâni 'alal-lisân, tsaqîlatâni fil-mîzân: subhânallâhi wa bi hamdih, subhânallâhil-'azhîm",
         translation:
           'Rasulullah ﷺ bersabda: "Dua kalimat yang dicintai oleh Zat Yang Maha Pengasih, ringan diucapkan di lisan, dan berat dalam timbangan amal: Maha Suci Allah dan dengan memuji-Nya, Maha Suci Allah Yang Maha Agung."',
-        note: "Tasbihnya kemudian diulang-ulang.",
+        note: "Dilanjutkan tasbih: 'Subhânallâhi 'adada mâ khalaqallâh' 7×, lalu 'Subhânallâhi wa bi hamdih, subhânallâhil-'azhîm' 33× (sumber MUI).",
+      },
+      {
+        arabic: "سُبْحٰنَ اللهِ عَدَدَ مَا خَلَقَ اللهُ",
+        transliteration: "Subhânallâhi 'adada mâ khalaqallâh (×7)",
+        translation: "Maha Suci Allah sebanyak jumlah makhluk yang telah Allah ciptakan. (×7)",
+        repeat: 7,
+      },
+      {
+        arabic: "سُبْحٰنَ اللهِ وَبِحَمْدِهِ، سُبْحٰنَ اللهِ الْعَظِيْمِ",
+        transliteration: "Subhânallâhi wa bi hamdih, subhânallâhil-'azhîm (×33)",
+        translation:
+          "Maha Suci Allah dan segala puji bagi-Nya, Maha Suci Allah Yang Maha Agung. (×33)",
+        repeat: 33,
       },
     ],
   },
@@ -575,9 +592,11 @@ export const tahlilSections: Section[] = [
         arabic:
           "اَللّٰهُمَّ صَلِّ عَلَى حَبِيْبِكَ سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ أَجْمَعِيْنَ",
         transliteration:
-          "Allâhumma shalli 'alâ habîbika sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim ajma'în",
+          "Allâhumma shalli 'alâ habîbika sayyidinâ Muhammadin wa 'alâ âlihi wa shahbihi wa sallim ajma'în (×2)",
         translation:
-          "Ya Allah, limpahkanlah rahmat dan keselamatan kepada kekasih-Mu, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya seluruhnya.",
+          "Ya Allah, limpahkanlah rahmat dan keselamatan kepada kekasih-Mu, junjungan kami Nabi Muhammad, serta kepada keluarga dan sahabatnya seluruhnya. (×2)",
+        note: "Dibaca 2× (sumber MUI).",
+        repeat: 2,
       },
       {
         arabic:
