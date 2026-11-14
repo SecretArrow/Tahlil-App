@@ -1,4 +1,4 @@
-:HL["/Tahlil-App/_next/static/chunks/1fxggdrdug7fe.css","style"]
+:HL["/Tahlil-App/_next/static/chunks/1uu82flqxpl63.css","style"]
 :HL["/Tahlil-App/_next/static/media/416cde16e64b272b-s.p.0a4x9o5ie_yks.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Tahlil-App/_next/static/media/b4416af7d770c10a-s.p.1zf0xf1cyi65q.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Tahlil-App/_next/static/media/bff24dc14ce4541e-s.p.1mou8v493x-u7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
@@ -8,4 +8,4 @@
 :HL["/Tahlil-App/_next/static/media/e5e3622652600e97-s.p.3bws0utn4kpyc.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Tahlil-App/_next/static/media/fd579ea5adc622c4-s.p.1tl90lbozpx_2.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"lB-GIejRGMp5-Deo2GBBp","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"lx7tiK8bzZxu9OcWs_tqB","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
