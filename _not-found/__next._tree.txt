@@ -1,4 +1,4 @@
-:HL["/Tahlil-App/_next/static/chunks/1uu82flqxpl63.css","style"]
+:HL["/Tahlil-App/_next/static/chunks/1yt8i23-gmslb.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"o5yqkIdK9nDJg5xrpDELQ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"Z3JPFCVWt5CR7XPhcnHnt","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
