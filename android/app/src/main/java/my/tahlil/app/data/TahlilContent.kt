@@ -203,7 +203,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ هُوَ اللّٰهُ أَحَدٌ ۝١ اَللّٰهُ الصَّمَدُ ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝٤",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nقُلْ هُوَ اللّٰهُ أَحَدٌ ۝١ اَللّٰهُ الصَّمَدُ ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝٤",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Qul huwallâhu ahad. Allâhush-shamad. Lam yalid wa lam yûlad. Wa lam yakul lahû kufuwan ahad (×3)",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah (Muhammad), \"Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. Dia tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia.\" (×3)",
                 note = "Al-Ikhlas (Surat ke-112)",
@@ -227,7 +227,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝١ مِنْ شَرِّ مَا خَلَقَ ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٥",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nقُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝١ مِنْ شَرِّ مَا خَلَقَ ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٥",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbil-falaq. Min syarri mâ khalaq. Wa min syarri ghâsiqin idzâ waqab. Wa min syarrin-naffâtsâti fil-'uqad. Wa min syarri hâsidin idzâ hasad",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah, \"Aku berlindung kepada Tuhan yang menguasai subuh, dari kejahatan makhluk yang Dia ciptakan, dan dari kejahatan malam apabila telah gelap gulita, dan dari kejahatan perempuan-perempuan penyihir yang meniup pada buhul-buhul, dan dari kejahatan orang yang dengki apabila dia dengki.\"",
                 note = "Al-Falaq (Surat ke-113)",
@@ -244,7 +244,7 @@ Section(
     type = SectionType.Surah,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝١ مَلِكِ النَّاسِ ۝٢ إِلٰهِ النَّاسِ ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ ۝٦",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nقُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝١ مَلِكِ النَّاسِ ۝٢ إِلٰهِ النَّاسِ ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ ۝٦",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbin-nâs. Malikin-nâs. Ilâhin-nâs. Min syarril-waswâsil-khannâs. Alladzî yuwaswisu fî shudûrin-nâs. Minal-jinnati wan-nâs",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah, \"Aku berlindung kepada Tuhan manusia, Raja manusia, Sembahan manusia, dari kejahatan bisikan setan yang bersembunyi, yang membisikkan kejahatan ke dalam dada manusia, dari golongan jin dan manusia.\"",
                 note = "An-Nas (Surat ke-114)",
@@ -261,7 +261,7 @@ Section(
     type = SectionType.Ayat,
     blocks = listOf(
         ContentBlock(
-                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ الۤمّۤ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
+                arabic = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nالۤمّۤ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
                 transliteration = "Bismillâhir-rahmânir-rahîm. Alif lâm mîm. Dzâlikal-kitâbu lâ raiba fîhi hudal lil-muttaqîn. Alladzîna yu'minûna bil-ghaibi wa yuqîmûnash-shalâta wa mimmâ razaqnâhum yunfiqûn. Walladzîna yu'minûna bimâ unzila ilaika wa mâ unzila min qablika wa bil-âkhirati hum yûqinûn. Ulâ'ika 'alâ hudam mir rabbihim wa ulâ'ika humul-muflihûn",
                 translation = "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Alif Lam Mim. Kitab (Al-Qur'an) ini tidak ada keraguan di dalamnya; petunjuk bagi orang-orang yang bertakwa, yaitu orang-orang yang beriman pada yang gaib, menegakkan salat, dan menginfakkan sebagian rezeki yang Kami anugerahkan kepada mereka, dan mereka yang beriman pada (Al-Qur'an) yang diturunkan kepadamu dan kitab-kitab yang diturunkan sebelum engkau, dan mereka yakin akan adanya akhirat. Merekalah yang mendapat petunjuk dari Tuhannya dan mereka itulah orang-orang yang beruntung.",
                 note = "QS Al-Baqarah: 1–5",

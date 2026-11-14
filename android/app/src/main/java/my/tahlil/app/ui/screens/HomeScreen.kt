@@ -368,7 +368,9 @@ fun HomeScreen(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .navigationBarsPadding()
-                    .padding(end = 16.dp, bottom = 116.dp),
+                    // Keeps the pill just above the auto-scroll FAB's raised
+                    // default corner: FAB bottom 88dp + 36dp height + 8dp gap.
+                    .padding(end = 16.dp, bottom = 132.dp),
             ) {
                 Surface(
                     shape = RoundedCornerShape(50),

@@ -162,7 +162,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ هُوَ اللّٰهُ أَحَدٌ ۝١ اَللّٰهُ الصَّمَدُ ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝٤",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nقُلْ هُوَ اللّٰهُ أَحَدٌ ۝١ اَللّٰهُ الصَّمَدُ ۝٢ لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۝٣ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ۝٤",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Qul huwallâhu ahad. Allâhush-shamad. Lam yalid wa lam yûlad. Wa lam yakul lahû kufuwan ahad (×3)",
         translation:
@@ -189,7 +189,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝١ مِنْ شَرِّ مَا خَلَقَ ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٥",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nقُلْ أَعُوْذُ بِرَبِّ الْفَلَقِ ۝١ مِنْ شَرِّ مَا خَلَقَ ۝٢ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝٣ وَمِنْ شَرِّ النَّفّٰثٰتِ فِي الْعُقَدِ ۝٤ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ۝٥",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbil-falaq. Min syarri mâ khalaq. Wa min syarri ghâsiqin idzâ waqab. Wa min syarrin-naffâtsâti fil-'uqad. Wa min syarri hâsidin idzâ hasad",
         translation:
@@ -208,7 +208,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ قُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝١ مَلِكِ النَّاسِ ۝٢ إِلٰهِ النَّاسِ ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ ۝٦",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nقُلْ أَعُوْذُ بِرَبِّ النَّاسِ ۝١ مَلِكِ النَّاسِ ۝٢ إِلٰهِ النَّاسِ ۝٣ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝٤ الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ ۝٥ مِنَ الْجِنَّةِ وَالنَّاسِ ۝٦",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Qul a'ûdzu bi rabbin-nâs. Malikin-nâs. Ilâhin-nâs. Min syarril-waswâsil-khannâs. Alladzî yuwaswisu fî shudûrin-nâs. Minal-jinnati wan-nâs",
         translation:
@@ -227,7 +227,7 @@ export const tahlilSections: Section[] = [
     blocks: [
       {
         arabic:
-          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ الۤمّۤ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
+          "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ.\nالۤمّۤ ۝١ ذٰلِكَ الْكِتٰبُ لَا رَيْبَ فِيْهِ هُدًى لِلْمُتَّقِيْنَ ۝٢ الَّذِيْنَ يُؤْمِنُوْنَ بِالْغَيْبِ وَيُقِيْمُوْنَ الصَّلٰوةَ وَمِمَّا رَزَقْنٰهُمْ يُنْفِقُوْنَ ۝٣ وَالَّذِيْنَ يُؤْمِنُوْنَ بِمَا أُنْزِلَ إِلَيْكَ وَمَا أُنْزِلَ مِنْ قَبْلِكَ وَبِالْاٰخِرَةِ هُمْ يُوْقِنُوْنَ ۝٤ أُولٰئِكَ عَلٰى هُدًى مِنْ رَبِّهِمْ وَأُولٰئِكَ هُمُ الْمُفْلِحُوْنَ ۝٥",
         transliteration:
           "Bismillâhir-rahmânir-rahîm. Alif lâm mîm. Dzâlikal-kitâbu lâ raiba fîhi hudal lil-muttaqîn. Alladzîna yu'minûna bil-ghaibi wa yuqîmûnash-shalâta wa mimmâ razaqnâhum yunfiqûn. Walladzîna yu'minûna bimâ unzila ilaika wa mâ unzila min qablika wa bil-âkhirati hum yûqinûn. Ulâ'ika 'alâ hudam mir rabbihim wa ulâ'ika humul-muflihûn",
         translation:

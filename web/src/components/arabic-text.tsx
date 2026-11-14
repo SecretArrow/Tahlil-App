@@ -422,6 +422,33 @@ function renderArabicWithAyahMarks(
   waqaf: boolean = false,
   hamza: boolean = false,
 ): React.ReactNode[] {
+  // Hard line breaks: a "\n" in the source data forces a line boundary
+  // (used by the surah blocks — the Bismillah ends with a period and its
+  // own line before the first ayah, per user request). Each segment is
+  // rendered through the same pipeline independently, so the resulting
+  // `.ayah-line` blocks already stack vertically and the tajwid/waqaf/
+  // hamza analyzers see per-segment text exactly like any other line —
+  // all indices stay consistent.
+  if (text.includes("\n")) {
+    const out: React.ReactNode[] = [];
+    text.split("\n").forEach((chunk, ci) => {
+      out.push(
+        ...renderArabicWithAyahMarks(
+          chunk,
+          `${keyPrefix}-br${ci}`,
+          colors,
+          counterRef,
+          splitSentences,
+          tajwid,
+          gapEm,
+          waqaf,
+          hamza,
+        ),
+      );
+    });
+    return out;
+  }
+
   const lineStyle = makeLineStyle(gapEm);
   const matches = Array.from(text.matchAll(AYAH_MARK_REGEX));
   if (matches.length === 0) {

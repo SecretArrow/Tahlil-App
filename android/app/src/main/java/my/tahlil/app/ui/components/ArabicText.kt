@@ -382,6 +382,24 @@ private fun buildLines(
     isDark: Boolean,
     hamzaOn: Boolean = false,
 ): List<Line> {
+    // Hard line breaks: a "\n" in the source data forces a line boundary
+    // (used by the surah blocks — the Bismillah ends with a period and its
+    // own line before the first ayah, mirroring the web renderer). Each
+    // segment runs through the same pipeline independently, so the
+    // tajwid/waqaf/hamza analyzers see per-segment text exactly like any
+    // other line and all indices stay consistent.
+    if (text.contains('\n')) {
+        val broken = mutableListOf<Line>()
+        text.split('\n').forEach { chunk ->
+            broken.addAll(
+                buildLines(
+                    chunk, colors, counter, splitSentences, tajwidOn, waqafOn, isDark, hamzaOn,
+                )
+            )
+        }
+        return broken
+    }
+
     val ayahMarks = AyahMarkUtil.findMarks(text)
     val out = mutableListOf<Line>()
 

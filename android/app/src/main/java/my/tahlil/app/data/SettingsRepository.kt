@@ -61,6 +61,13 @@ class SettingsRepository(private val context: Context) {
     private val KEY_AUTO_SCROLL_SPEED = floatPreferencesKey("auto_scroll_speed")
     private val KEY_AUTO_SCROLL_PAUSE = intPreferencesKey("auto_scroll_section_pause_sec")
 
+    // --- Auto-scroll FAB position (draggable start/pause button) ----------
+    // Mirrors the web's tahlil-autoscroll-fab-pos cookie: the user's drag
+    // offset survives app restarts ("posisinya tersimpan jika di pindah2
+    // pengguna"). Stored in raw screen pixels, clamped on read by the FAB.
+    private val KEY_FAB_OFFSET_X = floatPreferencesKey("auto_scroll_fab_offset_x")
+    private val KEY_FAB_OFFSET_Y = floatPreferencesKey("auto_scroll_fab_offset_y")
+
     // --- Arabic style ----------------------------------------------------
     private val KEY_MODE = stringPreferencesKey("arabic_mode")
     private val KEY_FONT_SIZE = floatPreferencesKey("arabic_font_size")
@@ -137,6 +144,16 @@ class SettingsRepository(private val context: Context) {
         p[KEY_LAST_READ_SECTION]
     }
 
+    /**
+     * Persisted drag offset (px) of the auto-scroll start/pause FAB from
+     * its default corner, or `null` when the user has never moved it.
+     */
+    val autoScrollFabOffset: Flow<Pair<Float, Float>?> = context.tahlilDataStore.data.map { p ->
+        val x = p[KEY_FAB_OFFSET_X]
+        val y = p[KEY_FAB_OFFSET_Y]
+        if (x != null && y != null) x to y else null
+    }
+
     // --- Mutators --------------------------------------------------------
     suspend fun updateDisplayToggles(toggles: DisplayToggles) {
         context.tahlilDataStore.edit { p ->
@@ -185,6 +202,14 @@ class SettingsRepository(private val context: Context) {
             } else {
                 p[KEY_LAST_READ_SECTION] = id
             }
+        }
+    }
+
+    /** Persist the auto-scroll FAB's drag offset so it survives restarts. */
+    suspend fun setAutoScrollFabOffset(x: Float, y: Float) {
+        context.tahlilDataStore.edit { p ->
+            p[KEY_FAB_OFFSET_X] = x
+            p[KEY_FAB_OFFSET_Y] = y
         }
     }
 }

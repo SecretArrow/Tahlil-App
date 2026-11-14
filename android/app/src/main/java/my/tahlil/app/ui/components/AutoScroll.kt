@@ -2,6 +2,7 @@ package my.tahlil.app.ui.components
 
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -14,20 +15,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -35,10 +36,12 @@ import kotlin.math.roundToInt
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.withFrameNanos
 import my.tahlil.app.data.AutoScrollMode
+import my.tahlil.app.data.SettingsRepository
 
 /**
  * Auto-scroll engine for LazyColumn-based reading screens (HomeScreen,
@@ -275,40 +278,56 @@ fun rememberAutoScrollSession(): AutoScrollSessionState = remember { AutoScrollS
 /** FAB diameter — 36.dp, ~70% of the standard 56.dp FAB (matches the web's 36px button). */
 private val AutoScrollFabSize = 36.dp
 
-/** Default horizontal gap from the screen's end edge. */
-private val FabEndPadding = 16.dp
+/**
+ * Default horizontal gap from the screen's end edge — centers the 36dp FAB
+ * with the 56dp back-to-top FAB below it ("lurus center dengan tombol
+ * kembali ke awal"): the back-to-top FAB's center sits at 16dp + 28dp =
+ * 44dp from the edge; here 26dp + 18dp = 44dp, so the two align exactly.
+ */
+private val FabEndPadding = 26.dp
 
 /**
- * Default gap above the navigation-bar inset — sits above the back-to-top
- * FAB on HomeScreen (which occupies roughly the bottom 72.dp).
+ * Default gap above the navigation-bar inset — clear breathing room above
+ * the back-to-top FAB on HomeScreen (its top edge sits at 16dp + 56dp =
+ * 72dp; 88dp here leaves a 16dp gap so the two never touch — per user
+ * request "kurang keatas sedikit" and "jangan terlalu mepet dengannya").
  */
-private val FabBottomPadding = 72.dp
+private val FabBottomPadding = 88.dp
 
 /** Guard margin the FAB keeps from the screen edges when dragged. */
 private val FabScreenMargin = 8.dp
+
+/** Orange FAB — per user request the start/pause control is orange in
+ *  BOTH states ("warna icon start stop/pause pakai orange saja"); the
+ *  Play vs Pause icon tells the running state apart.
+ *  Light theme: orange-500 #F97316, dark theme: orange-600 #EA580C. */
+private val FabOrangeLight = Color(0xFFF97316)
+private val FabOrangeDark = Color(0xFFEA580C)
 
 /**
  * Shared, DRAGGABLE auto-scroll start/pause FAB (port of the draggable FAB
  * from the web's `auto-scroll.tsx`).
  *
- * Look & wiring: a 36dp circular [Surface] — primary + onPrimary while
- * [scrolling], surface + onSurface otherwise — showing Pause while
- * scrolling and PlayArrow otherwise. The start/pause logic stays with the
- * caller via [onClick]; the session state
+ * Look & wiring: a 36dp circular [Surface] — ORANGE in both states per
+ * user request ("warna icon start stop/pause pakai orange saja"), showing
+ * Pause while scrolling and PlayArrow otherwise. The start/pause logic
+ * stays with the caller via [onClick]; the session state
  * ([rememberAutoScrollSession]/[AutoScrollEngine]) is untouched.
  *
  * Dragging: the outer Box consumes drag gestures (`detectDragGestures`,
  * which only fires after touch slop) and offsets the FAB from its default
- * bottom-end corner (end 16.dp, bottom 72.dp, above the navigation-bar
- * inset). The offsets are clamped so the FAB never leaves the screen:
- *  - horizontal ∈ [-(screenW − fab − 16 − 8) .. 0]
- *  - vertical   ∈ [-(screenH − fab − 72 − 64 − 8) .. +(72 − 16).toPx()]
+ * bottom-end corner (end 26.dp, bottom 88.dp — centered above the
+ * back-to-top FAB). The offsets are clamped so the FAB never leaves the
+ * screen:
+ *  - horizontal ∈ [-(screenW − fab − 26 − 8) .. 0]
+ *  - vertical   ∈ [-(screenH − fab − 88 − 64 − 8) .. +(88 − 26).toPx()]
  *    (down to just above the nav-bar zone).
  *
- * Position persistence: the offsets are [rememberSaveable] floats — they
- * survive configuration changes (rotation) and reset on process death
- * (the web persists to a cookie; session-scoped persistence is acceptable
- * here per spec).
+ * Position persistence: the offsets are PERSISTED to DataStore via
+ * [SettingsRepository.setAutoScrollFabOffset] on every drag end and
+ * restored once on composition — the user's chosen position survives app
+ * restarts (mirrors the web's tahlil-autoscroll-fab-pos cookie —
+ * "posisinya tersimpan jika di pindah2 pengguna").
  *
  * Tap vs drag: `detectDragGestures` consumes position changes only after
  * touch slop, so a plain tap still reaches the Surface's onClick (and a
@@ -328,10 +347,12 @@ fun AutoScrollFab(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // Drag offsets (px) from the default bottom-end corner. Float is
-    // autosaveable — survives rotation, resets on process death (acceptable).
-    var offsetX by rememberSaveable { mutableStateOf(0f) }
-    var offsetY by rememberSaveable { mutableStateOf(0f) }
+    // Drag offsets (px) from the default bottom-end corner. PERSISTED via
+    // DataStore below so the user's chosen position survives app restarts
+    // (mirrors the web's cookie) — "posisinya tersimpan jika di pindah2
+    // pengguna".
+    var offsetX by remember { mutableStateOf(0f) }
+    var offsetY by remember { mutableStateOf(0f) }
     // True once an actual drag (touch slop passed) moved the FAB in the
     // current gesture — lets the click handler distinguish a tap (start /
     // pause) from a drag (reposition).
@@ -339,6 +360,20 @@ fun AutoScrollFab(
 
     val density = LocalDensity.current
     val configuration = LocalConfiguration.current
+
+    // Durable position persistence — load once on composition, save on
+    // every drag end. Stored in raw screen px and clamped by the bounds
+    // below, so a stored offset from a different screen size can never
+    // push the FAB off-screen.
+    val context = LocalContext.current
+    val settingsRepo = remember { SettingsRepository(context.applicationContext) }
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(settingsRepo) {
+        settingsRepo.autoScrollFabOffset.first()?.let { (x, y) ->
+            offsetX = x
+            offsetY = y
+        }
+    }
 
     // Drag bounds (px), recomputed whenever screen size / density changes
     // (pointerInput below is keyed on them, so a rotation re-clamps). The
@@ -367,7 +402,13 @@ fun AutoScrollFab(
             }
             .pointerInput(minOffsetX, minOffsetY, maxOffsetY) {
                 detectDragGestures(
-                    onDragEnd = { hasDragged = false },
+                    onDragEnd = {
+                        hasDragged = false
+                        // Persist so the position survives app restarts.
+                        scope.launch {
+                            settingsRepo.setAutoScrollFabOffset(offsetX, offsetY)
+                        }
+                    },
                     onDragCancel = { hasDragged = false },
                 ) { change, dragAmount ->
                     change.consume()
@@ -381,16 +422,10 @@ fun AutoScrollFab(
             onClick = { if (!hasDragged) onClick() },
             modifier = Modifier.size(AutoScrollFabSize),
             shape = CircleShape,
-            color = if (scrolling) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.surface
-            },
-            contentColor = if (scrolling) {
-                MaterialTheme.colorScheme.onPrimary
-            } else {
-                MaterialTheme.colorScheme.onSurface
-            },
+            // Orange in BOTH states per user request — the Play vs Pause
+            // icon tells the running state apart.
+            color = if (isSystemInDarkTheme()) FabOrangeDark else FabOrangeLight,
+            contentColor = Color.White,
             shadowElevation = 6.dp,
             tonalElevation = 6.dp,
         ) {

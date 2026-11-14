@@ -31,8 +31,12 @@ import { getCookie, setCookie } from "@/lib/cookies/client";
  *  - The FAB is sized h-9 w-9 (36px) — 70% of the existing back-to-top
  *    button (h-12 w-12 = 48px) ("kecilkan ukurannya 70% dari ukuran
  *    sekarang").
- *  - Pinned to the RIGHT edge ("posisinya pindah ke kanan"), above the
- *    existing back-to-top button so the two never overlap.
+ *  - Default corner sits directly above the back-to-top button, centers
+ *    with it horizontally ("lurus center dengan tombol kembali ke awal")
+ *    with a clear gap so they never touch ("jangan terlalu mepet").
+ *  - Orange in both states ("warna icon start stop/pause pakai orange
+ *    saja"); draggable anywhere — the drag offset persists in a cookie
+ *    ("posisinya tersimpan jika di pindah2 pengguna").
  */
 
 // Continuous mode: px/sec = BASE + speed * FACTOR.
@@ -51,10 +55,13 @@ const INTERACTIVE_SELECTOR =
 
 /**
  * Cookie that persists the FAB's drag offset (x, y from its default
- * corner) so the user's chosen position survives reloads. The user can
- * drag the FAB anywhere on screen ("bisa di pindah kemanapun user mau").
+ * corner) so the user's chosen position survives reloads ("posisinya
+ * tersimpan jika di pindah2 pengguna"). The user can drag the FAB
+ * anywhere on screen. v2: the default corner was re-aligned with the
+ * back-to-top button, so old v1 offsets (relative to the old corner)
+ * are intentionally discarded.
  */
-const FAB_POS_COOKIE = "tahlil-autoscroll-fab-pos-v1";
+const FAB_POS_COOKIE = "tahlil-autoscroll-fab-pos-v2";
 
 /** Clamp helper for the persisted drag offsets. */
 const clampOffset = (v: unknown): number =>
@@ -305,7 +312,15 @@ export function AutoScroll() {
         data-autoscroll-fab
         data-no-autoscroll-pause
         title="Tahan & geser untuk memindah tombol"
-        className="fixed right-5 bottom-20 z-40 sm:bottom-24 sm:right-6"
+        // Default corner per user spec: centers (lurus) horizontally with
+        // the back-to-top button and keeps a clear breathing gap above it
+        // ("kurang keatas sedikit dan geser sedikit kiri agar lurus center
+        // dengan tombol kembali ke awal dan jangan terlalu mepet").
+        // Mobile: back-to-top center = 20px + 24px = 44px → FAB right =
+        // 26px (26 + 18 = 44). sm: center = 24px + 24px = 48px → right 30px.
+        // Vertical: back-to-top top edge at 68px/72px → FAB bottom 88/104px
+        // leaves a 20px/32px gap (never touching).
+        className="fixed right-[26px] bottom-[88px] z-40 sm:bottom-[104px] sm:right-[30px]"
       >
         {/* Paused hint pill */}
         <AnimatePresence>
@@ -337,15 +352,17 @@ export function AutoScroll() {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
           // h-9 w-9 (36px) — 70% of the back-to-top FAB (h-12 w-12 = 48px).
-          // Default position: right edge, above the back-to-top button —
-          // draggable to any position (position persists via cookie).
+          // Orange in BOTH states per user request ("warna icon start
+          // stop/pause pakai orange saja") — the icon (Play vs Pause) and
+          // the pulsing ring tell the running state apart. Draggable to any
+          // position (position persists via cookie).
           className="flex h-9 w-9 items-center justify-center rounded-full shadow-lg transition-colors"
         >
           <span
             className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
               active
-                ? "bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-emerald-900/30 dark:from-emerald-500 dark:to-teal-600"
-                : "border border-border bg-card text-foreground"
+                ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-orange-900/30 dark:from-orange-500 dark:to-orange-600"
+                : "bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-orange-900/20 dark:from-orange-600 dark:to-orange-700"
             }`}
           >
             {scrolling ? (
@@ -364,7 +381,7 @@ export function AutoScroll() {
               animate={{ opacity: 0, scale: 1.8 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
-              className="pointer-events-none absolute right-0 top-[calc(100%-2.25rem)] h-9 w-9 rounded-full bg-emerald-400/40"
+              className="pointer-events-none absolute right-0 top-[calc(100%-2.25rem)] h-9 w-9 rounded-full bg-orange-400/40"
             />
           )}
         </AnimatePresence>
