@@ -41,7 +41,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -358,33 +357,6 @@ fun HomeScreen(
                 onClick = { autoScroll.toggleActive() },
                 modifier = Modifier.align(Alignment.BottomEnd),
             )
-
-            // Paused hint — small pill above the FAB telling the user the
-            // scroll is on hold and that tapping the screen resumes it.
-            AnimatedVisibility(
-                visible = autoScroll.active && autoScroll.paused,
-                enter = fadeIn() + scaleIn(initialScale = 0.8f),
-                exit = fadeOut() + scaleOut(targetScale = 0.8f),
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .navigationBarsPadding()
-                    // Keeps the pill just above the auto-scroll FAB's raised
-                    // default corner: FAB bottom 88dp + 36dp height + 8dp gap.
-                    .padding(end = 16.dp, bottom = 132.dp),
-            ) {
-                Surface(
-                    shape = RoundedCornerShape(50),
-                    color = MaterialTheme.colorScheme.inverseSurface,
-                    contentColor = MaterialTheme.colorScheme.inverseOnSurface,
-                    shadowElevation = 4.dp,
-                ) {
-                    Text(
-                        text = "Gulir dijeda — ketuk layar untuk lanjut",
-                        style = MaterialTheme.typography.labelMedium,
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                    )
-                }
-            }
         }
     }
 }

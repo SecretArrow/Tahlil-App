@@ -311,7 +311,6 @@ export function AutoScroll() {
         }}
         data-autoscroll-fab
         data-no-autoscroll-pause
-        title="Tahan & geser untuk memindah tombol"
         // Default corner per user spec: centers (lurus) horizontally with
         // the back-to-top button and keeps a clear breathing gap above it
         // ("kurang keatas sedikit dan geser sedikit kiri agar lurus center
@@ -322,32 +321,10 @@ export function AutoScroll() {
         // leaves a 20px/32px gap (never touching).
         className="fixed right-[26px] bottom-[88px] z-40 sm:bottom-[104px] sm:right-[30px]"
       >
-        {/* Paused hint pill */}
-        <AnimatePresence>
-          {active && paused && (
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 6 }}
-              className="mb-2 inline-block rounded-full bg-foreground/85 px-3 py-1 text-[11px] font-medium text-background shadow"
-            >
-              Gulir dijeda — ketuk layar untuk lanjut
-            </motion.div>
-          )}
-        </AnimatePresence>
         <motion.button
           type="button"
           onClick={toggleActive}
           aria-label={active ? "Jeda gulir otomatis" : "Mulai gulir otomatis"}
-          title={
-            active
-              ? mode === "continuous"
-                ? "Gulir otomatis berjalan — ketuk layar untuk jeda"
-                : "Gulir otomatis berjalan (mode blok) — ketuk layar untuk jeda"
-              : mode === "continuous"
-                ? "Mulai gulir otomatis (ketuk layar untuk jeda/lanjut) — tahan & geser untuk memindah"
-                : "Mulai gulir otomatis per blok — tahan & geser untuk memindah"
-          }
           initial={false}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
