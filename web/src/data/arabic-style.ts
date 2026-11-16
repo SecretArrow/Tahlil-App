@@ -31,8 +31,17 @@ export type ArabicStyleSettings = {
 export const defaultArabicSettings: ArabicStyleSettings = {
   mode: "quran",
   fontSize: 1.75,
-  lineHeight: 2.1,
-  bodyLineHeight: 0.3,
+  // Tight within-ayah line height — when an ayah wraps across multiple
+  // lines, those wrapped lines must read as ONE continuous sentence,
+  // not as separate paragraphs. 1.6 is close to Mushaf line spacing.
+  // The BETWEEN-ayah gap is controlled separately by bodyLineHeight.
+  lineHeight: 1.6,
+  // Generous gap BETWEEN ayah/clause blocks so verse boundaries are
+  // visually obvious. Must be larger than the within-ayah line spacing
+  // (1.6 * fontSize ≈ 0.6em per line, so 0.8em between blocks is clearly
+  // more) — inverting this (tight between-block, loose within-line)
+  // made different ayat look like one sentence.
+  bodyLineHeight: 0.8,
   wordSpacing: 0.05,
   letterSpacing: 0,
   align: "smart",
@@ -71,7 +80,7 @@ export const arabicStyleModes: Record<
     cssClass: "font-arabic-naskhi",
     suggested: {
       fontSize: 2.0,
-      lineHeight: 2.6,
+      lineHeight: 1.8,
       wordSpacing: 0.18,
       letterSpacing: 0.03,
       align: "right",

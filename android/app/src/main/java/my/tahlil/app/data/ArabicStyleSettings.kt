@@ -61,8 +61,16 @@ enum class ArabicAlign(val storageKey: String, val label: String) {
 data class ArabicStyleSettings(
     val mode: ArabicStyleMode = ArabicStyleMode.Quran,
     val fontSize: Float = 1.75f,        // rem (mapped to sp via scale)
-    val lineHeight: Float = 2.1f,       // unitless multiplier (Arabic line-height within a single ayah/clause)
-    val bodyLineHeight: Float = 0.3f,  // em — extra gap between Arabic kalimat/sentences
+    // Tight within-ayah line height — wrapped lines inside a single
+    // ayah/clause must read as one continuous sentence, not as separate
+    // paragraphs. 1.6 is close to Mushaf line spacing. The BETWEEN-ayah
+    // gap is controlled separately by bodyLineHeight.
+    val lineHeight: Float = 1.6f,       // unitless multiplier (Arabic line-height within a single ayah/clause)
+    // Generous gap BETWEEN ayah/clause blocks so verse boundaries are
+    // visually obvious. Must be larger than the within-ayah line spacing
+    // — inverting this (tight between-block, loose within-line) made
+    // different ayat look like one sentence.
+    val bodyLineHeight: Float = 0.8f,   // em — extra gap between Arabic kalimat/sentences
     val wordSpacing: Float = 0.05f,     // em
     val letterSpacing: Float = 0f,      // em
     val align: ArabicAlign = ArabicAlign.Smart,
@@ -81,7 +89,7 @@ data class ArabicStyleSettings(
         val NaskhiSuggested = ArabicStyleSettings(
             mode = ArabicStyleMode.Naskhi,
             fontSize = 2.0f,
-            lineHeight = 2.6f,
+            lineHeight = 1.8f,
             wordSpacing = 0.18f,
             letterSpacing = 0.03f,
             align = ArabicAlign.Smart,

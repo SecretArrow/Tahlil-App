@@ -27,6 +27,19 @@ function parseStored(raw: string | null): ArabicStyleSettings {
   if (!raw) return defaultArabicSettings;
   try {
     const parsed = JSON.parse(raw) as Partial<ArabicStyleSettings>;
+    // Migrate from the pre-fix default values: lineHeight 2.1 (way too
+    // loose within an ayah) and bodyLineHeight 0.3em (way too tight
+    // between ayah blocks). If a user has these EXACT old defaults
+    // stored — i.e. they never meaningfully customized the spacing —
+    // swap them for the new defaults (1.6 / 0.8em) so they get the
+    // fixed hierarchy automatically. Users with any other value keep
+    // their explicit choice.
+    const isOldLineHeightDefault =
+      typeof parsed.lineHeight === "number" && parsed.lineHeight === 2.1;
+    const isOldBodyLineHeightDefault =
+      typeof parsed.bodyLineHeight === "number" && parsed.bodyLineHeight === 0.3;
+    if (isOldLineHeightDefault) parsed.lineHeight = defaultArabicSettings.lineHeight;
+    if (isOldBodyLineHeightDefault) parsed.bodyLineHeight = defaultArabicSettings.bodyLineHeight;
     return {
       mode:
         parsed.mode === "standard" || parsed.mode === "quran" || parsed.mode === "naskhi"

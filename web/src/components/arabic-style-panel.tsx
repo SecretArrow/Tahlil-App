@@ -243,7 +243,7 @@ export function ArabicStylePanel({ open, onClose }: { open: boolean; onClose: ()
                               m === "naskhi"
                                 ? {
                                     fontSize: 1.6,
-                                    lineHeight: 2.6,
+                                    lineHeight: 1.8,
                                     wordSpacing: 0.18,
                                     align: "right" as const,
                                   }

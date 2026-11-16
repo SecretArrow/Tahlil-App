@@ -121,11 +121,27 @@ class SettingsRepository(private val context: Context) {
             ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE.start,
             ArabicStyleSettings.BODY_LINE_HEIGHT_RANGE.endInclusive,
         )
+        // Migrate from the pre-fix default values: lineHeight 2.1 (way too
+        // loose within an ayah — wrapped lines looked like separate
+        // paragraphs) and bodyLineHeight 0.3em (way too tight between ayah
+        // blocks — different ayat looked like one sentence). If a user has
+        // these EXACT old defaults stored — i.e. they never meaningfully
+        // customized the spacing — swap them for the new defaults
+        // (1.6 / 0.8em) so they get the fixed hierarchy automatically.
+        // Users with any other value keep their explicit choice.
+        val rawLineHeight = p[KEY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.lineHeight
+        val migratedLineHeight =
+            if (rawLineHeight == OLD_DEFAULT_LINE_HEIGHT) ArabicStyleSettings.Default.lineHeight
+            else rawLineHeight
+        val migratedBodyLineHeight =
+            if (clampedBodyLineHeight == OLD_DEFAULT_BODY_LINE_HEIGHT)
+                ArabicStyleSettings.Default.bodyLineHeight
+            else clampedBodyLineHeight
         ArabicStyleSettings(
             mode = ArabicStyleMode.fromStorageKey(p[KEY_MODE]),
             fontSize = p[KEY_FONT_SIZE] ?: ArabicStyleSettings.Default.fontSize,
-            lineHeight = p[KEY_LINE_HEIGHT] ?: ArabicStyleSettings.Default.lineHeight,
-            bodyLineHeight = clampedBodyLineHeight,
+            lineHeight = migratedLineHeight,
+            bodyLineHeight = migratedBodyLineHeight,
             wordSpacing = p[KEY_WORD_SPACING] ?: ArabicStyleSettings.Default.wordSpacing,
             letterSpacing = p[KEY_LETTER_SPACING] ?: ArabicStyleSettings.Default.letterSpacing,
             align = ArabicAlign.fromStorageKey(p[KEY_ALIGN]),
@@ -211,5 +227,14 @@ class SettingsRepository(private val context: Context) {
             p[KEY_FAB_OFFSET_X] = x
             p[KEY_FAB_OFFSET_Y] = y
         }
+    }
+
+    companion object {
+        // Pre-fix default values for arabicStyle.lineHeight and bodyLineHeight.
+        // Kept here so the migration in `arabicStyle` Flow above can detect
+        // users who never meaningfully customized the spacing and swap them
+        // to the new defaults automatically. See `arabicStyle` Flow doc.
+        private const val OLD_DEFAULT_LINE_HEIGHT = 2.1f
+        private const val OLD_DEFAULT_BODY_LINE_HEIGHT = 0.3f
     }
 }
