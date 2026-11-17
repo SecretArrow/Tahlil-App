@@ -92,6 +92,14 @@ function parseArabicStyle(raw: string | null): ArabicStyleSettings {
   if (!raw) return defaultArabicSettings;
   try {
     const p = JSON.parse(raw) as Partial<ArabicStyleSettings>;
+    // Migration (must match parseStored in arabic-style-provider.tsx):
+    // stored values equal to the OLD defaults (lineHeight 2.1 /
+    // bodyLineHeight 0.3em) mean the user never meaningfully customized
+    // spacing — swap them for the new defaults (1.6 / 0.8em) so SSR's
+    // initial render uses the fixed hierarchy too. Without this, the
+    // server-rendered first paint would show the old inverted spacing.
+    if (p.lineHeight === 2.1) p.lineHeight = defaultArabicSettings.lineHeight;
+    if (p.bodyLineHeight === 0.3) p.bodyLineHeight = defaultArabicSettings.bodyLineHeight;
     return {
       mode: p.mode === "standard" || p.mode === "quran" || p.mode === "naskhi" ? p.mode : "quran",
       fontSize:
