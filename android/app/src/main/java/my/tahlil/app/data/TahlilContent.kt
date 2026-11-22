@@ -337,7 +337,7 @@ Section(
                 repeat = 7,
         ),
         ContentBlock(
-                arabic = "أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦",
+                arabic = "أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِيْنَ",
                 transliteration = "Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
                 translation = "Engkaulah pelindung kami, maka tolonglah kami menghadapi kaum kafir, dengan rahmat-Mu wahai Zat Yang Paling Penyayang di antara para penyayang.",
                 note = "QS Al-Baqarah: 286 (penutup) — dibaca sekali setelah frasa 'Wa'fu 'annâ…' 7×",
