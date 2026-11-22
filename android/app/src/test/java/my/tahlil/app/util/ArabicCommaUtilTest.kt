@@ -27,7 +27,7 @@ class ArabicCommaUtilTest {
     @Test
     fun singleConnectorSegmentIsUnchanged() {
         // Only one " وَ" — Indonesian "X dan Y" pattern, no comma needed.
-        val text = "صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ"
+        val text = "صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ"
         val result = ArabicCommaUtil.addArabicCommas(text)
         assertEquals(text, result)
     }
@@ -53,8 +53,8 @@ class ArabicCommaUtilTest {
 
     @Test
     fun wasallamPhraseIsNeverSplit() {
-        // "صلى الله عليه وسلم" — the " وَسَلَّمْ" connector is fixed.
-        val text = "صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ"
+        // "صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ" — the " وَسَلَّمْ" connector is fixed.
+        val text = "صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ"
         val result = ArabicCommaUtil.addArabicCommas(text)
         assertEquals(text, result)
     }

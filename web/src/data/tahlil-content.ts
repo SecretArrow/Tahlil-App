@@ -567,13 +567,13 @@ export const tahlilSections: Section[] = [
         note: "Dilanjutkan tasbih: 'Subhânallâhi 'adada mâ khalaqallâh' 7×, lalu 'Subhânallâhi wa bi hamdih, subhânallâhil-'azhîm' 33× (sumber MUI).",
       },
       {
-        arabic: "سُبْحٰنَ اللهِ عَدَدَ مَا خَلَقَ اللهُ",
+        arabic: "سُبْحٰنَ اللّٰهِ عَدَدَ مَا خَلَقَ اللّٰهُ",
         transliteration: "Subhânallâhi 'adada mâ khalaqallâh (×7)",
         translation: "Maha Suci Allah sebanyak jumlah makhluk yang telah Allah ciptakan. (×7)",
         repeat: 7,
       },
       {
-        arabic: "سُبْحٰنَ اللهِ وَبِحَمْدِهِ، سُبْحٰنَ اللهِ الْعَظِيْمِ",
+        arabic: "سُبْحٰنَ اللّٰهِ وَبِحَمْدِهِ، سُبْحٰنَ اللّٰهِ الْعَظِيْمِ",
         transliteration: "Subhânallâhi wa bi hamdih, subhânallâhil-'azhîm (×33)",
         translation:
           "Maha Suci Allah dan segala puji bagi-Nya, Maha Suci Allah Yang Maha Agung. (×33)",

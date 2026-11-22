@@ -49,7 +49,7 @@ class AyahMarkUtilTest {
 
     @Test
     fun findMarks_handlesBareSymbolWithoutDigits() {
-        val text = "آيَةٌ ۝ نِصْفُ آيَة"
+        val text = "آيَةٌ ۝ نِصْفُ آيَةٍ"
         val marks = AyahMarkUtil.findMarks(text)
         assertEquals(1, marks.size)
         assertEquals("", marks[0].digits)
@@ -57,7 +57,7 @@ class AyahMarkUtilTest {
 
     @Test
     fun splitByAyahMarks_returnsSingleLineIfNoMarks() {
-        val text = "نَصٌّ بِلَا عَلَامَةِ آيَة"
+        val text = "نَصٌّ بِلَا عَلَامَةِ آيَةٍ"
         val lines = AyahMarkUtil.splitByAyahMarks(text)
         assertEquals(1, lines.size)
         assertEquals(text, lines[0].text)
@@ -66,18 +66,18 @@ class AyahMarkUtilTest {
 
     @Test
     fun splitByAyahMarks_splitsOnEachMark() {
-        // Text: "آيَةٌ أُولَى ۝١ آيَةٌ ثَانِيَة ۝٢"
+        // Text: "آيَةٌ أُولَى ۝١ آيَةٌ ثَانِيَةٌ ۝٢"
         // Expected split (mark stays attached to the verse it closes):
         //   line[0].text  = "آيَةٌ أُولَى "      (verse text BEFORE mark 1, incl. trailing space)
         //   line[0].mark   = ۝١  (digits="١")
-        //   line[1].text  = " آيَةٌ ثَانِيَة "  (text BETWEEN mark 1 end and mark 2 start, incl. spaces)
+        //   line[1].text  = " آيَةٌ ثَانِيَةٌ "  (text BETWEEN mark 1 end and mark 2 start, incl. spaces)
         //   line[1].mark   = ۝٢  (digits="٢")
-        val text = "آيَةٌ أُولَى ۝١ آيَةٌ ثَانِيَة ۝٢"
+        val text = "آيَةٌ أُولَى ۝١ آيَةٌ ثَانِيَةٌ ۝٢"
         val lines = AyahMarkUtil.splitByAyahMarks(text)
         assertEquals(2, lines.size)
         assertEquals("آيَةٌ أُولَى ", lines[0].text)
         assertEquals("١", lines[0].mark?.digits)
-        assertEquals(" آيَةٌ ثَانِيَة ", lines[1].text)
+        assertEquals(" آيَةٌ ثَانِيَةٌ ", lines[1].text)
         assertEquals("٢", lines[1].mark?.digits)
     }
 
@@ -89,12 +89,12 @@ class AyahMarkUtilTest {
 
     @Test
     fun splitBySentence_splitsOnArabicComma() {
-        val text = "جُمْلَةٌ أُولَى، جُمْلَةٌ ثَانِيَة"
+        val text = "جُمْلَةٌ أُولَى، جُمْلَةٌ ثَانِيَةٌ"
         val lines = AyahMarkUtil.splitBySentence(text)
         assertEquals(2, lines.size)
         // The delimiter is preserved at the END of each line per spec.
         assertEquals("جُمْلَةٌ أُولَى،", lines[0].text)
-        assertEquals(" جُمْلَةٌ ثَانِيَة", lines[1].text)
+        assertEquals(" جُمْلَةٌ ثَانِيَةٌ", lines[1].text)
     }
 
     @Test
