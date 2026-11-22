@@ -315,7 +315,8 @@ export const tahlilSections: Section[] = [
         repeat: 7,
       },
       {
-        arabic: "أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِيْنَ",
+        arabic:
+          "أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِيْنَ ۝٢٨٦ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِيْنَ",
         transliteration:
           "Anta maulânâ fanshurnâ 'alal-qaumil-kâfirîn, bi rahmatika yâ arhamar-râhimîn",
         translation:
